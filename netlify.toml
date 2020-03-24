@@ -1,5 +1,5 @@
 [build]
-  command = "jekyll build --source src --destination public"
+  command = "jekyll build --source src --destination _site"
   publish = "public"
 
 [build.environment]
