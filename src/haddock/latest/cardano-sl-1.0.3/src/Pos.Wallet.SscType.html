@@ -1,0 +1,16 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- | Global export of the @SSC@ type. Exported in order to be able to switch to</span><span>
+</span><a name="line-2"></a><span class="hs-comment">-- different type-level implementations.</span><span>
+</span><a name="line-3"></a><span>
+</span><a name="line-4"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Wallet</span><span class="hs-operator">.</span><span class="hs-identifier">SscType</span><span>
+</span><a name="line-5"></a><span>       </span><span class="hs-special">(</span><span> </span><a href="Pos.Wallet.SscType.html#WalletSscType"><span class="hs-identifier hs-type">WalletSscType</span></a><span>
+</span><a name="line-6"></a><span>       </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-7"></a><span>
+</span><a name="line-8"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Security.Workers.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Security</span><span class="hs-operator">.</span><span class="hs-identifier">Workers</span></a><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><a name="line-9"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Ssc.GodTossing.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Ssc</span><span class="hs-operator">.</span><span class="hs-identifier">GodTossing</span></a><span>   </span><span class="hs-special">(</span><span class="hs-identifier hs-type">SscGodTossing</span><span class="hs-special">)</span><span>
+</span><a name="line-10"></a><span class="hs-comment">--import Pos.Ssc.NistBeacon (SscNistBeacon)</span><span>
+</span><a name="line-11"></a><span>
+</span><a name="line-12"></a><span class="hs-comment">-- | We can also use CPP flags that I proposed that would enable switching between</span><span>
+</span><a name="line-13"></a><span class="hs-comment">-- implementations without changing the code.</span><span>
+</span><a name="line-14"></a><span class="hs-keyword">type</span><span> </span><a name="WalletSscType"><a href="Pos.Wallet.SscType.html#WalletSscType"><span class="hs-identifier">WalletSscType</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-type">SscGodTossing</span><span>
+</span><a name="line-15"></a><span class="hs-comment">--type WalletSscType = SscNistBeacon</span><span>
+</span><a name="line-16"></a></pre></body></html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- | Transaction related functions.</span><span>
+</span><a name="line-2"></a><span>
+</span><a name="line-3"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Txp</span><span class="hs-operator">.</span><span class="hs-identifier">Core</span><span class="hs-operator">.</span><span class="hs-identifier">Tx</span><span>
+</span><a name="line-4"></a><span>       </span><span class="hs-special">(</span><span> </span><a href="Pos.Txp.Core.Tx.html#topsortTxs"><span class="hs-identifier hs-var">topsortTxs</span></a><span>
+</span><a name="line-5"></a><span>       </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-6"></a><span>
+</span><a name="line-7"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Lens</span><span>        </span><span class="hs-special">(</span><span class="hs-identifier hs-var">makeLenses</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">to</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">uses</span><span class="hs-special">,</span><span> </span><span class="hs-special">(</span><span class="hs-operator hs-var">%=</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-special">(</span><span class="hs-operator hs-var">.=</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-8"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">HashMap</span><span class="hs-operator">.</span><span class="hs-identifier">Strict</span><span> </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">HM</span><span>
+</span><a name="line-9"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">HashSet</span><span>        </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">HS</span><span>
+</span><a name="line-10"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">List</span><span>           </span><span class="hs-special">(</span><span class="hs-identifier hs-var">nub</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">tail</span><span class="hs-special">)</span><span>
+</span><a name="line-11"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Universum</span><span>
+</span><a name="line-12"></a><span>
+</span><a name="line-13"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Crypto</span><span>          </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Hash</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">WithHash</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-14"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Txp.Core.Types.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Txp</span><span class="hs-operator">.</span><span class="hs-identifier">Core</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span></a><span>  </span><span class="hs-special">(</span><a href="Pos.Txp.Core.Types.html#Tx"><span class="hs-identifier hs-type">Tx</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Core.Types.html#TxIn"><span class="hs-identifier hs-type">TxIn</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Core.Types.html#txInputs"><span class="hs-identifier hs-var">txInputs</span></a><span class="hs-special">)</span><span>
+</span><a name="line-15"></a><span>
+</span><a name="line-16"></a><span class="hs-comment">----------------------------------------------------------------------------</span><span>
+</span><a name="line-17"></a><span class="hs-comment">-- Topsorting</span><span>
+</span><a name="line-18"></a><span class="hs-comment">----------------------------------------------------------------------------</span><span>
+</span><a name="line-19"></a><span>
+</span><a name="line-20"></a><span class="hs-keyword">data</span><span> </span><a name="TopsortState"><a href="Pos.Txp.Core.Tx.html#TopsortState"><span class="hs-identifier">TopsortState</span></a></a><span> </span><a name="local-6989586621679214527"><a href="#local-6989586621679214527"><span class="hs-identifier">a</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a name="TopsortState"><a href="Pos.Txp.Core.Tx.html#TopsortState"><span class="hs-identifier">TopsortState</span></a></a><span>
+</span><a name="line-21"></a><span>    </span><span class="hs-special">{</span><span> </span><a name="_tsVisited"><a href="Pos.Txp.Core.Tx.html#_tsVisited"><span class="hs-identifier">_tsVisited</span></a></a><span>     </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">HS</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">HashSet</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Hash</span><span> </span><a href="Pos.Txp.Core.Types.html#Tx"><span class="hs-identifier hs-type">Tx</span></a><span class="hs-special">)</span><span>
+</span><a name="line-22"></a><span>    </span><span class="hs-special">,</span><span> </span><a name="_tsUnprocessed"><a href="Pos.Txp.Core.Tx.html#_tsUnprocessed"><span class="hs-identifier">_tsUnprocessed</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><a href="#local-6989586621679214527"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">]</span><span>
+</span><a name="line-23"></a><span>    </span><span class="hs-special">,</span><span> </span><a name="_tsResult"><a href="Pos.Txp.Core.Tx.html#_tsResult"><span class="hs-identifier">_tsResult</span></a></a><span>      </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><a href="#local-6989586621679214527"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">]</span><span>
+</span><a name="line-24"></a><span>    </span><span class="hs-special">,</span><span> </span><a name="_tsLoop"><a href="Pos.Txp.Core.Tx.html#_tsLoop"><span class="hs-identifier">_tsLoop</span></a></a><span>        </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">Bool</span><span>
+</span><a name="line-25"></a><span>    </span><span class="hs-special">}</span><span>
+</span><a name="line-26"></a><span>
+</span><a name="line-27"></a><span class="hs-operator">$</span><span class="hs-special">(</span><span class="hs-identifier hs-var">makeLenses</span><span> </span><span class="hs-char">''TopsortState)
+
+{-# ANN topsortTxs (&quot;HLint: ignore Use ordNub&quot; :: Text) #-}
+-- | Does topological sort on things that contain transactions &#8211; e.g. can be
+-- used both for sorting @[Tx]@ and @[(Tx, TxWitness)]@.
+--
+-- (Backwards dfs from every node with reverse visiting order
+-- recording. Returns nothing on loop encountered. Return order is
+-- head-first.)
+topsortTxs :: forall a. (Eq a) =&gt; (a -&gt; WithHash Tx) -&gt; [a] -&gt; Maybe [a]
+topsortTxs toTx input =
+    let res = execState dfs1 initState
+    in guard (not $ res ^. tsLoop) &gt;&gt; pure (reverse $ res ^. tsResult)
+  where
+    dup a = (a,a)
+    txHashes :: HashMap (Hash Tx) a
+    txHashes = HM.fromList $ map (over _1 (whHash . toTx) . dup) input
+    txByInput :: TxIn -&gt; Maybe a
+    txByInput TxInUtxo{..} = HM.lookup txInHash txHashes
+    txByInput _            = Nothing
+
+    initState = TopsortState HS.empty input [] False
+    -- Searches next unprocessed vertix and calls dfs2 for it. Wipes
+    -- visited vertices.
+    dfs1 :: State (TopsortState a) ()
+    dfs1 = unlessM (use tsLoop) $ do
+        t &lt;- head &lt;$&gt; use tsUnprocessed
+        whenJust t $ \a -&gt; do
+            let tx = toTx a
+            ifM (HS.member (whHash tx) &lt;$&gt; use tsVisited)
+                (tsUnprocessed %= tail)
+                (dfs2 HS.empty a)
+            dfs1
+    -- Does dfs putting vertices into tsResult in reversed order of
+    -- visiting. visitedThis is map of visited vertices for _this_ dfs
+    -- (used for loop detection).
+    dfs2 :: HashSet (Hash Tx) -&gt; a -&gt; State (TopsortState a) ()
+    dfs2 visitedThis a | whHash (toTx a) `HS.member` visitedThis = tsLoop .= True
+    dfs2 visitedThis a = do
+        let (WithHash tx txHash) = toTx a
+        looped &lt;- use tsLoop
+        visited &lt;- uses tsVisited $ HS.member txHash
+        when (not looped &amp;&amp; not visited) $ do
+            tsVisited %= HS.insert txHash
+            let visitedNew = HS.insert txHash visitedThis
+                dependsUnfiltered =
+                    nub $ mapMaybe txByInput
+                                   (tx ^. txInputs . to toList)
+            depends &lt;- filterM
+                (\x -&gt; not . HS.member (whHash (toTx x)) &lt;$&gt; use tsVisited)
+                dependsUnfiltered
+            for_ depends $ \a' -&gt; dfs2 visitedNew a'
+            tsResult %= (a:)
+</span></pre></body></html>

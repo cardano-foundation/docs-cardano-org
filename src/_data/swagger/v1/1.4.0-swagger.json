@@ -1,0 +1,3448 @@
+{
+    "definitions": {
+        "Account": {
+            "example": {
+                "addresses": [
+                    {
+                        "changeAddress": true,
+                        "id": "FHnt4NL7yPYDH7Y1rrBhoj68GpmFpGnzhnr2tuAhQmxtJA7caUs8Fm79XV9we3L",
+                        "ownership": "ambiguousOwnership",
+                        "used": false
+                    },
+                    {
+                        "changeAddress": true,
+                        "id": "5FCjkr138i9sfMnPVMYDyQzdVX9E8naLtMmQaScQxyWRBEjP1RB77EuFLcg3yYTWSj9ZUFwniooV4tQ6WKchVfJXezLxggY7YoKvizjQw1c",
+                        "ownership": "isOurs",
+                        "used": false
+                    },
+                    {
+                        "changeAddress": true,
+                        "id": "Un4ZpTvXtoL1Sv6tpW9AtoeMjFVXGkaH9CmkjNJGVfkkBpt5V62fPSdTTRUAexvrx3Yq5BbwNiVWqhBSA7DYNa92FaYfwTXcswwc7v39VqFewCvZ",
+                        "ownership": "isOurs",
+                        "used": false
+                    }
+                ],
+                "amount": 11091176260625603,
+                "index": 3660662023,
+                "name": "My account",
+                "walletId": "J7rQqaLLHBFPrgJXwpktaMB1B1kQBXAyc2uRSfRPzNVGiv6TdxBzkPNBUWysZZZdhFG9gRy3sQFfX5wfpLbi4XTFGFxTg"
+            },
+            "properties": {
+                "addresses": {
+                    "description": "Public addresses pointing to this account.",
+                    "items": {
+                        "$ref": "#/definitions/WalletAddress"
+                    },
+                    "type": "array"
+                },
+                "amount": {
+                    "description": "Available funds, in Lovelace.",
+                    "maximum": 45000000000000000,
+                    "type": "number"
+                },
+                "index": {
+                    "description": "Account's index in the wallet, starting at 0.",
+                    "maximum": 4294967295,
+                    "minimum": 2147483648,
+                    "type": "number"
+                },
+                "name": {
+                    "description": "Account's name.",
+                    "type": "string"
+                },
+                "walletId": {
+                    "description": "Id of the wallet this account belongs to.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "index",
+                "addresses",
+                "amount",
+                "name",
+                "walletId"
+            ],
+            "type": "object"
+        },
+        "AccountAddresses": {
+            "example": {
+                "addresses": [
+                    {
+                        "changeAddress": true,
+                        "id": "eMNXLAmamdh1xCL7UBuKzkQp4V7gT2x4hN8ga21gutwFGydFt7Q2xqR7jLnPaYg679UeA3ojoqhhTbCuxrwZmvpCqjtVQUqC4Mi5MLRVnNHVM3jA4FSNWjgTULNCKUDTdoxNJE2JoXtQpx2jJN9f827uwvLLyovZry5NfTBXuTJSVmU5Ybr1CWAzWz4fnXhskU1NiHVZ9xp1mtyhrQAtQDKCFPzWY9ZeFiUUQ4huPrzpcCf6HPooheM4geYDkm9YxVvxm5cHWXufvJB4wNDhxJHkHKYC",
+                        "ownership": "ambiguousOwnership",
+                        "used": false
+                    },
+                    {
+                        "changeAddress": false,
+                        "id": "2657WMsDfac7nTN9mJAAvfZeXTukh4mo2QsWuLLgnodFpzcezmcbAuYaUqxufVcHY",
+                        "ownership": "ambiguousOwnership",
+                        "used": false
+                    }
+                ]
+            },
+            "properties": {
+                "addresses": {
+                    "description": "Public addresses pointing to this account.",
+                    "items": {
+                        "$ref": "#/definitions/WalletAddress"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "addresses"
+            ],
+            "type": "object"
+        },
+        "AccountBalance": {
+            "example": {
+                "amount": 25132995790248024
+            },
+            "properties": {
+                "amount": {
+                    "description": "Available funds, in Lovelace.",
+                    "maximum": 45000000000000000,
+                    "type": "number"
+                }
+            },
+            "required": [
+                "amount"
+            ],
+            "type": "object"
+        },
+        "AccountIndex": {
+            "maximum": 4294967295,
+            "minimum": 2147483648,
+            "type": "number"
+        },
+        "AccountUpdate": {
+            "example": {
+                "name": "myAccount"
+            },
+            "properties": {
+                "name": {
+                    "description": "New account's name.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "type": "object"
+        },
+        "AddressAndPath": {
+            "example": {
+                "derivationPath": [
+                    2,
+                    2147483650
+                ],
+                "srcAddress": {
+                    "addressAsBase58": "DdzFFzCqrhszBQmhPAbCwSrk5EcZjgRurtNzrGqxU3QYrT8NyGujgzoF1z3eS8CJBJJ71hFL4MXvBQ64j3jGU4UJBDHb4KKoLtiVsUvf"
+                }
+            },
+            "properties": {
+                "derivationPath": {
+                    "description": "Derivation path corresponding to this address.",
+                    "items": {
+                        "$ref": "#/definitions/AddressLevel"
+                    },
+                    "type": "array"
+                },
+                "srcAddress": {
+                    "description": "Source address that corresponds to transaction input.",
+                    "example": {
+                        "addressAsBase58": "DdzFFzCqrhszBQmhPAbCwSrk5EcZjgRurtNzrGqxU3QYrT8NyGujgzoF1z3eS8CJBJJ71hFL4MXvBQ64j3jGU4UJBDHb4KKoLtiVsUvf"
+                    },
+                    "properties": {
+                        "addressAsBase58": {
+                            "description": "Address in Base58-format.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "addressAsBase58"
+                    ],
+                    "type": "object"
+                }
+            },
+            "required": [
+                "srcAddress",
+                "derivationPath"
+            ],
+            "type": "object"
+        },
+        "AddressAsBase58": {
+            "example": {
+                "addressAsBase58": "DdzFFzCqrhszBQmhPAbCwSrk5EcZjgRurtNzrGqxU3QYrT8NyGujgzoF1z3eS8CJBJJ71hFL4MXvBQ64j3jGU4UJBDHb4KKoLtiVsUvf"
+            },
+            "properties": {
+                "addressAsBase58": {
+                    "description": "Address in Base58-format.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "addressAsBase58"
+            ],
+            "type": "object"
+        },
+        "AddressLevel": {
+            "description": "Address path level according to BIP-32 definition. Levels in the (0..2^31-1) range are treated as normal, those in the (2^31..2^32-1) range are treated as hardened.",
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+        },
+        "AddressWithProof": {
+            "example": {
+                "derivedPK": {
+                    "publicKeyAsBase58": "bNfWjshJG9xxy6VkpV2KurwGah3jQWjGb4QveDGZteaCwupdKWAi371r8uS5yFCny5i5EQuSNSLKqvRHmWEoHe45pZ"
+                },
+                "srcAddress": {
+                    "addressAsBase58": "DdzFFzCqrhszBQmhPAbCwSrk5EcZjgRurtNzrGqxU3QYrT8NyGujgzoF1z3eS8CJBJJ71hFL4MXvBQ64j3jGU4UJBDHb4KKoLtiVsUvf"
+                },
+                "txSignature": {
+                    "transactionSignatureAsBase16": "5840709cc240ac9ad78cbf47c3eec76df917423943e34339277593e8e2b8c9f9f2e59583023bfbd8e26c40dff6a7fa424600f9b942819533d8afee37a5ac6d813207"
+                }
+            },
+            "properties": {
+                "derivedPK": {
+                    "description": "Derived PK in Base58-format.",
+                    "example": {
+                        "publicKeyAsBase58": "bNfWjshJG9xxy6VkpV2KurwGah3jQWjGb4QveDGZteaCwupdKWAi371r8uS5yFCny5i5EQuSNSLKqvRHmWEoHe45pZ"
+                    },
+                    "properties": {
+                        "publicKeyAsBase58": {
+                            "description": "Extended public key in Base58-format.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "publicKeyAsBase58"
+                    ],
+                    "type": "object"
+                },
+                "srcAddress": {
+                    "description": "Source address in Base58-format.",
+                    "example": {
+                        "addressAsBase58": "DdzFFzCqrhszBQmhPAbCwSrk5EcZjgRurtNzrGqxU3QYrT8NyGujgzoF1z3eS8CJBJJ71hFL4MXvBQ64j3jGU4UJBDHb4KKoLtiVsUvf"
+                    },
+                    "properties": {
+                        "addressAsBase58": {
+                            "description": "Address in Base58-format.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "addressAsBase58"
+                    ],
+                    "type": "object"
+                },
+                "txSignature": {
+                    "description": "Transaction signature by derived SK.",
+                    "example": {
+                        "transactionSignatureAsBase16": "5840709cc240ac9ad78cbf47c3eec76df917423943e34339277593e8e2b8c9f9f2e59583023bfbd8e26c40dff6a7fa424600f9b942819533d8afee37a5ac6d813207"
+                    },
+                    "properties": {
+                        "transactionSignatureAsBase16": {
+                            "description": "Signature of the hash of transaction in Base16-format.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "transactionSignatureAsBase16"
+                    ],
+                    "type": "object"
+                }
+            },
+            "required": [
+                "srcAddress",
+                "txSignature",
+                "derivedPK"
+            ],
+            "type": "object"
+        },
+        "AssuranceLevel": {
+            "enum": [
+                "normal",
+                "strict"
+            ],
+            "type": "string"
+        },
+        "BlockchainHeight": {
+            "properties": {
+                "quantity": {
+                    "maximum": 18446744073709551615,
+                    "minimum": 0,
+                    "type": "number"
+                },
+                "unit": {
+                    "enum": [
+                        "blocks"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "quantity"
+            ],
+            "type": "object"
+        },
+        "BoundType": {
+            "enum": [
+                "Log10"
+            ],
+            "type": "string"
+        },
+        "EstimatedCompletionTime": {
+            "properties": {
+                "quantity": {
+                    "minimum": 0,
+                    "type": "number"
+                },
+                "unit": {
+                    "enum": [
+                        "milliseconds"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "quantity",
+                "unit"
+            ],
+            "type": "object"
+        },
+        "EstimatedFees": {
+            "example": {
+                "estimatedAmount": 25132995790248024
+            },
+            "properties": {
+                "estimatedAmount": {
+                    "description": "Estimated fees, in Lovelace.",
+                    "maximum": 45000000000000000,
+                    "type": "number"
+                }
+            },
+            "required": [
+                "estimatedAmount"
+            ],
+            "type": "object"
+        },
+        "LocalTimeDifference": {
+            "properties": {
+                "quantity": {
+                    "type": "number"
+                },
+                "unit": {
+                    "enum": [
+                        "microseconds"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "quantity"
+            ],
+            "type": "object"
+        },
+        "Metadata": {
+            "properties": {
+                "pagination": {
+                    "$ref": "#/definitions/PaginationMetadata"
+                }
+            },
+            "required": [
+                "pagination"
+            ],
+            "type": "object"
+        },
+        "NewAccount": {
+            "example": {
+                "name": "MyAccount",
+                "spendingPassword": ""
+            },
+            "properties": {
+                "name": {
+                    "description": "Account's name.",
+                    "type": "string"
+                },
+                "spendingPassword": {
+                    "description": "Wallet's protection password, required if defined.",
+                    "format": "hex|base16",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "type": "object"
+        },
+        "NewAddress": {
+            "example": {
+                "accountIndex": 4142131051,
+                "spendingPassword": "0001010001010101010200020001010201000200010201020202000200010000",
+                "walletId": "J7rQqaLLHBFPrgJXwpktaMB1B1kQBXAyc2uRSfRPzNVGiv6TdxBzkPNBUWysZZZdhFG9gRy3sQFfX5wfpLbi4XTFGFxTg"
+            },
+            "properties": {
+                "accountIndex": {
+                    "description": "Target account's index to store this address in.",
+                    "maximum": 4294967295,
+                    "minimum": 2147483648,
+                    "type": "number"
+                },
+                "spendingPassword": {
+                    "description": "Wallet's protection password, required if defined.",
+                    "format": "hex|base16",
+                    "type": "string"
+                },
+                "walletId": {
+                    "description": "Corresponding wallet identifier.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "accountIndex",
+                "walletId"
+            ],
+            "type": "object"
+        },
+        "NewExternalWallet": {
+            "example": {
+                "assuranceLevel": "strict",
+                "name": "My external Wallet",
+                "operation": "restore",
+                "rootPK": {
+                    "publicKeyAsBase58": "bNfWjshJG9xxy6VkpV2KurwGah3jQWjGb4QveDGZteaCwupdKWAi371r8uS5yFCny5i5EQuSNSLKqvRHmWEoHe45pZ"
+                }
+            },
+            "properties": {
+                "assuranceLevel": {
+                    "description": "Desired assurance level based on the number of confirmations counter of each transaction.",
+                    "enum": [
+                        "normal",
+                        "strict"
+                    ],
+                    "type": "string"
+                },
+                "name": {
+                    "description": "External wallet's name.",
+                    "type": "string"
+                },
+                "operation": {
+                    "description": "Create a new external wallet or Restore an existing one.",
+                    "enum": [
+                        "create",
+                        "restore"
+                    ],
+                    "type": "string"
+                },
+                "rootPK": {
+                    "description": "Root public key to identify external wallet.",
+                    "example": {
+                        "publicKeyAsBase58": "bNfWjshJG9xxy6VkpV2KurwGah3jQWjGb4QveDGZteaCwupdKWAi371r8uS5yFCny5i5EQuSNSLKqvRHmWEoHe45pZ"
+                    },
+                    "properties": {
+                        "publicKeyAsBase58": {
+                            "description": "Extended public key in Base58-format.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "publicKeyAsBase58"
+                    ],
+                    "type": "object"
+                }
+            },
+            "required": [
+                "rootPK",
+                "assuranceLevel",
+                "name",
+                "operation"
+            ],
+            "type": "object"
+        },
+        "NewWallet": {
+            "example": {
+                "assuranceLevel": "strict",
+                "backupPhrase": [
+                    "squirrel",
+                    "material",
+                    "silly",
+                    "twice",
+                    "direct",
+                    "slush",
+                    "pistol",
+                    "razor",
+                    "become",
+                    "junk",
+                    "kingdom",
+                    "flee"
+                ],
+                "name": "My Wallet",
+                "operation": "restore",
+                "spendingPassword": "0202020100010202000000020201010100020202000202000002010201020201"
+            },
+            "properties": {
+                "assuranceLevel": {
+                    "description": "Desired assurance level based on the number of confirmations counter of each transaction.",
+                    "enum": [
+                        "normal",
+                        "strict"
+                    ],
+                    "type": "string"
+                },
+                "backupPhrase": {
+                    "description": "Backup phrase to restore the wallet.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "maxItems": 12,
+                    "minItems": 12,
+                    "type": "array"
+                },
+                "name": {
+                    "description": "Wallet's name.",
+                    "type": "string"
+                },
+                "operation": {
+                    "description": "Create a new wallet or Restore an existing one.",
+                    "enum": [
+                        "create",
+                        "restore"
+                    ],
+                    "type": "string"
+                },
+                "spendingPassword": {
+                    "description": "Optional (but recommended) password to protect the wallet on sensitive operations.",
+                    "format": "hex|base16",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "backupPhrase",
+                "assuranceLevel",
+                "name",
+                "operation"
+            ],
+            "type": "object"
+        },
+        "NodeInfo": {
+            "example": {
+                "blockchainHeight": {
+                    "quantity": 12513853667654321111,
+                    "unit": "blocks"
+                },
+                "localBlockchainHeight": {
+                    "quantity": 12988764939106870466,
+                    "unit": "blocks"
+                },
+                "localTimeInformation": {
+                    "differenceFromNtpServer": null
+                },
+                "subscriptionStatus": {
+                    "34.104.46.206:7086:6": "subscribed",
+                    "95.131.147.69:4154:1": "subscribing"
+                },
+                "syncProgress": {
+                    "quantity": 14,
+                    "unit": "percent"
+                }
+            },
+            "properties": {
+                "blockchainHeight": {
+                    "description": "If known, the current blockchain height, in number of blocks.",
+                    "properties": {
+                        "quantity": {
+                            "maximum": 18446744073709551615,
+                            "minimum": 0,
+                            "type": "number"
+                        },
+                        "unit": {
+                            "enum": [
+                                "blocks"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "quantity"
+                    ],
+                    "type": "object"
+                },
+                "localBlockchainHeight": {
+                    "description": "Local blockchain height, in number of blocks.",
+                    "properties": {
+                        "quantity": {
+                            "maximum": 18446744073709551615,
+                            "minimum": 0,
+                            "type": "number"
+                        },
+                        "unit": {
+                            "enum": [
+                                "blocks"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "quantity"
+                    ],
+                    "type": "object"
+                },
+                "localTimeInformation": {
+                    "description": "Information about the clock on this node.",
+                    "example": {
+                        "differenceFromNtpServer": {
+                            "quantity": -1,
+                            "unit": "microseconds"
+                        }
+                    },
+                    "properties": {
+                        "differenceFromNtpServer": {
+                            "description": "The difference in microseconds between the node time and the NTP server. This value will be null if the NTP server is unavailable.",
+                            "properties": {
+                                "quantity": {
+                                    "type": "number"
+                                },
+                                "unit": {
+                                    "enum": [
+                                        "microseconds"
+                                    ],
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "quantity"
+                            ],
+                            "type": "object"
+                        }
+                    },
+                    "type": "object"
+                },
+                "subscriptionStatus": {
+                    "additionalProperties": {
+                        "$ref": "#/definitions/SubscriptionStatus"
+                    },
+                    "description": "Is the node connected to the network?",
+                    "type": "object"
+                },
+                "syncProgress": {
+                    "description": "Syncing progression, in percentage.",
+                    "properties": {
+                        "quantity": {
+                            "maximum": 100,
+                            "minimum": 0,
+                            "type": "number"
+                        },
+                        "unit": {
+                            "enum": [
+                                "percent"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "quantity",
+                        "unit"
+                    ],
+                    "type": "object"
+                }
+            },
+            "required": [
+                "syncProgress",
+                "localBlockchainHeight",
+                "localTimeInformation",
+                "subscriptionStatus"
+            ],
+            "type": "object"
+        },
+        "NodeSettings": {
+            "example": {
+                "gitRevision": "0e1c9322a",
+                "projectVersion": "2",
+                "slotDuration": {
+                    "quantity": 77,
+                    "unit": "milliseconds"
+                },
+                "softwareInfo": {
+                    "applicationName": "1",
+                    "version": 0
+                }
+            },
+            "properties": {
+                "gitRevision": {
+                    "description": "Git revision of this deployment.",
+                    "type": "string"
+                },
+                "projectVersion": {
+                    "description": "Current project's version.",
+                    "type": "string"
+                },
+                "slotDuration": {
+                    "description": "Duration of a slot.",
+                    "properties": {
+                        "quantity": {
+                            "type": "number"
+                        },
+                        "unit": {
+                            "enum": [
+                                "milliseconds"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "quantity"
+                    ],
+                    "type": "object"
+                },
+                "softwareInfo": {
+                    "description": "Various pieces of information about the current software.",
+                    "properties": {
+                        "applicationName": {
+                            "type": "string"
+                        },
+                        "version": {
+                            "maximum": 4294967295,
+                            "minimum": 0,
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "applicationName",
+                        "version"
+                    ],
+                    "type": "object"
+                }
+            },
+            "required": [
+                "slotDuration",
+                "softwareInfo",
+                "projectVersion",
+                "gitRevision"
+            ],
+            "type": "object"
+        },
+        "Page": {
+            "default": 1,
+            "minimum": 1,
+            "type": "integer"
+        },
+        "PaginationMetadata": {
+            "properties": {
+                "page": {
+                    "$ref": "#/definitions/Page"
+                },
+                "perPage": {
+                    "$ref": "#/definitions/PerPage"
+                },
+                "totalEntries": {
+                    "maximum": 9223372036854775807,
+                    "minimum": 0,
+                    "type": "number"
+                },
+                "totalPages": {
+                    "maximum": 9223372036854775807,
+                    "minimum": 0,
+                    "type": "number"
+                }
+            },
+            "required": [
+                "totalPages",
+                "page",
+                "perPage",
+                "totalEntries"
+            ],
+            "type": "object"
+        },
+        "PasswordUpdate": {
+            "example": {
+                "new": "0000010001010101000001000202010200010202000102000000000100000100",
+                "old": ""
+            },
+            "properties": {
+                "new": {
+                    "description": "New passowrd.",
+                    "format": "hex|base16",
+                    "type": "string"
+                },
+                "old": {
+                    "description": "Old password.",
+                    "format": "hex|base16",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "old",
+                "new"
+            ],
+            "type": "object"
+        },
+        "Payment": {
+            "example": {
+                "destinations": [
+                    {
+                        "address": "AL91N9VXRTCv3vnvq89Wj4DxEV6atyovsJoi7fBR7vU9bvecgDi4wxmS78FfdjxcBB99JeqkFjjxCAZL8czYPwSGX6frfPFt8nLnyp3V4Yh362d48Mz",
+                        "amount": 27889372662178400
+                    },
+                    {
+                        "address": "2cWKMJemoBamMBMBYJWe5aQR3xitBLbjVbt4yxQUWUWC8KGGHvYF8BfUQwmAs5je5fSii",
+                        "amount": 33829516096667581
+                    }
+                ],
+                "groupingPolicy": "OptimizeForHighThroughput",
+                "source": {
+                    "accountIndex": 2185829225,
+                    "walletId": "J7rQqaLLHBFPrgJXwpktaMB1B1kQBXAyc2uRSfRPzNVGiv6TdxBzkPNBUWysZZZdhFG9gRy3sQFfX5wfpLbi4XTFGFxTg"
+                },
+                "spendingPassword": "0000010001010101000001000202010200010202000102000000000100000100"
+            },
+            "properties": {
+                "destinations": {
+                    "description": "One or more destinations for the payment.",
+                    "items": {
+                        "$ref": "#/definitions/PaymentDistribution"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "groupingPolicy": {
+                    "description": "Optional strategy to use for selecting the transaction inputs.",
+                    "enum": [
+                        "OptimizeForSecurity",
+                        "OptimizeForHighThroughput"
+                    ],
+                    "type": "string"
+                },
+                "source": {
+                    "description": "Source for the payment.",
+                    "example": {
+                        "accountIndex": 3973314086,
+                        "walletId": "J7rQqaLLHBFPrgJXwpktaMB1B1kQBXAyc2uRSfRPzNVGiv6TdxBzkPNBUWysZZZdhFG9gRy3sQFfX5wfpLbi4XTFGFxTg"
+                    },
+                    "properties": {
+                        "accountIndex": {
+                            "description": "Corresponding account's index on the wallet.",
+                            "maximum": 4294967295,
+                            "minimum": 2147483648,
+                            "type": "number"
+                        },
+                        "walletId": {
+                            "description": "Target wallet identifier to reach.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "walletId",
+                        "accountIndex"
+                    ],
+                    "type": "object"
+                },
+                "spendingPassword": {
+                    "description": "Wallet's protection password, required to spend funds if defined.",
+                    "format": "hex|base16",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "source",
+                "destinations"
+            ],
+            "type": "object"
+        },
+        "PaymentDistribution": {
+            "example": {
+                "address": "7J1MaQmKydNWtPkuHP4vbvSbM6gFy4AYFgHFir75grBmAgr2Qdn7uCtMVoGfeDG7J6nsrwPLLqD4TfaiCYwePa6GRThWBnZ1LGZKdRof4vbMSb1",
+                "amount": 361333354208714
+            },
+            "properties": {
+                "address": {
+                    "description": "Address to map coins to.",
+                    "type": "string"
+                },
+                "amount": {
+                    "description": "Amount of coin to bind, in Lovelace.",
+                    "maximum": 45000000000000000,
+                    "type": "number"
+                }
+            },
+            "required": [
+                "address",
+                "amount"
+            ],
+            "type": "object"
+        },
+        "PaymentSource": {
+            "example": {
+                "accountIndex": 3973314086,
+                "walletId": "J7rQqaLLHBFPrgJXwpktaMB1B1kQBXAyc2uRSfRPzNVGiv6TdxBzkPNBUWysZZZdhFG9gRy3sQFfX5wfpLbi4XTFGFxTg"
+            },
+            "properties": {
+                "accountIndex": {
+                    "description": "Corresponding account's index on the wallet.",
+                    "maximum": 4294967295,
+                    "minimum": 2147483648,
+                    "type": "number"
+                },
+                "walletId": {
+                    "description": "Target wallet identifier to reach.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "walletId",
+                "accountIndex"
+            ],
+            "type": "object"
+        },
+        "PerPage": {
+            "default": 10,
+            "maximum": 50,
+            "minimum": 1,
+            "type": "integer"
+        },
+        "PublicKeyAsBase58": {
+            "example": {
+                "publicKeyAsBase58": "bNfWjshJG9xxy6VkpV2KurwGah3jQWjGb4QveDGZteaCwupdKWAi371r8uS5yFCny5i5EQuSNSLKqvRHmWEoHe45pZ"
+            },
+            "properties": {
+                "publicKeyAsBase58": {
+                    "description": "Extended public key in Base58-format.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "publicKeyAsBase58"
+            ],
+            "type": "object"
+        },
+        "Redemption": {
+            "example": {
+                "accountIndex": 3973314086,
+                "mnemonic": null,
+                "redemptionCode": "",
+                "spendingPassword": "0001010001010101010200020001010201000200010201020202000200010000",
+                "walletId": "J7rQqaLLHBFPrgJXwpktaMB1B1kQBXAyc2uRSfRPzNVGiv6TdxBzkPNBUWysZZZdhFG9gRy3sQFfX5wfpLbi4XTFGFxTg"
+            },
+            "properties": {
+                "accountIndex": {
+                    "$ref": "#/definitions/AccountIndex"
+                },
+                "mnemonic": {
+                    "description": "An optional mnemonic. This must be provided for a paper certificate redemption.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "maxItems": 9,
+                    "minItems": 9,
+                    "type": "array"
+                },
+                "redemptionCode": {
+                    "description": "The redemption code associated with the Ada to redeem.",
+                    "type": "string"
+                },
+                "spendingPassword": {
+                    "description": "An optional spending password. This must match the password for the provided wallet ID and account index.",
+                    "format": "hex|base16",
+                    "type": "string"
+                },
+                "walletId": {
+                    "$ref": "#/definitions/WalletId"
+                }
+            },
+            "required": [
+                "redemptionCode",
+                "spendingPassword",
+                "walletId",
+                "accountIndex"
+            ],
+            "type": "object"
+        },
+        "RedemptionMnemonic": {
+            "items": {
+                "type": "string"
+            },
+            "maxItems": 9,
+            "minItems": 9,
+            "type": "array"
+        },
+        "ResponseStatus": {
+            "enum": [
+                "success",
+                "fail",
+                "error"
+            ],
+            "type": "string"
+        },
+        "ShieldedRedemptionCode": {
+            "type": "string"
+        },
+        "SignedTransaction": {
+            "example": {
+                "addrsWithProofs": [
+                    {
+                        "derivedPK": {
+                            "publicKeyAsBase58": "bNfWjshJG9xxy6VkpV2KurwGah3jQWjGb4QveDGZteaCwupdKWAi371r8uS5yFCny5i5EQuSNSLKqvRHmWEoHe45pZ"
+                        },
+                        "srcAddress": {
+                            "addressAsBase58": "DdzFFzCqrhszBQmhPAbCwSrk5EcZjgRurtNzrGqxU3QYrT8NyGujgzoF1z3eS8CJBJJ71hFL4MXvBQ64j3jGU4UJBDHb4KKoLtiVsUvf"
+                        },
+                        "txSignature": {
+                            "transactionSignatureAsBase16": "5840709cc240ac9ad78cbf47c3eec76df917423943e34339277593e8e2b8c9f9f2e59583023bfbd8e26c40dff6a7fa424600f9b942819533d8afee37a5ac6d813207"
+                        }
+                    },
+                    {
+                        "derivedPK": {
+                            "publicKeyAsBase58": "bNfWjshJG9xxy6VkpV2KurwGah3jQWjGb4QveDGZteaCwupdKWAi371r8uS5yFCny5i5EQuSNSLKqvRHmWEoHe45pZ"
+                        },
+                        "srcAddress": {
+                            "addressAsBase58": "DdzFFzCqrhszBQmhPAbCwSrk5EcZjgRurtNzrGqxU3QYrT8NyGujgzoF1z3eS8CJBJJ71hFL4MXvBQ64j3jGU4UJBDHb4KKoLtiVsUvf"
+                        },
+                        "txSignature": {
+                            "transactionSignatureAsBase16": "5840709cc240ac9ad78cbf47c3eec76df917423943e34339277593e8e2b8c9f9f2e59583023bfbd8e26c40dff6a7fa424600f9b942819533d8afee37a5ac6d813207"
+                        }
+                    }
+                ],
+                "transaction": {
+                    "transactionAsBase16": "839f8200d8185826825820de3151a2d9cd8e2bbe292a6153d679d123892ddcfbee869c4732a5c504a7554d19386cff9f8282d818582183581caeb153a5809a084507854c9f3e5795bcca89781f9c386d957748cd42a0001a87236a1f1b00780aa6c7d62110ffa0"
+                }
+            },
+            "properties": {
+                "addrsWithProofs": {
+                    "description": "Source addresses with proofs for inputs.",
+                    "items": {
+                        "$ref": "#/definitions/AddressWithProof"
+                    },
+                    "type": "array"
+                },
+                "transaction": {
+                    "description": "New transaction that wasn't submitted in the blockchain yet.",
+                    "example": {
+                        "transactionAsBase16": "839f8200d8185826825820de3151a2d9cd8e2bbe292a6153d679d123892ddcfbee869c4732a5c504a7554d19386cff9f8282d818582183581caeb153a5809a084507854c9f3e5795bcca89781f9c386d957748cd42a0001a87236a1f1b00780aa6c7d62110ffa0"
+                    },
+                    "properties": {
+                        "transactionAsBase16": {
+                            "description": "Serialized transaction in Base16-format.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "transactionAsBase16"
+                    ],
+                    "type": "object"
+                }
+            },
+            "required": [
+                "transaction",
+                "addrsWithProofs"
+            ],
+            "type": "object"
+        },
+        "SlotDuration": {
+            "properties": {
+                "quantity": {
+                    "type": "number"
+                },
+                "unit": {
+                    "enum": [
+                        "milliseconds"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "quantity"
+            ],
+            "type": "object"
+        },
+        "SubscriptionStatus": {
+            "enum": [
+                "subscribed",
+                "subscribing"
+            ],
+            "type": "string"
+        },
+        "SyncPercentage": {
+            "properties": {
+                "quantity": {
+                    "maximum": 100,
+                    "minimum": 0,
+                    "type": "number"
+                },
+                "unit": {
+                    "enum": [
+                        "percent"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "quantity",
+                "unit"
+            ],
+            "type": "object"
+        },
+        "SyncProgress": {
+            "example": {
+                "estimatedCompletionTime": {
+                    "quantity": 3000,
+                    "unit": "milliseconds"
+                },
+                "percentage": {
+                    "quantity": 14,
+                    "unit": "percent"
+                },
+                "throughput": {
+                    "quantity": 400,
+                    "unit": "blocksPerSecond"
+                }
+            },
+            "properties": {
+                "estimatedCompletionTime": {
+                    "description": "The estimated time the wallet is expected to be fully sync, based on the information available.",
+                    "properties": {
+                        "quantity": {
+                            "minimum": 0,
+                            "type": "number"
+                        },
+                        "unit": {
+                            "enum": [
+                                "milliseconds"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "quantity",
+                        "unit"
+                    ],
+                    "type": "object"
+                },
+                "percentage": {
+                    "description": "The sync percentage, from 0% to 100%.",
+                    "properties": {
+                        "quantity": {
+                            "maximum": 100,
+                            "minimum": 0,
+                            "type": "number"
+                        },
+                        "unit": {
+                            "enum": [
+                                "percent"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "quantity",
+                        "unit"
+                    ],
+                    "type": "object"
+                },
+                "throughput": {
+                    "description": "The sync throughput, measured in blocks/s.",
+                    "properties": {
+                        "quantity": {
+                            "type": "number"
+                        },
+                        "unit": {
+                            "enum": [
+                                "blocksPerSecond"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "quantity",
+                        "unit"
+                    ],
+                    "type": "object"
+                }
+            },
+            "required": [
+                "estimatedCompletionTime",
+                "throughput",
+                "percentage"
+            ],
+            "type": "object"
+        },
+        "SyncState": {
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/SyncProgress"
+                },
+                "tag": {
+                    "enum": [
+                        "restoring",
+                        "synced"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "tag"
+            ],
+            "type": "object"
+        },
+        "SyncThroughput": {
+            "properties": {
+                "quantity": {
+                    "type": "number"
+                },
+                "unit": {
+                    "enum": [
+                        "blocksPerSecond"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "quantity",
+                "unit"
+            ],
+            "type": "object"
+        },
+        "TimeInfo": {
+            "example": {
+                "differenceFromNtpServer": {
+                    "quantity": -1,
+                    "unit": "microseconds"
+                }
+            },
+            "properties": {
+                "differenceFromNtpServer": {
+                    "description": "The difference in microseconds between the node time and the NTP server. This value will be null if the NTP server is unavailable.",
+                    "properties": {
+                        "quantity": {
+                            "type": "number"
+                        },
+                        "unit": {
+                            "enum": [
+                                "microseconds"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "quantity"
+                    ],
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "Timestamp": {
+            "description": "Time in ISO 8601 format",
+            "type": "string"
+        },
+        "Transaction": {
+            "example": {
+                "amount": 28311699119270855,
+                "confirmations": 4,
+                "creationTime": "1977-09-26T13:35:28.425218",
+                "direction": "outgoing",
+                "id": "848d6fadc04dcd9af1bc462df5938ecfbe810c5ecb50971db1cf7ae224bb5955",
+                "inputs": [
+                    {
+                        "address": "EqGAuA8vHnPAaHvxA8iajiUpsuoabdaXjEuYZRtonABww7hszPPS7ia8QJYUzbpnSnCrMhgJVvrniXvyBrLzsRgB8B73Uyei1zoizF32YvUE2CyvQijGdy5",
+                        "amount": 13019322832706804
+                    }
+                ],
+                "outputs": [
+                    {
+                        "address": "2cWKMJemoBakXCwSJnQirfBC6DAgQwER6dXHtnY9LYQ6p4T1wREnzMmi83upacCB3KfT9",
+                        "amount": 14984536053034711
+                    },
+                    {
+                        "address": "2657WMsDfac6VJfxAHRezMNbBhvYzrDVf5F2W7s7LGAgtp6m9B5Df8EQkwktLsEee",
+                        "amount": 13290197696443539
+                    },
+                    {
+                        "address": "Un4ZpTvXtoLTFKHDvR7cPV94gefp41djrSZeUtE9rDE5zEKbAzTZppoqydgw2jfFXvdRbTMW4KCVLatj1YycK11YtmgRF2QT9Qewj3HT8rdMJjaa",
+                        "amount": 21095182977599617
+                    }
+                ],
+                "status": {
+                    "data": {},
+                    "tag": "persisted"
+                },
+                "type": "foreign"
+            },
+            "properties": {
+                "amount": {
+                    "description": "Coins moved as part of the transaction, in Lovelace.",
+                    "maximum": 45000000000000000,
+                    "type": "number"
+                },
+                "confirmations": {
+                    "description": "Number of confirmations.",
+                    "maximum": 18446744073709551615,
+                    "minimum": 0,
+                    "type": "integer"
+                },
+                "creationTime": {
+                    "description": "Timestamp indicating when the transaction was created.",
+                    "type": "string"
+                },
+                "direction": {
+                    "description": "Direction for this transaction.",
+                    "enum": [
+                        "outgoing",
+                        "incoming"
+                    ],
+                    "type": "string"
+                },
+                "id": {
+                    "description": "Transaction's id.",
+                    "type": "string"
+                },
+                "inputs": {
+                    "description": "One or more input money distributions.",
+                    "items": {
+                        "$ref": "#/definitions/PaymentDistribution"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "outputs": {
+                    "description": "One or more ouputs money distributions.",
+                    "items": {
+                        "$ref": "#/definitions/PaymentDistribution"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "status": {
+                    "description": "Shows whether or not the transaction is accepted.",
+                    "properties": {
+                        "data": {
+                            "type": "object"
+                        },
+                        "tag": {
+                            "enum": [
+                                "applying",
+                                "inNewestBlocks",
+                                "persisted",
+                                "wontApply",
+                                "creating"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "tag",
+                        "data"
+                    ],
+                    "type": "object"
+                },
+                "type": {
+                    "description": "Whether the transaction is entirely local or foreign.",
+                    "enum": [
+                        "local",
+                        "foreign"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "confirmations",
+                "amount",
+                "inputs",
+                "outputs",
+                "type",
+                "direction",
+                "creationTime",
+                "status"
+            ],
+            "type": "object"
+        },
+        "TransactionAsBase16": {
+            "example": {
+                "transactionAsBase16": "839f8200d8185826825820de3151a2d9cd8e2bbe292a6153d679d123892ddcfbee869c4732a5c504a7554d19386cff9f8282d818582183581caeb153a5809a084507854c9f3e5795bcca89781f9c386d957748cd42a0001a87236a1f1b00780aa6c7d62110ffa0"
+            },
+            "properties": {
+                "transactionAsBase16": {
+                    "description": "Serialized transaction in Base16-format.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "transactionAsBase16"
+            ],
+            "type": "object"
+        },
+        "TransactionDirection": {
+            "enum": [
+                "outgoing",
+                "incoming"
+            ],
+            "type": "string"
+        },
+        "TransactionSignatureAsBase16": {
+            "example": {
+                "transactionSignatureAsBase16": "5840709cc240ac9ad78cbf47c3eec76df917423943e34339277593e8e2b8c9f9f2e59583023bfbd8e26c40dff6a7fa424600f9b942819533d8afee37a5ac6d813207"
+            },
+            "properties": {
+                "transactionSignatureAsBase16": {
+                    "description": "Signature of the hash of transaction in Base16-format.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "transactionSignatureAsBase16"
+            ],
+            "type": "object"
+        },
+        "TransactionStatus": {
+            "properties": {
+                "data": {
+                    "type": "object"
+                },
+                "tag": {
+                    "enum": [
+                        "applying",
+                        "inNewestBlocks",
+                        "persisted",
+                        "wontApply",
+                        "creating"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "tag",
+                "data"
+            ],
+            "type": "object"
+        },
+        "TransactionType": {
+            "description": "A transaction is 'local' if all the inputs and outputs belong to the current wallet. A transaction is foreign if the transaction is not local to this wallet.",
+            "enum": [
+                "local",
+                "foreign"
+            ],
+            "type": "string"
+        },
+        "UnsignedTransaction": {
+            "example": {
+                "hex": {
+                    "transactionAsBase16": "839f8200d8185826825820de3151a2d9cd8e2bbe292a6153d679d123892ddcfbee869c4732a5c504a7554d19386cff9f8282d818582183581caeb153a5809a084507854c9f3e5795bcca89781f9c386d957748cd42a0001a87236a1f1b00780aa6c7d62110ffa0"
+                },
+                "srcAddresses": [
+                    {
+                        "derivationPath": [
+                            0,
+                            2147483650,
+                            0
+                        ],
+                        "srcAddress": {
+                            "addressAsBase58": "DdzFFzCqrhszBQmhPAbCwSrk5EcZjgRurtNzrGqxU3QYrT8NyGujgzoF1z3eS8CJBJJ71hFL4MXvBQ64j3jGU4UJBDHb4KKoLtiVsUvf"
+                        }
+                    },
+                    {
+                        "derivationPath": [
+                            2147483649,
+                            1,
+                            2147483648
+                        ],
+                        "srcAddress": {
+                            "addressAsBase58": "DdzFFzCqrhszBQmhPAbCwSrk5EcZjgRurtNzrGqxU3QYrT8NyGujgzoF1z3eS8CJBJJ71hFL4MXvBQ64j3jGU4UJBDHb4KKoLtiVsUvf"
+                        }
+                    }
+                ]
+            },
+            "properties": {
+                "hex": {
+                    "description": "New raw transaction in Base16-format.",
+                    "example": {
+                        "transactionAsBase16": "839f8200d8185826825820de3151a2d9cd8e2bbe292a6153d679d123892ddcfbee869c4732a5c504a7554d19386cff9f8282d818582183581caeb153a5809a084507854c9f3e5795bcca89781f9c386d957748cd42a0001a87236a1f1b00780aa6c7d62110ffa0"
+                    },
+                    "properties": {
+                        "transactionAsBase16": {
+                            "description": "Serialized transaction in Base16-format.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "transactionAsBase16"
+                    ],
+                    "type": "object"
+                },
+                "srcAddresses": {
+                    "description": "Source addresses (with derivation paths), correspond to transaction inputs.",
+                    "items": {
+                        "$ref": "#/definitions/AddressAndPath"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "hex",
+                "srcAddresses"
+            ],
+            "type": "object"
+        },
+        "UtxoStatistics": {
+            "properties": {
+                "allStakes": {
+                    "minimum": 0,
+                    "type": "number"
+                },
+                "boundType": {
+                    "$ref": "#/definitions/BoundType"
+                },
+                "histogram": {
+                    "properties": {
+                        "10": {
+                            "maximum": 18446744073709551615,
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        "100": {
+                            "maximum": 18446744073709551615,
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        "1000": {
+                            "maximum": 18446744073709551615,
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        "10000": {
+                            "maximum": 18446744073709551615,
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        "100000": {
+                            "maximum": 18446744073709551615,
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        "1000000": {
+                            "maximum": 18446744073709551615,
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        "10000000": {
+                            "maximum": 18446744073709551615,
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        "100000000": {
+                            "maximum": 18446744073709551615,
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        "1000000000": {
+                            "maximum": 18446744073709551615,
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        "10000000000": {
+                            "maximum": 18446744073709551615,
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        "100000000000": {
+                            "maximum": 18446744073709551615,
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        "1000000000000": {
+                            "maximum": 18446744073709551615,
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        "10000000000000": {
+                            "maximum": 18446744073709551615,
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        "100000000000000": {
+                            "maximum": 18446744073709551615,
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        "1000000000000000": {
+                            "maximum": 18446744073709551615,
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        "10000000000000000": {
+                            "maximum": 18446744073709551615,
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        "45000000000000000": {
+                            "maximum": 18446744073709551615,
+                            "minimum": 0,
+                            "type": "integer"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "required": [
+                "histogram",
+                "allStakes"
+            ],
+            "type": "object"
+        },
+        "V1Address": {
+            "type": "string"
+        },
+        "V1AddressOwnership": {
+            "enum": [
+                "isOurs",
+                "ambiguousOwnership"
+            ],
+            "type": "string"
+        },
+        "V1BackupPhrase": {
+            "items": {
+                "type": "string"
+            },
+            "maxItems": 12,
+            "minItems": 12,
+            "type": "array"
+        },
+        "V1Coin": {
+            "maximum": 45000000000000000,
+            "type": "number"
+        },
+        "V1InputSelectionPolicy": {
+            "enum": [
+                "OptimizeForSecurity",
+                "OptimizeForHighThroughput"
+            ],
+            "type": "string"
+        },
+        "V1PassPhrase": {
+            "format": "hex|base16",
+            "type": "string"
+        },
+        "V1SoftwareVersion": {
+            "properties": {
+                "applicationName": {
+                    "type": "string"
+                },
+                "version": {
+                    "maximum": 4294967295,
+                    "minimum": 0,
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "applicationName",
+                "version"
+            ],
+            "type": "object"
+        },
+        "Version": {
+            "type": "string"
+        },
+        "Wallet": {
+            "example": {
+                "assuranceLevel": "strict",
+                "balance": 28311699119270855,
+                "createdAt": "2029-04-05T12:13:13.241896",
+                "hasSpendingPassword": true,
+                "id": "J7rQqaLLHBFPrgJXwpktaMB1B1kQBXAyc2uRSfRPzNVGiv6TdxBzkPNBUWysZZZdhFG9gRy3sQFfX5wfpLbi4XTFGFxTg",
+                "name": "My wallet",
+                "spendingPasswordLastUpdate": "2029-10-05T15:07:16.313354",
+                "syncState": {
+                    "data": {
+                        "estimatedCompletionTime": {
+                            "quantity": 4,
+                            "unit": "milliseconds"
+                        },
+                        "percentage": {
+                            "quantity": 37,
+                            "unit": "percent"
+                        },
+                        "throughput": {
+                            "quantity": 1,
+                            "unit": "blocksPerSecond"
+                        }
+                    },
+                    "tag": "restoring"
+                },
+                "type": "external"
+            },
+            "properties": {
+                "assuranceLevel": {
+                    "description": "The assurance level of the wallet.",
+                    "enum": [
+                        "normal",
+                        "strict"
+                    ],
+                    "type": "string"
+                },
+                "balance": {
+                    "description": "Current balance, in Lovelace.",
+                    "maximum": 45000000000000000,
+                    "type": "number"
+                },
+                "createdAt": {
+                    "description": "The timestamp that the wallet was created.",
+                    "type": "string"
+                },
+                "hasSpendingPassword": {
+                    "description": "Whether or not the wallet has a passphrase.",
+                    "type": "boolean"
+                },
+                "id": {
+                    "description": "Unique wallet identifier.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Wallet's name.",
+                    "type": "string"
+                },
+                "spendingPasswordLastUpdate": {
+                    "description": "The timestamp that the passphrase was last updated.",
+                    "type": "string"
+                },
+                "syncState": {
+                    "description": "The sync state for this wallet.",
+                    "properties": {
+                        "data": {
+                            "$ref": "#/definitions/SyncProgress"
+                        },
+                        "tag": {
+                            "enum": [
+                                "restoring",
+                                "synced"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "tag"
+                    ],
+                    "type": "object"
+                },
+                "type": {
+                    "description": "Wallet type: regular wallet or external one (mobile app or hardware wallet).",
+                    "enum": [
+                        "regular",
+                        "external"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "balance",
+                "hasSpendingPassword",
+                "spendingPasswordLastUpdate",
+                "createdAt",
+                "assuranceLevel",
+                "syncState",
+                "type"
+            ],
+            "type": "object"
+        },
+        "WalletAddress": {
+            "example": {
+                "changeAddress": false,
+                "id": "7fiTbReGezWFtKinHBBpevKnaWK92XbrPAk4imz8DdN9TaSFFQhP2c8dZxduNtus4tkJdSvseYvpgcZu5WrShGW6pn6gcm7FcRuxjSTZw4mSj4K3Rz7q8Q9CpaS1qUGofUwdBNhL26gtSMCCM3TMWmc3w46USwAo35o1q26f3oPz2EwWK9dwmW",
+                "ownership": "ambiguousOwnership",
+                "used": true
+            },
+            "properties": {
+                "changeAddress": {
+                    "description": "True if this address stores change from a previous transaction.",
+                    "type": "boolean"
+                },
+                "id": {
+                    "description": "Actual address.",
+                    "type": "string"
+                },
+                "ownership": {
+                    "description": "'isOurs' if this address is recognised as ours, 'ambiguousOwnership' if the node doesn't have information to make a unambiguous statement.",
+                    "enum": [
+                        "isOurs",
+                        "ambiguousOwnership"
+                    ],
+                    "type": "string"
+                },
+                "used": {
+                    "description": "True if this address has been used.",
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "id",
+                "used",
+                "changeAddress",
+                "ownership"
+            ],
+            "type": "object"
+        },
+        "WalletAndTxHistory": {
+            "example": {
+                "transactions": [
+                    {
+                        "amount": 42741533720992568,
+                        "confirmations": 0,
+                        "creationTime": "2023-09-29T21:53:19.063059",
+                        "direction": "outgoing",
+                        "id": "2d2cc17d207d661d9bc711e07823c15bca0a2a5a443293913a5b3c111ae27e25",
+                        "inputs": [
+                            {
+                                "address": "7J1MaQmKydNXjDUcuPdRFDrgmjzGUdCTQGkV6Sf1Dp9yASptC5T3oyYMaTd74c3LDTALVKxzFrY5HDsXpxRrYQ98V1KQy2MUYMA5hT1GiVmWnb4",
+                                "amount": 30346180671003067
+                            }
+                        ],
+                        "outputs": [
+                            {
+                                "address": "AL91N9VXRTCfqBcZ1oesH5up7a15QCuiG51cBKcEUtE8tnYxGauy4cgSUX5nh9L1x1pShAGrYcnTWzQJ8GPHieNKvZdZgWwtWCdBHhjv5XYwSShNhBL",
+                                "amount": 33229639797069687
+                            },
+                            {
+                                "address": "zCx6iXuvtn7Uxc3miLRxztCDPC7bt2ZPdtzMyC7TG7BUrvNyz9xLaxCRwSBfARgWhr8fF6z73DtsEqQc1mQwA3vmNu7YpLCf4kguxeR7gPoXmFgZaK4rBxu6QCa75c6oKCASsCnVknkS6fbPxnEzr87diHMyhC77yZ8aWDun6YxFa719LpaGJs49wa7HZAZ4LJsXGfh3kXDZeJfmvrjztYBkSiVSJuKbnNLVJqwt",
+                                "amount": 43027860172914822
+                            },
+                            {
+                                "address": "37btjrVyb4KGJqtUa5ZW6pkRoojWLo8qG4B9rTFT1K53H63X2QzRcpAcZa7gutUnRpWuvTJiKa8Li3B3U8eBMBALw5yMKMAbd5E48BpBp4vpdhHTFx",
+                                "amount": 20961617937859058
+                            }
+                        ],
+                        "status": {
+                            "data": {},
+                            "tag": "applying"
+                        },
+                        "type": "local"
+                    },
+                    {
+                        "amount": 40489657492060943,
+                        "confirmations": 1,
+                        "creationTime": "1981-10-22T14:48:31.834025",
+                        "direction": "incoming",
+                        "id": "d163dc661e5409860def03062e9919b70c5ee270c7e04bf2d95516dfaeb6ba4d",
+                        "inputs": [
+                            {
+                                "address": "iBULcLXh5E6KuMLe58yZ1iyGm9uh9a46NjgkgGfeCDd1afkzjPRXJcPe1aBvc6F4DniA2RSvVE34RA3xuPusZDaAZdBJfu4U5gf9TczbwMH4cSR1jBFj",
+                                "amount": 41802645005923140
+                            },
+                            {
+                                "address": "NBimUZYpm3FmvGTXz7s9aPSeN76cninNMAu5whT8x8ErRnCaQTWxJ4TcnfU3H8bGx6Y",
+                                "amount": 33609741096894206
+                            },
+                            {
+                                "address": "7J1MaQmKydNZfYZ7AqYUcYV8tKCZaBx6ws3t2zstoQ6SBoSe9AXBwn11wH4ZjorNTf4tWrbXsVqv8qS6MufeJURQwWkX3p3naBaFyJzuVLJJgfq",
+                                "amount": 1898018193854457
+                            },
+                            {
+                                "address": "3kaqdAD6vGMLWFEkkqHk22jFAGmiKS4GjfFt4kHqAqESzS4GwQL2J1gFG8U3QR7AvJc8ZeS2WcN8eLiryDdNjAXrKgiqJ9Y5s9ZQLyc9JZ5Gy6iRLHGb16HbjH5ng7T4jw7oSmioMtLH6YymsRLKvFrP3v926HS5hJ6AqAtFa4AB23zyoDMb6277YvF2CRny75pQsTqbMcbeo3zMft1p1PF7iTGswthdaJhz5kgGCMUoSopbB1ACsG3YDY8kD3moJhYRU85w6fuRWe2d9TGJT7HZqWjSTHBvfbwFd5Db1Nn7EkrKeq5WTa1CcEgfDJfzBZPGUFaMnMLqb9Cnv9X6Fn",
+                                "amount": 38975676392835102
+                            }
+                        ],
+                        "outputs": [
+                            {
+                                "address": "Un4ZpTvXtoKteEA7UAHomoRrzWfGBSvHLvTZ7HaKt6PqyXYd3pwqvkAuR2heADtj8xWf7P8HFHVCbSUueSRApfP5eEg8YJPZYy3wUxQLvrWRAr54",
+                                "amount": 10654358743962306
+                            },
+                            {
+                                "address": "5MVkCEKjivib3AiLnazDzLqvthrDxTqAcN2sV98pD99oV9Ws6jmCbactGYZvsp7hWhv9q4Q63cxVJfRZ75QwHFgUGm4N25vPj1TgRRppS57Xhxkeso9kSdRQYgmSimodzaDzoY1vGusuVnxQTwSpH2DWLR9UKMXLqPeJ3sneBHVsx5gWsjUWMUbEdnXshrVNWHw4GWLYMUf2Rv9XKL1qPmhfirJjP2bFPGbJJA3A7L",
+                                "amount": 27500718016102437
+                            },
+                            {
+                                "address": "AL91N9VXRTCcmC9oEXdyanAUsAKR1F3mif2uLtfwYKjxXMzMZqjH5EGUVvfNDLVrXZT5FS47cPK8Nj8G3bRU1a9n7acvkxG6JEZcM56mTu3j9uvVXCp",
+                                "amount": 9911372571546806
+                            }
+                        ],
+                        "status": {
+                            "data": {},
+                            "tag": "applying"
+                        },
+                        "type": "local"
+                    }
+                ],
+                "wallet": {
+                    "assuranceLevel": "strict",
+                    "balance": 43665522219500065,
+                    "createdAt": "2029-10-05T15:07:16.313354",
+                    "hasSpendingPassword": false,
+                    "id": "J7rQqaLLHBFPrgJXwpktaMB1B1kQBXAyc2uRSfRPzNVGiv6TdxBzkPNBUWysZZZdhFG9gRy3sQFfX5wfpLbi4XTFGFxTg",
+                    "name": "My wallet",
+                    "spendingPasswordLastUpdate": "1999-05-26T17:51:24.639141",
+                    "syncState": {
+                        "data": null,
+                        "tag": "synced"
+                    },
+                    "type": "regular"
+                }
+            },
+            "properties": {
+                "transactions": {
+                    "description": "List of all transactions related to this wallet.",
+                    "items": {
+                        "$ref": "#/definitions/Transaction"
+                    },
+                    "type": "array"
+                },
+                "wallet": {
+                    "description": "Wallet information.",
+                    "example": {
+                        "assuranceLevel": "strict",
+                        "balance": 28311699119270855,
+                        "createdAt": "2029-04-05T12:13:13.241896",
+                        "hasSpendingPassword": true,
+                        "id": "J7rQqaLLHBFPrgJXwpktaMB1B1kQBXAyc2uRSfRPzNVGiv6TdxBzkPNBUWysZZZdhFG9gRy3sQFfX5wfpLbi4XTFGFxTg",
+                        "name": "My wallet",
+                        "spendingPasswordLastUpdate": "2029-10-05T15:07:16.313354",
+                        "syncState": {
+                            "data": {
+                                "estimatedCompletionTime": {
+                                    "quantity": 4,
+                                    "unit": "milliseconds"
+                                },
+                                "percentage": {
+                                    "quantity": 37,
+                                    "unit": "percent"
+                                },
+                                "throughput": {
+                                    "quantity": 1,
+                                    "unit": "blocksPerSecond"
+                                }
+                            },
+                            "tag": "restoring"
+                        },
+                        "type": "external"
+                    },
+                    "properties": {
+                        "assuranceLevel": {
+                            "description": "The assurance level of the wallet.",
+                            "enum": [
+                                "normal",
+                                "strict"
+                            ],
+                            "type": "string"
+                        },
+                        "balance": {
+                            "description": "Current balance, in Lovelace.",
+                            "maximum": 45000000000000000,
+                            "type": "number"
+                        },
+                        "createdAt": {
+                            "description": "The timestamp that the wallet was created.",
+                            "type": "string"
+                        },
+                        "hasSpendingPassword": {
+                            "description": "Whether or not the wallet has a passphrase.",
+                            "type": "boolean"
+                        },
+                        "id": {
+                            "description": "Unique wallet identifier.",
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Wallet's name.",
+                            "type": "string"
+                        },
+                        "spendingPasswordLastUpdate": {
+                            "description": "The timestamp that the passphrase was last updated.",
+                            "type": "string"
+                        },
+                        "syncState": {
+                            "description": "The sync state for this wallet.",
+                            "properties": {
+                                "data": {
+                                    "$ref": "#/definitions/SyncProgress"
+                                },
+                                "tag": {
+                                    "enum": [
+                                        "restoring",
+                                        "synced"
+                                    ],
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "tag"
+                            ],
+                            "type": "object"
+                        },
+                        "type": {
+                            "description": "Wallet type: regular wallet or external one (mobile app or hardware wallet).",
+                            "enum": [
+                                "regular",
+                                "external"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "name",
+                        "balance",
+                        "hasSpendingPassword",
+                        "spendingPasswordLastUpdate",
+                        "createdAt",
+                        "assuranceLevel",
+                        "syncState",
+                        "type"
+                    ],
+                    "type": "object"
+                }
+            },
+            "required": [
+                "wallet",
+                "transactions"
+            ],
+            "type": "object"
+        },
+        "WalletId": {
+            "type": "string"
+        },
+        "WalletImport": {
+            "example": {
+                "filePath": "/Users/foo/Documents/wallet_to_import.key",
+                "spendingPassword": ""
+            },
+            "properties": {
+                "filePath": {
+                    "description": "The path to the .key file holding the backup.",
+                    "type": "string"
+                },
+                "spendingPassword": {
+                    "description": "An optional spending password to set for the imported wallet.",
+                    "format": "hex|base16",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "filePath"
+            ],
+            "type": "object"
+        },
+        "WalletOperation": {
+            "enum": [
+                "create",
+                "restore"
+            ],
+            "type": "string"
+        },
+        "WalletResponse-Account": {
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/Account"
+                },
+                "meta": {
+                    "$ref": "#/definitions/Metadata"
+                },
+                "status": {
+                    "$ref": "#/definitions/ResponseStatus"
+                }
+            },
+            "required": [
+                "data",
+                "status",
+                "meta"
+            ],
+            "type": "object"
+        },
+        "WalletResponse-AccountAddresses": {
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/AccountAddresses"
+                },
+                "meta": {
+                    "$ref": "#/definitions/Metadata"
+                },
+                "status": {
+                    "$ref": "#/definitions/ResponseStatus"
+                }
+            },
+            "required": [
+                "data",
+                "status",
+                "meta"
+            ],
+            "type": "object"
+        },
+        "WalletResponse-AccountBalance": {
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/AccountBalance"
+                },
+                "meta": {
+                    "$ref": "#/definitions/Metadata"
+                },
+                "status": {
+                    "$ref": "#/definitions/ResponseStatus"
+                }
+            },
+            "required": [
+                "data",
+                "status",
+                "meta"
+            ],
+            "type": "object"
+        },
+        "WalletResponse-EstimatedFees": {
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/EstimatedFees"
+                },
+                "meta": {
+                    "$ref": "#/definitions/Metadata"
+                },
+                "status": {
+                    "$ref": "#/definitions/ResponseStatus"
+                }
+            },
+            "required": [
+                "data",
+                "status",
+                "meta"
+            ],
+            "type": "object"
+        },
+        "WalletResponse-NodeInfo": {
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/NodeInfo"
+                },
+                "meta": {
+                    "$ref": "#/definitions/Metadata"
+                },
+                "status": {
+                    "$ref": "#/definitions/ResponseStatus"
+                }
+            },
+            "required": [
+                "data",
+                "status",
+                "meta"
+            ],
+            "type": "object"
+        },
+        "WalletResponse-NodeSettings": {
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/NodeSettings"
+                },
+                "meta": {
+                    "$ref": "#/definitions/Metadata"
+                },
+                "status": {
+                    "$ref": "#/definitions/ResponseStatus"
+                }
+            },
+            "required": [
+                "data",
+                "status",
+                "meta"
+            ],
+            "type": "object"
+        },
+        "WalletResponse-Transaction": {
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/Transaction"
+                },
+                "meta": {
+                    "$ref": "#/definitions/Metadata"
+                },
+                "status": {
+                    "$ref": "#/definitions/ResponseStatus"
+                }
+            },
+            "required": [
+                "data",
+                "status",
+                "meta"
+            ],
+            "type": "object"
+        },
+        "WalletResponse-UnsignedTransaction": {
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/UnsignedTransaction"
+                },
+                "meta": {
+                    "$ref": "#/definitions/Metadata"
+                },
+                "status": {
+                    "$ref": "#/definitions/ResponseStatus"
+                }
+            },
+            "required": [
+                "data",
+                "status",
+                "meta"
+            ],
+            "type": "object"
+        },
+        "WalletResponse-UtxoStatistics": {
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/UtxoStatistics"
+                },
+                "meta": {
+                    "$ref": "#/definitions/Metadata"
+                },
+                "status": {
+                    "$ref": "#/definitions/ResponseStatus"
+                }
+            },
+            "required": [
+                "data",
+                "status",
+                "meta"
+            ],
+            "type": "object"
+        },
+        "WalletResponse-V1 SoftwareVersion": {
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/V1SoftwareVersion"
+                },
+                "meta": {
+                    "$ref": "#/definitions/Metadata"
+                },
+                "status": {
+                    "$ref": "#/definitions/ResponseStatus"
+                }
+            },
+            "required": [
+                "data",
+                "status",
+                "meta"
+            ],
+            "type": "object"
+        },
+        "WalletResponse-Wallet": {
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/Wallet"
+                },
+                "meta": {
+                    "$ref": "#/definitions/Metadata"
+                },
+                "status": {
+                    "$ref": "#/definitions/ResponseStatus"
+                }
+            },
+            "required": [
+                "data",
+                "status",
+                "meta"
+            ],
+            "type": "object"
+        },
+        "WalletResponse-WalletAddress": {
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/WalletAddress"
+                },
+                "meta": {
+                    "$ref": "#/definitions/Metadata"
+                },
+                "status": {
+                    "$ref": "#/definitions/ResponseStatus"
+                }
+            },
+            "required": [
+                "data",
+                "status",
+                "meta"
+            ],
+            "type": "object"
+        },
+        "WalletResponse-WalletAndTxHistory": {
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/WalletAndTxHistory"
+                },
+                "meta": {
+                    "$ref": "#/definitions/Metadata"
+                },
+                "status": {
+                    "$ref": "#/definitions/ResponseStatus"
+                }
+            },
+            "required": [
+                "data",
+                "status",
+                "meta"
+            ],
+            "type": "object"
+        },
+        "WalletResponse-_Account_": {
+            "properties": {
+                "data": {
+                    "items": {
+                        "$ref": "#/definitions/Account"
+                    },
+                    "type": "array"
+                },
+                "meta": {
+                    "$ref": "#/definitions/Metadata"
+                },
+                "status": {
+                    "$ref": "#/definitions/ResponseStatus"
+                }
+            },
+            "required": [
+                "data",
+                "status",
+                "meta"
+            ],
+            "type": "object"
+        },
+        "WalletResponse-_Transaction_": {
+            "properties": {
+                "data": {
+                    "items": {
+                        "$ref": "#/definitions/Transaction"
+                    },
+                    "type": "array"
+                },
+                "meta": {
+                    "$ref": "#/definitions/Metadata"
+                },
+                "status": {
+                    "$ref": "#/definitions/ResponseStatus"
+                }
+            },
+            "required": [
+                "data",
+                "status",
+                "meta"
+            ],
+            "type": "object"
+        },
+        "WalletResponse-_WalletAddress_": {
+            "properties": {
+                "data": {
+                    "items": {
+                        "$ref": "#/definitions/WalletAddress"
+                    },
+                    "type": "array"
+                },
+                "meta": {
+                    "$ref": "#/definitions/Metadata"
+                },
+                "status": {
+                    "$ref": "#/definitions/ResponseStatus"
+                }
+            },
+            "required": [
+                "data",
+                "status",
+                "meta"
+            ],
+            "type": "object"
+        },
+        "WalletResponse-_Wallet_": {
+            "properties": {
+                "data": {
+                    "items": {
+                        "$ref": "#/definitions/Wallet"
+                    },
+                    "type": "array"
+                },
+                "meta": {
+                    "$ref": "#/definitions/Metadata"
+                },
+                "status": {
+                    "$ref": "#/definitions/ResponseStatus"
+                }
+            },
+            "required": [
+                "data",
+                "status",
+                "meta"
+            ],
+            "type": "object"
+        },
+        "WalletType": {
+            "enum": [
+                "regular",
+                "external"
+            ],
+            "type": "string"
+        },
+        "WalletUpdate": {
+            "example": {
+                "assuranceLevel": "normal",
+                "name": "My Wallet"
+            },
+            "properties": {
+                "assuranceLevel": {
+                    "description": "New assurance level.",
+                    "enum": [
+                        "normal",
+                        "strict"
+                    ],
+                    "type": "string"
+                },
+                "name": {
+                    "description": "New wallet's name.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "assuranceLevel",
+                "name"
+            ],
+            "type": "object"
+        }
+    },
+    "host": "127.0.0.1:8090",
+    "info": {
+        "description": "This is the specification for the Cardano Wallet API, automatically generated as a [Swagger](https://swagger.io/) spec from the [Servant](http://haskell-servant.readthedocs.io/en/stable/) API of [Cardano](https://github.com/input-output-hk/cardano-sl).\n\nSoftware Version   | Git Revision\n-------------------|-------------------\ncardano-sl:11 | d35bfbf4789a6be7aad604e69e752a5f72558229\n\n\nGetting Started\n===============\n\nIn the following examples, we will use *curl* to illustrate request to an API running on the default port **8090**.\n\nPlease note that wallet web API uses TLS for secure communication. Requests to the API need to\nsend a client CA certificate that was used when launching the node and identifies the client as\nbeing permitted to invoke the server API.\n\nCreating a New Wallet\n---------------------\n\nYou can create your first wallet using the [`POST /api/v1/wallets`](#tag/Wallets%2Fpaths%2F~1api~1v1~1wallets%2Fpost) endpoint as follow:\n\n```\ncurl -X POST https://localhost:8090/api/v1/wallets \\\n  -H \"Accept: application/json; charset=utf-8\" \\\n  -H \"Content-Type: application/json; charset=utf-8\" \\\n  --cert ./scripts/tls-files/client.pem \\\n  --cacert ./scripts/tls-files/ca.crt \\\n  -d '{\n  \"operation\": \"create\",\n  \"backupPhrase\": [[\"squirrel\",\"material\",\"silly\",\"twice\",\"direct\",\"slush\",\"pistol\",\"razor\",\"become\",\"junk\",\"kingdom\",\"flee\"]],\n  \"assuranceLevel\": \"normal\",\n  \"name\": \"MyFirstWallet\",\n  \"spendingPassword\": \"5416b2988745725998907addf4613c9b0764f04959030e1b81c603b920a115d0\"\n}'\n```\n\n> **Warning**: Those 12 mnemonic words given for the backup phrase act as an example. **Do\n> not** use them on a production system. See the section below about mnemonic codes for more\n> information.\n\nThe `spendingPassword` is optional but highly recommended. It a string of 32\ncharacters, encoded in base 16, yielding to an hexadecimal sequence of 64 bytes.\nThis passphrase is required for sensitive operations on the wallet and adds\nan extra security layer to it.\n\nTo generate a valid `spendingPassword`, please follow the following steps:\n\n- Pick a long sentence using a wide variety of characters (uppercase, lowercase,\n  whitespace, punctuation, etc). Using a computer to randomly generate\n  a passphrase is best, as humans aren't a good source of randomness.\n\n- Compute an appropriate hash of this passphrase. You'll need to use an\n  algorithm that yields a 32-byte long string (e.g. *SHA256* or *BLAKE2b*).\n\n- Hex-encode the 32-byte hash into a 64-byte sequence of bytes.\n\nAs a response, the API provides you with a unique wallet `id` to be used in subsequent\nrequests. Make sure to store it / write it down. Note that every API response is\n[jsend-compliant](https://labs.omniti.com/labs/jsend); Cardano also augments responses with\nmeta-data specific to pagination. More details in the section below about [Pagination](#section/Pagination)\n\n```json\n{\n    \"status\": \"success\",\n    \"data\": {\n        \"createdAt\": \"1999-05-26T17:51:24.639141\",\n        \"syncState\": {\n            \"tag\": \"synced\",\n            \"data\": null\n        },\n        \"balance\": 39670319078024525,\n        \"hasSpendingPassword\": true,\n        \"assuranceLevel\": \"normal\",\n        \"name\": \"My wallet\",\n        \"id\": \"J7rQqaLLHBFPrgJXwpktaMB1B1kQBXAyc2uRSfRPzNVGiv6TdxBzkPNBUWysZZZdhFG9gRy3sQFfX5wfpLbi4XTFGFxTg\",\n        \"spendingPasswordLastUpdate\": \"1983-03-22T16:46:28.273463\",\n        \"type\": \"external\"\n    },\n    \"meta\": {\n        \"pagination\": {\n            \"page\": 1,\n            \"perPage\": 46,\n            \"totalPages\": 1,\n            \"totalEntries\": 2\n        }\n    }\n}\n```\n\nYou have just created your first wallet. Information about this wallet can be retrieved using the [`GET /api/v1/wallets/{walletId}`](#tag/Wallets%2Fpaths%2F~1api~1v1~1wallets~1{walletId}%2Fget)\nendpoint as follows:\n\n```\ncurl -X GET https://localhost:8090/api/v1/wallets/{{walletId}} \\\n     -H \"Accept: application/json; charset=utf-8\" \\\n     --cacert ./scripts/tls-files/ca.crt \\\n     --cert ./scripts/tls-files/client.pem\n```\n\nReceiving ADA\n-------------\n\nTo receive _ADA_ from other users you should provide your address. This address can be obtained\nfrom an account. Each wallet contains at least one account. An account is like a pocket inside\nof your wallet. Vew all existing accounts of a wallet by using the [`GET /api/v1/wallets/{{walletId}}/accounts`](#tag/Accounts%2Fpaths%2F~1api~1v1~1wallets~1{walletId}~1accounts%2Fget)\nendpoint:\n\n```\ncurl -X GET https://localhost:8090/api/v1/wallets/{{walletId}}/accounts?page=1&per_page=10 \\\n  -H \"Accept: application/json; charset=utf-8\" \\\n  --cacert ./scripts/tls-files/ca.crt \\\n  --cert ./scripts/tls-files/client.pem\n```\n\nSince you have, for now, only a single wallet, you'll see something like this:\n\n```json\n{\n    \"status\": \"success\",\n    \"data\": [\n        {\n            \"amount\": 29208924123228353,\n            \"addresses\": [\n                {\n                    \"used\": true,\n                    \"changeAddress\": false,\n                    \"id\": \"87iPzcvCgPho8F9z9kYRHi2F3R4uAP1wcv7EW7raDYBb1bwggk3PEyTwbFAWkqswRyour4\",\n                    \"ownership\": \"isOurs\"\n                }\n            ],\n            \"name\": \"My account\",\n            \"walletId\": \"J7rQqaLLHBFPrgJXwpktaMB1B1kQBXAyc2uRSfRPzNVGiv6TdxBzkPNBUWysZZZdhFG9gRy3sQFfX5wfpLbi4XTFGFxTg\",\n            \"index\": 2379541633\n        },\n        {\n            \"amount\": 28089727180413548,\n            \"addresses\": [\n                {\n                    \"used\": false,\n                    \"changeAddress\": false,\n                    \"id\": \"2R6Z7uznxuk4iBZAzE8zEVVRwXhweVZsYzCVJhj8L7Rovy9Bg1Zk37VaoVF44VhsDQVLysrGEDV7FgWRMVQpyzMNwYfdm77T85ZHQCbRsXK7x2wVyLc1WMABReqjAkETSnDAFfteE6gkX8KYLneDJvFgo4X6f13316BQeC3MwfxdNTivk4GTrZutvGXrMhzoZFWCqPU55tBVgHp9qStztLwzumePFyDyBH8Mw7vGfrp1wUmNcWDsbBjmkgf6yWGQ7R9XZZQWAK5pz2ufzTstGcU6zaAQ7KYvGquMq\",\n                    \"ownership\": \"ambiguousOwnership\"\n                },\n                {\n                    \"used\": false,\n                    \"changeAddress\": true,\n                    \"id\": \"EqGAuA8vHnNwpTWuNkFQgzjjH3n5nwXRBigJ2AWtQRA3foJKHF8ZhYG7eU6CBbVDB7NxxFBTgRso9AHRXaNPMajpQ2cLZHexz7qDr6jK2E37cKRGyuebDRi\",\n                    \"ownership\": \"ambiguousOwnership\"\n                }\n            ],\n            \"name\": \"My account\",\n            \"walletId\": \"J7rQqaLLHBFPrgJXwpktaMB1B1kQBXAyc2uRSfRPzNVGiv6TdxBzkPNBUWysZZZdhFG9gRy3sQFfX5wfpLbi4XTFGFxTg\",\n            \"index\": 4165966019\n        }\n    ],\n    \"meta\": {\n        \"pagination\": {\n            \"page\": 1,\n            \"perPage\": 46,\n            \"totalPages\": 1,\n            \"totalEntries\": 2\n        }\n    }\n}\n```\n\nAll the wallet's accounts are listed under the `addresses` field. You can communicate one of\nthese addresses to receive _ADA_ on the associated account.\n\n\nSending ADA\n-----------\n\nIn order to send _ADA_ from one of your accounts to another address, you must create a new\npayment transaction using the [`POST /api/v1/transactions`](#tag/Transactions%2Fpaths%2F~1api~1v1~1transactions%2Fpost)\nendpoint as follows:\n\n```\ncurl -X POST https://localhost:8090/api/v1/transactions \\\n  -H \"Accept: application/json; charset=utf-8\" \\\n  -H \"Content-Type: application/json; charset=utf-8\" \\\n  --cacert ./scripts/tls-files/ca.crt \\\n  --cert ./scripts/tls-files/client.pem \\\n  -d '{\n  \"destinations\": [{\n    \"amount\": 14,\n    \"address\": \"A7k5bz1QR2...Tx561NNmfF\"\n  }],\n  \"source\": {\n    \"accountIndex\": 0,\n    \"walletId\": \"Ae2tdPwUPE...8V3AVTnqGZ\"\n  },\n  \"spendingPassword\": \"5416b2988745725998907addf4613c9b0764f04959030e1b81c603b920a115d0\"\n}'\n```\n\nNote that, in order to perform a transaction, you need to have enough existing _ADA_ on the\nsource account! The Cardano API is designed to accomodate multiple recipients payments\nout-of-the-box; notice how `destinations` is a list of addresses (and corresponding amounts).\n\nWhen the transaction succeeds, funds are no longer available in the sources addresses, and are\nsoon made available to the destinations within a short delay. Note that, you can at any time see\nthe status of your wallets by using the [`GET /api/v1/transactions`](#tag/Transactions%2Fpaths%2F~1api~1v1~1transactions%2Fget)\nendpoint as follows:\n\n```\ncurl -X GET https://localhost:8090/api/v1/transactions?wallet_id=Ae2tdPwUPE...8V3AVTnqGZ\\\n     -H \"Accept: application/json; charset=utf-8\" \\\n     --cacert ./scripts/tls-files/ca.crt \\\n     --cert ./scripts/tls-files/client.pem\n```\n\nHere we constrained the request to a specific account. After our previous transaction the output\nshould look roughly similar to this:\n\n```json\n{\n    \"status\": \"success\",\n    \"data\": [\n        {\n            \"creationTime\": \"1992-04-19T20:16:49.472681\",\n            \"status\": {\n                \"tag\": \"applying\",\n                \"data\": {}\n            },\n            \"amount\": 18382944037988940,\n            \"inputs\": [\n                {\n                    \"amount\": 40694552308742354,\n                    \"address\": \"vbwFz83QgLnGQmp3tb1mKzwp9jombowinRbFDhDncvN1HxPXsbZ7pRRpJadBLXiLywwoC8L9P3CS9VF6CYgKNWFXXHDdXAJZuZ8DK9aFYHkQxrgWesoDTh8SaTKnDe9D4iQ5SfqtNxfGkZMVDhHvjEag3DEkuxDwNwavSngnR9NdCmLkxqYqMCtTwmTU9ThLwU5XghGrakHjzqFsAPA4v2KC2vAfGg9ozkW6KWiJneb5XTQFioxdWmvteSf45asFaP17Uh6zJZhoc1WTmDMMd6WY7yaEK8Uo4SeptsPVKhS4gYMVMEZgMbjhPBnmGyouG352q2RRSmc5c8Njjz3VCnCX\"\n                }\n            ],\n            \"direction\": \"incoming\",\n            \"outputs\": [\n                {\n                    \"amount\": 7068087782723049,\n                    \"address\": \"7fiTbReGezW6wvoBDJ2hohWyExoPR4yhN3EoadUEpupr2EzvVHDm728u3zNTq9hGQEz6qrihw8xATB6sunb1GyCk9PGiKx7nKMYRJtnTHYKzYcxxcuS1JegTYZ7QxasChj2XWpewQoweRzHPXtdN985k6HTrN2HJuc22JzKf4aBoNYBqyVUEK5\"\n                }\n            ],\n            \"confirmations\": 3,\n            \"id\": \"d827de094565984c09b06ac4953a2666c6385ed2b88635936d3d78bd28ed93b8\",\n            \"type\": \"foreign\"\n        },\n        {\n            \"creationTime\": \"1986-02-27T17:22:10.441586\",\n            \"status\": {\n                \"tag\": \"creating\",\n                \"data\": {}\n            },\n            \"amount\": 37459517070855051,\n            \"inputs\": [\n                {\n                    \"amount\": 40040427156045597,\n                    \"address\": \"NBimUZYpm3G9myazCVJw4959W7MYMEEwCemHKwMS4B3vtAm4r6QW1V8pQTpLjpiHZq4\"\n                }\n            ],\n            \"direction\": \"outgoing\",\n            \"outputs\": [\n                {\n                    \"amount\": 27053209422730094,\n                    \"address\": \"YQdiVKZwx4SiPv6DSFVmytTnvG2DmpxK4mvgdD51nxX5Yw4fHK7tv64SbhtB6ky5UfKmseg\"\n                },\n                {\n                    \"amount\": 41013698606904243,\n                    \"address\": \"YQdiVKZwx4RpDYg6eVSoF3fVjL8dLJwfkvqApVkwLaHMZQs4KwZ7QqxgHGzaNWRTiXfmJdY\"\n                }\n            ],\n            \"confirmations\": 1,\n            \"id\": \"f5c79aba1f0102dce829e331574141be10d3db93e6b13f8a70d463124dc0bd8f\",\n            \"type\": \"local\"\n        }\n    ],\n    \"meta\": {\n        \"pagination\": {\n            \"page\": 1,\n            \"perPage\": 46,\n            \"totalPages\": 1,\n            \"totalEntries\": 2\n        }\n    }\n}\n```\n\nIn addition, and because it is not possible to _preview_ a transaction, one can lookup a\ntransaction's fees using the [`POST /api/v1/transactions/fees`](#tag/Transactions%2Fpaths%2F~1api~1v1~1transactions~1fees%2Fpost)\nendpoint to get an estimation of those fees.\nSee [Estimating Transaction Fees](#section/Common-Use-Cases/Estimating-Transaction-Fees) for more details.\n\n\nPagination\n==========\n\n**All GET requests of the API are paginated by default**. Whilst this can be a source of\nsurprise, is the best way of ensuring the performance of GET requests is not affected by the\nsize of the data storage.\n\nVersion `V1` introduced a different way of requesting information to the API. In particular,\nGET requests which returns a _collection_ (i.e. typically a JSON array of resources) lists\nextra parameters which can be used to modify the shape of the response. In particular, those\nare:\n\n* `page`: (Default value: **1**).\n* `per_page`: (Default value: **10**)\n\nFor a more accurate description, see the section `Parameters` of each GET request, but as a\nbrief overview the first two control how many results and which results to access in a\npaginated request.\n\n\nFiltering and Sorting\n=====================\n\n`GET` endpoints which list collection of resources supports filters & sort operations, which\nare clearly marked in the swagger docs with the `FILTER` or `SORT` labels. The query format is\nquite simple, and it goes this way:\n\n\nFilter Operators\n----------------\n\n| Operator | Description                                                               | Example                |\n|----------|---------------------------------------------------------------------------|------------------------|\n| -        | If **no operator** is passed, this is equivalent to `EQ` (see below).     | `balance=10`           |\n| `EQ`     | Retrieves the resources with index _equal_ to the one provided.           | `balance=EQ[10]`       |\n| `LT`     | Retrieves the resources with index _less than_ the one provided.          | `balance=LT[10]`       |\n| `LTE`    | Retrieves the resources with index _less than equal_ the one provided.    | `balance=LTE[10]`      |\n| `GT`     | Retrieves the resources with index _greater than_ the one provided.       | `balance=GT[10]`       |\n| `GTE`    | Retrieves the resources with index _greater than equal_ the one provided. | `balance=GTE[10]`      |\n| `RANGE`  | Retrieves the resources with index _within the inclusive range_ [k,k].    | `balance=RANGE[10,20]` |\n\nSort Operators\n--------------\n\n| Operator | Description                                                               | Example                |\n|----------|---------------------------------------------------------------------------|------------------------|\n| `ASC`    | Sorts the resources with the given index in _ascending_ order.            | `sort_by=ASC[balance]` |\n| `DES`    | Sorts the resources with the given index in _descending_ order.           | `sort_by=DES[balance]` |\n| -        | If **no operator** is passed, this is equivalent to `DES` (see above).    | `sort_by=balance`      |\n\n\nErrors\n======\n\nIn case a request cannot be served by the API, a non-2xx HTTP response will be issued, together\nwith a [JSend-compliant](https://labs.omniti.com/labs/jsend) JSON Object describing the error\nin detail together with a numeric error code which can be used by API consumers to implement\nproper error handling in their application. For example, here's a typical error which might be\nissued:\n\n``` json\n{\n    \"status\": \"error\",\n    \"diagnostic\": {},\n    \"message\": \"WalletNotFound\"\n}\n```\n\nExisting Wallet Errors\n----------------------\n\nError Name / Description | HTTP Error code | Example\n-------------------------|-----------------|---------\n`NotEnoughMoney`<br/>Not enough available coins to proceed.|403|<pre>{<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"status\":&nbsp;\"error\",<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"diagnostic\":&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"details\":&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"msg\":&nbsp;\"Not&nbsp;enough&nbsp;available&nbsp;coins&nbsp;to&nbsp;proceed.\",<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"availableBalance\":&nbsp;1400<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>&nbsp;&nbsp;&nbsp;&nbsp;},<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"message\":&nbsp;\"NotEnoughMoney\"<br/>}</pre>\n`OutputIsRedeem`<br/>One of the TX outputs is a redemption address.|403|<pre>{<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"status\":&nbsp;\"error\",<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"diagnostic\":&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"address\":&nbsp;\"Ae2tdPwUPEZ9ekGYaavZoWCYiLvboFMPHC732Ta8Z2NocXVfHQQWMpa9ymk\"<br/>&nbsp;&nbsp;&nbsp;&nbsp;},<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"message\":&nbsp;\"OutputIsRedeem\"<br/>}</pre>\n`UnknownError`<br/>Unexpected internal error.|500|<pre>{<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"status\":&nbsp;\"error\",<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"diagnostic\":&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"msg\":&nbsp;\"Unexpected&nbsp;internal&nbsp;error.\"<br/>&nbsp;&nbsp;&nbsp;&nbsp;},<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"message\":&nbsp;\"UnknownError\"<br/>}</pre>\n`InvalidAddressFormat`<br/>Provided address format is not valid.|401|<pre>{<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"status\":&nbsp;\"error\",<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"diagnostic\":&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"msg\":&nbsp;\"Provided&nbsp;address&nbsp;format&nbsp;is&nbsp;not&nbsp;valid.\"<br/>&nbsp;&nbsp;&nbsp;&nbsp;},<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"message\":&nbsp;\"InvalidAddressFormat\"<br/>}</pre>\n`WalletNotFound`<br/>Reference to an unexisting wallet was given.|404|<pre>{<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"status\":&nbsp;\"error\",<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"diagnostic\":&nbsp;{},<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"message\":&nbsp;\"WalletNotFound\"<br/>}</pre>\n`WalletAlreadyExists`<br/>Can't create or restore a wallet. The wallet already exists.|403|<pre>{<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"status\":&nbsp;\"error\",<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"diagnostic\":&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"walletId\":&nbsp;\"J7rQqaLLHBFPrgJXwpktaMB1B1kQBXAyc2uRSfRPzNVGiv6TdxBzkPNBUWysZZZdhFG9gRy3sQFfX5wfpLbi4XTFGFxTg\"<br/>&nbsp;&nbsp;&nbsp;&nbsp;},<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"message\":&nbsp;\"WalletAlreadyExists\"<br/>}</pre>\n`AddressNotFound`<br/>Reference to an unexisting address was given.|404|<pre>{<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"status\":&nbsp;\"error\",<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"diagnostic\":&nbsp;{},<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"message\":&nbsp;\"AddressNotFound\"<br/>}</pre>\n`InvalidPublicKey`<br/>Extended public key (for external wallet) is invalid.|400|<pre>{<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"status\":&nbsp;\"error\",<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"diagnostic\":&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"msg\":&nbsp;\"Extended&nbsp;public&nbsp;key&nbsp;(for&nbsp;external&nbsp;wallet)&nbsp;is&nbsp;invalid.\"<br/>&nbsp;&nbsp;&nbsp;&nbsp;},<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"message\":&nbsp;\"InvalidPublicKey\"<br/>}</pre>\n`UnsignedTxCreationError`<br/>Unable to create unsigned transaction for an external wallet.|500|<pre>{<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"status\":&nbsp;\"error\",<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"diagnostic\":&nbsp;{},<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"message\":&nbsp;\"UnsignedTxCreationError\"<br/>}</pre>\n`SignedTxSubmitError`<br/>Unable to submit externally-signed transaction.|500|<pre>{<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"status\":&nbsp;\"error\",<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"diagnostic\":&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"msg\":&nbsp;\"Unable&nbsp;to&nbsp;submit&nbsp;externally-signed&nbsp;transaction.\"<br/>&nbsp;&nbsp;&nbsp;&nbsp;},<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"message\":&nbsp;\"SignedTxSubmitError\"<br/>}</pre>\n`TooBigTransaction`<br/>Transaction size is greater than 4096 bytes.|400|<pre>{<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"status\":&nbsp;\"error\",<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"diagnostic\":&nbsp;{},<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"message\":&nbsp;\"TooBigTransaction\"<br/>}</pre>\n`TxFailedToStabilize`<br/>We were unable to find a set of inputs to satisfy this transaction.|500|<pre>{<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"status\":&nbsp;\"error\",<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"diagnostic\":&nbsp;{},<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"message\":&nbsp;\"TxFailedToStabilize\"<br/>}</pre>\n`TxRedemptionDepleted`<br/>The redemption address was already used.|400|<pre>{<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"status\":&nbsp;\"error\",<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"diagnostic\":&nbsp;{},<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"message\":&nbsp;\"TxRedemptionDepleted\"<br/>}</pre>\n`TxSafeSignerNotFound`<br/>The safe signer at the specified address was not found.|400|<pre>{<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"status\":&nbsp;\"error\",<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"diagnostic\":&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"address\":&nbsp;\"Ae2tdPwUPEZ9ekGYaavZoWCYiLvboFMPHC732Ta8Z2NocXVfHQQWMpa9ymk\"<br/>&nbsp;&nbsp;&nbsp;&nbsp;},<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"message\":&nbsp;\"TxSafeSignerNotFound\"<br/>}</pre>\n`MissingRequiredParams`<br/>Missing required parameters in the request payload.|400|<pre>{<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"status\":&nbsp;\"error\",<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"diagnostic\":&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"params\":&nbsp;[<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"wallet_id\",<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"walletId\"<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]<br/>&nbsp;&nbsp;&nbsp;&nbsp;},<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"message\":&nbsp;\"MissingRequiredParams\"<br/>}</pre>\n`WalletIsNotReadyToProcessPayments`<br/>This wallet is restoring, and it cannot send new transactions until restoration completes.|403|<pre>{<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"status\":&nbsp;\"error\",<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"diagnostic\":&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"stillRestoring\":&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"throughput\":&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"quantity\":&nbsp;400,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"unit\":&nbsp;\"blocksPerSecond\"<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"percentage\":&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"quantity\":&nbsp;14,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"unit\":&nbsp;\"percent\"<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"estimatedCompletionTime\":&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"quantity\":&nbsp;3000,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"unit\":&nbsp;\"milliseconds\"<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>&nbsp;&nbsp;&nbsp;&nbsp;},<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"message\":&nbsp;\"WalletIsNotReadyToProcessPayments\"<br/>}</pre>\n`NodeIsStillSyncing`<br/>The node is still syncing with the blockchain, and cannot process the request yet.|412|<pre>{<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"status\":&nbsp;\"error\",<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"diagnostic\":&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"stillSyncing\":&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"quantity\":&nbsp;14,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"unit\":&nbsp;\"percent\"<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>&nbsp;&nbsp;&nbsp;&nbsp;},<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"message\":&nbsp;\"NodeIsStillSyncing\"<br/>}</pre>\n`CannotCreateAddress`<br/>Cannot create derivation path for new address, for external wallet.|500|<pre>{<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"status\":&nbsp;\"error\",<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"diagnostic\":&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"msg\":&nbsp;\"Cannot&nbsp;create&nbsp;derivation&nbsp;path&nbsp;for&nbsp;new&nbsp;address&nbsp;in&nbsp;external&nbsp;wallet.\"<br/>&nbsp;&nbsp;&nbsp;&nbsp;},<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"message\":&nbsp;\"CannotCreateAddress\"<br/>}</pre>\n`RequestThrottled`<br/>You've made too many requests too soon, and this one was throttled.|429|<pre>{<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"status\":&nbsp;\"error\",<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"diagnostic\":&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"microsecondsUntilRetry\":&nbsp;42<br/>&nbsp;&nbsp;&nbsp;&nbsp;},<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"message\":&nbsp;\"RequestThrottled\"<br/>}</pre>\n`MigrationFailed`<br/>Error while migrating a legacy type into the current version.|422|<pre>{<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"status\":&nbsp;\"error\",<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"diagnostic\":&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"description\":&nbsp;\"Migration&nbsp;failed.\"<br/>&nbsp;&nbsp;&nbsp;&nbsp;},<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"message\":&nbsp;\"MigrationFailed\"<br/>}</pre>\n`JSONValidationFailed`<br/>Couldn't decode a JSON input.|400|<pre>{<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"status\":&nbsp;\"error\",<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"diagnostic\":&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"validationError\":&nbsp;\"Expected&nbsp;String,&nbsp;found&nbsp;Null.\"<br/>&nbsp;&nbsp;&nbsp;&nbsp;},<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"message\":&nbsp;\"JSONValidationFailed\"<br/>}</pre>\n`UnsupportedMimeTypePresent`<br/>Expected Content-Type's main MIME-type to be 'application/json'.|415|<pre>{<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"status\":&nbsp;\"error\",<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"diagnostic\":&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"mimeContentTypeError\":&nbsp;\"Expected&nbsp;Content-Type's&nbsp;main&nbsp;MIME-type&nbsp;to&nbsp;be&nbsp;'application/json'.\"<br/>&nbsp;&nbsp;&nbsp;&nbsp;},<br/>&nbsp;&nbsp;&nbsp;&nbsp;\"message\":&nbsp;\"UnsupportedMimeTypePresent\"<br/>}</pre>\n\n\nMonetary Denomination & Units\n=============================\n\nCardano's currency is called _ADA_ ( \u20b3 ). _ADA_ has up to **6** decimal places; hence the\nsmallest monetary unit that can be represented in the Cardano's blockhain is: 0.000001\u20b3. This\nis also called a _Lovelace_ (Cardano's currency is named after the mathematician and computer\nscientist [Ada Lovelace](https://en.wikipedia.org/wiki/Ada_Lovelace)). Put in another way, one\n_ADA_ is equal to one million _Lovelace_.\n\nADA        | Lovelace\n-----------|----------\n`1`        | `1 000 000`\n`.000 001` | `1`\n\n> **Warning**: All amounts manipulated in the API are given and expected in Lovelace.\n\n\nMnemonic Codes\n==============\n\nThe full list of accepted mnemonic codes to secure a wallet is defined by the [BIP-39\nspecifications](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki). Note that\npicking up 12 random words from the list **is not enough** and leads to poor security. Make\nsure to carefully follow the steps described in the protocol when you generate words for a new\nwallet.\n\n\nVersioning & Legacy\n===================\n\nThe API is **versioned**, meaning that is possible to access different versions of the API by adding the _version number_ in the URL.\n\n**For the sake of backward compatibility, we expose the legacy version of the API, available simply as unversioned endpoints.**\n\nThis means that _omitting_ the version number would call the old version of the API. Deprecated\nendpoints are currently grouped under an appropriate section; they would be removed in upcoming\nreleased, if you're starting a new integration with Cardano-SL, please ignore these.\n\nNote that Compatibility between major versions is not _guaranteed_, i.e. the request & response formats might differ.\n\n\nDisable TLS (Not Recommended)\n-----------------------------\n\nIf needed, you can disable TLS by providing the `--no-tls` flag to the wallet or by running a wallet in debug mode with `--wallet-debug` turned on.\n\n\nCommon Use-Cases\n================\n\nSending Money to Multiple Recipients\n------------------------------------\n\nAs seen in [Sending ADA](#section/Getting-Started/Sending-ADA), you can send _ADA_ to\nanother party using the [`POST /api/v1/transactions`](#tag/Transactions%2Fpaths%2F~1api~1v1~1transactions%2Fpost) endpoint.\nImportant to notice is the type of the field `destinations`: it's a list, enabling you to provide more\nthan one destination. Each destination is composed of:\n\n- An address\n- A corresponding amount\n\nThe overall transaction corresponds to the sum of each outputs. For instance, to send money to\ntwo parties simultaneously:\n\n```\ncurl -X POST https://localhost:8090/api/v1/transactions \\\n  -H \"Accept: application/json; charset=utf-8\" \\\n  -H \"Content-Type: application/json; charset=utf-8\" \\\n  --cacert ./scripts/tls-files/ca.crt \\\n  --cert ./scripts/tls-files/client.pem \\\n  -d '{\n  \"destinations\": [\n    {\n      \"amount\": 14,\n      \"address\": \"A7k5bz1QR2...Tx561NNmfF\"\n    },\n    {\n      \"amount\": 42,\n      \"address\": \"B56n78WKE8...jXAa34NUFz\"\n    }\n  ],\n  \"source\": {\n    \"accountIndex\": 0,\n    \"walletId\": \"Ae2tdPwUPE...8V3AVTnqGZ\"\n  },\n  \"spendingPassword\": \"5416b2988745725998907addf4613c9b0764f04959030e1b81c603b920a115d0\"\n}'\n```\n\n\nEstimating Transaction Fees\n---------------------------\n\nWhen you submit a transaction to the network, some fees apply depending on, but not only, the\nselected grouping policy and the available inputs on the source wallet. There's actually a\ntrade-off between fees, cryptographic security, throughput and privacy. The more inputs are\nselected, the bigger is the payload, the bigger are the fees.\n\nThe API lets you estimate fees for a given transaction via the [`POST /api/v1/transaction/fees`](#tag/Transactions%2Fpaths%2F~1api~1v1~1transactions~1fees%2Fpost)\nendpoint. The request payload is identical to the one you would make to create a transaction:\n\n```\ncurl -X POST https://localhost:8090/api/v1/transactions/fees \\\n  -H \"Accept: application/json; charset=utf-8\" \\\n  -H \"Content-Type: application/json; charset=utf-8\" \\\n  --cacert ./scripts/tls-files/ca.crt \\\n  --cert ./scripts/tls-files/client.pem \\\n  -d '{\n  \"destinations\": [{\n      \"amount\": 14,\n      \"address\": \"A7k5bz1QR2...Tx561NNmfF\"\n  }],\n  \"source\": {\n    \"accountIndex\": 0,\n    \"walletId\": \"Ae2tdPwUPE...8V3AVTnqGZ\"\n  }\n}'\n```\n\nThe API resolves with an estimated amount in _ADA_. This estimation highly depends on the\ncurrent state of the ledger and diverges with time.\n\n```json\n{\n    \"status\": \"success\",\n    \"data\": {\n        \"estimatedAmount\": 25132995790248024\n    },\n    \"meta\": {\n        \"pagination\": {\n            \"page\": 1,\n            \"perPage\": 46,\n            \"totalPages\": 1,\n            \"totalEntries\": 2\n        }\n    }\n}\n```\n\n\nManaging Accounts\n-----------------\n\nA wallet isn't limited to one account. It can actually be useful to have more than one account\nin order to separate business activities. With the API, you can retrieve a specific account,\ncreate new ones, list all existing accounts of a wallet or edit a few things on an existing\naccount. By default, your wallet comes with a provided account. Let's see how to create a fresh\nnew account on a wallet using [`POST /api/v1/wallets/{{walletId}}/accounts`](#tag/Accounts%2Fpaths%2F~1api~1v1~1wallets~1{walletId}~1accounts%2Fpost):\n\n```\ncurl -X POST \\\n  https://localhost:8090/api/v1/Ae2tdPwUPE...8V3AVTnqGZ/accounts \\\n  -H 'Content-Type: application/json;charset=utf-8' \\\n  -H 'Accept: application/json;charset=utf-8' \\\n  --cacert ./scripts/tls-files/ca.crt \\\n  --cert ./scripts/tls-files/client.pem \\\n  -d '{\n  \"name\": \"MyOtherAccount\",\n  \"spendingPassword\": \"5416b2988745725998907addf4613c9b0764f04959030e1b81c603b920a115d0\"\n}'\n```\n\nNote that the `spendingPassword` here should match the one provided earlier in [Creating a\nNew Wallet](#section/Getting-Started/Creating-a-New-Wallet).\n\n\n```json\n{\n    \"status\": \"success\",\n    \"data\": {\n        \"amount\": 7328081618979461,\n        \"addresses\": [\n            {\n                \"used\": false,\n                \"changeAddress\": true,\n                \"id\": \"5FCjkr138i9tXqiDs3B65X6AK4U2aYemsmxTu5DGmDjm3MQE2wqfTh1TBRdbAR2eX146sBeMspyPDY65xKTDn8ExtVeZJMQ8L5z41CaxRHA\",\n                \"ownership\": \"ambiguousOwnership\"\n            },\n            {\n                \"used\": true,\n                \"changeAddress\": true,\n                \"id\": \"FHnt4NL7yPXxwBe81c5cPzuysN8dtzVKb2rAkB3yJW4pLRjakdyxHrNpYyT1WCf\",\n                \"ownership\": \"isOurs\"\n            }\n        ],\n        \"name\": \"My account\",\n        \"walletId\": \"J7rQqaLLHBFPrgJXwpktaMB1B1kQBXAyc2uRSfRPzNVGiv6TdxBzkPNBUWysZZZdhFG9gRy3sQFfX5wfpLbi4XTFGFxTg\",\n        \"index\": 3660662023\n    },\n    \"meta\": {\n        \"pagination\": {\n            \"page\": 1,\n            \"perPage\": 46,\n            \"totalPages\": 1,\n            \"totalEntries\": 2\n        }\n    }\n}\n```\n\nYou can always retrieve this account description later if needed via [`GET /api/v1/wallets/{{walletId}}/accounts/{{accountId}}`](#tag/Accounts%2Fpaths%2F~1api~1v1~1wallets~1{walletId}~1accounts~1{accountId}%2Fget).\n\nFor example:\n\n```\ncurl -X GET \\\n  https://127.0.0.1:8090/api/v1/wallets/Ae2tdPwUPE...8V3AVTnqGZ/accounts/2902829384 \\\n  -H 'Accept: application/json;charset=utf-8' \\\n  --cacert ./scripts/tls-files/ca.crt \\\n  --cert ./scripts/tls-files/client.pem\n```\n\nFor a broader view, the full list of accounts of a given wallet can be retrieved using [`GET /api/v1/wallets/{{walletId}}/accounts`](#tag/Accounts%2Fpaths%2F~1api~1v1~1wallets~1{walletId}~1accounts%2Fget)\n```\ncurl -X GET \\\n  https://127.0.0.1:8090/api/v1/wallets/Ae2tdPwUPE...8V3AVTnqGZ/accounts \\\n  -H 'Accept: application/json;charset=utf-8' \\\n  --cacert ./scripts/tls-files/ca.crt \\\n  --cert ./scripts/tls-files/client.pem\n```\n\n```json\n{\n    \"status\": \"success\",\n    \"data\": [\n        {\n            \"amount\": 29208924123228353,\n            \"addresses\": [\n                {\n                    \"used\": true,\n                    \"changeAddress\": false,\n                    \"id\": \"87iPzcvCgPho8F9z9kYRHi2F3R4uAP1wcv7EW7raDYBb1bwggk3PEyTwbFAWkqswRyour4\",\n                    \"ownership\": \"isOurs\"\n                }\n            ],\n            \"name\": \"My account\",\n            \"walletId\": \"J7rQqaLLHBFPrgJXwpktaMB1B1kQBXAyc2uRSfRPzNVGiv6TdxBzkPNBUWysZZZdhFG9gRy3sQFfX5wfpLbi4XTFGFxTg\",\n            \"index\": 2379541633\n        },\n        {\n            \"amount\": 28089727180413548,\n            \"addresses\": [\n                {\n                    \"used\": false,\n                    \"changeAddress\": false,\n                    \"id\": \"2R6Z7uznxuk4iBZAzE8zEVVRwXhweVZsYzCVJhj8L7Rovy9Bg1Zk37VaoVF44VhsDQVLysrGEDV7FgWRMVQpyzMNwYfdm77T85ZHQCbRsXK7x2wVyLc1WMABReqjAkETSnDAFfteE6gkX8KYLneDJvFgo4X6f13316BQeC3MwfxdNTivk4GTrZutvGXrMhzoZFWCqPU55tBVgHp9qStztLwzumePFyDyBH8Mw7vGfrp1wUmNcWDsbBjmkgf6yWGQ7R9XZZQWAK5pz2ufzTstGcU6zaAQ7KYvGquMq\",\n                    \"ownership\": \"ambiguousOwnership\"\n                },\n                {\n                    \"used\": false,\n                    \"changeAddress\": true,\n                    \"id\": \"EqGAuA8vHnNwpTWuNkFQgzjjH3n5nwXRBigJ2AWtQRA3foJKHF8ZhYG7eU6CBbVDB7NxxFBTgRso9AHRXaNPMajpQ2cLZHexz7qDr6jK2E37cKRGyuebDRi\",\n                    \"ownership\": \"ambiguousOwnership\"\n                }\n            ],\n            \"name\": \"My account\",\n            \"walletId\": \"J7rQqaLLHBFPrgJXwpktaMB1B1kQBXAyc2uRSfRPzNVGiv6TdxBzkPNBUWysZZZdhFG9gRy3sQFfX5wfpLbi4XTFGFxTg\",\n            \"index\": 4165966019\n        }\n    ],\n    \"meta\": {\n        \"pagination\": {\n            \"page\": 1,\n            \"perPage\": 46,\n            \"totalPages\": 1,\n            \"totalEntries\": 2\n        }\n    }\n}\n```\n\nPartial Representations\n-----------------------\n\nThe previous endpoint gives you a list of full representations. However, in some cases, it might be interesting to retrieve only a partial representation of an account (e.g. only the balance). There are two extra endpoints one could use to either fetch a given account's balance, and another to retrieve the list of addresses associated to a specific account.\n\n[`GET /api/v1/wallets/{{walletId}}/accounts/{{accountId}}/addresses`](#tag/Accounts%2Fpaths%2F~1api~1v1~1wallets~1%7BwalletId%7D~1accounts~1%7BaccountId%7D~1addresses%2Fget)\n\n```json\n{\n    \"status\": \"success\",\n    \"data\": {\n        \"addresses\": [\n            {\n                \"used\": false,\n                \"changeAddress\": true,\n                \"id\": \"7J1MaQmKydNcFHrykh6Siizc18fqDfZUmKpcaSL1dAX23rST45JTPLjq7AZTd76RMkzjQ1x2gjmpzUFNjDjsKndGWJyHV2JMrQyJ5wej1YaYf6M\",\n                \"ownership\": \"ambiguousOwnership\"\n            },\n            {\n                \"used\": true,\n                \"changeAddress\": false,\n                \"id\": \"7J1MaQmKydNgoeJSkg9r6HXJ1YSaSPyLouzKcz7ejh71ags5GXFdPJHDixi8yoHsHbLXbuAYQo2gZpFHMrYN8WXHAzRDjzqxWnvJxQbnq9za5Wg\",\n                \"ownership\": \"ambiguousOwnership\"\n            }\n        ]\n    },\n    \"meta\": {\n        \"pagination\": {\n            \"page\": 1,\n            \"perPage\": 46,\n            \"totalPages\": 1,\n            \"totalEntries\": 2\n        }\n    }\n}\n```\n\nNote that this endpoint is paginated and allow basic filtering and sorting on\naddresses. Similarly, you can retrieve only the account balance with:\n\n[`GET /api/v1/wallets/{{walletId}}/accounts/{{accountId}}/amount`](#tag/Accounts%2Fpaths%2F~1api~1v1~1wallets~1%7BwalletId%7D~1accounts~1%7BaccountId%7D~1amount%2Fget)\n\n\n```json\n{\n    \"status\": \"success\",\n    \"data\": {\n        \"amount\": 25132995790248024\n    },\n    \"meta\": {\n        \"pagination\": {\n            \"page\": 1,\n            \"perPage\": 46,\n            \"totalPages\": 1,\n            \"totalEntries\": 2\n        }\n    }\n}\n```\n\n\nManaging Addresses\n------------------\n\nBy default, wallets you create are provided with an account which has one default address. It\nis possible (and recommended) for an account to manage multiple addresses. Address reuse\nactually reduces privacy for it tights more transactions to a small set of addresses.\n\nWhen paying, the wallet makes many of these choices for you. Addresses are\nselected from a wallet's account based on several different strategies and\npolicies.\n\nTo create a new address, use the [`POST /api/v1/addresses`](#tag/Addresses%2Fpaths%2F~1api~1v1~1addresses%2Fpost)\nendpoint:\n\n```\ncurl -X POST \\\n  https://localhost:8090/api/v1/addresses \\\n  -H 'Content-Type: application/json;charset=utf-8' \\\n  -H 'Accept: application/json;charset=utf-8' \\\n  --cacert ./scripts/tls-files/ca.crt \\\n  --cert ./scripts/tls-files/client.pem \\\n  -d '{\n        \"walletId\": \"Ae2tdPwUPE...V3AVTnqGZ4\",\n        \"accountIndex\": 2147483648\n}'\n```\n\n```json\n{\n    \"status\": \"success\",\n    \"data\": {\n        \"used\": false,\n        \"changeAddress\": true,\n        \"id\": \"AL91N9VXRTCxjNv7cbwjLXsZjUGQh8V1KVPRbuDKrL9De6tSQNueftdznBcVDbs5mpfNd5jxw8WR1QSLYE1NNVTQ5GGXxEGej3mM3nYVgoqxTm4JQq2\",\n        \"ownership\": \"ambiguousOwnership\"\n    },\n    \"meta\": {\n        \"pagination\": {\n            \"page\": 1,\n            \"perPage\": 46,\n            \"totalPages\": 1,\n            \"totalEntries\": 2\n        }\n    }\n}\n```\n\nIf your wallet is protected with a password, this password is also required in order to create\nnew addresses for that wallet. In such case, the field `spendingPassword` should match the one\ndefined earlier to protect your wallet.\n\nAddresses generated as just described are always valid. When the API encounters\nan invalid address however (e.g. when provided by another party), it will fail with a\nclient error.\n\nYou can always view all your available addresses across all your wallets by using\n[`GET /api/v1/addresses`](#tag/Addresses%2Fpaths%2F~1api~1v1~1addresses%2Fget):\n\n```\ncurl -X GET https://localhost:8090/api/v1/addresses \\\n  -H 'Accept: application/json;charset=utf-8' \\\n  --cacert ./scripts/tls-files/ca.crt \\\n  --cert ./scripts/tls-files/client.pem\n```\n\n```json\n{\n    \"status\": \"success\",\n    \"data\": [\n        \"AL91N9VXRTCiessGYGbs6fSQtuyV8ZhTXg5Z2qYiVwHkXbhoQhQYVGCkq69tCkMoPv8mypgVXCDuhipAJgJqjUQAAQrsRmA5Cvthwmo3s4KfJXaJpNU\",\n        \"AL91N9VXRTCnwUSGvf3Nk9fNni1DwR1X3kEcak38fPexKaSLxJfz5GjCBzxnM4QGdFB3npRXnsFNNLaYPjEQiZLujz4xeQqymySJznzcopK7w5o8TDw\"\n    ],\n    \"meta\": {\n        \"pagination\": {\n            \"page\": 1,\n            \"perPage\": 46,\n            \"totalPages\": 1,\n            \"totalEntries\": 2\n        }\n    }\n}\n```\n\nChecking Synchronization Progress\n---------------------------------\n\nYou can control the synchronization progress of the underlying node hosting the wallet's server\nvia [`GET /api/v1/node-info`](#tag/Info%2Fpaths%2F~1api~1v1~1node-info%2Fget). The output is\nrather verbose and gives real-time progress updates about the current node.\n\n```\ncurl -X GET https://localhost:8090/api/v1/node-info \\\n  -H 'Accept: application/json;charset=utf-8' \\\n  --cacert ./scripts/tls-files/ca.crt \\\n  --cert ./scripts/tls-files/client.pem\n```\n\n```json\n{\n    \"status\": \"success\",\n    \"data\": {\n        \"blockchainHeight\": {\n            \"quantity\": 1.2822931622135091772e19,\n            \"unit\": \"blocks\"\n        },\n        \"localTimeInformation\": {\n            \"differenceFromNtpServer\": {\n                \"quantity\": 0,\n                \"unit\": \"microseconds\"\n            }\n        },\n        \"subscriptionStatus\": {\n            \"85.242.106.23:2446:1\": \"subscribing\",\n            \"119.17.4.92:3451:2\": \"subscribing\"\n        },\n        \"syncProgress\": {\n            \"quantity\": 14,\n            \"unit\": \"percent\"\n        },\n        \"localBlockchainHeight\": {\n            \"quantity\": 9631745999145585284,\n            \"unit\": \"blocks\"\n        }\n    },\n    \"meta\": {\n        \"pagination\": {\n            \"page\": 1,\n            \"perPage\": 46,\n            \"totalPages\": 1,\n            \"totalEntries\": 2\n        }\n    }\n}\n```\n\n\nRetrieving Transaction History\n------------------------------\n\nIf needed, applications may regularly poll the wallet's backend to retrieve the history of\ntransactions of a given wallet. Using the [`GET /api/v1/transactions`](#tag/Transactions%2Fpaths%2F~1api~1v1~1transactions%2Fget)\nendpoint, you can view the status of all transactions that ever sent or took money from the\nwallet.\n\nThe following table sums up the available filters (also detailed in the endpoint documentation details):\n\nFilter On                   | Corresponding Query Parameter(s)\n----------------------------| ------------------------------\nWallet                      | `wallet_id`\nWallet's account            | `account_index` + `wallet_id`\nAddress                     | `address`\nTransaction's creation time | `created_at`\nTransaction's id            | `id`\n\nFor example, in order to retrieve the last 50 transactions of a particular account,\nordered by descending date:\n\n```\ncurl -X GET https://127.0.0.1:8090/api/v1/transactions?wallet_id=Ae2tdPwU...3AVTnqGZ&account_index=2902829384&sort_by=DES\\[created_at\\]&per_page=50' \\\n  -H 'Accept: application/json;charset=utf-8' \\\n  --cacert ./scripts/tls-files/ca.crt \\\n  --cert ./scripts/tls-files/client.pem\n```\nFor example, in order to retrieve the last 50 transactions, ordered by descending date:\n\n```\ncurl -X GET 'https://127.0.0.1:8090/api/v1/transactions?wallet_id=Ae2tdPwU...3AVTnqGZ &sort_by=DES\\[created_at\\]&per_page=50' \\\n  -H 'Accept: application/json;charset=utf-8' \\\n  --cacert ./scripts/tls-files/ca.crt \\\n  --cert ./scripts/tls-files/client.pem\n```\n\n\nAnother example, if you were to look for all transactions made since the 1st of January 2018:\n\n```\ncurl -X GET 'https://127.0.0.1:8090/api/v1/transactions?wallet_id=Ae2tdPwU...3AVTnqGZ&created_at=GT\\[2018-01-01T00:00:00.00000\\]' \\\n  -H 'Accept: application/json;charset=utf-8' \\\n  --cacert ./scripts/tls-files/ca.crt \\\n  --cert ./scripts/tls-files/client.pem\n```\n\n\nGetting Utxo statistics\n---------------------------------\n\nYou can get Utxo statistics of a given wallet using\n [`GET /api/v1/wallets/{{walletId}}/statistics/utxos`](#tag/Accounts%2Fpaths%2F~1api~1v1~1wallets~1{walletId}~1statistics~1utxos%2Fget)\n```\ncurl -X GET \\\n  https://127.0.0.1:8090/api/v1/wallets/Ae2tdPwUPE...8V3AVTnqGZ/statistics/utxos \\\n  -H 'Accept: application/json;charset=utf-8' \\\n  --cacert ./scripts/tls-files/ca.crt \\\n  --cert ./scripts/tls-files/client.pem\n```\n\n```json\n{\n    \"status\": \"success\",\n    \"data\": {\n        \"boundType\": \"Log10\",\n        \"allStakes\": 110052012652544370,\n        \"histogram\": {\n            \"10000000000000000\": 0,\n            \"100000000000000\": 1,\n            \"1000000000000\": 2,\n            \"10000000000\": 3,\n            \"100000000\": 4,\n            \"1000000\": 3,\n            \"10000\": 0,\n            \"100\": 2,\n            \"1000000000\": 3,\n            \"100000000000\": 4,\n            \"10\": 3,\n            \"45000000000000000\": 3,\n            \"1000\": 4,\n            \"10000000000000\": 1,\n            \"1000000000000000\": 3,\n            \"100000\": 0,\n            \"10000000\": 4\n        }\n    },\n    \"meta\": {\n        \"pagination\": {\n            \"page\": 1,\n            \"perPage\": 46,\n            \"totalPages\": 1,\n            \"totalEntries\": 2\n        }\n    }\n}\n```\n\nMake sure to carefully read the section about [Pagination](#section/Pagination) to fully\nleverage the API capabilities.\n",
+        "license": {
+            "name": "MIT",
+            "url": "https://raw.githubusercontent.com/input-output-hk/cardano-sl/develop/lib/LICENSE"
+        },
+        "title": "Cardano Wallet API",
+        "version": "1.4.0"
+    },
+    "paths": {
+        "/api/internal/apply-update": {
+            "post": {
+                "description": "Apply the next available update proposal from the blockchain. Note that this\nwill immediately shutdown the node and makes it unavailable for a short while.\n",
+                "produces": [
+                    "application/json;charset=utf-8"
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "summary": "Apply the next available update",
+                "tags": [
+                    "Internal"
+                ]
+            }
+        },
+        "/api/internal/import-wallet": {
+            "post": {
+                "consumes": [
+                    "application/json;charset=utf-8"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/WalletImport"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json;charset=utf-8"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/WalletResponse-Wallet"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid `body`"
+                    }
+                },
+                "summary": "Import a Wallet from disk.",
+                "tags": [
+                    "Internal"
+                ]
+            }
+        },
+        "/api/internal/next-update": {
+            "get": {
+                "produces": [
+                    "application/json;charset=utf-8"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/WalletResponse-V1 SoftwareVersion"
+                        }
+                    }
+                },
+                "summary": "Version of the next update (404 if none)",
+                "tags": [
+                    "Internal"
+                ]
+            }
+        },
+        "/api/internal/postpone-update": {
+            "post": {
+                "description": "Discard the next available update from the node's local state. Yet, this doesn't\nreject the update which will still be applied as soon as the node is restarted.\n",
+                "produces": [
+                    "application/json;charset=utf-8"
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "summary": "Discard and postpone the next available update",
+                "tags": [
+                    "Internal"
+                ]
+            }
+        },
+        "/api/internal/reset-wallet-state": {
+            "delete": {
+                "description": "Wipe-out the node's local state entirely. The only intended use-case for this\nendpoint is during API integration testing. Note also that this will fail by\ndefault unless the node is running in debug mode.\n",
+                "produces": [
+                    "application/json;charset=utf-8"
+                ],
+                "responses": {
+                    "204": {
+                        "description": ""
+                    }
+                },
+                "summary": "Clear wallet state and all associated secret keys",
+                "tags": [
+                    "Internal"
+                ]
+            }
+        },
+        "/api/v1/addresses": {
+            "get": {
+                "parameters": [
+                    {
+                        "default": 1,
+                        "description": "The page number to fetch for this request. The minimum is **1**.  If nothing is specified, **this value defaults to 1** and always shows the first entries in the requested collection.\n",
+                        "in": "query",
+                        "minimum": 1,
+                        "name": "page",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "default": 10,
+                        "description": "The number of entries to display for each page. The minimum is **1**, whereas the maximum is **50**. If nothing is specified, **this value defaults to 10**.\n",
+                        "in": "query",
+                        "maximum": 50,
+                        "minimum": 1,
+                        "name": "per_page",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "produces": [
+                    "application/json;charset=utf-8"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/WalletResponse-_WalletAddress_"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid `per_page` or `page`"
+                    }
+                },
+                "summary": "Returns a list of the addresses.",
+                "tags": [
+                    "Addresses"
+                ]
+            },
+            "post": {
+                "consumes": [
+                    "application/json;charset=utf-8"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NewAddress"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json;charset=utf-8"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/WalletResponse-WalletAddress"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid `body`"
+                    }
+                },
+                "summary": "Creates a new Address.",
+                "tags": [
+                    "Addresses"
+                ]
+            }
+        },
+        "/api/v1/addresses/{address}": {
+            "get": {
+                "description": "The previous version of this endpoint failed with an HTTP error when the given\naddress was unknown to the wallet.\n\nThis was misleading since an address that is unknown to the wallet may still\nbelong to the wallet (since it could be part of a pending transaction in\nanother instance of the same wallet).\n\nTo reflect this, the V1 endpoint does not fail when an address is not recognised\nand returns a new field which indicates the address' ownership status, from the\nnode point of view.\n",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "address",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json;charset=utf-8"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/WalletResponse-WalletAddress"
+                        }
+                    },
+                    "404": {
+                        "description": "`address` not found"
+                    }
+                },
+                "summary": "Returns interesting information about an address, if available and valid.",
+                "tags": [
+                    "Addresses"
+                ]
+            }
+        },
+        "/api/v1/node-info": {
+            "get": {
+                "parameters": [
+                    {
+                        "allowEmptyValue": true,
+                        "default": false,
+                        "description": "In some cases, API Clients need to force a new NTP check as a previous result gets cached. A typical use-case is after asking a user to fix its system clock. If this flag is set, request will block until NTP server responds or it will timeout if NTP server is not available within a short delay.\n",
+                        "in": "query",
+                        "name": "force_ntp_check",
+                        "type": "boolean"
+                    }
+                ],
+                "produces": [
+                    "application/json;charset=utf-8"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/WalletResponse-NodeInfo"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid `force_ntp_check`"
+                    }
+                },
+                "summary": "Retrieves the dynamic information for this node.",
+                "tags": [
+                    "Info"
+                ]
+            }
+        },
+        "/api/v1/node-settings": {
+            "get": {
+                "produces": [
+                    "application/json;charset=utf-8"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/WalletResponse-NodeSettings"
+                        }
+                    }
+                },
+                "summary": "Retrieves the static settings for this node.",
+                "tags": [
+                    "Settings"
+                ]
+            }
+        },
+        "/api/v1/transactions": {
+            "get": {
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "wallet_id",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "maximum": 4294967295,
+                        "minimum": 2147483648,
+                        "name": "account_index",
+                        "required": false,
+                        "type": "number"
+                    },
+                    {
+                        "in": "query",
+                        "name": "address",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "default": 1,
+                        "description": "The page number to fetch for this request. The minimum is **1**.  If nothing is specified, **this value defaults to 1** and always shows the first entries in the requested collection.\n",
+                        "in": "query",
+                        "minimum": 1,
+                        "name": "page",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "default": 10,
+                        "description": "The number of entries to display for each page. The minimum is **1**, whereas the maximum is **50**. If nothing is specified, **this value defaults to 10**.\n",
+                        "in": "query",
+                        "maximum": 50,
+                        "minimum": 1,
+                        "name": "per_page",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "A **FILTER** operation on a Transaction. Filters support a variety of queries on the resource. These are: \n\n- `EQ[value]`    : only allow values equal to `value`\n- `LT[value]`    : allow resource with attribute less than the `value`\n- `GT[value]`    : allow objects with an attribute greater than the `value`\n- `GTE[value]`   : allow objects with an attribute at least the `value`\n- `LTE[value]`   : allow objects with an attribute at most the `value`\n- `RANGE[lo,hi]` : allow objects with the attribute in the range between `lo` and `hi`\n- `IN[a,b,c,d]`  : allow objects with the attribute belonging to one provided.\n\n",
+                        "in": "query",
+                        "name": "id",
+                        "type": "string"
+                    },
+                    {
+                        "description": "A **FILTER** operation on a Transaction. Filters support a variety of queries on the resource. These are: \n\n- `EQ[value]`    : only allow values equal to `value`\n- `LT[value]`    : allow resource with attribute less than the `value`\n- `GT[value]`    : allow objects with an attribute greater than the `value`\n- `GTE[value]`   : allow objects with an attribute at least the `value`\n- `LTE[value]`   : allow objects with an attribute at most the `value`\n- `RANGE[lo,hi]` : allow objects with the attribute in the range between `lo` and `hi`\n- `IN[a,b,c,d]`  : allow objects with the attribute belonging to one provided.\n\n",
+                        "in": "query",
+                        "name": "created_at",
+                        "type": "string"
+                    },
+                    {
+                        "allowEmptyValue": true,
+                        "description": "A **SORT** operation on this Transaction. Allowed keys: `created_at`.\n",
+                        "in": "query",
+                        "name": "sort_by",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json;charset=utf-8"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/WalletResponse-_Transaction_"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid `per_page` or `page` or `address` or `account_index` or `wallet_id`"
+                    }
+                },
+                "summary": "Returns the transaction history, i.e the list of all the past transactions.",
+                "tags": [
+                    "Transactions"
+                ]
+            },
+            "post": {
+                "consumes": [
+                    "application/json;charset=utf-8"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Payment"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json;charset=utf-8"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/WalletResponse-Transaction"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid `body`"
+                    }
+                },
+                "summary": "Generates a new transaction from the source to one or multiple target addresses.",
+                "tags": [
+                    "Transactions"
+                ]
+            }
+        },
+        "/api/v1/transactions/certificates": {
+            "post": {
+                "consumes": [
+                    "application/json;charset=utf-8"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Redemption"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json;charset=utf-8"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/WalletResponse-Transaction"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid `body`"
+                    }
+                },
+                "summary": "Redeem a certificate",
+                "tags": [
+                    "Transactions"
+                ]
+            }
+        },
+        "/api/v1/transactions/fees": {
+            "post": {
+                "consumes": [
+                    "application/json;charset=utf-8"
+                ],
+                "description": "Estimate the fees which would incur from the input payment. This endpoint\n**does not** require a _spending password_ to be supplied as it generates\nunder the hood an unsigned transaction.\n",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Payment"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json;charset=utf-8"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/WalletResponse-EstimatedFees"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid `body`"
+                    }
+                },
+                "summary": "Estimate the fees which would originate from the payment.",
+                "tags": [
+                    "Transactions"
+                ]
+            }
+        },
+        "/api/v1/wallets": {
+            "get": {
+                "parameters": [
+                    {
+                        "default": 1,
+                        "description": "The page number to fetch for this request. The minimum is **1**.  If nothing is specified, **this value defaults to 1** and always shows the first entries in the requested collection.\n",
+                        "in": "query",
+                        "minimum": 1,
+                        "name": "page",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "default": 10,
+                        "description": "The number of entries to display for each page. The minimum is **1**, whereas the maximum is **50**. If nothing is specified, **this value defaults to 10**.\n",
+                        "in": "query",
+                        "maximum": 50,
+                        "minimum": 1,
+                        "name": "per_page",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "A **FILTER** operation on a Wallet. Filters support a variety of queries on the resource. These are: \n\n- `EQ[value]`    : only allow values equal to `value`\n- `LT[value]`    : allow resource with attribute less than the `value`\n- `GT[value]`    : allow objects with an attribute greater than the `value`\n- `GTE[value]`   : allow objects with an attribute at least the `value`\n- `LTE[value]`   : allow objects with an attribute at most the `value`\n- `RANGE[lo,hi]` : allow objects with the attribute in the range between `lo` and `hi`\n- `IN[a,b,c,d]`  : allow objects with the attribute belonging to one provided.\n\n",
+                        "in": "query",
+                        "name": "id",
+                        "type": "string"
+                    },
+                    {
+                        "description": "A **FILTER** operation on a Wallet. Filters support a variety of queries on the resource. These are: \n\n- `EQ[value]`    : only allow values equal to `value`\n- `LT[value]`    : allow resource with attribute less than the `value`\n- `GT[value]`    : allow objects with an attribute greater than the `value`\n- `GTE[value]`   : allow objects with an attribute at least the `value`\n- `LTE[value]`   : allow objects with an attribute at most the `value`\n- `RANGE[lo,hi]` : allow objects with the attribute in the range between `lo` and `hi`\n- `IN[a,b,c,d]`  : allow objects with the attribute belonging to one provided.\n\n",
+                        "in": "query",
+                        "name": "balance",
+                        "type": "string"
+                    },
+                    {
+                        "allowEmptyValue": true,
+                        "description": "A **SORT** operation on this Wallet. Allowed keys: `balance,created_at`.\n",
+                        "in": "query",
+                        "name": "sort_by",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json;charset=utf-8"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/WalletResponse-_Wallet_"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid `per_page` or `page`"
+                    }
+                },
+                "summary": "Returns a list of the available wallets.",
+                "tags": [
+                    "Wallets"
+                ]
+            },
+            "post": {
+                "consumes": [
+                    "application/json;charset=utf-8"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NewWallet"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json;charset=utf-8"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/WalletResponse-Wallet"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid `body`"
+                    }
+                },
+                "summary": "Creates a new or restores an existing Wallet.",
+                "tags": [
+                    "Wallets"
+                ]
+            }
+        },
+        "/api/v1/wallets/{walletId}": {
+            "delete": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "walletId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json;charset=utf-8"
+                ],
+                "responses": {
+                    "204": {
+                        "description": ""
+                    },
+                    "404": {
+                        "description": "`walletId` not found"
+                    }
+                },
+                "summary": "Deletes the given Wallet and all its accounts.",
+                "tags": [
+                    "Wallets"
+                ]
+            },
+            "get": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "walletId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json;charset=utf-8"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/WalletResponse-Wallet"
+                        }
+                    },
+                    "404": {
+                        "description": "`walletId` not found"
+                    }
+                },
+                "summary": "Returns the Wallet identified by the given walletId.",
+                "tags": [
+                    "Wallets"
+                ]
+            },
+            "put": {
+                "consumes": [
+                    "application/json;charset=utf-8"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "walletId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/WalletUpdate"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json;charset=utf-8"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/WalletResponse-Wallet"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid `body`"
+                    },
+                    "404": {
+                        "description": "`walletId` not found"
+                    }
+                },
+                "summary": "Update the Wallet identified by the given walletId.",
+                "tags": [
+                    "Wallets"
+                ]
+            }
+        },
+        "/api/v1/wallets/{walletId}/accounts": {
+            "get": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "walletId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "default": 1,
+                        "description": "The page number to fetch for this request. The minimum is **1**.  If nothing is specified, **this value defaults to 1** and always shows the first entries in the requested collection.\n",
+                        "in": "query",
+                        "minimum": 1,
+                        "name": "page",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "default": 10,
+                        "description": "The number of entries to display for each page. The minimum is **1**, whereas the maximum is **50**. If nothing is specified, **this value defaults to 10**.\n",
+                        "in": "query",
+                        "maximum": 50,
+                        "minimum": 1,
+                        "name": "per_page",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "produces": [
+                    "application/json;charset=utf-8"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/WalletResponse-_Account_"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid `per_page` or `page`"
+                    },
+                    "404": {
+                        "description": "`walletId` not found"
+                    }
+                },
+                "summary": "Retrieves the full list of Accounts.",
+                "tags": [
+                    "Accounts"
+                ]
+            },
+            "post": {
+                "consumes": [
+                    "application/json;charset=utf-8"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "walletId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NewAccount"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json;charset=utf-8"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/WalletResponse-Account"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid `body`"
+                    },
+                    "404": {
+                        "description": "`walletId` not found"
+                    }
+                },
+                "summary": "Creates a new Account for the given Wallet.",
+                "tags": [
+                    "Accounts"
+                ]
+            }
+        },
+        "/api/v1/wallets/{walletId}/accounts/{accountId}": {
+            "delete": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "walletId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "path",
+                        "maximum": 4294967295,
+                        "minimum": 2147483648,
+                        "name": "accountId",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "produces": [
+                    "application/json;charset=utf-8"
+                ],
+                "responses": {
+                    "204": {
+                        "description": ""
+                    },
+                    "404": {
+                        "description": "`walletId` or `accountId` not found"
+                    }
+                },
+                "summary": "Deletes an Account.",
+                "tags": [
+                    "Accounts"
+                ]
+            },
+            "get": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "walletId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "path",
+                        "maximum": 4294967295,
+                        "minimum": 2147483648,
+                        "name": "accountId",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "produces": [
+                    "application/json;charset=utf-8"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/WalletResponse-Account"
+                        }
+                    },
+                    "404": {
+                        "description": "`walletId` or `accountId` not found"
+                    }
+                },
+                "summary": "Retrieves a specific Account.",
+                "tags": [
+                    "Accounts"
+                ]
+            },
+            "put": {
+                "consumes": [
+                    "application/json;charset=utf-8"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "walletId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "path",
+                        "maximum": 4294967295,
+                        "minimum": 2147483648,
+                        "name": "accountId",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/AccountUpdate"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json;charset=utf-8"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/WalletResponse-Account"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid `body`"
+                    },
+                    "404": {
+                        "description": "`walletId` or `accountId` not found"
+                    }
+                },
+                "summary": "Update an Account for the given Wallet.",
+                "tags": [
+                    "Accounts"
+                ]
+            }
+        },
+        "/api/v1/wallets/{walletId}/accounts/{accountId}/addresses": {
+            "get": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "walletId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "path",
+                        "maximum": 4294967295,
+                        "minimum": 2147483648,
+                        "name": "accountId",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "default": 1,
+                        "description": "The page number to fetch for this request. The minimum is **1**.  If nothing is specified, **this value defaults to 1** and always shows the first entries in the requested collection.\n",
+                        "in": "query",
+                        "minimum": 1,
+                        "name": "page",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "default": 10,
+                        "description": "The number of entries to display for each page. The minimum is **1**, whereas the maximum is **50**. If nothing is specified, **this value defaults to 10**.\n",
+                        "in": "query",
+                        "maximum": 50,
+                        "minimum": 1,
+                        "name": "per_page",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "A **FILTER** operation on a WalletAddress. Filters support a variety of queries on the resource. These are: \n\n- `EQ[value]`    : only allow values equal to `value`\n- `LT[value]`    : allow resource with attribute less than the `value`\n- `GT[value]`    : allow objects with an attribute greater than the `value`\n- `GTE[value]`   : allow objects with an attribute at least the `value`\n- `LTE[value]`   : allow objects with an attribute at most the `value`\n- `RANGE[lo,hi]` : allow objects with the attribute in the range between `lo` and `hi`\n- `IN[a,b,c,d]`  : allow objects with the attribute belonging to one provided.\n\n",
+                        "in": "query",
+                        "name": "address",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json;charset=utf-8"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/WalletResponse-AccountAddresses"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid `per_page` or `page`"
+                    },
+                    "404": {
+                        "description": "`walletId` or `accountId` not found"
+                    }
+                },
+                "summary": "Retrieve only account's addresses.",
+                "tags": [
+                    "Accounts"
+                ]
+            }
+        },
+        "/api/v1/wallets/{walletId}/accounts/{accountId}/amount": {
+            "get": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "walletId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "path",
+                        "maximum": 4294967295,
+                        "minimum": 2147483648,
+                        "name": "accountId",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "produces": [
+                    "application/json;charset=utf-8"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/WalletResponse-AccountBalance"
+                        }
+                    },
+                    "404": {
+                        "description": "`walletId` or `accountId` not found"
+                    }
+                },
+                "summary": "Retrieve only account's balance.",
+                "tags": [
+                    "Accounts"
+                ]
+            }
+        },
+        "/api/v1/wallets/{walletId}/password": {
+            "put": {
+                "consumes": [
+                    "application/json;charset=utf-8"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "walletId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PasswordUpdate"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json;charset=utf-8"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/WalletResponse-Wallet"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid `body`"
+                    },
+                    "404": {
+                        "description": "`walletId` not found"
+                    }
+                },
+                "summary": "Updates the password for the given Wallet.",
+                "tags": [
+                    "Wallets"
+                ]
+            }
+        },
+        "/api/v1/wallets/{walletId}/statistics/utxos": {
+            "get": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "walletId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json;charset=utf-8"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/WalletResponse-UtxoStatistics"
+                        }
+                    },
+                    "404": {
+                        "description": "`walletId` not found"
+                    }
+                },
+                "summary": "Returns Utxo statistics for the Wallet identified by the given walletId.",
+                "tags": [
+                    "Wallets"
+                ]
+            }
+        }
+    },
+    "swagger": "2.0"
+}

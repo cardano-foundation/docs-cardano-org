@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE TemplateHaskell #-}</span><span>
+</span><a name="line-2"></a><span>
+</span><a name="line-3"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Shutdown</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span><span>
+</span><a name="line-4"></a><span>       </span><span class="hs-special">(</span><span> </span><a href="Pos.Shutdown.Types.html#ShutdownContext"><span class="hs-identifier hs-type">ShutdownContext</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-5"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Shutdown.Types.html#shdnIsTriggered"><span class="hs-identifier hs-var">shdnIsTriggered</span></a><span>
+</span><a name="line-6"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Shutdown.Types.html#shdnNotifyQueue"><span class="hs-identifier hs-var">shdnNotifyQueue</span></a><span>
+</span><a name="line-7"></a><span>       </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-8"></a><span>
+</span><a name="line-9"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Universum</span><span>
+</span><a name="line-10"></a><span>
+</span><a name="line-11"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Concurrent</span><span class="hs-operator">.</span><span class="hs-identifier">STM</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">TBQueue</span><span class="hs-special">)</span><span>
+</span><a name="line-12"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Lens</span><span>           </span><span class="hs-special">(</span><span class="hs-identifier hs-var">makeLenses</span><span class="hs-special">)</span><span>
+</span><a name="line-13"></a><span>
+</span><a name="line-14"></a><span class="hs-keyword">data</span><span> </span><a name="ShutdownContext"><a href="Pos.Shutdown.Types.html#ShutdownContext"><span class="hs-identifier">ShutdownContext</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a name="ShutdownContext"><a href="Pos.Shutdown.Types.html#ShutdownContext"><span class="hs-identifier">ShutdownContext</span></a></a><span>
+</span><a name="line-15"></a><span>    </span><span class="hs-special">{</span><span> </span><a name="_shdnIsTriggered"><a href="Pos.Shutdown.Types.html#_shdnIsTriggered"><span class="hs-identifier">_shdnIsTriggered</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-glyph">!</span><span class="hs-special">(</span><span class="hs-identifier hs-type">TVar</span><span> </span><span class="hs-identifier hs-type">Bool</span><span class="hs-special">)</span><span>
+</span><a name="line-16"></a><span>    </span><span class="hs-comment">-- ^ If this flag is `True`, then workers should stop.</span><span>
+</span><a name="line-17"></a><span>    </span><span class="hs-special">,</span><span> </span><a name="_shdnNotifyQueue"><a href="Pos.Shutdown.Types.html#_shdnNotifyQueue"><span class="hs-identifier">_shdnNotifyQueue</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-glyph">!</span><span class="hs-special">(</span><span class="hs-identifier hs-type">TBQueue</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-18"></a><span>    </span><span class="hs-comment">-- ^ A queue which is used to count how many workers have successfully</span><span>
+</span><a name="line-19"></a><span>    </span><span class="hs-comment">-- terminated.</span><span>
+</span><a name="line-20"></a><span>    </span><span class="hs-special">}</span><span>
+</span><a name="line-21"></a><span>
+</span><a name="line-22"></a><span class="hs-identifier hs-var">makeLenses</span><span> </span><span class="hs-char">''ShutdownContext
+</span></pre></body></html>

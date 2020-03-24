@@ -1,0 +1,31 @@
+.topcol .tools,
+.topcol .nav-tabs,
+.rightcol,
+.noprint,
+.btn-group,
+.button_posts,
+#disqus_thread,
+.navbar,
+form,
+.profile,
+.sitemap_foot,
+#io_comment_area,
+.nav{display: none !important}
+
+a{color: #ff0000 !important}
+h1 a{text-decoration: none}
+
+body{font-size:65%;}
+
+.printyes{display:block !important}
+
+.blog.entry{padding: 0}
+
+#zotero_load_details .abstractNote .text {
+    height:auto !important;
+}
+.sidebar-right .maincol .post{margin:0;border-right:0 !important;padding:0 0px 0 0 }
+
+
+#subheader .title_block .h1 .c_f00,
+#subheader .title_block h1 .c_f00{color:#EF131D;text-shadow:#fff 0 0 0}

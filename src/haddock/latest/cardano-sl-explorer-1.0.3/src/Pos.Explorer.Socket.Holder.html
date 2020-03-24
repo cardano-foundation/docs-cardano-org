@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE AllowAmbiguousTypes  #-}</span><span>
+</span><a name="line-2"></a><span class="hs-pragma">{-# LANGUAGE TemplateHaskell      #-}</span><span>
+</span><a name="line-3"></a><span class="hs-pragma">{-# LANGUAGE TypeFamilies         #-}</span><span>
+</span><a name="line-4"></a><span class="hs-pragma">{-# LANGUAGE UndecidableInstances #-}</span><span>
+</span><a name="line-5"></a><span>
+</span><a name="line-6"></a><span class="hs-comment">-- | `ExplorerSockets` monad.</span><span>
+</span><a name="line-7"></a><span>
+</span><a name="line-8"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Explorer</span><span class="hs-operator">.</span><span class="hs-identifier">Socket</span><span class="hs-operator">.</span><span class="hs-identifier">Holder</span><span>
+</span><a name="line-9"></a><span>       </span><span class="hs-special">(</span><span> </span><a href="Pos.Explorer.Socket.Holder.html#ExplorerSockets"><span class="hs-identifier hs-type">ExplorerSockets</span></a><span>
+</span><a name="line-10"></a><span>
+</span><a name="line-11"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Explorer.Socket.Holder.html#ClientContext"><span class="hs-identifier hs-type">ClientContext</span></a><span>
+</span><a name="line-12"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Explorer.Socket.Holder.html#ConnectionsState"><span class="hs-identifier hs-type">ConnectionsState</span></a><span>
+</span><a name="line-13"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Explorer.Socket.Holder.html#ConnectionsVar"><span class="hs-identifier hs-type">ConnectionsVar</span></a><span>
+</span><a name="line-14"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Explorer.Socket.Holder.html#mkClientContext"><span class="hs-identifier hs-var">mkClientContext</span></a><span>
+</span><a name="line-15"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Explorer.Socket.Holder.html#mkConnectionsState"><span class="hs-identifier hs-var">mkConnectionsState</span></a><span>
+</span><a name="line-16"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Explorer.Socket.Holder.html#withConnState"><span class="hs-identifier hs-var">withConnState</span></a><span>
+</span><a name="line-17"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Explorer.Socket.Holder.html#askingConnState"><span class="hs-identifier hs-var">askingConnState</span></a><span>
+</span><a name="line-18"></a><span>
+</span><a name="line-19"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Explorer.Socket.Holder.html#csAddressSubscribers"><span class="hs-identifier hs-var">csAddressSubscribers</span></a><span>
+</span><a name="line-20"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Explorer.Socket.Holder.html#csBlocksSubscribers"><span class="hs-identifier hs-var">csBlocksSubscribers</span></a><span>
+</span><a name="line-21"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Explorer.Socket.Holder.html#csBlocksPageSubscribers"><span class="hs-identifier hs-var">csBlocksPageSubscribers</span></a><span>
+</span><a name="line-22"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Explorer.Socket.Holder.html#csBlocksOffSubscribers"><span class="hs-identifier hs-var">csBlocksOffSubscribers</span></a><span>
+</span><a name="line-23"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Explorer.Socket.Holder.html#csTxsSubscribers"><span class="hs-identifier hs-var">csTxsSubscribers</span></a><span>
+</span><a name="line-24"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Explorer.Socket.Holder.html#csClients"><span class="hs-identifier hs-var">csClients</span></a><span>
+</span><a name="line-25"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Explorer.Socket.Holder.html#ccAddress"><span class="hs-identifier hs-var">ccAddress</span></a><span>
+</span><a name="line-26"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Explorer.Socket.Holder.html#ccBlockOff"><span class="hs-identifier hs-var">ccBlockOff</span></a><span>
+</span><a name="line-27"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Explorer.Socket.Holder.html#ccConnection"><span class="hs-identifier hs-var">ccConnection</span></a><span>
+</span><a name="line-28"></a><span>       </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-29"></a><span>
+</span><a name="line-30"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Lens</span><span>             </span><span class="hs-special">(</span><span class="hs-identifier hs-var">makeClassy</span><span class="hs-special">)</span><span>
+</span><a name="line-31"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Map</span><span class="hs-operator">.</span><span class="hs-identifier">Strict</span><span>          </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">M</span><span>
+</span><a name="line-32"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Set</span><span>                 </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">S</span><span>
+</span><a name="line-33"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Network</span><span class="hs-operator">.</span><span class="hs-identifier">EngineIO</span><span>         </span><span class="hs-special">(</span><span class="hs-identifier hs-type">SocketId</span><span class="hs-special">)</span><span>
+</span><a name="line-34"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Network</span><span class="hs-operator">.</span><span class="hs-identifier">SocketIO</span><span>         </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Socket</span><span class="hs-special">)</span><span>
+</span><a name="line-35"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Serokell</span><span class="hs-operator">.</span><span class="hs-identifier">Util</span><span class="hs-operator">.</span><span class="hs-identifier">Concurrent</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-var">modifyTVarS</span><span class="hs-special">)</span><span>
+</span><a name="line-36"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">System</span><span class="hs-operator">.</span><span class="hs-identifier">Wlog</span><span>              </span><span class="hs-special">(</span><span class="hs-identifier hs-type">NamedPureLogger</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">WithLogger</span><span class="hs-special">,</span><span>
+</span><a name="line-37"></a><span>                                           </span><span class="hs-identifier hs-var">launchNamedPureLog</span><span class="hs-special">)</span><span>
+</span><a name="line-38"></a><span>
+</span><a name="line-39"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span><span>                </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Address</span><span class="hs-special">)</span><span>
+</span><a name="line-40"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Universum</span><span>
+</span><a name="line-41"></a><span>
+</span><a name="line-42"></a><span class="hs-keyword">data</span><span> </span><a name="ClientContext"><a href="Pos.Explorer.Socket.Holder.html#ClientContext"><span class="hs-identifier">ClientContext</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a name="ClientContext"><a href="Pos.Explorer.Socket.Holder.html#ClientContext"><span class="hs-identifier">ClientContext</span></a></a><span>
+</span><a name="line-43"></a><span>    </span><span class="hs-special">{</span><span> </span><a name="_ccAddress"><a href="Pos.Explorer.Socket.Holder.html#_ccAddress"><span class="hs-identifier">_ccAddress</span></a></a><span>    </span><span class="hs-glyph">::</span><span> </span><span class="hs-glyph">!</span><span class="hs-special">(</span><span class="hs-identifier hs-type">Maybe</span><span> </span><span class="hs-identifier hs-type">Address</span><span class="hs-special">)</span><span>
+</span><a name="line-44"></a><span>    </span><span class="hs-special">,</span><span> </span><a name="_ccBlockOff"><a href="Pos.Explorer.Socket.Holder.html#_ccBlockOff"><span class="hs-identifier">_ccBlockOff</span></a></a><span>   </span><span class="hs-glyph">::</span><span> </span><span class="hs-glyph">!</span><span class="hs-special">(</span><span class="hs-identifier hs-type">Maybe</span><span> </span><span class="hs-identifier hs-type">Word</span><span class="hs-special">)</span><span>
+</span><a name="line-45"></a><span>    </span><span class="hs-special">,</span><span> </span><a name="_ccConnection"><a href="Pos.Explorer.Socket.Holder.html#_ccConnection"><span class="hs-identifier">_ccConnection</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-glyph">!</span><span class="hs-identifier hs-type">Socket</span><span>
+</span><a name="line-46"></a><span>    </span><span class="hs-special">}</span><span>
+</span><a name="line-47"></a><span>
+</span><a name="line-48"></a><span class="hs-identifier">mkClientContext</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">Socket</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><a href="Pos.Explorer.Socket.Holder.html#ClientContext"><span class="hs-identifier hs-type">ClientContext</span></a><span>
+</span><a name="line-49"></a><a name="mkClientContext"><a href="Pos.Explorer.Socket.Holder.html#mkClientContext"><span class="hs-identifier">mkClientContext</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Pos.Explorer.Socket.Holder.html#ClientContext"><span class="hs-identifier hs-var">ClientContext</span></a><span> </span><span class="hs-identifier hs-var">Nothing</span><span> </span><span class="hs-identifier hs-var">Nothing</span><span>
+</span><a name="line-50"></a><span>
+</span><a name="line-51"></a><span class="hs-identifier hs-var">makeClassy</span><span> </span><span class="hs-char">''ClientContext
+
+data ConnectionsState = ConnectionsState
+    { -- | Active sessions
+      _csClients               :: !(M.Map SocketId ClientContext)
+      -- | Sessions subscribed to given address.
+    , _csAddressSubscribers    :: !(M.Map Address (S.Set SocketId))
+      -- | Sessions subscribed to notifications about new blocks.
+    , _csBlocksSubscribers     :: !(S.Set SocketId)
+      -- | Sessions subscribed to notifications about new blocks with offset.
+    , _csBlocksPageSubscribers :: !(S.Set SocketId)
+      -- | Sessions subscribed to notifications about last page.
+    , _csBlocksOffSubscribers  :: !(M.Map Word (S.Set SocketId))
+      -- | Sessions subscribed to notifications about new transactions.
+    , _csTxsSubscribers        :: !(S.Set SocketId)
+    }
+
+makeClassy ''ConnectionsState
+
+type ConnectionsVar = TVar ConnectionsState
+
+mkConnectionsState :: ConnectionsState
+mkConnectionsState =
+    ConnectionsState
+    { _csClients = mempty
+    , _csAddressSubscribers = mempty
+    , _csBlocksSubscribers = mempty
+    , _csBlocksPageSubscribers = mempty
+    , _csBlocksOffSubscribers = mempty
+    , _csTxsSubscribers = mempty
+    }
+
+withConnState
+    :: (MonadIO m, WithLogger m)
+    =&gt; ConnectionsVar
+    -&gt; NamedPureLogger (StateT ConnectionsState STM) a
+    -&gt; m a
+withConnState var = launchNamedPureLog $ liftIO . atomically . modifyTVarS var
+
+askingConnState
+    :: MonadIO m
+    =&gt; ConnectionsVar
+    -&gt; ExplorerSockets m a
+    -&gt; m a
+askingConnState var action = do
+    v &lt;- liftIO $ readTVarIO var
+    runReaderT action v
+
+type ExplorerSockets = ReaderT ConnectionsState
+</span></pre></body></html>

@@ -1,0 +1,531 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE AllowAmbiguousTypes       #-}</span><span>
+</span><a name="line-2"></a><span class="hs-pragma">{-# LANGUAGE DataKinds                 #-}</span><span>
+</span><a name="line-3"></a><span class="hs-pragma">{-# LANGUAGE ExistentialQuantification #-}</span><span>
+</span><a name="line-4"></a><span class="hs-pragma">{-# LANGUAGE KindSignatures            #-}</span><span>
+</span><a name="line-5"></a><span class="hs-pragma">{-# LANGUAGE Rank2Types                #-}</span><span>
+</span><a name="line-6"></a><span class="hs-pragma">{-# LANGUAGE TypeFamilies              #-}</span><span>
+</span><a name="line-7"></a><span class="hs-pragma">{-# LANGUAGE TypeOperators             #-}</span><span>
+</span><a name="line-8"></a><span>
+</span><a name="line-9"></a><span class="hs-comment">-- | Some utilites for more flexible servant usage.</span><span>
+</span><a name="line-10"></a><span>
+</span><a name="line-11"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Util</span><span class="hs-operator">.</span><span class="hs-identifier">Servant</span><span>
+</span><a name="line-12"></a><span>    </span><span class="hs-special">(</span><span> </span><a href="Pos.Util.Servant.html#ModifiesApiRes"><span class="hs-identifier hs-type">ModifiesApiRes</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-13"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Util.Servant.html#VerbMod"><span class="hs-identifier hs-type">VerbMod</span></a><span>
+</span><a name="line-14"></a><span>
+</span><a name="line-15"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Util.Servant.html#ReportDecodeError"><span class="hs-identifier hs-type">ReportDecodeError</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-16"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Util.Servant.html#CDecodeApiArg"><span class="hs-identifier hs-type">CDecodeApiArg</span></a><span>
+</span><a name="line-17"></a><span>
+</span><a name="line-18"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Util.Servant.html#OriginType"><span class="hs-identifier hs-type">OriginType</span></a><span>
+</span><a name="line-19"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Util.Servant.html#FromCType"><span class="hs-identifier hs-type">FromCType</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-20"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Util.Servant.html#ToCType"><span class="hs-identifier hs-type">ToCType</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-21"></a><span>
+</span><a name="line-22"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Util.Servant.html#WithDefaultApiArg"><span class="hs-identifier hs-type">WithDefaultApiArg</span></a><span>
+</span><a name="line-23"></a><span>
+</span><a name="line-24"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Util.Servant.html#HasLoggingServer"><span class="hs-identifier hs-type">HasLoggingServer</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-25"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Util.Servant.html#ApiLoggingConfig"><span class="hs-identifier hs-type">ApiLoggingConfig</span></a><span>
+</span><a name="line-26"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Util.Servant.html#LoggingApi"><span class="hs-identifier hs-type">LoggingApi</span></a><span>
+</span><a name="line-27"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Util.Servant.html#LoggingApiRec"><span class="hs-identifier hs-type">LoggingApiRec</span></a><span>
+</span><a name="line-28"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Util.Servant.html#WithTruncatedLog"><span class="hs-identifier hs-type">WithTruncatedLog</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-29"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Util.Servant.html#HasTruncateLogPolicy"><span class="hs-identifier hs-type">HasTruncateLogPolicy</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-30"></a><span>
+</span><a name="line-31"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Util.Servant.html#CQueryParam"><span class="hs-identifier hs-type">CQueryParam</span></a><span>
+</span><a name="line-32"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Util.Servant.html#CCapture"><span class="hs-identifier hs-type">CCapture</span></a><span>
+</span><a name="line-33"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Util.Servant.html#CReqBody"><span class="hs-identifier hs-type">CReqBody</span></a><span>
+</span><a name="line-34"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Util.Servant.html#DReqBody"><span class="hs-identifier hs-type">DReqBody</span></a><span>
+</span><a name="line-35"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Util.Servant.html#DCQueryParam"><span class="hs-identifier hs-type">DCQueryParam</span></a><span>
+</span><a name="line-36"></a><span>
+</span><a name="line-37"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Util.Servant.html#serverHandlerL"><span class="hs-identifier hs-var">serverHandlerL</span></a><span>
+</span><a name="line-38"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Util.Servant.html#serverHandlerL%27"><span class="hs-identifier hs-var">serverHandlerL'</span></a><span>
+</span><a name="line-39"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Util.Servant.html#inRouteServer"><span class="hs-identifier hs-var">inRouteServer</span></a><span>
+</span><a name="line-40"></a><span>
+</span><a name="line-41"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Util.Servant.html#applyLoggingToHandler"><span class="hs-identifier hs-var">applyLoggingToHandler</span></a><span>
+</span><a name="line-42"></a><span>    </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-43"></a><span>
+</span><a name="line-44"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Universum</span><span>
+</span><a name="line-45"></a><span>
+</span><a name="line-46"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Lens</span><span>            </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Iso</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">iso</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">makePrisms</span><span class="hs-special">)</span><span>
+</span><a name="line-47"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Monad</span><span class="hs-operator">.</span><span class="hs-identifier">Catch</span><span>     </span><span class="hs-special">(</span><span class="hs-identifier hs-var">handleAll</span><span class="hs-special">)</span><span>
+</span><a name="line-48"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Monad</span><span class="hs-operator">.</span><span class="hs-identifier">Except</span><span>    </span><span class="hs-special">(</span><span class="hs-identifier hs-type">ExceptT</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">MonadError</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-49"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Default</span><span>            </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Default</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-50"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Reflection</span><span>         </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Reifies</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">reflect</span><span class="hs-special">)</span><span>
+</span><a name="line-51"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Text</span><span class="hs-operator">.</span><span class="hs-identifier">Buildable</span><span>
+</span><a name="line-52"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Time</span><span class="hs-operator">.</span><span class="hs-identifier">Clock</span><span class="hs-operator">.</span><span class="hs-identifier">POSIX</span><span>   </span><span class="hs-special">(</span><span class="hs-identifier hs-var">getPOSIXTime</span><span class="hs-special">)</span><span>
+</span><a name="line-53"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Formatting</span><span>              </span><span class="hs-special">(</span><span class="hs-identifier hs-var">bprint</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">build</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">builder</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">formatToString</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">sformat</span><span class="hs-special">,</span><span>
+</span><a name="line-54"></a><span>                                          </span><span class="hs-identifier hs-var">shown</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">stext</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">string</span><span class="hs-special">,</span><span> </span><span class="hs-special">(</span><span class="hs-operator hs-var">%</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-55"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Serokell</span><span class="hs-operator">.</span><span class="hs-identifier">Util</span><span>           </span><span class="hs-special">(</span><span class="hs-identifier hs-var">listJsonIndent</span><span class="hs-special">)</span><span>
+</span><a name="line-56"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Serokell</span><span class="hs-operator">.</span><span class="hs-identifier">Util</span><span class="hs-operator">.</span><span class="hs-identifier">ANSI</span><span>      </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Color</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-57"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Servant</span><span class="hs-operator">.</span><span class="hs-identifier">API</span><span>             </span><span class="hs-special">(</span><span class="hs-special">(</span><span class="hs-operator hs-type">:&lt;|&gt;</span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-special">(</span><span class="hs-operator hs-type">:&gt;</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Capture</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">QueryParam</span><span class="hs-special">,</span><span>
+</span><a name="line-58"></a><span>                                          </span><span class="hs-identifier hs-type">ReflectMethod</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">ReqBody</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Verb</span><span class="hs-special">)</span><span>
+</span><a name="line-59"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Servant</span><span class="hs-operator">.</span><span class="hs-identifier">Server</span><span>          </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Handler</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">HasServer</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">ServantErr</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a name="line-60"></a><span>                                          </span><span class="hs-identifier hs-type">Server</span><span class="hs-special">)</span><span>
+</span><a name="line-61"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Servant</span><span class="hs-operator">.</span><span class="hs-identifier">Server</span><span class="hs-operator">.</span><span class="hs-identifier">Internal</span><span> </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">SI</span><span>
+</span><a name="line-62"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">System</span><span class="hs-operator">.</span><span class="hs-identifier">Wlog</span><span>             </span><span class="hs-special">(</span><span class="hs-identifier hs-type">LoggerName</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">LoggerNameBox</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">usingLoggerName</span><span class="hs-special">)</span><span>
+</span><a name="line-63"></a><span>
+</span><a name="line-64"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Util</span><span class="hs-operator">.</span><span class="hs-identifier">LogSafe</span><span>        </span><span class="hs-special">(</span><span class="hs-identifier hs-type">BuildableSafe</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">SecuredText</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">buildSafe</span><span class="hs-special">,</span><span>
+</span><a name="line-65"></a><span>                                          </span><span class="hs-identifier hs-var">logInfoSP</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">secretOnlyF</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">secretOnlyF2</span><span class="hs-special">)</span><span>
+</span><a name="line-66"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Util</span><span class="hs-operator">.</span><span class="hs-identifier">Util</span><span>           </span><span class="hs-special">(</span><span class="hs-identifier hs-var">colorizeDull</span><span class="hs-special">)</span><span>
+</span><a name="line-67"></a><span>
+</span><a name="line-68"></a><span class="hs-comment">-------------------------------------------------------------------------</span><span>
+</span><a name="line-69"></a><span class="hs-comment">-- Utility functions</span><span>
+</span><a name="line-70"></a><span class="hs-comment">-------------------------------------------------------------------------</span><span>
+</span><a name="line-71"></a><span>
+</span><a name="line-72"></a><span class="hs-identifier">serverHandlerL</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">Iso</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Handler</span><span> </span><a href="#local-6989586621679200849"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Handler</span><span> </span><a href="#local-6989586621679200850"><span class="hs-identifier hs-type">b</span></a><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">ExceptT</span><span> </span><span class="hs-identifier hs-type">ServantErr</span><span> </span><span class="hs-identifier hs-type">IO</span><span> </span><a href="#local-6989586621679200849"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">ExceptT</span><span> </span><span class="hs-identifier hs-type">ServantErr</span><span> </span><span class="hs-identifier hs-type">IO</span><span> </span><a href="#local-6989586621679200850"><span class="hs-identifier hs-type">b</span></a><span class="hs-special">)</span><span>
+</span><a name="line-73"></a><a name="serverHandlerL"><a href="Pos.Util.Servant.html#serverHandlerL"><span class="hs-identifier">serverHandlerL</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-var">iso</span><span> </span><span class="hs-identifier">runHandler'</span><span> </span><span class="hs-identifier hs-var">Handler</span><span>
+</span><a name="line-74"></a><span>
+</span><a name="line-75"></a><span class="hs-identifier">serverHandlerL'</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">Iso</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Handler</span><span> </span><a href="#local-6989586621679200820"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Handler</span><span> </span><a href="#local-6989586621679200821"><span class="hs-identifier hs-type">b</span></a><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">IO</span><span> </span><span class="hs-operator">$</span><span> </span><span class="hs-identifier hs-type">Either</span><span> </span><span class="hs-identifier hs-type">ServantErr</span><span> </span><a href="#local-6989586621679200820"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">IO</span><span> </span><span class="hs-operator">$</span><span> </span><span class="hs-identifier hs-type">Either</span><span> </span><span class="hs-identifier hs-type">ServantErr</span><span> </span><a href="#local-6989586621679200821"><span class="hs-identifier hs-type">b</span></a><span class="hs-special">)</span><span>
+</span><a name="line-76"></a><a name="serverHandlerL%27"><a href="Pos.Util.Servant.html#serverHandlerL%27"><span class="hs-identifier">serverHandlerL'</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Pos.Util.Servant.html#serverHandlerL"><span class="hs-identifier hs-var">serverHandlerL</span></a><span> </span><span class="hs-operator hs-var">.</span><span> </span><span class="hs-identifier hs-var">iso</span><span> </span><span class="hs-identifier hs-var">runExceptT</span><span> </span><span class="hs-identifier hs-var">ExceptT</span><span>
+</span><a name="line-77"></a><span>
+</span><a name="line-78"></a><span class="hs-identifier">inRouteServer</span><span>
+</span><a name="line-79"></a><span>    </span><span class="hs-glyph">::</span><span> </span><span class="hs-keyword">forall</span><span> </span><a name="local-6989586621679200599"><a href="#local-6989586621679200599"><span class="hs-identifier">api</span></a></a><span> </span><a name="local-6989586621679200600"><a href="#local-6989586621679200600"><span class="hs-identifier">api'</span></a></a><span> </span><a name="local-6989586621679200601"><a href="#local-6989586621679200601"><span class="hs-identifier">ctx</span></a></a><span> </span><a name="local-6989586621679200602"><a href="#local-6989586621679200602"><span class="hs-identifier">env</span></a></a><span class="hs-operator">.</span><span>
+</span><a name="line-80"></a><span>       </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Proxy</span><span> </span><a href="#local-6989586621679200599"><span class="hs-identifier hs-type">api</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">SI</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">Context</span><span> </span><a href="#local-6989586621679200601"><span class="hs-identifier hs-type">ctx</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">SI</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">Delayed</span><span> </span><a href="#local-6989586621679200602"><span class="hs-identifier hs-type">env</span></a><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Server</span><span> </span><a href="#local-6989586621679200599"><span class="hs-identifier hs-type">api</span></a><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">SI</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">Router</span><span> </span><a href="#local-6989586621679200602"><span class="hs-identifier hs-type">env</span></a><span class="hs-special">)</span><span>
+</span><a name="line-81"></a><span>    </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Server</span><span> </span><a href="#local-6989586621679200600"><span class="hs-identifier hs-type">api'</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">Server</span><span> </span><a href="#local-6989586621679200599"><span class="hs-identifier hs-type">api</span></a><span class="hs-special">)</span><span>
+</span><a name="line-82"></a><span>    </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Proxy</span><span> </span><a href="#local-6989586621679200600"><span class="hs-identifier hs-type">api'</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">SI</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">Context</span><span> </span><a href="#local-6989586621679200601"><span class="hs-identifier hs-type">ctx</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">SI</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">Delayed</span><span> </span><a href="#local-6989586621679200602"><span class="hs-identifier hs-type">env</span></a><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Server</span><span> </span><a href="#local-6989586621679200600"><span class="hs-identifier hs-type">api'</span></a><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">SI</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">Router</span><span> </span><a href="#local-6989586621679200602"><span class="hs-identifier hs-type">env</span></a><span class="hs-special">)</span><span>
+</span><a name="line-83"></a><a name="inRouteServer"><a href="Pos.Util.Servant.html#inRouteServer"><span class="hs-identifier">inRouteServer</span></a></a><span> </span><a name="local-6989586621679200995"><a href="#local-6989586621679200995"><span class="hs-identifier">routing</span></a></a><span> </span><a name="local-6989586621679200996"><a href="#local-6989586621679200996"><span class="hs-identifier">f</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-glyph">\</span><span class="hs-identifier">_</span><span> </span><a name="local-6989586621679200997"><a href="#local-6989586621679200997"><span class="hs-identifier">ctx</span></a></a><span> </span><a name="local-6989586621679200998"><a href="#local-6989586621679200998"><span class="hs-identifier">delayed</span></a></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><a href="#local-6989586621679200995"><span class="hs-identifier hs-var">routing</span></a><span> </span><span class="hs-identifier hs-var">Proxy</span><span> </span><a href="#local-6989586621679200997"><span class="hs-identifier hs-var">ctx</span></a><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-var">fmap</span><span> </span><a href="#local-6989586621679200996"><span class="hs-identifier hs-var">f</span></a><span> </span><a href="#local-6989586621679200998"><span class="hs-identifier hs-var">delayed</span></a><span class="hs-special">)</span><span>
+</span><a name="line-84"></a><span>
+</span><a name="line-85"></a><span class="hs-comment">-------------------------------------------------------------------------</span><span>
+</span><a name="line-86"></a><span class="hs-comment">-- General useful families</span><span>
+</span><a name="line-87"></a><span class="hs-comment">-------------------------------------------------------------------------</span><span>
+</span><a name="line-88"></a><span>
+</span><a name="line-89"></a><span class="hs-comment">-- | Proves info about argument specifier of servant API.</span><span>
+</span><a name="line-90"></a><span class="hs-keyword">class</span><span> </span><a name="ApiHasArgClass"><a href="Pos.Util.Servant.html#ApiHasArgClass"><span class="hs-identifier">ApiHasArgClass</span></a></a><span> </span><a name="local-6989586621679200342"><a href="#local-6989586621679200342"><span class="hs-identifier">apiType</span></a></a><span> </span><a name="local-6989586621679200343"><a href="#local-6989586621679200343"><span class="hs-identifier">a</span></a></a><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-91"></a><span>    </span><span class="hs-comment">-- | For arguments-specifiers of API, get argument type.</span><span>
+</span><a name="line-92"></a><span>    </span><span class="hs-keyword">type</span><span> </span><span class="hs-identifier">ApiArg</span><span> </span><span class="hs-special">(</span><a name="local-6989586621679200342"><a href="#local-6989586621679200342"><span class="hs-identifier">apiType</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-operator hs-type">*</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-operator hs-type">*</span><span class="hs-special">)</span><span> </span><a name="local-6989586621679200343"><a href="#local-6989586621679200343"><span class="hs-identifier">a</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-operator hs-type">*</span><span>
+</span><a name="line-93"></a><span>    </span><span class="hs-keyword">type</span><span> </span><span class="hs-identifier">ApiArg</span><span> </span><a name="local-6989586621679200344"><a href="#local-6989586621679200344"><span class="hs-identifier">apiType</span></a></a><span> </span><a name="local-6989586621679200345"><a href="#local-6989586621679200345"><span class="hs-identifier">a</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="#local-6989586621679200345"><span class="hs-identifier hs-type">a</span></a><span>
+</span><a name="line-94"></a><span>
+</span><a name="line-95"></a><span>    </span><span class="hs-comment">-- | Name of argument.</span><span>
+</span><a name="line-96"></a><span>    </span><span class="hs-comment">-- E.g. name of argument specified by @Capture &quot;nyan&quot;@ is /nyan/.</span><span>
+</span><a name="line-97"></a><span>    </span><span class="hs-identifier">apiArgName</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">Proxy</span><span> </span><span class="hs-special">(</span><a href="#local-6989586621679200342"><span class="hs-identifier hs-type">apiType</span></a><span> </span><a href="#local-6989586621679200343"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">String</span><span>
+</span><a name="line-98"></a><span>    </span><span class="hs-keyword">default</span><span> </span><span class="hs-identifier">apiArgName</span><span>
+</span><a name="line-99"></a><span>        </span><span class="hs-glyph">::</span><span> </span><span class="hs-keyword">forall</span><span> </span><a name="local-6989586621679200346"><a href="#local-6989586621679200346"><span class="hs-identifier">n</span></a></a><span> </span><a name="local-6989586621679200347"><a href="#local-6989586621679200347"><span class="hs-identifier">someApiType</span></a></a><span class="hs-operator">.</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">KnownSymbol</span><span> </span><a href="#local-6989586621679200346"><span class="hs-identifier hs-type">n</span></a><span class="hs-special">,</span><span> </span><a href="#local-6989586621679200347"><span class="hs-identifier hs-type">someApiType</span></a><span> </span><a href="#local-6989586621679200346"><span class="hs-identifier hs-type">n</span></a><span> </span><span class="hs-glyph">~</span><span> </span><a href="#local-6989586621679200342"><span class="hs-identifier hs-type">apiType</span></a><span class="hs-special">)</span><span>
+</span><a name="line-100"></a><span>        </span><span class="hs-glyph">=&gt;</span><span> </span><span class="hs-identifier hs-type">Proxy</span><span> </span><span class="hs-special">(</span><a href="#local-6989586621679200347"><span class="hs-identifier hs-type">someApiType</span></a><span> </span><a href="#local-6989586621679200346"><span class="hs-identifier hs-type">n</span></a><span> </span><a href="#local-6989586621679200343"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">String</span><span>
+</span><a name="line-101"></a><span>    </span><a name="local-8214565720323975221"><a href="Pos.Util.Servant.html#apiArgName"><span class="hs-identifier">apiArgName</span></a></a><span> </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-var">formatToString</span><span> </span><span class="hs-special">(</span><span class="hs-string">&quot;'&quot;</span><span class="hs-operator hs-var">%</span><span class="hs-identifier hs-var">string</span><span class="hs-operator hs-var">%</span><span class="hs-string">&quot;' field&quot;</span><span class="hs-special">)</span><span> </span><span class="hs-operator hs-var">$</span><span> </span><span class="hs-identifier hs-var">symbolVal</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-var">Proxy</span><span> </span><span class="hs-glyph">@</span><a href="#local-6989586621679200346"><span class="hs-identifier hs-type">n</span></a><span class="hs-special">)</span><span>
+</span><a name="line-102"></a><span>
+</span><a name="line-103"></a><span class="hs-keyword">type</span><span> </span><a name="ApiHasArgInvariant"><a href="Pos.Util.Servant.html#ApiHasArgInvariant"><span class="hs-identifier">ApiHasArgInvariant</span></a></a><span> </span><a name="local-6989586621679200339"><a href="#local-6989586621679200339"><span class="hs-identifier">apiType</span></a></a><span> </span><a name="local-6989586621679200340"><a href="#local-6989586621679200340"><span class="hs-identifier">a</span></a></a><span> </span><a name="local-6989586621679200341"><a href="#local-6989586621679200341"><span class="hs-identifier">res</span></a></a><span> </span><span class="hs-glyph">=</span><span>
+</span><a name="line-104"></a><span>    </span><span class="hs-identifier hs-type">Server</span><span> </span><span class="hs-special">(</span><a href="#local-6989586621679200339"><span class="hs-identifier hs-type">apiType</span></a><span> </span><a href="#local-6989586621679200340"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-operator">:&gt;</span><span> </span><a href="#local-6989586621679200341"><span class="hs-identifier hs-type">res</span></a><span class="hs-special">)</span><span> </span><span class="hs-glyph">~</span><span> </span><span class="hs-special">(</span><a href="Pos.Util.Servant.html#ApiArg"><span class="hs-identifier hs-type">ApiArg</span></a><span> </span><a href="#local-6989586621679200339"><span class="hs-identifier hs-type">apiType</span></a><span> </span><a href="#local-6989586621679200340"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">Server</span><span> </span><a href="#local-6989586621679200341"><span class="hs-identifier hs-type">res</span></a><span class="hs-special">)</span><span>
+</span><a name="line-105"></a><span>
+</span><a name="line-106"></a><span class="hs-keyword">type</span><span> </span><a name="ApiHasArg"><a href="Pos.Util.Servant.html#ApiHasArg"><span class="hs-identifier">ApiHasArg</span></a></a><span> </span><a name="local-6989586621679200336"><a href="#local-6989586621679200336"><span class="hs-identifier">apiType</span></a></a><span> </span><a name="local-6989586621679200337"><a href="#local-6989586621679200337"><span class="hs-identifier">a</span></a></a><span> </span><a name="local-6989586621679200338"><a href="#local-6989586621679200338"><span class="hs-identifier">res</span></a></a><span> </span><span class="hs-glyph">=</span><span>
+</span><a name="line-107"></a><span>    </span><span class="hs-special">(</span><span> </span><a href="Pos.Util.Servant.html#ApiHasArgClass"><span class="hs-identifier hs-type">ApiHasArgClass</span></a><span> </span><a href="#local-6989586621679200336"><span class="hs-identifier hs-type">apiType</span></a><span> </span><a href="#local-6989586621679200337"><span class="hs-identifier hs-type">a</span></a><span>
+</span><a name="line-108"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Util.Servant.html#ApiHasArgInvariant"><span class="hs-identifier hs-type">ApiHasArgInvariant</span></a><span> </span><a href="#local-6989586621679200336"><span class="hs-identifier hs-type">apiType</span></a><span> </span><a href="#local-6989586621679200337"><span class="hs-identifier hs-type">a</span></a><span> </span><a href="#local-6989586621679200338"><span class="hs-identifier hs-type">res</span></a><span>
+</span><a name="line-109"></a><span>    </span><span class="hs-special">)</span><span>
+</span><a name="line-110"></a><span>
+</span><a name="line-111"></a><span class="hs-keyword">instance</span><span> </span><span class="hs-identifier hs-type">KnownSymbol</span><span> </span><a href="#local-6989586621679202127"><span class="hs-identifier hs-type">s</span></a><span> </span><span class="hs-glyph">=&gt;</span><span> </span><a href="Pos.Util.Servant.html#ApiHasArgClass"><span class="hs-identifier hs-type">ApiHasArgClass</span></a><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Capture</span><span> </span><a href="#local-6989586621679202127"><span class="hs-identifier hs-type">s</span></a><span class="hs-special">)</span><span> </span><a href="#local-6989586621679202128"><span class="hs-identifier hs-type">a</span></a><span>
+</span><a name="line-112"></a><span class="hs-keyword">instance</span><span> </span><span class="hs-identifier hs-type">KnownSymbol</span><span> </span><a href="#local-6989586621679202125"><span class="hs-identifier hs-type">s</span></a><span> </span><span class="hs-glyph">=&gt;</span><span> </span><a href="Pos.Util.Servant.html#ApiHasArgClass"><span class="hs-identifier hs-type">ApiHasArgClass</span></a><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">QueryParam</span><span> </span><a href="#local-6989586621679202125"><span class="hs-identifier hs-type">s</span></a><span class="hs-special">)</span><span> </span><a href="#local-6989586621679202126"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-113"></a><span>    </span><span class="hs-keyword">type</span><span> </span><span class="hs-identifier">ApiArg</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">QueryParam</span><span> </span><a href="#local-6989586621679202125"><span class="hs-identifier hs-type">s</span></a><span class="hs-special">)</span><span> </span><a href="#local-6989586621679202126"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-type">Maybe</span><span> </span><a href="#local-6989586621679202126"><span class="hs-identifier hs-type">a</span></a><span>
+</span><a name="line-114"></a><span class="hs-keyword">instance</span><span> </span><a href="Pos.Util.Servant.html#ApiHasArgClass"><span class="hs-identifier hs-type">ApiHasArgClass</span></a><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">ReqBody</span><span> </span><a href="#local-6989586621679202123"><span class="hs-identifier hs-type">ct</span></a><span class="hs-special">)</span><span> </span><a href="#local-6989586621679202124"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-115"></a><span>    </span><a name="local-8214565720323975221"><a href="Pos.Util.Servant.html#apiArgName"><span class="hs-identifier">apiArgName</span></a></a><span> </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-string">&quot;request body&quot;</span><span>
+</span><a name="line-116"></a><span>
+</span><a name="line-117"></a><span class="hs-comment">-------------------------------------------------------------------------</span><span>
+</span><a name="line-118"></a><span class="hs-comment">-- Mapping API result</span><span>
+</span><a name="line-119"></a><span class="hs-comment">-------------------------------------------------------------------------</span><span>
+</span><a name="line-120"></a><span>
+</span><a name="line-121"></a><span class="hs-comment">-- | Modifies result of API.</span><span>
+</span><a name="line-122"></a><span class="hs-keyword">class</span><span> </span><a name="ModifiesApiRes"><a href="Pos.Util.Servant.html#ModifiesApiRes"><span class="hs-identifier">ModifiesApiRes</span></a></a><span> </span><a name="local-6989586621679200333"><a href="#local-6989586621679200333"><span class="hs-identifier">t</span></a></a><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-123"></a><span>    </span><span class="hs-keyword">type</span><span> </span><span class="hs-identifier">ApiModifiedRes</span><span> </span><a name="local-6989586621679200333"><a href="#local-6989586621679200333"><span class="hs-identifier">t</span></a></a><span> </span><a name="local-6989586621679200334"><a href="#local-6989586621679200334"><span class="hs-identifier">a</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-operator hs-type">*</span><span>
+</span><a name="line-124"></a><span>    </span><span class="hs-identifier">modifyApiResult</span><span>
+</span><a name="line-125"></a><span>        </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">Proxy</span><span> </span><a href="#local-6989586621679200333"><span class="hs-identifier hs-type">t</span></a><span>
+</span><a name="line-126"></a><span>        </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">IO</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Either</span><span> </span><span class="hs-identifier hs-type">ServantErr</span><span> </span><a href="#local-6989586621679200335"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span>
+</span><a name="line-127"></a><span>        </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">IO</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Either</span><span> </span><span class="hs-identifier hs-type">ServantErr</span><span> </span><span class="hs-special">(</span><a href="Pos.Util.Servant.html#ApiModifiedRes"><span class="hs-identifier hs-type">ApiModifiedRes</span></a><span> </span><a href="#local-6989586621679200333"><span class="hs-identifier hs-type">t</span></a><span> </span><a href="#local-6989586621679200335"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-128"></a><span>
+</span><a name="line-129"></a><span class="hs-comment">-- | Wrapper to modify result of API.</span><span>
+</span><a name="line-130"></a><span class="hs-comment">-- @modType@ argument specifies transformation and should be instance of</span><span>
+</span><a name="line-131"></a><span class="hs-comment">-- 'ModifiesApiRes'.</span><span>
+</span><a name="line-132"></a><span class="hs-keyword">data</span><span> </span><a name="VerbMod"><a href="Pos.Util.Servant.html#VerbMod"><span class="hs-identifier">VerbMod</span></a></a><span> </span><span class="hs-special">(</span><a name="local-6989586621679200331"><a href="#local-6989586621679200331"><span class="hs-identifier">modType</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-operator hs-type">*</span><span class="hs-special">)</span><span> </span><a name="local-6989586621679200332"><a href="#local-6989586621679200332"><span class="hs-identifier">api</span></a></a><span>
+</span><a name="line-133"></a><span>
+</span><a name="line-134"></a><span class="hs-keyword">instance</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">HasServer</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Verb</span><span> </span><a href="#local-6989586621679201857"><span class="hs-identifier hs-type">mt</span></a><span> </span><a href="#local-6989586621679201858"><span class="hs-identifier hs-type">st</span></a><span> </span><a href="#local-6989586621679201859"><span class="hs-identifier hs-type">ct</span></a><span> </span><span class="hs-operator">$</span><span> </span><a href="Pos.Util.Servant.html#ApiModifiedRes"><span class="hs-identifier hs-type">ApiModifiedRes</span></a><span> </span><a href="#local-6989586621679201860"><span class="hs-identifier hs-type">mod</span></a><span> </span><a href="#local-6989586621679201861"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span> </span><a href="#local-6989586621679201862"><span class="hs-identifier hs-type">ctx</span></a><span class="hs-special">,</span><span>
+</span><a name="line-135"></a><span>          </span><a href="Pos.Util.Servant.html#ModifiesApiRes"><span class="hs-identifier hs-type">ModifiesApiRes</span></a><span> </span><a href="#local-6989586621679201860"><span class="hs-identifier hs-type">mod</span></a><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span>
+</span><a name="line-136"></a><span>         </span><span class="hs-identifier hs-type">HasServer</span><span> </span><span class="hs-special">(</span><a href="Pos.Util.Servant.html#VerbMod"><span class="hs-identifier hs-type">VerbMod</span></a><span> </span><a href="#local-6989586621679201860"><span class="hs-identifier hs-type">mod</span></a><span> </span><span class="hs-operator">$</span><span> </span><span class="hs-identifier hs-type">Verb</span><span> </span><span class="hs-special">(</span><a href="#local-6989586621679201857"><span class="hs-identifier hs-type">mt</span></a><span> </span><span class="hs-glyph">::</span><span> </span><a href="#local-6989586621679201856"><span class="hs-identifier hs-type">k1</span></a><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><a href="#local-6989586621679201858"><span class="hs-identifier hs-type">st</span></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">Nat</span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><a href="#local-6989586621679201859"><span class="hs-identifier hs-type">ct</span></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="hs-operator hs-type">*</span><span class="hs-special">]</span><span class="hs-special">)</span><span> </span><a href="#local-6989586621679201861"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span> </span><a href="#local-6989586621679201862"><span class="hs-identifier hs-type">ctx</span></a><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-137"></a><span>    </span><span class="hs-keyword">type</span><span> </span><span class="hs-identifier">ServerT</span><span> </span><span class="hs-special">(</span><a href="Pos.Util.Servant.html#VerbMod"><span class="hs-identifier hs-type">VerbMod</span></a><span> </span><a href="#local-6989586621679201860"><span class="hs-identifier hs-type">mod</span></a><span> </span><span class="hs-operator">$</span><span> </span><span class="hs-identifier hs-type">Verb</span><span> </span><a href="#local-6989586621679201857"><span class="hs-identifier hs-type">mt</span></a><span> </span><a href="#local-6989586621679201858"><span class="hs-identifier hs-type">st</span></a><span> </span><a href="#local-6989586621679201859"><span class="hs-identifier hs-type">ct</span></a><span> </span><a href="#local-6989586621679201861"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span> </span><a href="#local-6989586621679202122"><span class="hs-identifier hs-type">m</span></a><span> </span><span class="hs-glyph">=</span><span>
+</span><a name="line-138"></a><span>         </span><span class="hs-identifier hs-type">ServerT</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Verb</span><span> </span><a href="#local-6989586621679201857"><span class="hs-identifier hs-type">mt</span></a><span> </span><a href="#local-6989586621679201858"><span class="hs-identifier hs-type">st</span></a><span> </span><a href="#local-6989586621679201859"><span class="hs-identifier hs-type">ct</span></a><span> </span><a href="#local-6989586621679201861"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span> </span><a href="#local-6989586621679202122"><span class="hs-identifier hs-type">m</span></a><span>
+</span><a name="line-139"></a><span>
+</span><a name="line-140"></a><span>    </span><a name="local-8214565720323929282"><span class="hs-identifier">route</span></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Pos.Util.Servant.html#inRouteServer"><span class="hs-identifier hs-var">inRouteServer</span></a><span> </span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="hs-identifier hs-type">Verb</span><span> </span><a href="#local-6989586621679201857"><span class="hs-identifier hs-type">mt</span></a><span> </span><a href="#local-6989586621679201858"><span class="hs-identifier hs-type">st</span></a><span> </span><a href="#local-6989586621679201859"><span class="hs-identifier hs-type">ct</span></a><span> </span><span class="hs-operator">$</span><span> </span><a href="Pos.Util.Servant.html#ApiModifiedRes"><span class="hs-identifier hs-type">ApiModifiedRes</span></a><span> </span><a href="#local-6989586621679201860"><span class="hs-identifier hs-type">mod</span></a><span> </span><a href="#local-6989586621679201861"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span> </span><span class="hs-identifier hs-var">route</span><span> </span><span class="hs-operator hs-var">$</span><span>
+</span><a name="line-141"></a><span>            </span><a href="Pos.Util.Servant.html#serverHandlerL%27"><span class="hs-identifier hs-var">serverHandlerL'</span></a><span> </span><span class="hs-operator hs-var">%~</span><span> </span><a href="Pos.Util.Servant.html#modifyApiResult"><span class="hs-identifier hs-var">modifyApiResult</span></a><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-var">Proxy</span><span> </span><span class="hs-glyph">@</span><a href="#local-6989586621679201860"><span class="hs-identifier hs-type">mod</span></a><span class="hs-special">)</span><span>
+</span><a name="line-142"></a><span>
+</span><a name="line-143"></a><span class="hs-comment">-------------------------------------------------------------------------</span><span>
+</span><a name="line-144"></a><span class="hs-comment">-- Mapping API arguments: client types decoding</span><span>
+</span><a name="line-145"></a><span class="hs-comment">-------------------------------------------------------------------------</span><span>
+</span><a name="line-146"></a><span>
+</span><a name="line-147"></a><span class="hs-comment">-- | For many types with nice structure there exists a /client type/, which is</span><span>
+</span><a name="line-148"></a><span class="hs-comment">-- an intermediate representation between internal types and JSON. Their ToJSON</span><span>
+</span><a name="line-149"></a><span class="hs-comment">-- instances are derived automatically and they are used by daedalus-bridge.</span><span>
+</span><a name="line-150"></a><span class="hs-comment">-- | This family maps /client types/ to their respective original types</span><span>
+</span><a name="line-151"></a><span class="hs-comment">-- (e.g. @CAccountAddress@ -&gt; @AccountAddress@).</span><span>
+</span><a name="line-152"></a><span class="hs-keyword">type</span><span> </span><span class="hs-keyword">family</span><span> </span><a name="OriginType"><a href="Pos.Util.Servant.html#OriginType"><span class="hs-identifier">OriginType</span></a></a><span> </span><a name="local-6989586621679200330"><a href="#local-6989586621679200330"><span class="hs-identifier">ctype</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-operator hs-type">*</span><span>
+</span><a name="line-153"></a><span>
+</span><a name="line-154"></a><span class="hs-keyword">class</span><span> </span><a name="FromCType"><a href="Pos.Util.Servant.html#FromCType"><span class="hs-identifier">FromCType</span></a></a><span> </span><a name="local-6989586621679200329"><a href="#local-6989586621679200329"><span class="hs-identifier">c</span></a></a><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-155"></a><span>   </span><span class="hs-comment">-- | Way to decode from @CType@.</span><span>
+</span><a name="line-156"></a><span>   </span><span class="hs-identifier">decodeCType</span><span> </span><span class="hs-glyph">::</span><span> </span><a href="#local-6989586621679200329"><span class="hs-identifier hs-type">c</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">Either</span><span> </span><span class="hs-identifier hs-type">Text</span><span> </span><span class="hs-special">(</span><a href="Pos.Util.Servant.html#OriginType"><span class="hs-identifier hs-type">OriginType</span></a><span> </span><a href="#local-6989586621679200329"><span class="hs-identifier hs-type">c</span></a><span class="hs-special">)</span><span>
+</span><a name="line-157"></a><span>
+</span><a name="line-158"></a><span class="hs-keyword">class</span><span> </span><a name="ToCType"><a href="Pos.Util.Servant.html#ToCType"><span class="hs-identifier">ToCType</span></a></a><span> </span><a name="local-6989586621679200328"><a href="#local-6989586621679200328"><span class="hs-identifier">c</span></a></a><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-159"></a><span>   </span><span class="hs-comment">-- | Way to encode to @CType@.</span><span>
+</span><a name="line-160"></a><span>   </span><span class="hs-identifier">encodeCType</span><span> </span><span class="hs-glyph">::</span><span> </span><a href="Pos.Util.Servant.html#OriginType"><span class="hs-identifier hs-type">OriginType</span></a><span> </span><a href="#local-6989586621679200328"><span class="hs-identifier hs-type">c</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><a href="#local-6989586621679200328"><span class="hs-identifier hs-type">c</span></a><span>
+</span><a name="line-161"></a><span>
+</span><a name="line-162"></a><span class="hs-keyword">type</span><span> </span><span class="hs-keyword">instance</span><span> </span><a href="Pos.Util.Servant.html#OriginType"><span class="hs-identifier hs-type">OriginType</span></a><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Maybe</span><span> </span><a href="#local-6989586621679201855"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-type">Maybe</span><span> </span><span class="hs-operator">$</span><span> </span><a href="Pos.Util.Servant.html#OriginType"><span class="hs-identifier hs-type">OriginType</span></a><span> </span><a href="#local-6989586621679201855"><span class="hs-identifier hs-type">a</span></a><span>
+</span><a name="line-163"></a><span>
+</span><a name="line-164"></a><span class="hs-keyword">instance</span><span> </span><a href="Pos.Util.Servant.html#FromCType"><span class="hs-identifier hs-type">FromCType</span></a><span> </span><a href="#local-6989586621679201384"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-glyph">=&gt;</span><span> </span><a href="Pos.Util.Servant.html#FromCType"><span class="hs-identifier hs-type">FromCType</span></a><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Maybe</span><span> </span><a href="#local-6989586621679201384"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-165"></a><span>    </span><a name="local-8214565720323975211"><a href="Pos.Util.Servant.html#decodeCType"><span class="hs-identifier">decodeCType</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-var">mapM</span><span> </span><a href="Pos.Util.Servant.html#decodeCType"><span class="hs-identifier hs-var">decodeCType</span></a><span>
+</span><a name="line-166"></a><span>
+</span><a name="line-167"></a><span>
+</span><a name="line-168"></a><span class="hs-comment">-- | Allows to throw error from anywhere within the internals of Servant API.</span><span>
+</span><a name="line-169"></a><span class="hs-keyword">class</span><span> </span><a name="ReportDecodeError"><a href="Pos.Util.Servant.html#ReportDecodeError"><span class="hs-identifier">ReportDecodeError</span></a></a><span> </span><a name="local-6989586621679200327"><a href="#local-6989586621679200327"><span class="hs-identifier">api</span></a></a><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-170"></a><span>    </span><span class="hs-comment">-- | Propagate error to servant handler.</span><span>
+</span><a name="line-171"></a><span>    </span><span class="hs-identifier">reportDecodeError</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">Proxy</span><span> </span><a href="#local-6989586621679200327"><span class="hs-identifier hs-type">api</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">Text</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">Server</span><span> </span><a href="#local-6989586621679200327"><span class="hs-identifier hs-type">api</span></a><span>
+</span><a name="line-172"></a><span>
+</span><a name="line-173"></a><span class="hs-keyword">instance</span><span> </span><span class="hs-special">(</span><span> </span><a href="Pos.Util.Servant.html#ReportDecodeError"><span class="hs-identifier hs-type">ReportDecodeError</span></a><span> </span><a href="#local-6989586621679201380"><span class="hs-identifier hs-type">res</span></a><span>
+</span><a name="line-174"></a><span>         </span><span class="hs-special">,</span><span> </span><a href="Pos.Util.Servant.html#ApiHasArg"><span class="hs-identifier hs-type">ApiHasArg</span></a><span> </span><a href="#local-6989586621679201381"><span class="hs-identifier hs-type">argType</span></a><span> </span><a href="#local-6989586621679201382"><span class="hs-identifier hs-type">a</span></a><span> </span><a href="#local-6989586621679201380"><span class="hs-identifier hs-type">res</span></a><span>
+</span><a name="line-175"></a><span>         </span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span>
+</span><a name="line-176"></a><span>         </span><a href="Pos.Util.Servant.html#ReportDecodeError"><span class="hs-identifier hs-type">ReportDecodeError</span></a><span> </span><span class="hs-special">(</span><a href="#local-6989586621679201381"><span class="hs-identifier hs-type">argType</span></a><span> </span><a href="#local-6989586621679201382"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-operator">:&gt;</span><span> </span><a href="#local-6989586621679201380"><span class="hs-identifier hs-type">res</span></a><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-177"></a><span>    </span><a name="local-8214565720323975207"><a href="Pos.Util.Servant.html#reportDecodeError"><span class="hs-identifier">reportDecodeError</span></a></a><span> </span><span class="hs-identifier">_</span><span> </span><a name="local-6989586621679201383"><a href="#local-6989586621679201383"><span class="hs-identifier">err</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-glyph">\</span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><a href="Pos.Util.Servant.html#reportDecodeError"><span class="hs-identifier hs-var">reportDecodeError</span></a><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-var">Proxy</span><span> </span><span class="hs-glyph">@</span><a href="#local-6989586621679201380"><span class="hs-identifier hs-type">res</span></a><span class="hs-special">)</span><span> </span><a href="#local-6989586621679201383"><span class="hs-identifier hs-var">err</span></a><span>
+</span><a name="line-178"></a><span>
+</span><a name="line-179"></a><span class="hs-comment">-- | Wrapper over API argument specifier which says to decode specified argument</span><span>
+</span><a name="line-180"></a><span class="hs-comment">-- with 'decodeCType'.</span><span>
+</span><a name="line-181"></a><span class="hs-keyword">data</span><span> </span><a name="CDecodeApiArg"><a href="Pos.Util.Servant.html#CDecodeApiArg"><span class="hs-identifier">CDecodeApiArg</span></a></a><span> </span><span class="hs-special">(</span><a name="local-6989586621679200325"><a href="#local-6989586621679200325"><span class="hs-identifier">argType</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-operator hs-type">*</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-operator hs-type">*</span><span class="hs-special">)</span><span> </span><a name="local-6989586621679200326"><a href="#local-6989586621679200326"><span class="hs-identifier">a</span></a></a><span>
+</span><a name="line-182"></a><span>
+</span><a name="line-183"></a><span class="hs-keyword">instance</span><span> </span><a href="Pos.Util.Servant.html#ApiHasArgClass"><span class="hs-identifier hs-type">ApiHasArgClass</span></a><span> </span><a href="#local-6989586621679201378"><span class="hs-identifier hs-type">apiType</span></a><span> </span><a href="#local-6989586621679201379"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-glyph">=&gt;</span><span>
+</span><a name="line-184"></a><span>         </span><a href="Pos.Util.Servant.html#ApiHasArgClass"><span class="hs-identifier hs-type">ApiHasArgClass</span></a><span> </span><span class="hs-special">(</span><a href="Pos.Util.Servant.html#CDecodeApiArg"><span class="hs-identifier hs-type">CDecodeApiArg</span></a><span> </span><a href="#local-6989586621679201378"><span class="hs-identifier hs-type">apiType</span></a><span class="hs-special">)</span><span> </span><a href="#local-6989586621679201379"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-185"></a><span>    </span><span class="hs-keyword">type</span><span> </span><span class="hs-identifier">ApiArg</span><span> </span><span class="hs-special">(</span><a href="Pos.Util.Servant.html#CDecodeApiArg"><span class="hs-identifier hs-type">CDecodeApiArg</span></a><span> </span><a href="#local-6989586621679201378"><span class="hs-identifier hs-type">apiType</span></a><span class="hs-special">)</span><span> </span><a href="#local-6989586621679201379"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Pos.Util.Servant.html#OriginType"><span class="hs-identifier hs-type">OriginType</span></a><span> </span><span class="hs-special">(</span><a href="Pos.Util.Servant.html#ApiArg"><span class="hs-identifier hs-type">ApiArg</span></a><span> </span><a href="#local-6989586621679201378"><span class="hs-identifier hs-type">apiType</span></a><span> </span><a href="#local-6989586621679201379"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span>
+</span><a name="line-186"></a><span>    </span><a name="local-8214565720323975221"><a href="Pos.Util.Servant.html#apiArgName"><span class="hs-identifier">apiArgName</span></a></a><span> </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">=</span><span> </span><a href="Pos.Util.Servant.html#apiArgName"><span class="hs-identifier hs-var">apiArgName</span></a><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-var">Proxy</span><span> </span><span class="hs-glyph">@</span><span class="hs-special">(</span><a href="#local-6989586621679201378"><span class="hs-identifier hs-type">apiType</span></a><span> </span><a href="#local-6989586621679201379"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-187"></a><span>
+</span><a name="line-188"></a><span class="hs-keyword">instance</span><span> </span><span class="hs-special">(</span><span> </span><span class="hs-identifier hs-type">HasServer</span><span> </span><span class="hs-special">(</span><a href="#local-6989586621679201369"><span class="hs-identifier hs-type">apiType</span></a><span> </span><a href="#local-6989586621679201370"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-operator">:&gt;</span><span> </span><a href="#local-6989586621679201371"><span class="hs-identifier hs-type">res</span></a><span class="hs-special">)</span><span> </span><a href="#local-6989586621679201372"><span class="hs-identifier hs-type">ctx</span></a><span>
+</span><a name="line-189"></a><span>         </span><span class="hs-special">,</span><span> </span><a href="Pos.Util.Servant.html#ApiHasArg"><span class="hs-identifier hs-type">ApiHasArg</span></a><span> </span><a href="#local-6989586621679201369"><span class="hs-identifier hs-type">apiType</span></a><span> </span><a href="#local-6989586621679201370"><span class="hs-identifier hs-type">a</span></a><span> </span><a href="#local-6989586621679201371"><span class="hs-identifier hs-type">res</span></a><span>
+</span><a name="line-190"></a><span>         </span><span class="hs-special">,</span><span> </span><a href="Pos.Util.Servant.html#FromCType"><span class="hs-identifier hs-type">FromCType</span></a><span> </span><span class="hs-special">(</span><a href="Pos.Util.Servant.html#ApiArg"><span class="hs-identifier hs-type">ApiArg</span></a><span> </span><a href="#local-6989586621679201369"><span class="hs-identifier hs-type">apiType</span></a><span> </span><a href="#local-6989586621679201370"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span>
+</span><a name="line-191"></a><span>         </span><span class="hs-special">,</span><span> </span><a href="Pos.Util.Servant.html#ReportDecodeError"><span class="hs-identifier hs-type">ReportDecodeError</span></a><span> </span><a href="#local-6989586621679201371"><span class="hs-identifier hs-type">res</span></a><span>
+</span><a name="line-192"></a><span>         </span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span>
+</span><a name="line-193"></a><span>         </span><span class="hs-identifier hs-type">HasServer</span><span> </span><span class="hs-special">(</span><a href="Pos.Util.Servant.html#CDecodeApiArg"><span class="hs-identifier hs-type">CDecodeApiArg</span></a><span> </span><a href="#local-6989586621679201369"><span class="hs-identifier hs-type">apiType</span></a><span> </span><a href="#local-6989586621679201370"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-operator">:&gt;</span><span> </span><a href="#local-6989586621679201371"><span class="hs-identifier hs-type">res</span></a><span class="hs-special">)</span><span> </span><a href="#local-6989586621679201372"><span class="hs-identifier hs-type">ctx</span></a><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-194"></a><span>    </span><span class="hs-keyword">type</span><span> </span><span class="hs-identifier">ServerT</span><span> </span><span class="hs-special">(</span><a href="Pos.Util.Servant.html#CDecodeApiArg"><span class="hs-identifier hs-type">CDecodeApiArg</span></a><span> </span><a href="#local-6989586621679201369"><span class="hs-identifier hs-type">apiType</span></a><span> </span><a href="#local-6989586621679201370"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-operator">:&gt;</span><span> </span><a href="#local-6989586621679201371"><span class="hs-identifier hs-type">res</span></a><span class="hs-special">)</span><span> </span><a href="#local-6989586621679201377"><span class="hs-identifier hs-type">m</span></a><span> </span><span class="hs-glyph">=</span><span>
+</span><a name="line-195"></a><span>         </span><a href="Pos.Util.Servant.html#OriginType"><span class="hs-identifier hs-type">OriginType</span></a><span> </span><span class="hs-special">(</span><a href="Pos.Util.Servant.html#ApiArg"><span class="hs-identifier hs-type">ApiArg</span></a><span> </span><a href="#local-6989586621679201369"><span class="hs-identifier hs-type">apiType</span></a><span> </span><a href="#local-6989586621679201370"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">ServerT</span><span> </span><a href="#local-6989586621679201371"><span class="hs-identifier hs-type">res</span></a><span> </span><a href="#local-6989586621679201377"><span class="hs-identifier hs-type">m</span></a><span>
+</span><a name="line-196"></a><span>    </span><a name="local-8214565720323929282"><span class="hs-identifier">route</span></a><span> </span><span class="hs-glyph">=</span><span>
+</span><a name="line-197"></a><span>        </span><a href="Pos.Util.Servant.html#inRouteServer"><span class="hs-identifier hs-var">inRouteServer</span></a><span> </span><span class="hs-glyph">@</span><span class="hs-special">(</span><a href="#local-6989586621679201369"><span class="hs-identifier hs-type">apiType</span></a><span> </span><a href="#local-6989586621679201370"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-operator">:&gt;</span><span> </span><a href="#local-6989586621679201371"><span class="hs-identifier hs-type">res</span></a><span class="hs-special">)</span><span> </span><span class="hs-identifier hs-var">route</span><span> </span><span class="hs-operator hs-var">$</span><span>
+</span><a name="line-198"></a><span>        </span><span class="hs-glyph">\</span><a name="local-6989586621679201375"><a href="#local-6989586621679201375"><span class="hs-identifier">f</span></a></a><span> </span><a name="local-6989586621679201376"><a href="#local-6989586621679201376"><span class="hs-identifier">a</span></a></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-var">either</span><span> </span><a href="#local-6989586621679201373"><span class="hs-identifier hs-var">reportE</span></a><span> </span><a href="#local-6989586621679201375"><span class="hs-identifier hs-var">f</span></a><span> </span><span class="hs-operator hs-var">$</span><span> </span><a href="Pos.Util.Servant.html#decodeCType"><span class="hs-identifier hs-var">decodeCType</span></a><span> </span><a href="#local-6989586621679201376"><span class="hs-identifier hs-var">a</span></a><span>
+</span><a name="line-199"></a><span>      </span><span class="hs-keyword">where</span><span>
+</span><a name="line-200"></a><span>        </span><a name="local-6989586621679201373"><a href="#local-6989586621679201373"><span class="hs-identifier">reportE</span></a></a><span> </span><a name="local-6989586621679201374"><a href="#local-6989586621679201374"><span class="hs-identifier">err</span></a></a><span> </span><span class="hs-glyph">=</span><span>
+</span><a name="line-201"></a><span>            </span><a href="Pos.Util.Servant.html#reportDecodeError"><span class="hs-identifier hs-var">reportDecodeError</span></a><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-var">Proxy</span><span> </span><span class="hs-glyph">@</span><a href="#local-6989586621679201371"><span class="hs-identifier hs-type">res</span></a><span class="hs-special">)</span><span> </span><span class="hs-operator hs-var">$</span><span>
+</span><a name="line-202"></a><span>            </span><span class="hs-identifier hs-var">sformat</span><span> </span><span class="hs-special">(</span><span class="hs-string">&quot;(in &quot;</span><span class="hs-operator hs-var">%</span><span class="hs-identifier hs-var">string</span><span class="hs-operator hs-var">%</span><span class="hs-string">&quot;) &quot;</span><span class="hs-operator hs-var">%</span><span class="hs-identifier hs-var">stext</span><span class="hs-special">)</span><span>
+</span><a name="line-203"></a><span>                </span><span class="hs-special">(</span><a href="Pos.Util.Servant.html#apiArgName"><span class="hs-identifier hs-var">apiArgName</span></a><span> </span><span class="hs-operator hs-var">$</span><span> </span><span class="hs-identifier hs-var">Proxy</span><span> </span><span class="hs-glyph">@</span><span class="hs-special">(</span><a href="#local-6989586621679201369"><span class="hs-identifier hs-type">apiType</span></a><span> </span><a href="#local-6989586621679201370"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-204"></a><span>                </span><a href="#local-6989586621679201374"><span class="hs-identifier hs-var">err</span></a><span>
+</span><a name="line-205"></a><span>
+</span><a name="line-206"></a><span class="hs-comment">-------------------------------------------------------------------------</span><span>
+</span><a name="line-207"></a><span class="hs-comment">-- Mapping API arguments: defaults</span><span>
+</span><a name="line-208"></a><span class="hs-comment">-------------------------------------------------------------------------</span><span>
+</span><a name="line-209"></a><span>
+</span><a name="line-210"></a><span class="hs-keyword">type</span><span> </span><span class="hs-keyword">family</span><span> </span><a name="UnmaybeArg"><a href="Pos.Util.Servant.html#UnmaybeArg"><span class="hs-identifier">UnmaybeArg</span></a></a><span> </span><a name="local-6989586621679200322"><a href="#local-6989586621679200322"><span class="hs-identifier">a</span></a></a><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-211"></a><span>    </span><span class="hs-identifier">UnmaybeArg</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Maybe</span><span> </span><a href="#local-6989586621679200323"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><a href="#local-6989586621679200324"><span class="hs-identifier hs-type">b</span></a><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><a href="#local-6989586621679200323"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><a href="#local-6989586621679200324"><span class="hs-identifier hs-type">b</span></a><span>
+</span><a name="line-212"></a><span>
+</span><a name="line-213"></a><span class="hs-keyword">type</span><span> </span><span class="hs-keyword">family</span><span> </span><a name="Unmaybe"><a href="Pos.Util.Servant.html#Unmaybe"><span class="hs-identifier">Unmaybe</span></a></a><span> </span><a name="local-6989586621679200320"><a href="#local-6989586621679200320"><span class="hs-identifier">a</span></a></a><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-214"></a><span>    </span><span class="hs-identifier">Unmaybe</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Maybe</span><span> </span><a href="#local-6989586621679200321"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><a href="#local-6989586621679200321"><span class="hs-identifier hs-type">a</span></a><span>
+</span><a name="line-215"></a><span>
+</span><a name="line-216"></a><span class="hs-keyword">data</span><span> </span><a name="WithDefaultApiArg"><a href="Pos.Util.Servant.html#WithDefaultApiArg"><span class="hs-identifier">WithDefaultApiArg</span></a></a><span> </span><span class="hs-special">(</span><a name="local-6989586621679200318"><a href="#local-6989586621679200318"><span class="hs-identifier">argType</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-operator hs-type">*</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-operator hs-type">*</span><span class="hs-special">)</span><span> </span><a name="local-6989586621679200319"><a href="#local-6989586621679200319"><span class="hs-identifier">a</span></a></a><span>
+</span><a name="line-217"></a><span>
+</span><a name="line-218"></a><span class="hs-keyword">instance</span><span> </span><span class="hs-special">(</span><a href="Pos.Util.Servant.html#ApiHasArgClass"><span class="hs-identifier hs-type">ApiHasArgClass</span></a><span> </span><a href="#local-6989586621679201366"><span class="hs-identifier hs-type">apiType</span></a><span> </span><a href="#local-6989586621679201367"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">,</span><span> </span><a href="Pos.Util.Servant.html#ApiArg"><span class="hs-identifier hs-type">ApiArg</span></a><span> </span><a href="#local-6989586621679201366"><span class="hs-identifier hs-type">apiType</span></a><span> </span><a href="#local-6989586621679201367"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-glyph">~</span><span> </span><span class="hs-identifier hs-type">Maybe</span><span> </span><a href="#local-6989586621679201368"><span class="hs-identifier hs-type">b</span></a><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span>
+</span><a name="line-219"></a><span>         </span><a href="Pos.Util.Servant.html#ApiHasArgClass"><span class="hs-identifier hs-type">ApiHasArgClass</span></a><span> </span><span class="hs-special">(</span><a href="Pos.Util.Servant.html#WithDefaultApiArg"><span class="hs-identifier hs-type">WithDefaultApiArg</span></a><span> </span><a href="#local-6989586621679201366"><span class="hs-identifier hs-type">apiType</span></a><span class="hs-special">)</span><span> </span><a href="#local-6989586621679201367"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-220"></a><span>    </span><span class="hs-keyword">type</span><span> </span><span class="hs-identifier">ApiArg</span><span> </span><span class="hs-special">(</span><a href="Pos.Util.Servant.html#WithDefaultApiArg"><span class="hs-identifier hs-type">WithDefaultApiArg</span></a><span> </span><a href="#local-6989586621679201366"><span class="hs-identifier hs-type">apiType</span></a><span class="hs-special">)</span><span> </span><a href="#local-6989586621679201367"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Pos.Util.Servant.html#Unmaybe"><span class="hs-identifier hs-type">Unmaybe</span></a><span> </span><span class="hs-special">(</span><a href="Pos.Util.Servant.html#ApiArg"><span class="hs-identifier hs-type">ApiArg</span></a><span> </span><a href="#local-6989586621679201366"><span class="hs-identifier hs-type">apiType</span></a><span> </span><a href="#local-6989586621679201367"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span>
+</span><a name="line-221"></a><span>    </span><a name="local-8214565720323975221"><a href="Pos.Util.Servant.html#apiArgName"><span class="hs-identifier">apiArgName</span></a></a><span> </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">=</span><span> </span><a href="Pos.Util.Servant.html#apiArgName"><span class="hs-identifier hs-var">apiArgName</span></a><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-var">Proxy</span><span> </span><span class="hs-glyph">@</span><span class="hs-special">(</span><a href="#local-6989586621679201366"><span class="hs-identifier hs-type">apiType</span></a><span> </span><a href="#local-6989586621679201367"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-222"></a><span>
+</span><a name="line-223"></a><span class="hs-keyword">instance</span><span> </span><span class="hs-special">(</span><span> </span><span class="hs-identifier hs-type">HasServer</span><span> </span><span class="hs-special">(</span><a href="#local-6989586621679200999"><span class="hs-identifier hs-type">apiType</span></a><span> </span><a href="#local-6989586621679201000"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-operator">:&gt;</span><span> </span><a href="#local-6989586621679201001"><span class="hs-identifier hs-type">res</span></a><span class="hs-special">)</span><span> </span><a href="#local-6989586621679201002"><span class="hs-identifier hs-type">ctx</span></a><span>
+</span><a name="line-224"></a><span>         </span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Server</span><span> </span><span class="hs-special">(</span><a href="#local-6989586621679200999"><span class="hs-identifier hs-type">apiType</span></a><span> </span><a href="#local-6989586621679201000"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-operator">:&gt;</span><span> </span><a href="#local-6989586621679201001"><span class="hs-identifier hs-type">res</span></a><span class="hs-special">)</span><span> </span><span class="hs-glyph">~</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Maybe</span><span> </span><a href="#local-6989586621679201003"><span class="hs-identifier hs-type">c</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><a href="#local-6989586621679201004"><span class="hs-identifier hs-type">d</span></a><span class="hs-special">)</span><span>
+</span><a name="line-225"></a><span>         </span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Default</span><span> </span><a href="#local-6989586621679201003"><span class="hs-identifier hs-type">c</span></a><span>
+</span><a name="line-226"></a><span>         </span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span>
+</span><a name="line-227"></a><span>         </span><span class="hs-identifier hs-type">HasServer</span><span> </span><span class="hs-special">(</span><a href="Pos.Util.Servant.html#WithDefaultApiArg"><span class="hs-identifier hs-type">WithDefaultApiArg</span></a><span> </span><a href="#local-6989586621679200999"><span class="hs-identifier hs-type">apiType</span></a><span> </span><a href="#local-6989586621679201000"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-operator">:&gt;</span><span> </span><a href="#local-6989586621679201001"><span class="hs-identifier hs-type">res</span></a><span class="hs-special">)</span><span> </span><a href="#local-6989586621679201002"><span class="hs-identifier hs-type">ctx</span></a><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-228"></a><span>    </span><span class="hs-keyword">type</span><span> </span><span class="hs-identifier">ServerT</span><span> </span><span class="hs-special">(</span><a href="Pos.Util.Servant.html#WithDefaultApiArg"><span class="hs-identifier hs-type">WithDefaultApiArg</span></a><span> </span><a href="#local-6989586621679200999"><span class="hs-identifier hs-type">apiType</span></a><span> </span><a href="#local-6989586621679201000"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-operator">:&gt;</span><span> </span><a href="#local-6989586621679201001"><span class="hs-identifier hs-type">res</span></a><span class="hs-special">)</span><span> </span><a href="#local-6989586621679201365"><span class="hs-identifier hs-type">m</span></a><span> </span><span class="hs-glyph">=</span><span>
+</span><a name="line-229"></a><span>         </span><a href="Pos.Util.Servant.html#UnmaybeArg"><span class="hs-identifier hs-type">UnmaybeArg</span></a><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">ServerT</span><span> </span><span class="hs-special">(</span><a href="#local-6989586621679200999"><span class="hs-identifier hs-type">apiType</span></a><span> </span><a href="#local-6989586621679201000"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-operator">:&gt;</span><span> </span><a href="#local-6989586621679201001"><span class="hs-identifier hs-type">res</span></a><span class="hs-special">)</span><span> </span><a href="#local-6989586621679201365"><span class="hs-identifier hs-type">m</span></a><span class="hs-special">)</span><span>
+</span><a name="line-230"></a><span>    </span><a name="local-8214565720323929282"><span class="hs-identifier">route</span></a><span> </span><span class="hs-glyph">=</span><span>
+</span><a name="line-231"></a><span>        </span><a href="Pos.Util.Servant.html#inRouteServer"><span class="hs-identifier hs-var">inRouteServer</span></a><span> </span><span class="hs-glyph">@</span><span class="hs-special">(</span><a href="#local-6989586621679200999"><span class="hs-identifier hs-type">apiType</span></a><span> </span><a href="#local-6989586621679201000"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-operator">:&gt;</span><span> </span><a href="#local-6989586621679201001"><span class="hs-identifier hs-type">res</span></a><span class="hs-special">)</span><span> </span><span class="hs-identifier hs-var">route</span><span> </span><span class="hs-operator hs-var">$</span><span>
+</span><a name="line-232"></a><span>        </span><span class="hs-glyph">\</span><a name="local-6989586621679201342"><a href="#local-6989586621679201342"><span class="hs-identifier">f</span></a></a><span> </span><a name="local-6989586621679201343"><a href="#local-6989586621679201343"><span class="hs-identifier">a</span></a></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><a href="#local-6989586621679201342"><span class="hs-identifier hs-var">f</span></a><span> </span><span class="hs-operator hs-var">$</span><span> </span><span class="hs-identifier hs-var">fromMaybe</span><span> </span><span class="hs-identifier hs-var">def</span><span> </span><a href="#local-6989586621679201343"><span class="hs-identifier hs-var">a</span></a><span>
+</span><a name="line-233"></a><span>
+</span><a name="line-234"></a><span class="hs-comment">-------------------------------------------------------------------------</span><span>
+</span><a name="line-235"></a><span class="hs-comment">-- Logging</span><span>
+</span><a name="line-236"></a><span class="hs-comment">-------------------------------------------------------------------------</span><span>
+</span><a name="line-237"></a><span>
+</span><a name="line-238"></a><span class="hs-comment">-- | Enables logging for server which serves given api.</span><span>
+</span><a name="line-239"></a><span class="hs-comment">--</span><span>
+</span><a name="line-240"></a><span class="hs-comment">-- `config` is a type at which you have to specify 'ApiLoggingConfig' via</span><span>
+</span><a name="line-241"></a><span class="hs-comment">-- reflection. This way was chosen because the least thing we need in</span><span>
+</span><a name="line-242"></a><span class="hs-comment">-- config is 'LoggerName', and we want to have '&lt;&gt;' on 'LoggerName's thus</span><span>
+</span><a name="line-243"></a><span class="hs-comment">-- 'KnownSymbol' is not enough.</span><span>
+</span><a name="line-244"></a><span class="hs-comment">--</span><span>
+</span><a name="line-245"></a><span class="hs-comment">-- This logging will report</span><span>
+</span><a name="line-246"></a><span class="hs-comment">--</span><span>
+</span><a name="line-247"></a><span class="hs-comment">-- * Request parameters, including request bodies</span><span>
+</span><a name="line-248"></a><span class="hs-comment">-- * Truncated response (for exact meaning of /truncated/ see 'WithTruncatedLog')</span><span>
+</span><a name="line-249"></a><span class="hs-comment">-- * If execution failed with error, it will be displayed</span><span>
+</span><a name="line-250"></a><span class="hs-comment">-- * Details like request method and endpoint execution time</span><span>
+</span><a name="line-251"></a><span class="hs-comment">--</span><span>
+</span><a name="line-252"></a><span class="hs-comment">-- If user makes request which can't be processed (e.g. with path to undefined</span><span>
+</span><a name="line-253"></a><span class="hs-comment">-- endpoint which normally terminates with 404) it won't be logged. However,</span><span>
+</span><a name="line-254"></a><span class="hs-comment">-- I don't find it a great problem, it may impede only in development or on</span><span>
+</span><a name="line-255"></a><span class="hs-comment">-- getting acknoledged with api.</span><span>
+</span><a name="line-256"></a><span class="hs-keyword">data</span><span> </span><a name="LoggingApi"><a href="Pos.Util.Servant.html#LoggingApi"><span class="hs-identifier">LoggingApi</span></a></a><span> </span><a name="local-6989586621679200316"><a href="#local-6989586621679200316"><span class="hs-identifier">config</span></a></a><span> </span><a name="local-6989586621679200317"><a href="#local-6989586621679200317"><span class="hs-identifier">api</span></a></a><span>
+</span><a name="line-257"></a><span>
+</span><a name="line-258"></a><span class="hs-comment">-- | Helper to traverse servant api and apply logging.</span><span>
+</span><a name="line-259"></a><span class="hs-keyword">data</span><span> </span><a name="LoggingApiRec"><a href="Pos.Util.Servant.html#LoggingApiRec"><span class="hs-identifier">LoggingApiRec</span></a></a><span> </span><a name="local-6989586621679200314"><a href="#local-6989586621679200314"><span class="hs-identifier">config</span></a></a><span> </span><a name="local-6989586621679200315"><a href="#local-6989586621679200315"><span class="hs-identifier">api</span></a></a><span>
+</span><a name="line-260"></a><span>
+</span><a name="line-261"></a><span class="hs-keyword">type</span><span> </span><a name="ApiLoggingConfig"><a href="Pos.Util.Servant.html#ApiLoggingConfig"><span class="hs-identifier">ApiLoggingConfig</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-type">LoggerName</span><span>
+</span><a name="line-262"></a><span>
+</span><a name="line-263"></a><span class="hs-comment">-- | Used to incrementally collect info about passed parameters.</span><span>
+</span><a name="line-264"></a><span class="hs-keyword">data</span><span> </span><a name="ApiParamsLogInfo"><a href="Pos.Util.Servant.html#ApiParamsLogInfo"><span class="hs-identifier">ApiParamsLogInfo</span></a></a><span>
+</span><a name="line-265"></a><span>      </span><span class="hs-comment">-- | Parameters gathered at current stage</span><span>
+</span><a name="line-266"></a><span>    </span><span class="hs-glyph">=</span><span> </span><a name="ApiParamsLogInfo"><a href="Pos.Util.Servant.html#ApiParamsLogInfo"><span class="hs-identifier">ApiParamsLogInfo</span></a></a><span> </span><span class="hs-special">[</span><span class="hs-identifier hs-type">SecuredText</span><span class="hs-special">]</span><span>
+</span><a name="line-267"></a><span>      </span><span class="hs-comment">-- | Parameters collection failed with reason</span><span>
+</span><a name="line-268"></a><span>      </span><span class="hs-comment">--   (e.g. decoding error)</span><span>
+</span><a name="line-269"></a><span>    </span><span class="hs-glyph">|</span><span> </span><a name="ApiNoParamsLogInfo"><a href="Pos.Util.Servant.html#ApiNoParamsLogInfo"><span class="hs-identifier">ApiNoParamsLogInfo</span></a></a><span> </span><span class="hs-identifier hs-type">Text</span><span>
+</span><a name="line-270"></a><span>
+</span><a name="line-271"></a><span class="hs-identifier hs-var">makePrisms</span><span> </span><span class="hs-char">''ApiParamsLogInfo
+
+instance Default ApiParamsLogInfo where
+    def = ApiParamsLogInfo mempty
+
+-- | When it comes to logging responses, returned data may be very large.
+-- Log space is valuable (already in testnet we got truncated logs),
+-- so we have to care about printing only whose data which may be useful.
+newtype WithTruncatedLog a = WithTruncatedLog a
+
+instance {-# OVERLAPPABLE #-}
+         Buildable a =&gt; Buildable (WithTruncatedLog a) where
+    build (WithTruncatedLog a) = bprint build a
+
+-- | When item list is going to be printed, we impose taking care of
+-- truncating.
+-- How much data to remain should depend on how big output may be, how can
+-- response change from call to call and how often related endpoints are called
+-- in practise.
+class HasTruncateLogPolicy a where
+    truncateLogPolicy :: [a] -&gt; [a]
+
+instance (Buildable (WithTruncatedLog a), HasTruncateLogPolicy a) =&gt;
+         Buildable (WithTruncatedLog [a]) where
+    build (WithTruncatedLog l) = do
+        let lt = truncateLogPolicy l
+            diff = length l - length lt
+            mMore | diff == 0 = &quot;&quot;
+                  | otherwise = bprint (&quot;\n    and &quot;%build%&quot; entries more...&quot;)
+                                diff
+        bprint (listJsonIndent 4%builder)
+            (map WithTruncatedLog lt)
+            mMore
+
+
+instance HasServer (LoggingApiRec config api) ctx =&gt;
+         HasServer (LoggingApi config api) ctx where
+    type ServerT (LoggingApi config api) m = ServerT api m
+    route = inRouteServer @(LoggingApiRec config api) route
+            (def, )
+
+-- | Version of 'HasServer' which is assumed to perform logging.
+-- It's helpful because 'ServerT (LoggingApi ...)' is already defined for us
+-- in actual 'HasServer' instance once and forever.
+class HasLoggingServer config api ctx where
+    routeWithLog
+        :: Proxy (LoggingApiRec config api)
+        -&gt; SI.Context ctx
+        -&gt; SI.Delayed env (Server (LoggingApiRec config api))
+        -&gt; SI.Router env
+
+instance HasLoggingServer config api ctx =&gt;
+         HasServer (LoggingApiRec config api) ctx where
+    type ServerT (LoggingApiRec config api) m =
+         (ApiParamsLogInfo, ServerT api m)
+    route = routeWithLog
+
+instance ( HasLoggingServer config api1 ctx
+         , HasLoggingServer config api2 ctx
+         ) =&gt;
+         HasLoggingServer config (api1 :&lt;|&gt; api2) ctx where
+    routeWithLog =
+        inRouteServer
+            @(LoggingApiRec config api1 :&lt;|&gt; LoggingApiRec config api2)
+            route $
+            \(paramsInfo, f1 :&lt;|&gt; f2) -&gt; (paramsInfo, f1) :&lt;|&gt; (paramsInfo, f2)
+
+instance ( KnownSymbol path
+         , HasLoggingServer config res ctx
+         ) =&gt;
+         HasLoggingServer config (path :&gt; res) ctx where
+    routeWithLog =
+        inRouteServer @(path :&gt; LoggingApiRec config res) route $
+        first updateParamsInfo
+      where
+        updateParamsInfo = do
+            let path = const . toText . symbolVal $ Proxy @path
+            _ApiParamsLogInfo %~ (path :)
+
+-- | Describes a way to log a single parameter.
+class ApiHasArgClass apiType a =&gt;
+      ApiCanLogArg apiType a where
+    type ApiArgToLog (apiType :: * -&gt; *) a :: *
+    type ApiArgToLog apiType a = ApiArg apiType a
+
+    toLogParamInfo
+        :: BuildableSafe (ApiArgToLog apiType a)
+        =&gt; Proxy (apiType a) -&gt; ApiArg apiType a -&gt; SecuredText
+    default toLogParamInfo
+        :: BuildableSafe (ApiArgToLog apiType a)
+        =&gt; Proxy (apiType a) -&gt; ApiArgToLog apiType a -&gt; SecuredText
+    toLogParamInfo _ param = \sl -&gt; sformat (buildSafe sl) param
+
+instance KnownSymbol s =&gt; ApiCanLogArg (Capture s) a
+
+instance ApiCanLogArg (ReqBody ct) a
+
+instance KnownSymbol cs =&gt; ApiCanLogArg (QueryParam cs) a where
+    type ApiArgToLog (QueryParam cs) a = a
+    toLogParamInfo _ mparam =
+        \sl -&gt; maybe noEntry (sformat $ buildSafe sl) mparam
+      where
+        noEntry = colorizeDull White &quot;-&quot;
+
+instance ( ApiHasArgClass apiType a
+         , ApiArg apiType a ~ Maybe b
+         , ApiCanLogArg apiType a
+         ) =&gt;
+         ApiCanLogArg (WithDefaultApiArg apiType) a where
+
+instance ( ApiCanLogArg apiType a ) =&gt;
+         ApiCanLogArg (CDecodeApiArg apiType) a where
+
+instance ( HasServer (apiType a :&gt; LoggingApiRec config res) ctx
+         , ApiHasArg apiType a res
+         , ApiHasArg apiType a (LoggingApiRec config res)
+         , ApiCanLogArg apiType a
+         , BuildableSafe (ApiArgToLog apiType a)
+         ) =&gt;
+         HasLoggingServer config (apiType a :&gt; res) ctx where
+    routeWithLog =
+        inRouteServer @(apiType a :&gt; LoggingApiRec config res) route $
+        \(paramsInfo, f) a -&gt; (a `updateParamsInfo` paramsInfo, f a)
+      where
+        updateParamsInfo a = do
+            let paramVal = toLogParamInfo (Proxy @(apiType a)) a
+                paramName = apiArgName $ Proxy @(apiType a)
+                paramInfo =
+                    \sl -&gt; sformat (string%&quot;: &quot;%stext) paramName (paramVal sl)
+            _ApiParamsLogInfo %~ (paramInfo :)
+
+-- | Modify an action so that it performs all the required logging.
+applyServantLogging
+    :: ( MonadIO m
+       , MonadCatch m
+       , MonadError ServantErr m
+       , Reifies config ApiLoggingConfig
+       , ReflectMethod (method :: k)
+       )
+    =&gt; Proxy config
+    -&gt; Proxy method
+    -&gt; ApiParamsLogInfo
+    -&gt; (a -&gt; Text)
+    -&gt; m a
+    -&gt; m a
+applyServantLogging configP methodP paramsInfo showResponse action = do
+    timer &lt;- mkTimer
+    catchErrors timer $ do
+        res &lt;- action
+        reportResponse timer res
+        return res
+  where
+    method = decodeUtf8 $ reflectMethod methodP
+    cmethod =
+        flip colorizeDull method $
+            case method of
+            &quot;GET&quot;    -&gt; Cyan
+            &quot;POST&quot;   -&gt; Yellow
+            &quot;PUT&quot;    -&gt; Blue
+            &quot;DELETE&quot; -&gt; Red
+            _        -&gt; Magenta
+    mkTimer :: MonadIO m =&gt; m (m Text)
+    mkTimer = do
+        startTime &lt;- liftIO getPOSIXTime
+        return $ do
+            endTime &lt;- liftIO getPOSIXTime
+            return $ sformat shown (endTime - startTime)
+    inLogCtx :: MonadIO m =&gt; LoggerNameBox m a -&gt; m a
+    inLogCtx logAction = do
+        let loggerName = reflect configP
+        usingLoggerName loggerName logAction
+    eParamLogs :: Either Text SecuredText
+    eParamLogs = case paramsInfo of
+        ApiParamsLogInfo info -&gt; Right $ \sl -&gt;
+            let params =
+                  mconcat $ reverse info &lt;&amp;&gt; \securedParamsInfo -&gt;
+                      sformat (&quot;    &quot;%stext%&quot; &quot;%stext%&quot;\n&quot;)
+                          (colorizeDull White &quot;:&gt;&quot;)
+                          (securedParamsInfo sl)
+            in  sformat (&quot;\n&quot;%stext%&quot;\n&quot;%build) cmethod params
+        ApiNoParamsLogInfo why -&gt; Left why
+    logWithParamInfo :: MonadIO m =&gt; SecuredText -&gt; m ()
+    logWithParamInfo securedText =
+        case eParamLogs of
+            Left e -&gt;
+                inLogCtx $ logInfoSP $ \sl -&gt;
+                    sformat (&quot;\n&quot;%stext%secretOnlyF sl (&quot; &quot;%stext))
+                        (colorizeDull Red &quot;Unexecuted request due to error&quot;) e
+            Right paramLogs -&gt; do
+                inLogCtx $ logInfoSP $ \sl -&gt;
+                    sformat (build%&quot; &quot;%build) (paramLogs sl) (securedText sl)
+    reportResponse timer resp = do
+        durationText &lt;- timer
+        logWithParamInfo $ \sl -&gt;
+            sformat (&quot;  &quot;%stext%&quot; &quot;%stext%&quot; &quot;%stext%secretOnlyF2 sl (stext%stext))
+                (colorizeDull White &quot;Status:&quot;)
+                (colorizeDull Green &quot;OK&quot;)
+                durationText
+                (colorizeDull White &quot; &gt; &quot;)
+                (showResponse resp)
+    catchErrors st =
+        flip catchError (servantErrHandler st) .
+        handleAll (exceptionsHandler st)
+    servantErrHandler timer err@ServantErr{..} = do
+        durationText &lt;- timer
+        let errMsg = sformat (build%&quot; &quot;%string) errHTTPCode errReasonPhrase
+        logWithParamInfo $ \_sl -&gt;
+            sformat (&quot;  &quot;%stext%&quot; &quot;%stext%&quot; &quot;%stext)
+                (colorizeDull White &quot;Status: &quot;)
+                (colorizeDull Red errMsg)
+                durationText
+        throwError err
+    exceptionsHandler timer e = do
+        durationText &lt;- timer
+        logWithParamInfo $ \_sl -&gt;
+            sformat (&quot;  &quot;%stext%&quot; &quot;%shown%&quot; &quot;%stext)
+                (colorizeDull Red &quot;Error&quot;)
+                e
+                durationText
+        throwM e
+
+applyLoggingToHandler
+    :: forall config method a.
+       ( Buildable (WithTruncatedLog a)
+       , Reifies config ApiLoggingConfig
+       , ReflectMethod method
+       )
+    =&gt; Proxy config -&gt; Proxy (method :: k) -&gt; (ApiParamsLogInfo, Handler a) -&gt; Handler a
+applyLoggingToHandler configP methodP (paramsInfo, handler) =
+    handler &amp; serverHandlerL %~ withLogging paramsInfo
+  where
+    display = sformat build . WithTruncatedLog
+    withLogging params = applyServantLogging configP methodP params display
+
+instance ( HasServer (Verb mt st ct a) ctx
+         , Reifies config ApiLoggingConfig
+         , ReflectMethod mt
+         , Buildable (WithTruncatedLog a)
+         ) =&gt;
+         HasLoggingServer config (Verb (mt :: k) (st :: Nat) (ct :: [*]) a) ctx where
+    routeWithLog =
+        inRouteServer @(Verb mt st ct a) route $
+        applyLoggingToHandler (Proxy @config) (Proxy @mt)
+
+instance ReportDecodeError api =&gt;
+         ReportDecodeError (LoggingApiRec config api) where
+    reportDecodeError _ msg =
+        (ApiNoParamsLogInfo msg, reportDecodeError (Proxy @api) msg)
+
+-------------------------------------------------------------------------
+-- API construction Helpers
+-------------------------------------------------------------------------
+
+type CQueryParam s a = CDecodeApiArg (QueryParam s) a
+type CCapture s a    = CDecodeApiArg (Capture s) a
+type CReqBody c a    = CDecodeApiArg (ReqBody c) a
+
+type DReqBody c a    = WithDefaultApiArg (ReqBody c) a
+
+type DCQueryParam s a = WithDefaultApiArg (CDecodeApiArg $ QueryParam s) a
+</span></pre></body></html>

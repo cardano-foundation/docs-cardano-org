@@ -1,0 +1,11 @@
+title: Cardano
+email: cardano@iohk.io
+description: SL Documentation
+baseurl: ""
+url: "https://cardanodocs.com"
+include: ["_pages","_docs", "_data"]
+permalink: /:title
+
+markdown: kramdown
+highlighter: rouge
+array: []

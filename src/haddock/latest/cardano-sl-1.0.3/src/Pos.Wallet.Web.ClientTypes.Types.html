@@ -1,0 +1,402 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE TypeFamilies #-}</span><span>
+</span><a name="line-2"></a><span>
+</span><a name="line-3"></a><span class="hs-comment">-- | Types representing client (wallet) requests on wallet API.</span><span>
+</span><a name="line-4"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Wallet</span><span class="hs-operator">.</span><span class="hs-identifier">Web</span><span class="hs-operator">.</span><span class="hs-identifier">ClientTypes</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span><span>
+</span><a name="line-5"></a><span>      </span><span class="hs-special">(</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#SyncProgress"><span class="hs-identifier hs-type">SyncProgress</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-6"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#spLocalCD"><span class="hs-identifier hs-var">spLocalCD</span></a><span>
+</span><a name="line-7"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#spNetworkCD"><span class="hs-identifier hs-var">spNetworkCD</span></a><span>
+</span><a name="line-8"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#spPeers"><span class="hs-identifier hs-var">spPeers</span></a><span>
+</span><a name="line-9"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#CId"><span class="hs-identifier hs-type">CId</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-10"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#CHash"><span class="hs-identifier hs-type">CHash</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-11"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#CPassPhrase"><span class="hs-identifier hs-type">CPassPhrase</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-12"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#CProfile"><span class="hs-identifier hs-type">CProfile</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-13"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#CPwHash"><span class="hs-identifier hs-type">CPwHash</span></a><span>
+</span><a name="line-14"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#CTx"><span class="hs-identifier hs-type">CTx</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-15"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#CTxId"><span class="hs-identifier hs-type">CTxId</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-16"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#NewBatchPayment"><span class="hs-identifier hs-type">NewBatchPayment</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-17"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#CTxMeta"><span class="hs-identifier hs-type">CTxMeta</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-18"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#CTExMeta"><span class="hs-identifier hs-type">CTExMeta</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-19"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#CPtxCondition"><span class="hs-identifier hs-type">CPtxCondition</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-20"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#CInitialized"><span class="hs-identifier hs-type">CInitialized</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-21"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#AccountId"><span class="hs-identifier hs-type">AccountId</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-22"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#CAccountId"><span class="hs-identifier hs-type">CAccountId</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-23"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#CWAddressMeta"><span class="hs-identifier hs-type">CWAddressMeta</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-24"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#CAddress"><span class="hs-identifier hs-type">CAddress</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-25"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#CAccount"><span class="hs-identifier hs-type">CAccount</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-26"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#CWalletAssurance"><span class="hs-identifier hs-type">CWalletAssurance</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-27"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#CAccountMeta"><span class="hs-identifier hs-type">CAccountMeta</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-28"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#CAccountInit"><span class="hs-identifier hs-type">CAccountInit</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-29"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#CWallet"><span class="hs-identifier hs-type">CWallet</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-30"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#CWalletMeta"><span class="hs-identifier hs-type">CWalletMeta</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-31"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#CWalletInit"><span class="hs-identifier hs-type">CWalletInit</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-32"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#CUpdateInfo"><span class="hs-identifier hs-type">CUpdateInfo</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-33"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#CWalletRedeem"><span class="hs-identifier hs-type">CWalletRedeem</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-34"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#CPaperVendWalletRedeem"><span class="hs-identifier hs-type">CPaperVendWalletRedeem</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-35"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#CCoin"><span class="hs-identifier hs-type">CCoin</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-36"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#PassPhraseLU"><span class="hs-identifier hs-type">PassPhraseLU</span></a><span>
+</span><a name="line-37"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#CElectronCrashReport"><span class="hs-identifier hs-type">CElectronCrashReport</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-38"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#Wal"><span class="hs-identifier hs-type">Wal</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-39"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#Addr"><span class="hs-identifier hs-type">Addr</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-40"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#ScrollOffset"><span class="hs-identifier hs-type">ScrollOffset</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-41"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#ScrollLimit"><span class="hs-identifier hs-type">ScrollLimit</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-42"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#CFilePath"><span class="hs-identifier hs-type">CFilePath</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-43"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#ApiVersion"><span class="hs-identifier hs-type">ApiVersion</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-44"></a><span>      </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#ClientInfo"><span class="hs-identifier hs-type">ClientInfo</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-45"></a><span>      </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-46"></a><span>
+</span><a name="line-47"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Universum</span><span>
+</span><a name="line-48"></a><span>
+</span><a name="line-49"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Lens</span><span>          </span><span class="hs-special">(</span><span class="hs-identifier hs-var">makeLenses</span><span class="hs-special">)</span><span>
+</span><a name="line-50"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Default</span><span>          </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Default</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">def</span><span class="hs-special">)</span><span>
+</span><a name="line-51"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Hashable</span><span>         </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Hashable</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-52"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Text</span><span>             </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Text</span><span class="hs-special">)</span><span>
+</span><a name="line-53"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Text</span><span class="hs-operator">.</span><span class="hs-identifier">Buildable</span><span>
+</span><a name="line-54"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Time</span><span class="hs-operator">.</span><span class="hs-identifier">Clock</span><span class="hs-operator">.</span><span class="hs-identifier">POSIX</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">POSIXTime</span><span class="hs-special">)</span><span>
+</span><a name="line-55"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Typeable</span><span>         </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Typeable</span><span class="hs-special">)</span><span>
+</span><a name="line-56"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Version</span><span>          </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Version</span><span class="hs-special">)</span><span>
+</span><a name="line-57"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Formatting</span><span>            </span><span class="hs-special">(</span><span class="hs-identifier hs-var">bprint</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">build</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">later</span><span class="hs-special">,</span><span> </span><span class="hs-special">(</span><span class="hs-operator hs-var">%</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-58"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Formatting</span><span>            </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">F</span><span>
+</span><a name="line-59"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Prelude</span><span>
+</span><a name="line-60"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Serokell</span><span class="hs-operator">.</span><span class="hs-identifier">Util</span><span>         </span><span class="hs-special">(</span><span class="hs-identifier hs-var">mapBuilder</span><span class="hs-special">)</span><span>
+</span><a name="line-61"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Servant</span><span class="hs-operator">.</span><span class="hs-identifier">Multipart</span><span>     </span><span class="hs-special">(</span><span class="hs-identifier hs-type">FileData</span><span class="hs-special">)</span><span>
+</span><a name="line-62"></a><span>
+</span><a name="line-63"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Aeson.Types.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Aeson</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span></a><span>       </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><a name="line-64"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Client.Txp.Util.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Client</span><span class="hs-operator">.</span><span class="hs-identifier">Txp</span><span class="hs-operator">.</span><span class="hs-identifier">Util</span></a><span>   </span><span class="hs-special">(</span><a href="Pos.Client.Txp.Util.html#InputSelectionPolicy"><span class="hs-identifier hs-type">InputSelectionPolicy</span></a><span class="hs-special">)</span><span>
+</span><a name="line-65"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Core</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span><span>        </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Coin</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">ScriptVersion</span><span class="hs-special">)</span><span>
+</span><a name="line-66"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Types.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span></a><span>             </span><span class="hs-special">(</span><span class="hs-identifier hs-type">BlockVersion</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">ChainDifficulty</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">SoftwareVersion</span><span class="hs-special">)</span><span>
+</span><a name="line-67"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Util.BackupPhrase.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Util</span><span class="hs-operator">.</span><span class="hs-identifier">BackupPhrase</span></a><span> </span><span class="hs-special">(</span><a href="Pos.Util.BackupPhrase.html#BackupPhrase"><span class="hs-identifier hs-type">BackupPhrase</span></a><span class="hs-special">)</span><span>
+</span><a name="line-68"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Util</span><span class="hs-operator">.</span><span class="hs-identifier">LogSafe</span><span>      </span><span class="hs-special">(</span><span class="hs-identifier hs-type">SecureLog</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">buildUnsecure</span><span class="hs-special">)</span><span>
+</span><a name="line-69"></a><span>
+</span><a name="line-70"></a><span class="hs-comment">-- TODO [CSM-407] Structurize this mess</span><span>
+</span><a name="line-71"></a><span>
+</span><a name="line-72"></a><span class="hs-keyword">data</span><span> </span><a name="SyncProgress"><a href="Pos.Wallet.Web.ClientTypes.Types.html#SyncProgress"><span class="hs-identifier">SyncProgress</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a name="SyncProgress"><a href="Pos.Wallet.Web.ClientTypes.Types.html#SyncProgress"><span class="hs-identifier">SyncProgress</span></a></a><span>
+</span><a name="line-73"></a><span>    </span><span class="hs-special">{</span><span> </span><a name="_spLocalCD"><a href="Pos.Wallet.Web.ClientTypes.Types.html#_spLocalCD"><span class="hs-identifier">_spLocalCD</span></a></a><span>   </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">ChainDifficulty</span><span>
+</span><a name="line-74"></a><span>    </span><span class="hs-special">,</span><span> </span><a name="_spNetworkCD"><a href="Pos.Wallet.Web.ClientTypes.Types.html#_spNetworkCD"><span class="hs-identifier">_spNetworkCD</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">Maybe</span><span> </span><span class="hs-identifier hs-type">ChainDifficulty</span><span>
+</span><a name="line-75"></a><span>    </span><span class="hs-special">,</span><span> </span><a name="_spPeers"><a href="Pos.Wallet.Web.ClientTypes.Types.html#_spPeers"><span class="hs-identifier">_spPeers</span></a></a><span>     </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">Word</span><span>
+</span><a name="line-76"></a><span>    </span><span class="hs-special">}</span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Show</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Generic</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Typeable</span><span class="hs-special">)</span><span>
+</span><a name="line-77"></a><span>
+</span><a name="line-78"></a><span class="hs-identifier hs-var">makeLenses</span><span> </span><span class="hs-char">''SyncProgress
+
+instance Default SyncProgress where
+    def = SyncProgress 0 mzero 0
+
+-- | Client hash
+newtype CHash = CHash Text
+    deriving (Show, Eq, Ord, Generic, Buildable)
+
+instance Hashable CHash where
+    hashWithSalt s (CHash h) = hashWithSalt s h
+
+-- | Client address
+-- @w@ is phantom type and stands for type of item this address belongs to.
+newtype CId w = CId CHash
+    deriving (Show, Eq, Ord, Generic, Hashable, Buildable)
+
+-- | Marks address as belonging to wallet set.
+data Wal = Wal
+    deriving (Show, Generic)
+
+-- | Marks address as belonging to account.
+data Addr = Addr
+    deriving (Show, Generic)
+
+-- | Client transaction id
+newtype CTxId = CTxId CHash
+    deriving (Show, Eq, Generic, Hashable, Buildable)
+
+newtype CPassPhrase = CPassPhrase Text
+    deriving (Eq, Generic)
+
+instance Show CPassPhrase where
+    show _ = &quot;&lt;pass phrase&gt;&quot;
+
+----------------------------------------------------------------------------
+-- Wallet
+----------------------------------------------------------------------------
+
+-- | Wallet identifier
+data AccountId = AccountId
+    { -- | Address of wallet this wallet belongs to
+      aiWId   :: CId Wal
+    , -- | Derivation index of this wallet key
+      aiIndex :: Word32
+    } deriving (Eq, Ord, Show, Generic, Typeable)
+
+instance Hashable AccountId
+
+instance Buildable AccountId where
+    build AccountId{..} =
+        bprint (F.build%&quot;@&quot;%F.build) aiWId aiIndex
+
+instance Buildable (SecureLog AccountId) where
+    build _ = &quot;&lt;account id&gt;&quot;
+
+instance Buildable (SecureLog (Maybe AccountId)) where
+    build = buildUnsecure
+
+newtype CAccountId = CAccountId Text
+    deriving (Eq, Show, Generic, Buildable)
+
+-- TODO: extract first three fields as @Coordinates@ and use only it where
+-- required (maybe nowhere)
+-- | Account identifier
+data CWAddressMeta = CWAddressMeta
+    { -- | Address of wallet this account belongs to
+      cwamWId          :: CId Wal
+    , -- | First index in derivation path of this account key
+      cwamAccountIndex :: Word32
+    , -- | Second index in derivation path of this account key
+      cwamAddressIndex :: Word32
+    , -- | Actual address
+      cwamId           :: CId Addr
+    } deriving (Eq, Ord, Show, Generic, Typeable)
+
+instance Buildable CWAddressMeta where
+    build CWAddressMeta{..} =
+        bprint (F.build%&quot;@&quot;%F.build%&quot;@&quot;%F.build%&quot; (&quot;%F.build%&quot;)&quot;)
+        cwamWId cwamAccountIndex cwamAddressIndex cwamId
+
+instance Hashable CWAddressMeta
+
+newtype CCoin = CCoin
+    { getCCoin :: Text
+    } deriving (Show, Eq, Generic, Buildable)
+
+-- | Passphrase last update time
+type PassPhraseLU = POSIXTime
+
+-- | A level of assurance for the wallet &quot;meta type&quot;
+data CWalletAssurance
+    = CWAStrict
+    | CWANormal
+    deriving (Show, Eq, Generic)
+
+-- | Single address in a account
+data CAddress = CAddress
+    { cadId       :: !(CId Addr)
+    , cadAmount   :: !CCoin
+    , cadIsUsed   :: !Bool
+    , cadIsChange :: !Bool -- ^ Is this a change address
+    } deriving (Show, Generic)
+
+-- Includes data which are not provided by Cardano
+data CAccountMeta = CAccountMeta
+    { caName      :: !Text
+    } deriving (Show, Generic)
+
+instance Default CAccountMeta where
+    def = CAccountMeta &quot;Personal Wallet&quot;
+
+-- | Client Account (CA)
+-- (Flow type: accountType)
+data CAccount = CAccount
+    { caId        :: !CAccountId
+    , caMeta      :: !CAccountMeta
+    , caAddresses :: ![CAddress]
+    , caAmount    :: !CCoin
+    } deriving (Show, Generic, Typeable)
+
+-- | Query data for account creation
+data CAccountInit = CAccountInit
+    { caInitMeta :: !CAccountMeta
+    , caInitWId  :: !(CId Wal)
+    } deriving (Show, Generic)
+
+-- | Query data for redeem
+data CWalletRedeem = CWalletRedeem
+    { crWalletId :: !CAccountId
+    , crSeed     :: !Text -- TODO: newtype!
+    } deriving (Show, Generic)
+
+-- | Meta data of 'CWallet'
+data CWalletMeta = CWalletMeta
+    { cwName      :: !Text
+    , cwAssurance :: !CWalletAssurance
+    , cwUnit      :: !Int -- ^ https://issues.serokell.io/issue/CSM-163#comment=96-2480
+    } deriving (Show, Eq, Generic)
+
+instance Default CWalletMeta where
+    def = CWalletMeta &quot;Personal Wallet Set&quot; CWANormal 0
+
+-- | Client Wallet (CW)
+data CWallet = CWallet
+    { cwId             :: !(CId Wal)
+    , cwMeta           :: !CWalletMeta
+    , cwAccountsNumber :: !Int
+    , cwAmount         :: !CCoin
+    , cwHasPassphrase  :: !Bool
+    , cwPassphraseLU   :: !PassPhraseLU  -- last update time
+    } deriving (Eq, Show, Generic)
+
+-- | Query data for wallet creation
+data CWalletInit = CWalletInit
+    { cwInitMeta     :: !CWalletMeta
+    , cwBackupPhrase :: !BackupPhrase
+    } deriving (Eq, Show, Generic)
+
+-- | Query data for redeem
+data CPaperVendWalletRedeem = CPaperVendWalletRedeem
+    { pvWalletId     :: !CAccountId
+    , pvSeed         :: !Text -- TODO: newtype!
+    , pvBackupPhrase :: !BackupPhrase
+    } deriving (Show, Generic)
+
+----------------------------------------------------------------------------
+-- Profile
+----------------------------------------------------------------------------
+
+-- | Password hash of client profile
+type CPwHash = Text -- or Base64 or something else
+
+-- | Client profile (CP)
+-- all data of client are &quot;meta data&quot; - that is not provided by Cardano
+-- (Flow type: accountType)
+-- TODO: Newtype?
+data CProfile = CProfile
+    { cpLocale      :: Text
+    } deriving (Show, Generic, Typeable)
+
+-- | Added default instance for `testReset`, we need an inital state for
+-- @CProfile@
+instance Default CProfile where
+    def = CProfile mempty
+
+----------------------------------------------------------------------------
+-- Transactions
+----------------------------------------------------------------------------
+
+-- | meta data of transactions
+data CTxMeta = CTxMeta
+    { ctmDate        :: POSIXTime
+    } deriving (Show, Generic)
+
+-- | State of transaction, corresponding to
+-- 'Pos.Wallet.Web.Pending.Types.PtxCondition'.
+-- @PtxInNewestBlocks@ and @PtxPersisted@ states are merged into one
+-- not to provide information which conflicts with 'ctConfirmations'.
+data CPtxCondition
+    = CPtxApplying
+    | CPtxInBlocks
+    | CPtxWontApply
+    | CPtxNotTracked  -- ^ tx was made not in this life
+    deriving (Show, Eq, Generic, Typeable)
+
+-- | Client transaction (CTx)
+-- Provides all Data about a transaction needed by client.
+-- It includes meta data which are not part of Cardano, too
+-- (Flow type: transactionType)
+data CTx = CTx
+    { ctId            :: CTxId
+    , ctAmount        :: CCoin
+    , ctConfirmations :: Word
+    , ctMeta          :: CTxMeta
+    , ctInputs        :: [(CId Addr, CCoin)]
+    , ctOutputs       :: [(CId Addr, CCoin)]
+    , ctIsLocal       :: Bool
+    , ctIsOutgoing    :: Bool
+    , ctCondition     :: CPtxCondition
+    } deriving (Show, Generic, Typeable)
+
+-- | meta data of exchanges
+data CTExMeta = CTExMeta
+    { cexTitle       :: Text
+    , cexDescription :: Text
+    , cexDate        :: POSIXTime
+    , cexRate        :: Text
+    , cexLabel       :: Text -- counter part of client's 'exchange' value
+    , cexId          :: CId Addr
+    } deriving (Show, Generic)
+
+data NewBatchPayment = NewBatchPayment
+    { npbFrom                 :: CAccountId
+    , npbTo                   :: NonEmpty (CId Addr, Coin)
+    , npbPolicy               :: InputSelectionPolicy
+    } deriving (Show, Generic)
+
+instance Buildable NewBatchPayment where
+    build NewBatchPayment{..} =
+        bprint (&quot;{ from=&quot;%build%&quot; to=&quot;%later mapBuilder%&quot; policy=&quot;%build%&quot; }&quot;)
+               npbFrom npbTo npbPolicy
+
+instance Buildable (SecureLog NewBatchPayment) where
+    build = buildUnsecure
+
+-- | Update system data
+data CUpdateInfo = CUpdateInfo
+    { cuiSoftwareVersion :: !SoftwareVersion
+    , cuiBlockVesion     :: !BlockVersion
+    , cuiScriptVersion   :: !ScriptVersion
+    , cuiImplicit        :: !Bool
+--    , cuiProposed        :: !HeaderHash
+--    , cuiDecided         :: !HeaderHash
+--    , cuiConfirmed       :: !HeaderHash
+--    , cuiAdopted         :: !(Maybe HeaderHash)
+    , cuiVotesFor        :: !Int
+    , cuiVotesAgainst    :: !Int
+    , cuiPositiveStake   :: !CCoin
+    , cuiNegativeStake   :: !CCoin
+    } deriving (Show, Generic, Typeable)
+
+----------------------------------------------------------------------------
+-- Reporting
+----------------------------------------------------------------------------
+
+-- | Represents a knowledge about how much time did it take for client
+-- (wallet) to initialize. All numbers are milliseconds.
+data CInitialized = CInitialized
+    { cTotalTime :: Word -- ^ Total time from very start to main
+                            -- post-sync screen.
+    , cPreInit   :: Word -- ^ Time passed from beginning to network
+                            -- connection with peers established.
+    } deriving (Show, Generic)
+
+
+data CElectronCrashReport = CElectronCrashReport
+    { cecVersion     :: Text
+    , cecPlatform    :: Text
+    , cecProcessType :: Text
+    , cecGuid        :: Text
+    , cecVersionJson :: Text
+    , cecProductName :: Text
+    , cecProd        :: Text
+    , cecCompanyName :: Text
+    , cecUploadDump  :: FileData
+    } deriving (Show, Generic)
+
+----------------------------------------------------------------------------
+-- Misc
+----------------------------------------------------------------------------
+
+newtype ScrollOffset = ScrollOffset Word
+    deriving (Eq, Ord, Show, Enum, Num, Real, Integral, Generic, Typeable,
+              Buildable)
+
+newtype ScrollLimit = ScrollLimit Word
+    deriving (Eq, Ord, Show, Enum, Num, Real, Integral, Generic, Typeable,
+              Buildable)
+
+newtype CFilePath = CFilePath Text
+    deriving (Eq, Ord, Generic, Typeable, Buildable)
+
+----------------------------------------------------------------------------
+-- Version and client info
+----------------------------------------------------------------------------
+
+-- | Version of wallet API. Currently we have only 0-th version. We
+-- will add new constructors when new versions appear.
+data ApiVersion =
+    ApiVersion0
+    deriving (Show, Generic)
+
+-- | Information about this client.
+data ClientInfo = ClientInfo
+    { ciApiVersion      :: !ApiVersion
+    -- ^ Version of wallet API.
+    , ciSoftwareVersion :: !SoftwareVersion
+    -- ^ Software version (from the blockchain's point of view).
+    , ciCabalVersion    :: !Version
+    -- ^ Version specified in cabal file.
+    , ciGitRevision     :: !Text
+    -- ^ Git revision from which this software was built.
+    } deriving (Show, Generic)
+</span></pre></body></html>

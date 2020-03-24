@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- | Types related to pending transactions.</span><span>
+</span><a name="line-2"></a><span>
+</span><a name="line-3"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Wallet</span><span class="hs-operator">.</span><span class="hs-identifier">Web</span><span class="hs-operator">.</span><span class="hs-identifier">Pending</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span><span>
+</span><a name="line-4"></a><span>    </span><span class="hs-special">(</span><span> </span><a href="Pos.Wallet.Web.Pending.Types.html#PendingTx"><span class="hs-identifier hs-type">PendingTx</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-5"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.Pending.Types.html#ptxTxId"><span class="hs-identifier hs-var">ptxTxId</span></a><span>
+</span><a name="line-6"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.Pending.Types.html#ptxTxAux"><span class="hs-identifier hs-var">ptxTxAux</span></a><span>
+</span><a name="line-7"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.Pending.Types.html#ptxCond"><span class="hs-identifier hs-var">ptxCond</span></a><span>
+</span><a name="line-8"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.Pending.Types.html#ptxCreationSlot"><span class="hs-identifier hs-var">ptxCreationSlot</span></a><span>
+</span><a name="line-9"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.Pending.Types.html#ptxWallet"><span class="hs-identifier hs-var">ptxWallet</span></a><span>
+</span><a name="line-10"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.Pending.Types.html#ptxPeerAck"><span class="hs-identifier hs-var">ptxPeerAck</span></a><span>
+</span><a name="line-11"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.Pending.Types.html#ptxSubmitTiming"><span class="hs-identifier hs-var">ptxSubmitTiming</span></a><span>
+</span><a name="line-12"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.Pending.Types.html#ptxNextSubmitSlot"><span class="hs-identifier hs-var">ptxNextSubmitSlot</span></a><span>
+</span><a name="line-13"></a><span>
+</span><a name="line-14"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.Pending.Types.html#PtxCondition"><span class="hs-identifier hs-type">PtxCondition</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-15"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.Pending.Types.html#_PtxApplying"><span class="hs-identifier hs-var">_PtxApplying</span></a><span>
+</span><a name="line-16"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.Pending.Types.html#_PtxInNewestBlocks"><span class="hs-identifier hs-var">_PtxInNewestBlocks</span></a><span>
+</span><a name="line-17"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.Pending.Types.html#_PtxPersisted"><span class="hs-identifier hs-var">_PtxPersisted</span></a><span>
+</span><a name="line-18"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.Pending.Types.html#_PtxWontApply"><span class="hs-identifier hs-var">_PtxWontApply</span></a><span>
+</span><a name="line-19"></a><span>
+</span><a name="line-20"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.Pending.Types.html#PtxSubmitTiming"><span class="hs-identifier hs-type">PtxSubmitTiming</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-21"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.Pending.Types.html#pstNextSlot"><span class="hs-identifier hs-var">pstNextSlot</span></a><span>
+</span><a name="line-22"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.Pending.Types.html#pstNextDelay"><span class="hs-identifier hs-var">pstNextDelay</span></a><span>
+</span><a name="line-23"></a><span>
+</span><a name="line-24"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.Pending.Types.html#PtxBlockInfo"><span class="hs-identifier hs-type">PtxBlockInfo</span></a><span>
+</span><a name="line-25"></a><span>    </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.Pending.Types.html#PtxPoolInfo"><span class="hs-identifier hs-type">PtxPoolInfo</span></a><span>
+</span><a name="line-26"></a><span>    </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-27"></a><span>
+</span><a name="line-28"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Universum</span><span>
+</span><a name="line-29"></a><span>
+</span><a name="line-30"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Lens</span><span>                     </span><span class="hs-special">(</span><span class="hs-identifier hs-var">makeLenses</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">makePrisms</span><span class="hs-special">)</span><span>
+</span><a name="line-31"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Text</span><span class="hs-operator">.</span><span class="hs-identifier">Buildable</span><span>
+</span><a name="line-32"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Formatting</span><span>                       </span><span class="hs-special">(</span><span class="hs-identifier hs-var">bprint</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">build</span><span class="hs-special">,</span><span> </span><span class="hs-special">(</span><span class="hs-operator hs-var">%</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-33"></a><span>
+</span><a name="line-34"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Client.Txp.History.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Client</span><span class="hs-operator">.</span><span class="hs-identifier">Txp</span><span class="hs-operator">.</span><span class="hs-identifier">History</span></a><span>           </span><span class="hs-special">(</span><a href="Pos.Client.Txp.History.html#TxHistoryEntry"><span class="hs-identifier hs-type">TxHistoryEntry</span></a><span class="hs-special">)</span><span>
+</span><a name="line-35"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Core</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span><span>                   </span><span class="hs-special">(</span><span class="hs-identifier hs-type">ChainDifficulty</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">FlatSlotId</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">SlotId</span><span class="hs-special">)</span><span>
+</span><a name="line-36"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Txp</span><span class="hs-operator">.</span><span class="hs-identifier">Core</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span><span>               </span><span class="hs-special">(</span><span class="hs-identifier hs-type">TxAux</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">TxId</span><span class="hs-special">)</span><span>
+</span><a name="line-37"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Wallet.Web.ClientTypes.Types.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Wallet</span><span class="hs-operator">.</span><span class="hs-identifier">Web</span><span class="hs-operator">.</span><span class="hs-identifier">ClientTypes</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span></a><span> </span><span class="hs-special">(</span><a href="Pos.Wallet.Web.ClientTypes.Types.html#CId"><span class="hs-identifier hs-type">CId</span></a><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.ClientTypes.Types.html#Wal"><span class="hs-identifier hs-type">Wal</span></a><span class="hs-special">)</span><span>
+</span><a name="line-38"></a><span>
+</span><a name="line-39"></a><span class="hs-comment">-- | Required information about block where given pending transaction is sited</span><span>
+</span><a name="line-40"></a><span class="hs-keyword">type</span><span> </span><a name="PtxBlockInfo"><a href="Pos.Wallet.Web.Pending.Types.html#PtxBlockInfo"><span class="hs-identifier">PtxBlockInfo</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-type">ChainDifficulty</span><span>
+</span><a name="line-41"></a><span>
+</span><a name="line-42"></a><span class="hs-comment">-- | Information which is stored in pending tx pool when correspondent</span><span>
+</span><a name="line-43"></a><span class="hs-comment">-- transaction is not in blockchain</span><span>
+</span><a name="line-44"></a><span class="hs-keyword">type</span><span> </span><a name="PtxPoolInfo"><a href="Pos.Wallet.Web.Pending.Types.html#PtxPoolInfo"><span class="hs-identifier">PtxPoolInfo</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Pos.Client.Txp.History.html#TxHistoryEntry"><span class="hs-identifier hs-type">TxHistoryEntry</span></a><span>
+</span><a name="line-45"></a><span>
+</span><a name="line-46"></a><span class="hs-comment">-- | Current state of pending transaction.</span><span>
+</span><a name="line-47"></a><span class="hs-comment">--</span><span>
+</span><a name="line-48"></a><span class="hs-comment">-- Once transaction is created, it should be assigned 'PtxApplying' condition</span><span>
+</span><a name="line-49"></a><span class="hs-comment">-- in order to be tracked by resubmitter.</span><span>
+</span><a name="line-50"></a><span class="hs-comment">--</span><span>
+</span><a name="line-51"></a><span class="hs-comment">-- When wallet tracker notices a block with given transaction, it switches</span><span>
+</span><a name="line-52"></a><span class="hs-comment">-- condition to 'PtxInNewestBlocks' providing needed information about that</span><span>
+</span><a name="line-53"></a><span class="hs-comment">-- block. Transactions in this state are periodically tried to be submitted</span><span>
+</span><a name="line-54"></a><span class="hs-comment">-- again by special wallet worker.</span><span>
+</span><a name="line-55"></a><span class="hs-comment">--</span><span>
+</span><a name="line-56"></a><span class="hs-comment">-- Resubmitter also checks whether transaction is deep enough in blockchain to</span><span>
+</span><a name="line-57"></a><span class="hs-comment">-- be moved to 'PtxPersisted' state.</span><span>
+</span><a name="line-58"></a><span class="hs-comment">-- Transactions which are marked as persistent can lose their status if block</span><span>
+</span><a name="line-59"></a><span class="hs-comment">-- which contains this transactions gets rollbacked. However, if at some moment</span><span>
+</span><a name="line-60"></a><span class="hs-comment">-- transaction becomes just &quot;not deep enough&quot; due to rollbacks, it doesn't cause</span><span>
+</span><a name="line-61"></a><span class="hs-comment">-- the transaction to become 'PtxInNewestBlocks' again, because such small</span><span>
+</span><a name="line-62"></a><span class="hs-comment">-- &quot;tides&quot; of chain difficulty likely occur and we do not want to confuse users</span><span>
+</span><a name="line-63"></a><span class="hs-comment">-- switching status back and forth.</span><span>
+</span><a name="line-64"></a><span class="hs-comment">--</span><span>
+</span><a name="line-65"></a><span class="hs-comment">-- If transaction is ever noticed to be impossible to apply to current utxo,</span><span>
+</span><a name="line-66"></a><span class="hs-comment">-- it is assigned 'PtxWontApply' state and is stopped being tracked further</span><span>
+</span><a name="line-67"></a><span class="hs-comment">-- (effect can be canceled by BListener on rollback though).</span><span>
+</span><a name="line-68"></a><span class="hs-comment">-- This behaviour is to be improved in CSM-390.</span><span>
+</span><a name="line-69"></a><span class="hs-keyword">data</span><span> </span><a name="PtxCondition"><a href="Pos.Wallet.Web.Pending.Types.html#PtxCondition"><span class="hs-identifier">PtxCondition</span></a></a><span>
+</span><a name="line-70"></a><span>    </span><span class="hs-glyph">=</span><span> </span><a name="PtxApplying"><a href="Pos.Wallet.Web.Pending.Types.html#PtxApplying"><span class="hs-identifier">PtxApplying</span></a></a><span> </span><a href="Pos.Wallet.Web.Pending.Types.html#PtxPoolInfo"><span class="hs-identifier hs-type">PtxPoolInfo</span></a><span>         </span><span class="hs-comment">-- ^ Is waiting to be applyed</span><span>
+</span><a name="line-71"></a><span>    </span><span class="hs-glyph">|</span><span> </span><a name="PtxInNewestBlocks"><a href="Pos.Wallet.Web.Pending.Types.html#PtxInNewestBlocks"><span class="hs-identifier">PtxInNewestBlocks</span></a></a><span> </span><a href="Pos.Wallet.Web.Pending.Types.html#PtxBlockInfo"><span class="hs-identifier hs-type">PtxBlockInfo</span></a><span>  </span><span class="hs-comment">-- ^ Recently appeared in block.</span><span>
+</span><a name="line-72"></a><span>    </span><span class="hs-glyph">|</span><span> </span><a name="PtxPersisted"><a href="Pos.Wallet.Web.Pending.Types.html#PtxPersisted"><span class="hs-identifier">PtxPersisted</span></a></a><span>                    </span><span class="hs-comment">-- ^ Transaction is ~guaranteed to remain</span><span>
+</span><a name="line-73"></a><span>                                      </span><span class="hs-comment">--   in blockchain</span><span>
+</span><a name="line-74"></a><span>                                      </span><span class="hs-comment">--   (with up to *high* assurance level)</span><span>
+</span><a name="line-75"></a><span>    </span><span class="hs-glyph">|</span><span> </span><a name="PtxWontApply"><a href="Pos.Wallet.Web.Pending.Types.html#PtxWontApply"><span class="hs-identifier">PtxWontApply</span></a></a><span> </span><span class="hs-identifier hs-type">Text</span><span> </span><a href="Pos.Wallet.Web.Pending.Types.html#PtxPoolInfo"><span class="hs-identifier hs-type">PtxPoolInfo</span></a><span>   </span><span class="hs-comment">-- ^ Can't be applyed and requires user's</span><span>
+</span><a name="line-76"></a><span>                                      </span><span class="hs-comment">--   input to reform tx</span><span>
+</span><a name="line-77"></a><span>    </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Eq</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Show</span><span class="hs-special">)</span><span>
+</span><a name="line-78"></a><span>
+</span><a name="line-79"></a><span class="hs-identifier hs-var">makePrisms</span><span> </span><span class="hs-char">''PtxCondition
+
+instance Buildable PtxCondition where
+    build = \case
+        PtxApplying{} -&gt;
+            &quot;applying&quot;
+        PtxInNewestBlocks cd -&gt;
+            bprint (&quot;in newest blocks (since &quot;%build%&quot; difficulty)&quot;) cd
+        PtxPersisted -&gt;
+            &quot;persisted&quot;
+        PtxWontApply reason _ -&gt;
+            bprint (&quot;wont apply (&quot;%build%&quot;)&quot;) reason
+
+data PtxSubmitTiming = PtxSubmitTiming
+    { _pstNextSlot  :: SlotId
+    , _pstNextDelay :: FlatSlotId
+    } deriving (Eq, Show)
+
+makeLenses ''PtxSubmitTiming
+
+-- | All info kept about pending transaction
+data PendingTx = PendingTx
+    { _ptxTxId         :: !TxId  -- for the sake of optimization
+    , _ptxTxAux        :: !TxAux
+    , _ptxCreationSlot :: !SlotId  -- when tx was formed, for scheduling purposes.
+                                   -- this in NOT when tx appeared in blockchain
+    , _ptxCond         :: !PtxCondition
+    , _ptxWallet       :: !(CId Wal)
+    , _ptxPeerAck      :: !Bool
+    , _ptxSubmitTiming :: !PtxSubmitTiming
+    } deriving (Eq, Show)
+
+makeLenses ''PendingTx
+
+ptxNextSubmitSlot :: Lens' PendingTx SlotId
+ptxNextSubmitSlot = ptxSubmitTiming . pstNextSlot
+</span></pre></body></html>

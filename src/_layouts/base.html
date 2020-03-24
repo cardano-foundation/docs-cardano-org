@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  {%- block site_meta %}
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% if page and page.is_homepage %}<meta name="description" content="{{ config.site_description }}">{% endif %}
+  {% if config.site_author %}<meta name="author" content="{{ config.site_author }}">{% endif %}
+  {% if config.site_favicon %}<link rel="shortcut icon" href="{{ base_url }}/{{ config.site_favicon }}">
+  {% else %}<link rel="shortcut icon" href="{{ base_url }}/img/favicon.ico">{% endif %}
+  {%- endblock %}
+
+  {%- block htmltitle %}
+  <title>{% if page and page.title and not page.is_hompage %}{{ page.title }} - {% endif %}{{ config.site_name }}</title>
+  {%- endblock %}
+
+  {%- block styles %}
+
+  <link href="{{ base_url }}/css/app.css" rel="stylesheet" media="screen">
+  <link href="{{ base_url }}/css/app-theme.1.css" rel="stylesheet" media="screen">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css" media="all" />
+
+
+
+  {%- for path in extra_css %}
+  <link href="{{ path }}" rel="stylesheet">
+  {%- endfor %}
+  {%- endblock %}
+
+  {%- block libs %}
+  {% if page %}
+  <script>
+    var mkdocs_page_name = {{ page.title|tojson|safe }};
+    var mkdocs_page_input_path = {{ page.input_path|tojson|safe }};
+    var mkdocs_page_url = {{ page.abs_url|tojson|safe }};
+  </script>
+  {% endif %}
+  <script src="{{ base_url }}/js/jquery-2.1.1.min.js"></script>
+  <script src="{{ base_url }}/js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="{{ base_url }}/js/highlight.pack.js"></script>
+  {%- endblock %}
+
+  {%- block extrahead %} {% endblock %}
+
+</head>
+
+<body>
+
+
+  <nav class="navbar navbar-default  navbar-inverse">
+    <div class="container">
+
+      <div class="navbar-header cardano logo">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#cardano-nav" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/"><img src="http://static.iohk.io/cardano/images/cardano-white-120.png" alt="" width="40" height="36" /> <span>Cardano SL</span></a>
+      </div>
+
+      <div class="collapse navbar-collapse">
+        {% include "searchbox.html" %}
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+<div class="navbar-grad"></div>
+
+
+  <div class="container">
+      <!-- left, vertical navbar & content -->
+      <div class="row">
+          <!-- left, vertical navbar -->
+          <div class="col-md-3 col-sm-4 col-left">
+
+              {%- block site_nav %}
+            	<ul class="nav navbar-collapse collapse navbar-side" id="cardano-nav">
+                {% for nav_item in nav %}
+                  <li>{% include "toc.html" %}<li>
+                {% endfor %}
+              </ul>
+            	{%- endblock %}
+
+          </div>
+
+          <!-- content -->
+          <div class="col-md-9 col-sm-8">
+
+              {% include "breadcrumbs.html" %}
+              <div class="main" role="main">
+                  {% block content %}
+                    {{ page.content }}
+                  {% endblock %}
+              </div>
+          </div>
+          <!-- end content -->
+      </div>
+
+  </div>
+
+
+{% include "footer.html" %}
+
+
+
+  <script type="text/javascript" src="{{ base_url }}/js/bootstrap.min.js"></script>
+<script>
+
+$(".navbar-side li").each(function(){
+  var txt = $(this).text().trim();
+  if(txt.length == 0){
+    $(this).remove();
+  }
+});
+
+</script>
+
+
+
+  </body>
+</html>
+{% if page and page.is_homepage %}
+<!--
+MkDocs version : {{ mkdocs_version }}
+Build Date UTC : {{ build_date_utc }}
+-->
+{% endif %}

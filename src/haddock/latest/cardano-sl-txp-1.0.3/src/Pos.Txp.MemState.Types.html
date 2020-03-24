@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE TemplateHaskell #-}</span><span>
+</span><a name="line-2"></a><span>
+</span><a name="line-3"></a><span class="hs-comment">-- | Type stored in the Txp holder.</span><span>
+</span><a name="line-4"></a><span>
+</span><a name="line-5"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Txp</span><span class="hs-operator">.</span><span class="hs-identifier">MemState</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span><span>
+</span><a name="line-6"></a><span>       </span><span class="hs-special">(</span><span> </span><a href="Pos.Txp.MemState.Types.html#GenericTxpLocalData"><span class="hs-identifier hs-type">GenericTxpLocalData</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-7"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.MemState.Types.html#GenericTxpLocalDataPure"><span class="hs-identifier hs-type">GenericTxpLocalDataPure</span></a><span>
+</span><a name="line-8"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.MemState.Types.html#TxpLocalData"><span class="hs-identifier hs-type">TxpLocalData</span></a><span>
+</span><a name="line-9"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.MemState.Types.html#TxpLocalDataPure"><span class="hs-identifier hs-type">TxpLocalDataPure</span></a><span>
+</span><a name="line-10"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.MemState.Types.html#TransactionProvenance"><span class="hs-identifier hs-type">TransactionProvenance</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-11"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.MemState.Types.html#MemPoolModifyReason"><span class="hs-identifier hs-type">MemPoolModifyReason</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-12"></a><span>       </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-13"></a><span>
+</span><a name="line-14"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Universum</span><span>
+</span><a name="line-15"></a><span>
+</span><a name="line-16"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Aeson</span><span class="hs-operator">.</span><span class="hs-identifier">TH</span><span>                    </span><span class="hs-special">(</span><span class="hs-identifier hs-var">defaultOptions</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">deriveJSON</span><span class="hs-special">)</span><span>
+</span><a name="line-17"></a><span>
+</span><a name="line-18"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Communication</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span><span class="hs-operator">.</span><span class="hs-identifier">Protocol</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">PeerId</span><span class="hs-special">)</span><span>
+</span><a name="line-19"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Core</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span><span>                   </span><span class="hs-special">(</span><span class="hs-identifier hs-type">HeaderHash</span><span class="hs-special">)</span><span>
+</span><a name="line-20"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Txp.Toil.Types.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Txp</span><span class="hs-operator">.</span><span class="hs-identifier">Toil</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span></a><span>               </span><span class="hs-special">(</span><a href="Pos.Txp.Toil.Types.html#MemPool"><span class="hs-identifier hs-type">MemPool</span></a><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Toil.Types.html#UndoMap"><span class="hs-identifier hs-type">UndoMap</span></a><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Toil.Types.html#UtxoModifier"><span class="hs-identifier hs-type">UtxoModifier</span></a><span class="hs-special">)</span><span>
+</span><a name="line-21"></a><span>
+</span><a name="line-22"></a><span class="hs-comment">-- | LocalData of transactions processing.</span><span>
+</span><a name="line-23"></a><span class="hs-comment">-- There are two invariants which must hold for local data</span><span>
+</span><a name="line-24"></a><span class="hs-comment">-- (where um is UtxoModifier, memPool is MemPool and tip is HeaderHash):</span><span>
+</span><a name="line-25"></a><span class="hs-comment">-- 1. Suppose 'blks' is sequence of blocks from the very beginning up</span><span>
+</span><a name="line-26"></a><span class="hs-comment">-- to 'tip'. If one applies 'blks' to genesis Utxo, resulting Utxo</span><span>
+</span><a name="line-27"></a><span class="hs-comment">-- (let's call it 'utxo1') will be such that all transactions from</span><span>
+</span><a name="line-28"></a><span class="hs-comment">-- 'memPool' are valid with respect to it.</span><span>
+</span><a name="line-29"></a><span class="hs-comment">-- 2. If one applies all transactions from 'memPool' to 'utxo1',</span><span>
+</span><a name="line-30"></a><span class="hs-comment">-- resulting Utxo will be equivalent to 'um' with respect to</span><span>
+</span><a name="line-31"></a><span class="hs-comment">-- MonadUtxo.</span><span>
+</span><a name="line-32"></a><span>
+</span><a name="line-33"></a><span class="hs-comment">-- | Memory state of Txp. Generic version.</span><span>
+</span><a name="line-34"></a><span class="hs-keyword">data</span><span> </span><a name="GenericTxpLocalData"><a href="Pos.Txp.MemState.Types.html#GenericTxpLocalData"><span class="hs-identifier">GenericTxpLocalData</span></a></a><span> </span><a name="local-6989586621679463814"><a href="#local-6989586621679463814"><span class="hs-identifier">extra</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a name="TxpLocalData"><a href="Pos.Txp.MemState.Types.html#TxpLocalData"><span class="hs-identifier">TxpLocalData</span></a></a><span>
+</span><a name="line-35"></a><span>    </span><span class="hs-special">{</span><span> </span><a name="txpUtxoModifier"><a href="Pos.Txp.MemState.Types.html#txpUtxoModifier"><span class="hs-identifier">txpUtxoModifier</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-glyph">!</span><span class="hs-special">(</span><span class="hs-identifier hs-type">TVar</span><span> </span><a href="Pos.Txp.Toil.Types.html#UtxoModifier"><span class="hs-identifier hs-type">UtxoModifier</span></a><span class="hs-special">)</span><span>
+</span><a name="line-36"></a><span>    </span><span class="hs-special">,</span><span> </span><a name="txpMemPool"><a href="Pos.Txp.MemState.Types.html#txpMemPool"><span class="hs-identifier">txpMemPool</span></a></a><span>      </span><span class="hs-glyph">::</span><span> </span><span class="hs-glyph">!</span><span class="hs-special">(</span><span class="hs-identifier hs-type">TVar</span><span> </span><a href="Pos.Txp.Toil.Types.html#MemPool"><span class="hs-identifier hs-type">MemPool</span></a><span class="hs-special">)</span><span>
+</span><a name="line-37"></a><span>    </span><span class="hs-special">,</span><span> </span><a name="txpUndos"><a href="Pos.Txp.MemState.Types.html#txpUndos"><span class="hs-identifier">txpUndos</span></a></a><span>        </span><span class="hs-glyph">::</span><span> </span><span class="hs-glyph">!</span><span class="hs-special">(</span><span class="hs-identifier hs-type">TVar</span><span> </span><a href="Pos.Txp.Toil.Types.html#UndoMap"><span class="hs-identifier hs-type">UndoMap</span></a><span class="hs-special">)</span><span>
+</span><a name="line-38"></a><span>    </span><span class="hs-special">,</span><span> </span><a name="txpTip"><a href="Pos.Txp.MemState.Types.html#txpTip"><span class="hs-identifier">txpTip</span></a></a><span>          </span><span class="hs-glyph">::</span><span> </span><span class="hs-glyph">!</span><span class="hs-special">(</span><span class="hs-identifier hs-type">TVar</span><span> </span><span class="hs-identifier hs-type">HeaderHash</span><span class="hs-special">)</span><span>
+</span><a name="line-39"></a><span>    </span><span class="hs-special">,</span><span> </span><a name="txpExtra"><a href="Pos.Txp.MemState.Types.html#txpExtra"><span class="hs-identifier">txpExtra</span></a></a><span>        </span><span class="hs-glyph">::</span><span> </span><span class="hs-glyph">!</span><span class="hs-special">(</span><span class="hs-identifier hs-type">TVar</span><span> </span><a href="#local-6989586621679463814"><span class="hs-identifier hs-type">extra</span></a><span class="hs-special">)</span><span>
+</span><a name="line-40"></a><span>    </span><span class="hs-special">}</span><span>
+</span><a name="line-41"></a><span>
+</span><a name="line-42"></a><span class="hs-comment">-- | Pure version of GenericTxpLocalData.</span><span>
+</span><a name="line-43"></a><span class="hs-keyword">type</span><span> </span><a name="GenericTxpLocalDataPure"><a href="Pos.Txp.MemState.Types.html#GenericTxpLocalDataPure"><span class="hs-identifier">GenericTxpLocalDataPure</span></a></a><span> </span><a name="local-6989586621679463813"><a href="#local-6989586621679463813"><span class="hs-identifier">extra</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><a href="Pos.Txp.Toil.Types.html#UtxoModifier"><span class="hs-identifier hs-type">UtxoModifier</span></a><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Toil.Types.html#MemPool"><span class="hs-identifier hs-type">MemPool</span></a><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Toil.Types.html#UndoMap"><span class="hs-identifier hs-type">UndoMap</span></a><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">HeaderHash</span><span class="hs-special">,</span><span> </span><a href="#local-6989586621679463813"><span class="hs-identifier hs-type">extra</span></a><span class="hs-special">)</span><span>
+</span><a name="line-44"></a><span>
+</span><a name="line-45"></a><span class="hs-comment">-- | Memory state of Txp. This version is used by actual Txp implementation.</span><span>
+</span><a name="line-46"></a><span class="hs-keyword">type</span><span> </span><a name="TxpLocalData"><a href="Pos.Txp.MemState.Types.html#TxpLocalData"><span class="hs-identifier">TxpLocalData</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Pos.Txp.MemState.Types.html#GenericTxpLocalData"><span class="hs-identifier hs-type">GenericTxpLocalData</span></a><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><a name="line-47"></a><span>
+</span><a name="line-48"></a><span class="hs-comment">-- | Pure version of TxpLocalData.</span><span>
+</span><a name="line-49"></a><span class="hs-keyword">type</span><span> </span><a name="TxpLocalDataPure"><a href="Pos.Txp.MemState.Types.html#TxpLocalDataPure"><span class="hs-identifier">TxpLocalDataPure</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Pos.Txp.MemState.Types.html#GenericTxpLocalDataPure"><span class="hs-identifier hs-type">GenericTxpLocalDataPure</span></a><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><a name="line-50"></a><span>
+</span><a name="line-51"></a><span class="hs-comment">-- TODO COMMENT</span><span>
+</span><a name="line-52"></a><span class="hs-keyword">data</span><span> </span><a name="TransactionProvenance"><a href="Pos.Txp.MemState.Types.html#TransactionProvenance"><span class="hs-identifier">TransactionProvenance</span></a></a><span>
+</span><a name="line-53"></a><span>    </span><span class="hs-glyph">=</span><span> </span><a name="FromPeer"><a href="Pos.Txp.MemState.Types.html#FromPeer"><span class="hs-identifier">FromPeer</span></a></a><span> </span><span class="hs-identifier hs-type">PeerId</span><span>
+</span><a name="line-54"></a><span>    </span><span class="hs-glyph">|</span><span> </span><a name="History"><a href="Pos.Txp.MemState.Types.html#History"><span class="hs-identifier">History</span></a></a><span>
+</span><a name="line-55"></a><span>    </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Show</span><span class="hs-special">)</span><span>
+</span><a name="line-56"></a><span>
+</span><a name="line-57"></a><span class="hs-operator">$</span><span class="hs-special">(</span><a href="#local-6989586621679464895"><span class="hs-identifier hs-var">deriveJSON</span></a><span> </span><a href="#local-6989586621679464895"><span class="hs-identifier hs-var">defaultOptions</span></a><span> </span><span class="hs-char">''TransactionProvenance)
+
+-- | Enumeration of all reasons for modifying the mempool.
+data MemPoolModifyReason =
+      -- | Apply a block created by someone else.
+      ApplyBlock
+      -- | Apply a block created by us.
+    | CreateBlock
+      -- | Include a transaction. It came from this peer.
+    | ProcessTransaction TransactionProvenance
+      -- TODO COMMENT
+    | Custom Text
+      -- TODO COMMENT
+    | Unknown
+    deriving Show
+
+$(deriveJSON defaultOptions ''MemPoolModifyReason)
+</span></pre></body></html>

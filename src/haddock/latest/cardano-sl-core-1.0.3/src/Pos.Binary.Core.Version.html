@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- | Binary serialization of Version types (software, block)</span><span>
+</span><a name="line-2"></a><span>
+</span><a name="line-3"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Binary</span><span class="hs-operator">.</span><span class="hs-identifier">Core</span><span class="hs-operator">.</span><span class="hs-identifier">Version</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-4"></a><span>
+</span><a name="line-5"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Universum</span><span>
+</span><a name="line-6"></a><span>
+</span><a name="line-7"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Binary.Class.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Binary</span><span class="hs-operator">.</span><span class="hs-identifier">Class</span></a><span> </span><span class="hs-special">(</span><a href="Pos.Binary.Class.Core.html#Bi"><span class="hs-identifier hs-type">Bi</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><a href="Pos.Binary.Class.TH.html#Cons"><span class="hs-identifier hs-type">Cons</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><a href="Pos.Binary.Class.TH.html#Field"><span class="hs-identifier hs-type">Field</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><a href="Pos.Binary.Class.TH.html#deriveSimpleBi"><span class="hs-identifier hs-var">deriveSimpleBi</span></a><span class="hs-special">)</span><span>
+</span><a name="line-8"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><a href="Pos.Core.Types.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Core</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span></a><span>   </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">V</span><span>
+</span><a name="line-9"></a><span>
+</span><a name="line-10"></a><span class="hs-keyword">instance</span><span> </span><a href="Pos.Binary.Class.Core.html#Bi"><span class="hs-identifier hs-type">Bi</span></a><span> </span><a href="Pos.Core.Types.html#ApplicationName"><span class="hs-identifier hs-type">V</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">ApplicationName</span></a><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-11"></a><span>  </span><a name="local-8214565720324304357"><a href="Pos.Binary.Class.Core.html#encode"><span class="hs-identifier">encode</span></a></a><span> </span><a name="local-6989586621680205852"><a href="#local-6989586621680205852"><span class="hs-identifier">appName</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Pos.Binary.Class.Core.html#encode"><span class="hs-identifier hs-var">encode</span></a><span> </span><span class="hs-special">(</span><span class="hs-identifier">V</span><span class="hs-operator">.</span><span class="hs-identifier">getApplicationName</span><span> </span><a href="#local-6989586621680205852"><span class="hs-identifier hs-var">appName</span></a><span class="hs-special">)</span><span>
+</span><a name="line-12"></a><span>  </span><a name="local-8214565720324304358"><a href="Pos.Binary.Class.Core.html#decode"><span class="hs-identifier">decode</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><a name="line-13"></a><span>    </span><a name="local-6989586621680205853"><a href="#local-6989586621680205853"><span class="hs-identifier">appName</span></a></a><span> </span><span class="hs-glyph">&lt;-</span><span> </span><a href="Pos.Binary.Class.Core.html#decode"><span class="hs-identifier hs-var">decode</span></a><span>
+</span><a name="line-14"></a><span>    </span><a href="Pos.Core.Types.html#mkApplicationName"><span class="hs-identifier hs-var">V</span><span class="hs-operator hs-var">.</span><span class="hs-identifier hs-var">mkApplicationName</span></a><span> </span><a href="#local-6989586621680205853"><span class="hs-identifier hs-var">appName</span></a><span>
+</span><a name="line-15"></a><span>
+</span><a name="line-16"></a><a href="#local-6989586621680205961"><span class="hs-identifier hs-var">deriveSimpleBi</span></a><span> </span><span class="hs-char">''V.SoftwareVersion [
+    Cons 'V.SoftwareVersion [
+        Field [| V.svAppName :: V.ApplicationName    |],
+        Field [| V.svNumber  :: V.NumSoftwareVersion |]
+    ]]
+
+deriveSimpleBi ''V.BlockVersion [
+    Cons 'V.BlockVersion [
+        Field [| V.bvMajor :: Word16 |],
+        Field [| V.bvMinor :: Word16 |],
+        Field [| V.bvAlt   :: Word8  |]
+    ]]
+</span></pre></body></html>

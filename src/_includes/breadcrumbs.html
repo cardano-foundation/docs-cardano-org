@@ -1,0 +1,26 @@
+
+<ol class="breadcrumb">
+  <li><a href="{{ nav.homepage.url }}">Docs</a></li>
+  {% if page %}
+    {% for doc in page.ancestors %}
+      {% if doc.link %}
+        <li><a href="{{ doc.link|e }}">{{ doc.title }}</a></li>
+      {% else %}
+        <li>{{ doc.title }}</li>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+  {% if page %}<li>{{ page.title }}</li>{% endif %}
+  <li class="">
+    {%- block repo %}
+    {% if page and page.edit_url %}
+      <a href="{{ page.edit_url }}"
+      {%- if config.repo_name|lower == 'github' %}
+        class="icon icon-github"
+      {%- elif config.repo_name|lower == 'bitbucket' %}
+        class="icon icon-bitbucket"
+      {% endif %}> Edit on {{ config.repo_name }}</a>
+    {% endif %}
+    {%- endblock %}
+  </li>
+</ol>

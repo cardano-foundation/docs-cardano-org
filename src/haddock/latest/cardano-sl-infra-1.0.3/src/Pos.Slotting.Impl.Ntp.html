@@ -1,0 +1,279 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE DataKinds    #-}</span><span>
+</span><a name="line-2"></a><span class="hs-pragma">{-# LANGUAGE TypeFamilies #-}</span><span>
+</span><a name="line-3"></a><span>
+</span><a name="line-4"></a><span class="hs-comment">-- | NTP-based implementation of slotting.</span><span>
+</span><a name="line-5"></a><span>
+</span><a name="line-6"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Slotting</span><span class="hs-operator">.</span><span class="hs-identifier">Impl</span><span class="hs-operator">.</span><span class="hs-identifier">Ntp</span><span>
+</span><a name="line-7"></a><span>       </span><span class="hs-special">(</span><span>
+</span><a name="line-8"></a><span>         </span><span class="hs-comment">-- * State</span><span>
+</span><a name="line-9"></a><span>         </span><a href="Pos.Slotting.Impl.Ntp.html#NtpSlottingState"><span class="hs-identifier hs-type">NtpSlottingState</span></a><span>
+</span><a name="line-10"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Slotting.Impl.Ntp.html#NtpSlottingVar"><span class="hs-identifier hs-type">NtpSlottingVar</span></a><span>
+</span><a name="line-11"></a><span>
+</span><a name="line-12"></a><span>         </span><span class="hs-comment">-- * Mode</span><span>
+</span><a name="line-13"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Slotting.Impl.Ntp.html#NtpMode"><span class="hs-identifier hs-type">NtpMode</span></a><span>
+</span><a name="line-14"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Slotting.Impl.Ntp.html#NtpWorkerMode"><span class="hs-identifier hs-type">NtpWorkerMode</span></a><span>
+</span><a name="line-15"></a><span>
+</span><a name="line-16"></a><span>         </span><span class="hs-comment">-- * MonadSlots, redirects, etc.</span><span>
+</span><a name="line-17"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Slotting.Impl.Ntp.html#mkNtpSlottingVar"><span class="hs-identifier hs-var">mkNtpSlottingVar</span></a><span>
+</span><a name="line-18"></a><span>
+</span><a name="line-19"></a><span>         </span><span class="hs-comment">-- * Methods</span><span>
+</span><a name="line-20"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Slotting.Impl.Ntp.html#ntpGetCurrentSlot"><span class="hs-identifier hs-var">ntpGetCurrentSlot</span></a><span>
+</span><a name="line-21"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Slotting.Impl.Ntp.html#ntpGetCurrentSlotBlocking"><span class="hs-identifier hs-var">ntpGetCurrentSlotBlocking</span></a><span>
+</span><a name="line-22"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Slotting.Impl.Ntp.html#ntpGetCurrentSlotInaccurate"><span class="hs-identifier hs-var">ntpGetCurrentSlotInaccurate</span></a><span>
+</span><a name="line-23"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Slotting.Impl.Ntp.html#ntpCurrentTime"><span class="hs-identifier hs-var">ntpCurrentTime</span></a><span>
+</span><a name="line-24"></a><span>
+</span><a name="line-25"></a><span>       </span><span class="hs-comment">-- * Workers</span><span>
+</span><a name="line-26"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Slotting.Impl.Ntp.html#ntpWorkers"><span class="hs-identifier hs-var">ntpWorkers</span></a><span>
+</span><a name="line-27"></a><span>       </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-28"></a><span>
+</span><a name="line-29"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Universum</span><span>
+</span><a name="line-30"></a><span>
+</span><a name="line-31"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Concurrent</span><span class="hs-operator">.</span><span class="hs-identifier">STM</span><span>      </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">STM</span><span>
+</span><a name="line-32"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Lens</span><span>                </span><span class="hs-special">(</span><span class="hs-identifier hs-var">makeLenses</span><span class="hs-special">)</span><span>
+</span><a name="line-33"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Monad</span><span class="hs-operator">.</span><span class="hs-identifier">Trans</span><span class="hs-operator">.</span><span class="hs-identifier">Control</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">MonadBaseControl</span><span class="hs-special">)</span><span>
+</span><a name="line-34"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">List</span><span>                   </span><span class="hs-special">(</span><span class="hs-special">(</span><span class="hs-operator hs-var">!!</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-35"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Time</span><span class="hs-operator">.</span><span class="hs-identifier">Units</span><span>             </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Microsecond</span><span class="hs-special">)</span><span>
+</span><a name="line-36"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Formatting</span><span>                  </span><span class="hs-special">(</span><span class="hs-identifier hs-var">int</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">sformat</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">shown</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">stext</span><span class="hs-special">,</span><span> </span><span class="hs-special">(</span><span class="hs-operator hs-var">%</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-37"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Mockable</span><span>                    </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Catch</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">CurrentTime</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Delay</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Fork</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Mockables</span><span class="hs-special">,</span><span>
+</span><a name="line-38"></a><span>                                              </span><span class="hs-identifier hs-type">Throw</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">currentTime</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">delay</span><span class="hs-special">)</span><span>
+</span><a name="line-39"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">NTP</span><span class="hs-operator">.</span><span class="hs-identifier">Client</span><span>                  </span><span class="hs-special">(</span><span class="hs-identifier hs-type">NtpClientSettings</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">ntpSingleShot</span><span class="hs-special">,</span><span>
+</span><a name="line-40"></a><span>                                              </span><span class="hs-identifier hs-var">startNtpClient</span><span class="hs-special">)</span><span>
+</span><a name="line-41"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">NTP</span><span class="hs-operator">.</span><span class="hs-identifier">Example</span><span>                 </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><a name="line-42"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Serokell</span><span class="hs-operator">.</span><span class="hs-identifier">Util</span><span>               </span><span class="hs-special">(</span><span class="hs-identifier hs-var">sec</span><span class="hs-special">)</span><span>
+</span><a name="line-43"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">System</span><span class="hs-operator">.</span><span class="hs-identifier">Wlog</span><span>                 </span><span class="hs-special">(</span><span class="hs-identifier hs-type">WithLogger</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">logDebug</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">logInfo</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">logWarning</span><span class="hs-special">)</span><span>
+</span><a name="line-44"></a><span>
+</span><a name="line-45"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Core</span><span class="hs-operator">.</span><span class="hs-identifier">Constants</span><span>          </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">C</span><span>
+</span><a name="line-46"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Core</span><span class="hs-operator">.</span><span class="hs-identifier">Configuration</span><span>      </span><span class="hs-special">(</span><span class="hs-identifier hs-type">HasConfiguration</span><span class="hs-special">)</span><span>
+</span><a name="line-47"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Core</span><span class="hs-operator">.</span><span class="hs-identifier">Slotting</span><span>           </span><span class="hs-special">(</span><span class="hs-identifier hs-var">unflattenSlotId</span><span class="hs-special">)</span><span>
+</span><a name="line-48"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Core</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span><span>              </span><span class="hs-special">(</span><span class="hs-identifier hs-type">EpochIndex</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">SlotId</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Timestamp</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-49"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Infra.Configuration.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Infra</span><span class="hs-operator">.</span><span class="hs-identifier">Configuration</span></a><span>     </span><span class="hs-special">(</span><a href="Pos.Infra.Configuration.html#HasInfraConfiguration"><span class="hs-identifier hs-type">HasInfraConfiguration</span></a><span class="hs-special">)</span><span>
+</span><a name="line-50"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><a href="Pos.Slotting.Configuration.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Slotting</span><span class="hs-operator">.</span><span class="hs-identifier">Configuration</span></a><span>  </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">C</span><span>
+</span><a name="line-51"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Slotting.Impl.Util.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Slotting</span><span class="hs-operator">.</span><span class="hs-identifier">Impl</span><span class="hs-operator">.</span><span class="hs-identifier">Util</span></a><span>      </span><span class="hs-special">(</span><a href="Pos.Slotting.Impl.Util.html#approxSlotUsingOutdated"><span class="hs-identifier hs-var">approxSlotUsingOutdated</span></a><span class="hs-special">,</span><span> </span><a href="Pos.Slotting.Impl.Util.html#slotFromTimestamp"><span class="hs-identifier hs-var">slotFromTimestamp</span></a><span class="hs-special">)</span><span>
+</span><a name="line-52"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Slotting.MemState.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Slotting</span><span class="hs-operator">.</span><span class="hs-identifier">MemState</span></a><span>       </span><span class="hs-special">(</span><a href="Pos.Slotting.MemState.html#MonadSlotsData"><span class="hs-identifier hs-type">MonadSlotsData</span></a><span class="hs-special">,</span><span> </span><a href="Pos.Slotting.MemState.html#getCurrentNextEpochIndexM"><span class="hs-identifier hs-var">getCurrentNextEpochIndexM</span></a><span class="hs-special">,</span><span>
+</span><a name="line-53"></a><span>                                              </span><a href="Pos.Slotting.MemState.html#getCurrentNextEpochSlottingDataM"><span class="hs-identifier hs-var">getCurrentNextEpochSlottingDataM</span></a><span class="hs-special">,</span><span>
+</span><a name="line-54"></a><span>                                              </span><a href="Pos.Slotting.MemState.html#waitCurrentEpochEqualsM"><span class="hs-identifier hs-var">waitCurrentEpochEqualsM</span></a><span class="hs-special">)</span><span>
+</span><a name="line-55"></a><span>
+</span><a name="line-56"></a><span class="hs-comment">----------------------------------------------------------------------------</span><span>
+</span><a name="line-57"></a><span class="hs-comment">-- TODO</span><span>
+</span><a name="line-58"></a><span class="hs-comment">----------------------------------------------------------------------------</span><span>
+</span><a name="line-59"></a><span>
+</span><a name="line-60"></a><span class="hs-comment">-- TODO: it's not exported from 'node-sketch' and it's too hard to do</span><span>
+</span><a name="line-61"></a><span class="hs-comment">-- it because of the mess in 'node-sketch' branches.</span><span>
+</span><a name="line-62"></a><span class="hs-comment">--</span><span>
+</span><a name="line-63"></a><span class="hs-comment">-- It should be exported and used here, I think.</span><span>
+</span><a name="line-64"></a><span class="hs-keyword">type</span><span> </span><a name="NtpMonad"><a href="Pos.Slotting.Impl.Ntp.html#NtpMonad"><span class="hs-identifier">NtpMonad</span></a></a><span> </span><a name="local-6989586621679527675"><a href="#local-6989586621679527675"><span class="hs-identifier">m</span></a></a><span> </span><span class="hs-glyph">=</span><span>
+</span><a name="line-65"></a><span>    </span><span class="hs-special">(</span><span> </span><span class="hs-identifier hs-type">MonadIO</span><span> </span><a href="#local-6989586621679527675"><span class="hs-identifier hs-type">m</span></a><span>
+</span><a name="line-66"></a><span>    </span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">MonadBaseControl</span><span> </span><span class="hs-identifier hs-type">IO</span><span> </span><a href="#local-6989586621679527675"><span class="hs-identifier hs-type">m</span></a><span>
+</span><a name="line-67"></a><span>    </span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">WithLogger</span><span> </span><a href="#local-6989586621679527675"><span class="hs-identifier hs-type">m</span></a><span>
+</span><a name="line-68"></a><span>    </span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Mockables</span><span> </span><a href="#local-6989586621679527675"><span class="hs-identifier hs-type">m</span></a><span>
+</span><a name="line-69"></a><span>        </span><span class="hs-special">[</span><span> </span><span class="hs-identifier hs-type">Fork</span><span>
+</span><a name="line-70"></a><span>        </span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Throw</span><span>
+</span><a name="line-71"></a><span>        </span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Catch</span><span>
+</span><a name="line-72"></a><span>        </span><span class="hs-special">]</span><span>
+</span><a name="line-73"></a><span>    </span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">MonadMask</span><span> </span><a href="#local-6989586621679527675"><span class="hs-identifier hs-type">m</span></a><span>
+</span><a name="line-74"></a><span>    </span><span class="hs-special">)</span><span>
+</span><a name="line-75"></a><span>
+</span><a name="line-76"></a><span class="hs-comment">----------------------------------------------------------------------------</span><span>
+</span><a name="line-77"></a><span class="hs-comment">-- State</span><span>
+</span><a name="line-78"></a><span class="hs-comment">----------------------------------------------------------------------------</span><span>
+</span><a name="line-79"></a><span>
+</span><a name="line-80"></a><span class="hs-comment">-- | Data needed for the slotting algorithm to work.</span><span>
+</span><a name="line-81"></a><span class="hs-keyword">data</span><span> </span><a name="NtpSlottingState"><a href="Pos.Slotting.Impl.Ntp.html#NtpSlottingState"><span class="hs-identifier">NtpSlottingState</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a name="NtpSlottingState"><a href="Pos.Slotting.Impl.Ntp.html#NtpSlottingState"><span class="hs-identifier">NtpSlottingState</span></a></a><span>
+</span><a name="line-82"></a><span>    </span><span class="hs-special">{</span><span>
+</span><a name="line-83"></a><span>    </span><span class="hs-comment">-- | Slot which was returned from getCurrentSlot last time.</span><span>
+</span><a name="line-84"></a><span>      </span><a name="_nssLastSlot"><a href="Pos.Slotting.Impl.Ntp.html#_nssLastSlot"><span class="hs-identifier">_nssLastSlot</span></a></a><span>      </span><span class="hs-glyph">::</span><span> </span><span class="hs-glyph">!</span><span class="hs-identifier hs-type">SlotId</span><span>
+</span><a name="line-85"></a><span>    </span><span class="hs-comment">-- | Margin (difference between global time and local time) which</span><span>
+</span><a name="line-86"></a><span>    </span><span class="hs-comment">-- we got from NTP server last time.</span><span>
+</span><a name="line-87"></a><span>    </span><span class="hs-special">,</span><span> </span><a name="_nssLastMargin"><a href="Pos.Slotting.Impl.Ntp.html#_nssLastMargin"><span class="hs-identifier">_nssLastMargin</span></a></a><span>    </span><span class="hs-glyph">::</span><span> </span><span class="hs-glyph">!</span><span class="hs-identifier hs-type">Microsecond</span><span>
+</span><a name="line-88"></a><span>    </span><span class="hs-comment">-- | Time (local) for which we got margin in last time.</span><span>
+</span><a name="line-89"></a><span>    </span><span class="hs-special">,</span><span> </span><a name="_nssLastLocalTime"><a href="Pos.Slotting.Impl.Ntp.html#_nssLastLocalTime"><span class="hs-identifier">_nssLastLocalTime</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-glyph">!</span><span class="hs-identifier hs-type">Timestamp</span><span>
+</span><a name="line-90"></a><span>    </span><span class="hs-special">}</span><span>
+</span><a name="line-91"></a><span>
+</span><a name="line-92"></a><span class="hs-keyword">type</span><span> </span><a name="NtpSlottingVar"><a href="Pos.Slotting.Impl.Ntp.html#NtpSlottingVar"><span class="hs-identifier">NtpSlottingVar</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-type">TVar</span><span> </span><a href="Pos.Slotting.Impl.Ntp.html#NtpSlottingState"><span class="hs-identifier hs-type">NtpSlottingState</span></a><span>
+</span><a name="line-93"></a><span>
+</span><a name="line-94"></a><span class="hs-identifier hs-var">makeLenses</span><span> </span><span class="hs-char">''NtpSlottingState
+
+mkNtpSlottingVar
+    :: ( NtpMonad m
+       , Mockables m
+           [ CurrentTime
+           , Delay
+           ]
+       , HasConfiguration
+       , HasInfraConfiguration
+       )
+    =&gt; m NtpSlottingVar
+mkNtpSlottingVar = do
+    let _nssLastMargin = 0
+    _nssLastLocalTime &lt;- Timestamp &lt;$&gt; currentTime
+    -- current time isn't quite valid value, but it doesn't matter (@pva701)
+    let _nssLastSlot = unflattenSlotId 0
+    res &lt;- newTVarIO NtpSlottingState {..}
+    -- We don't want to wait too much at the very beginning,
+    -- 1 second should be enough.
+    let settings = (ntpSettings res) { ntpResponseTimeout = 1 &amp; sec }
+    res &lt;$ singleShot settings
+  where
+    singleShot settings = unless C.isDevelopment $ do
+        logInfo $ &quot;Waiting for response from NTP servers&quot;
+        ntpSingleShot settings
+
+----------------------------------------------------------------------------
+-- Mode
+----------------------------------------------------------------------------
+
+type NtpMode ctx m =
+    ( MonadIO m
+    , MonadThrow m
+    , WithLogger m
+    , MonadSlotsData ctx m
+    , Mockables m
+        [ CurrentTime
+        , Delay
+        ]
+    , HasConfiguration
+    , HasInfraConfiguration
+    )
+
+type NtpWorkerMode m = (HasInfraConfiguration, NtpMonad m)
+
+----------------------------------------------------------------------------
+-- MonadSlots implementation
+----------------------------------------------------------------------------
+
+ntpCurrentTime
+    :: (NtpMode ctx m)
+    =&gt; NtpSlottingVar -&gt; m Timestamp
+ntpCurrentTime var = do
+    lastMargin &lt;- view nssLastMargin &lt;$&gt; atomically (STM.readTVar var)
+    Timestamp . (+ lastMargin) &lt;$&gt; currentTime
+
+----------------------------------------------------------------------------
+-- Getting current slot
+----------------------------------------------------------------------------
+
+data SlotStatus
+    = CantTrust Text                    -- ^ We can't trust local time.
+    | OutdatedSlottingData !EpochIndex  -- ^ We don't know recent
+                                        -- slotting data, last known
+                                        -- current epoch is attached.
+    | CurrentSlot !SlotId               -- ^ Slot is calculated successfully.
+
+ntpGetCurrentSlot
+    :: (NtpMode ctx m)
+    =&gt; NtpSlottingVar
+    -&gt; m (Maybe SlotId)
+ntpGetCurrentSlot var = ntpGetCurrentSlotImpl var &gt;&gt;= \case
+    CurrentSlot slot -&gt; pure $ Just slot
+    OutdatedSlottingData currentEpochIndex -&gt; do
+        logWarning $ sformat
+            (&quot;Can't get current slot, because slotting data&quot;%
+             &quot; is outdated. Last known current epoch = &quot;%int)
+            currentEpochIndex
+        Nothing &lt;$ printSlottingData
+    CantTrust t -&gt; do
+        logWarning $
+            &quot;Can't get current slot, because we can't trust local time, details: &quot; &lt;&gt; t
+        Nothing &lt;$ printSlottingData
+  where
+    -- Here we could print all the slotting data
+    printSlottingData = do
+        (sd, _)  &lt;- getCurrentNextEpochSlottingDataM
+        logWarning $ &quot;Slotting data: &quot; &lt;&gt; show sd
+
+ntpGetCurrentSlotInaccurate
+    :: (NtpMode ctx m)
+    =&gt; NtpSlottingVar -&gt; m SlotId
+ntpGetCurrentSlotInaccurate var = do
+    res &lt;- ntpGetCurrentSlotImpl var
+    case res of
+        CurrentSlot slot       -&gt; pure slot
+        CantTrust _            -&gt; _nssLastSlot &lt;$&gt; atomically (STM.readTVar var)
+        OutdatedSlottingData _ -&gt; ntpCurrentTime var &gt;&gt;= approxSlotUsingOutdated
+
+ntpGetCurrentSlotImpl
+    :: (NtpMode ctx m)
+    =&gt; NtpSlottingVar
+    -&gt; m SlotStatus
+ntpGetCurrentSlotImpl var = do
+    NtpSlottingState {..} &lt;- atomically $ STM.readTVar var
+    t &lt;- Timestamp . (+ _nssLastMargin) &lt;$&gt; currentTime
+    case canWeTrustLocalTime _nssLastLocalTime t of
+      Nothing -&gt; do
+          (currentEpochIndex, _) &lt;- getCurrentNextEpochIndexM
+          res &lt;- max _nssLastSlot &lt;&lt;$&gt;&gt; slotFromTimestamp t
+          let setLastSlot s = atomically $ STM.modifyTVar' var (nssLastSlot %~ max s)
+          whenJust res setLastSlot
+          pure $ maybe (OutdatedSlottingData currentEpochIndex) CurrentSlot res
+      Just reason -&gt; pure $ CantTrust reason
+  where
+    -- We can trust getCurrentTime if it is:
+    -- &#8226; not bigger than 'time for which we got margin (last time)
+    --   + NTP delay (+ some eps, for safety)'
+    -- &#8226; not less than 'last time - some eps'
+    canWeTrustLocalTime :: Timestamp -&gt; Timestamp -&gt; Maybe Text
+    canWeTrustLocalTime t1@(Timestamp lastLocalTime) t2@(Timestamp t) = do
+        let ret = sformat (&quot;T1: &quot;%shown%&quot;, T2: &quot;%shown%&quot;, reason: &quot;%stext) t1 t2
+        if | t &gt; lastLocalTime + C.ntpPollDelay + C.ntpMaxError -&gt;
+             Just $ ret $ &quot;curtime is bigger then last local: &quot; &lt;&gt;
+                    show C.ntpPollDelay &lt;&gt; &quot;, &quot; &lt;&gt; show C.ntpMaxError
+           | t &lt; lastLocalTime - C.ntpMaxError -&gt;
+             Just $ ret $ &quot;curtime is less then last - error: &quot; &lt;&gt; show C.ntpMaxError
+           | otherwise -&gt; Nothing
+
+ntpGetCurrentSlotBlocking
+    :: (NtpMode ctx m)
+    =&gt; NtpSlottingVar -&gt; m SlotId
+ntpGetCurrentSlotBlocking var = ntpGetCurrentSlotImpl var &gt;&gt;= \case
+    CantTrust _ -&gt; do
+        delay C.ntpPollDelay
+        ntpGetCurrentSlotBlocking var
+    OutdatedSlottingData current -&gt; do
+        waitCurrentEpochEqualsM (current + 1)
+        ntpGetCurrentSlotBlocking var
+    CurrentSlot slot -&gt; pure slot
+
+----------------------------------------------------------------------------
+-- Workers
+----------------------------------------------------------------------------
+
+-- | Workers necessary for NTP slotting.
+ntpWorkers :: NtpWorkerMode m =&gt; NtpSlottingVar -&gt; [m ()]
+ntpWorkers = one . ntpSyncWorker
+
+-- Worker for synchronization of local time and global time.
+ntpSyncWorker
+    :: NtpWorkerMode m
+    =&gt; NtpSlottingVar -&gt; m ()
+ntpSyncWorker = void . startNtpClient . ntpSettings
+
+ntpHandlerDo
+    :: (MonadIO m, WithLogger m)
+    =&gt; NtpSlottingVar -&gt; (Microsecond, Microsecond) -&gt; m ()
+ntpHandlerDo var (newMargin, transmitTime) = do
+    logDebug $ sformat (&quot;Callback on new margin: &quot;%int% &quot; mcs&quot;) newMargin
+    let realTime = Timestamp $ transmitTime + newMargin
+    atomically $ STM.modifyTVar var ( set nssLastMargin newMargin
+                                    . set nssLastLocalTime realTime)
+
+ntpSettings
+    :: (HasInfraConfiguration, MonadIO m, WithLogger m)
+    =&gt; NtpSlottingVar -&gt; NtpClientSettings m
+ntpSettings var = NtpClientSettings
+    { -- list of servers addresses
+      ntpServers         = [ &quot;time.windows.com&quot;
+                           , &quot;clock.isc.org&quot;
+                           , &quot;ntp5.stratum2.ru&quot;]
+    -- got time margin callback
+    , ntpHandler         = ntpHandlerDo var
+    -- logger name modifier
+    , ntpLogName         = &quot;ntp&quot;
+    -- delay between making requests and response collection;
+    -- it also means that handler will be invoked with this lag
+    , ntpResponseTimeout = C.ntpResponseTimeout
+    -- how often to send responses to server
+    , ntpPollDelay       = C.ntpPollDelay
+    -- way to sumarize results received from different servers.
+    , ntpMeanSelection   = \l -&gt; let len = length l in sort l !! ((len - 1) `div` 2)
+    }
+</span></pre></body></html>

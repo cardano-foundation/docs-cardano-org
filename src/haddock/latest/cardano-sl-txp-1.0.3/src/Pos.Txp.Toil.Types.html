@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE TypeFamilies #-}</span><span>
+</span><a name="line-2"></a><span>
+</span><a name="line-3"></a><span class="hs-comment">-- | Types used for managing of transactions</span><span>
+</span><a name="line-4"></a><span class="hs-comment">-- and synchronization with database.</span><span>
+</span><a name="line-5"></a><span>
+</span><a name="line-6"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Txp</span><span class="hs-operator">.</span><span class="hs-identifier">Toil</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span><span>
+</span><a name="line-7"></a><span>       </span><span class="hs-special">(</span><span> </span><a href="Pos.Txp.Toil.Types.html#Utxo"><span class="hs-identifier hs-type">Utxo</span></a><span>
+</span><a name="line-8"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Toil.Types.html#utxoToStakes"><span class="hs-identifier hs-var">utxoToStakes</span></a><span>
+</span><a name="line-9"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Toil.Types.html#formatUtxo"><span class="hs-identifier hs-var">formatUtxo</span></a><span>
+</span><a name="line-10"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Toil.Types.html#utxoF"><span class="hs-identifier hs-var">utxoF</span></a><span>
+</span><a name="line-11"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Toil.Types.html#GenesisUtxo"><span class="hs-identifier hs-type">GenesisUtxo</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-12"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Toil.Types.html#_GenesisUtxo"><span class="hs-identifier hs-var">_GenesisUtxo</span></a><span>
+</span><a name="line-13"></a><span>
+</span><a name="line-14"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Toil.Types.html#TxFee"><span class="hs-identifier hs-type">TxFee</span></a><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-15"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Toil.Types.html#MemPool"><span class="hs-identifier hs-type">MemPool</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-16"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Toil.Types.html#mpLocalTxs"><span class="hs-identifier hs-var">mpLocalTxs</span></a><span>
+</span><a name="line-17"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Toil.Types.html#mpSize"><span class="hs-identifier hs-var">mpSize</span></a><span>
+</span><a name="line-18"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Toil.Types.html#TxMap"><span class="hs-identifier hs-type">TxMap</span></a><span>
+</span><a name="line-19"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Toil.Types.html#StakesView"><span class="hs-identifier hs-type">StakesView</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-20"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Toil.Types.html#svStakes"><span class="hs-identifier hs-var">svStakes</span></a><span>
+</span><a name="line-21"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Toil.Types.html#svTotal"><span class="hs-identifier hs-var">svTotal</span></a><span>
+</span><a name="line-22"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Toil.Types.html#UndoMap"><span class="hs-identifier hs-type">UndoMap</span></a><span>
+</span><a name="line-23"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Toil.Types.html#UtxoModifier"><span class="hs-identifier hs-type">UtxoModifier</span></a><span>
+</span><a name="line-24"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Toil.Types.html#AddrCoinMap"><span class="hs-identifier hs-type">AddrCoinMap</span></a><span>
+</span><a name="line-25"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Toil.Types.html#utxoToModifier"><span class="hs-identifier hs-var">utxoToModifier</span></a><span>
+</span><a name="line-26"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Toil.Types.html#applyUtxoModToAddrCoinMap"><span class="hs-identifier hs-var">applyUtxoModToAddrCoinMap</span></a><span>
+</span><a name="line-27"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Toil.Types.html#GenericToilModifier"><span class="hs-identifier hs-type">GenericToilModifier</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-28"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Toil.Types.html#ToilModifier"><span class="hs-identifier hs-type">ToilModifier</span></a><span>
+</span><a name="line-29"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Toil.Types.html#tmUtxo"><span class="hs-identifier hs-var">tmUtxo</span></a><span>
+</span><a name="line-30"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Toil.Types.html#tmStakes"><span class="hs-identifier hs-var">tmStakes</span></a><span>
+</span><a name="line-31"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Toil.Types.html#tmMemPool"><span class="hs-identifier hs-var">tmMemPool</span></a><span>
+</span><a name="line-32"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Toil.Types.html#tmUndos"><span class="hs-identifier hs-var">tmUndos</span></a><span>
+</span><a name="line-33"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Toil.Types.html#tmExtra"><span class="hs-identifier hs-var">tmExtra</span></a><span>
+</span><a name="line-34"></a><span>       </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-35"></a><span>
+</span><a name="line-36"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Universum</span><span>
+</span><a name="line-37"></a><span>
+</span><a name="line-38"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Lens</span><span>           </span><span class="hs-special">(</span><span class="hs-identifier hs-var">makeLenses</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">makePrisms</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">makeWrapped</span><span class="hs-special">)</span><span>
+</span><a name="line-39"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Default</span><span>           </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Default</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">def</span><span class="hs-special">)</span><span>
+</span><a name="line-40"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">HashMap</span><span class="hs-operator">.</span><span class="hs-identifier">Strict</span><span>    </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">HM</span><span>
+</span><a name="line-41"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Map</span><span>               </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">M</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-var">lookup</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">member</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">toList</span><span class="hs-special">)</span><span>
+</span><a name="line-42"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Text</span><span class="hs-operator">.</span><span class="hs-identifier">Lazy</span><span class="hs-operator">.</span><span class="hs-identifier">Builder</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Builder</span><span class="hs-special">)</span><span>
+</span><a name="line-43"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Formatting</span><span>             </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Format</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">later</span><span class="hs-special">)</span><span>
+</span><a name="line-44"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Serokell</span><span class="hs-operator">.</span><span class="hs-identifier">Util</span><span class="hs-operator">.</span><span class="hs-identifier">Text</span><span>     </span><span class="hs-special">(</span><span class="hs-identifier hs-var">mapBuilderJson</span><span class="hs-special">)</span><span>
+</span><a name="line-45"></a><span>
+</span><a name="line-46"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Core</span><span>               </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Address</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Coin</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">GenesisWStakeholders</span><span class="hs-special">,</span><span>
+</span><a name="line-47"></a><span>                                         </span><span class="hs-identifier hs-type">StakeholderId</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">StakesMap</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">unsafeAddCoin</span><span class="hs-special">,</span><span>
+</span><a name="line-48"></a><span>                                         </span><span class="hs-identifier hs-var">unsafeSubCoin</span><span class="hs-special">)</span><span>
+</span><a name="line-49"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Txp.Core.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Txp</span><span class="hs-operator">.</span><span class="hs-identifier">Core</span></a><span>           </span><span class="hs-special">(</span><a href="Pos.Txp.Core.Types.html#TxAux"><span class="hs-identifier hs-type">TxAux</span></a><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Core.Types.html#TxId"><span class="hs-identifier hs-type">TxId</span></a><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Core.Types.html#TxIn"><span class="hs-identifier hs-type">TxIn</span></a><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Core.Types.html#TxOutAux"><span class="hs-identifier hs-type">TxOutAux</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Core.Types.html#TxUndo"><span class="hs-identifier hs-type">TxUndo</span></a><span class="hs-special">,</span><span>
+</span><a name="line-50"></a><span>                                         </span><a href="Pos.Txp.Core.Core.html#txOutStake"><span class="hs-identifier hs-var">txOutStake</span></a><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Core.Types.html#_TxOut"><span class="hs-identifier hs-var">_TxOut</span></a><span class="hs-special">)</span><span>
+</span><a name="line-51"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Util</span><span class="hs-operator">.</span><span class="hs-identifier">Modifier</span><span>      </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">MM</span><span>
+</span><a name="line-52"></a><span>
+</span><a name="line-53"></a><span class="hs-comment">----------------------------------------------------------------------------</span><span>
+</span><a name="line-54"></a><span class="hs-comment">-- UTXO</span><span>
+</span><a name="line-55"></a><span class="hs-comment">----------------------------------------------------------------------------</span><span>
+</span><a name="line-56"></a><span>
+</span><a name="line-57"></a><span class="hs-comment">-- | Unspent transaction outputs.</span><span>
+</span><a name="line-58"></a><span class="hs-comment">--</span><span>
+</span><a name="line-59"></a><span class="hs-comment">-- Transaction inputs are identified by (transaction ID, index in list of</span><span>
+</span><a name="line-60"></a><span class="hs-comment">-- output) pairs.</span><span>
+</span><a name="line-61"></a><span class="hs-keyword">type</span><span> </span><a name="Utxo"><a href="Pos.Txp.Toil.Types.html#Utxo"><span class="hs-identifier">Utxo</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-type">Map</span><span> </span><a href="Pos.Txp.Core.Types.html#TxIn"><span class="hs-identifier hs-type">TxIn</span></a><span> </span><a href="Pos.Txp.Core.Types.html#TxOutAux"><span class="hs-identifier hs-type">TxOutAux</span></a><span>
+</span><a name="line-62"></a><span>
+</span><a name="line-63"></a><span class="hs-comment">-- | Convert 'Utxo' to 'StakesMap'.</span><span>
+</span><a name="line-64"></a><span class="hs-identifier">utxoToStakes</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">GenesisWStakeholders</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><a href="Pos.Txp.Toil.Types.html#Utxo"><span class="hs-identifier hs-type">Utxo</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">StakesMap</span><span>
+</span><a name="line-65"></a><a name="utxoToStakes"><a href="Pos.Txp.Toil.Types.html#utxoToStakes"><span class="hs-identifier">utxoToStakes</span></a></a><span> </span><a name="local-6989586621679398268"><a href="#local-6989586621679398268"><span class="hs-identifier">gws</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-var">foldl'</span><span> </span><a href="#local-6989586621679398270"><span class="hs-identifier hs-var">putDistr</span></a><span> </span><span class="hs-identifier hs-var">mempty</span><span> </span><span class="hs-operator hs-var">.</span><span> </span><span class="hs-identifier hs-var">M</span><span class="hs-operator hs-var">.</span><span class="hs-identifier hs-var">toList</span><span>
+</span><a name="line-66"></a><span>  </span><span class="hs-keyword">where</span><span>
+</span><a name="line-67"></a><span>    </span><a name="local-6989586621679398269"><a href="#local-6989586621679398269"><span class="hs-identifier">plusAt</span></a></a><span> </span><a name="local-6989586621679398271"><a href="#local-6989586621679398271"><span class="hs-identifier">hm</span></a></a><span> </span><span class="hs-special">(</span><a name="local-6989586621679398272"><a href="#local-6989586621679398272"><span class="hs-identifier">key</span></a></a><span class="hs-special">,</span><span> </span><a name="local-6989586621679398273"><a href="#local-6989586621679398273"><span class="hs-identifier">val</span></a></a><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-var">HM</span><span class="hs-operator hs-var">.</span><span class="hs-identifier hs-var">insertWith</span><span> </span><span class="hs-identifier hs-var">unsafeAddCoin</span><span> </span><a href="#local-6989586621679398272"><span class="hs-identifier hs-var">key</span></a><span> </span><a href="#local-6989586621679398273"><span class="hs-identifier hs-var">val</span></a><span> </span><a href="#local-6989586621679398271"><span class="hs-identifier hs-var">hm</span></a><span>
+</span><a name="line-68"></a><span>    </span><a name="local-6989586621679398270"><a href="#local-6989586621679398270"><span class="hs-identifier">putDistr</span></a></a><span> </span><a name="local-6989586621679398274"><a href="#local-6989586621679398274"><span class="hs-identifier">hm</span></a></a><span> </span><span class="hs-special">(</span><span class="hs-identifier">_</span><span class="hs-special">,</span><span> </span><a href="Pos.Txp.Core.Types.html#TxOutAux"><span class="hs-identifier hs-var">TxOutAux</span></a><span> </span><a name="local-6989586621679398275"><a href="#local-6989586621679398275"><span class="hs-identifier">txOut</span></a></a><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-var">foldl'</span><span> </span><a href="#local-6989586621679398269"><span class="hs-identifier hs-var">plusAt</span></a><span> </span><a href="#local-6989586621679398274"><span class="hs-identifier hs-var">hm</span></a><span> </span><span class="hs-special">(</span><a href="Pos.Txp.Core.Core.html#txOutStake"><span class="hs-identifier hs-var">txOutStake</span></a><span> </span><a href="#local-6989586621679398268"><span class="hs-identifier hs-var">gws</span></a><span> </span><a href="#local-6989586621679398275"><span class="hs-identifier hs-var">txOut</span></a><span class="hs-special">)</span><span>
+</span><a name="line-69"></a><span>
+</span><a name="line-70"></a><span class="hs-comment">-- | Format 'Utxo' map for showing</span><span>
+</span><a name="line-71"></a><span class="hs-identifier">formatUtxo</span><span> </span><span class="hs-glyph">::</span><span> </span><a href="Pos.Txp.Toil.Types.html#Utxo"><span class="hs-identifier hs-type">Utxo</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-type">Builder</span><span>
+</span><a name="line-72"></a><a name="formatUtxo"><a href="Pos.Txp.Toil.Types.html#formatUtxo"><span class="hs-identifier">formatUtxo</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-var">mapBuilderJson</span><span> </span><span class="hs-operator hs-var">.</span><span> </span><span class="hs-identifier hs-var">M</span><span class="hs-operator hs-var">.</span><span class="hs-identifier hs-var">toList</span><span>
+</span><a name="line-73"></a><span>
+</span><a name="line-74"></a><span class="hs-comment">-- | Specialized formatter for 'Utxo'.</span><span>
+</span><a name="line-75"></a><span class="hs-identifier">utxoF</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">Format</span><span> </span><a href="#local-6989586621679398267"><span class="hs-identifier hs-type">r</span></a><span> </span><span class="hs-special">(</span><a href="Pos.Txp.Toil.Types.html#Utxo"><span class="hs-identifier hs-type">Utxo</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><a href="#local-6989586621679398267"><span class="hs-identifier hs-type">r</span></a><span class="hs-special">)</span><span>
+</span><a name="line-76"></a><a name="utxoF"><a href="Pos.Txp.Toil.Types.html#utxoF"><span class="hs-identifier">utxoF</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-var">later</span><span> </span><a href="Pos.Txp.Toil.Types.html#formatUtxo"><span class="hs-identifier hs-var">formatUtxo</span></a><span>
+</span><a name="line-77"></a><span>
+</span><a name="line-78"></a><span class="hs-comment">-- | Wrapper for genesis utxo.</span><span>
+</span><a name="line-79"></a><span class="hs-keyword">newtype</span><span> </span><a name="GenesisUtxo"><a href="Pos.Txp.Toil.Types.html#GenesisUtxo"><span class="hs-identifier">GenesisUtxo</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a name="GenesisUtxo"><a href="Pos.Txp.Toil.Types.html#GenesisUtxo"><span class="hs-identifier">GenesisUtxo</span></a></a><span>
+</span><a name="line-80"></a><span>    </span><span class="hs-special">{</span><span> </span><a name="unGenesisUtxo"><a href="Pos.Txp.Toil.Types.html#unGenesisUtxo"><span class="hs-identifier">unGenesisUtxo</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><a href="Pos.Txp.Toil.Types.html#Utxo"><span class="hs-identifier hs-type">Utxo</span></a><span>
+</span><a name="line-81"></a><span>    </span><span class="hs-special">}</span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Show</span><span class="hs-special">)</span><span>
+</span><a name="line-82"></a><span>
+</span><a name="line-83"></a><span class="hs-identifier hs-var">makePrisms</span><span>  </span><span class="hs-char">''GenesisUtxo
+makeWrapped ''GenesisUtxo
+
+----------------------------------------------------------------------------
+-- Fee
+----------------------------------------------------------------------------
+
+-- | tx.fee = sum(tx.in) - sum (tx.out)
+newtype TxFee = TxFee Coin
+    deriving (Show, Eq, Ord, Generic, Buildable)
+
+----------------------------------------------------------------------------
+-- StakesView
+----------------------------------------------------------------------------
+
+data StakesView = StakesView
+    { _svStakes :: !(HashMap StakeholderId Coin)
+    , _svTotal  :: !(Maybe Coin)
+    }
+
+makeLenses ''StakesView
+
+instance Default StakesView where
+    def = StakesView mempty Nothing
+
+----------------------------------------------------------------------------
+-- MemPool
+----------------------------------------------------------------------------
+
+type TxMap = HashMap TxId TxAux
+
+data MemPool = MemPool
+    { _mpLocalTxs :: !TxMap
+      -- | Number of transactions in the memory pool.
+    , _mpSize     :: !Int
+    }
+
+makeLenses ''MemPool
+
+instance Default MemPool where
+    def =
+        MemPool
+        { _mpLocalTxs = mempty
+        , _mpSize     = 0
+        }
+
+----------------------------------------------------------------------------
+-- UtxoModifier, UndoMap and AddrCoinsMap
+----------------------------------------------------------------------------
+
+type UtxoModifier = MM.MapModifier TxIn TxOutAux
+type UndoMap = HashMap TxId TxUndo
+type AddrCoinMap = HashMap Address Coin
+
+utxoToModifier :: Utxo -&gt; UtxoModifier
+utxoToModifier = foldl' (flip $ uncurry MM.insert) mempty . M.toList
+
+-- | Takes utxo modifier and address-coin map with correspodning utxo
+-- and applies utxo modifier to map.
+-- Works for O(size of modifier * log (size of map)).
+applyUtxoModToAddrCoinMap
+    :: UtxoModifier
+    -&gt; (AddrCoinMap, Utxo)
+    -&gt; AddrCoinMap
+applyUtxoModToAddrCoinMap modifier (addrCoins, utxo) = result
+  where
+    outToPair :: TxOutAux -&gt; (Address, Coin)
+    outToPair = view _TxOut . toaOut
+
+    -- Resolve TxOut for every TxIn and convert TxOuts
+    -- to pairs (Address, Coin)
+    resolvedAddrs :: [(Address, Coin)]
+    resolvedAddrs =
+        mapMaybe (fmap outToPair . flip M.lookup utxo)
+                 (MM.deletions modifier)
+
+    -- subAddress and updateHM are used to do
+    -- hashMap[address] = hashMap[address] - coins
+    subAddress :: Coin -&gt; Coin -&gt; Maybe Coin
+    subAddress r c = if r &lt; c then Just (c `unsafeSubCoin` r) else Nothing
+
+    updateHM :: HashMap Address Coin -&gt; (Address, Coin) -&gt; HashMap Address Coin
+    updateHM hm (ad, coins) = HM.update (subAddress coins) ad hm
+
+    -- Substract coins from current balances
+    addrCoinsRest :: HashMap Address Coin
+    addrCoinsRest = foldl' updateHM addrCoins resolvedAddrs
+
+    -- Remove such TxIns which are already in wallet utxo.
+    insertionsNotInUtxo :: [(TxIn, TxOutAux)]
+    insertionsNotInUtxo = filter (not . flip M.member utxo . fst) (MM.insertions modifier)
+
+    -- Convert TxOuts of insertionsNotInUtxo to [(Address, Coin)]
+    addrCoinsAdditions :: [(Address, Coin)]
+    addrCoinsAdditions = map (outToPair . snd) insertionsNotInUtxo
+
+    -- Add coins to balances
+    result :: HashMap Address Coin
+    result = foldl' (flip $ uncurry $ HM.insertWith unsafeAddCoin) addrCoinsRest addrCoinsAdditions
+
+instance Default UndoMap where
+    def = mempty
+
+----------------------------------------------------------------------------
+-- ToilModifier
+----------------------------------------------------------------------------
+
+data GenericToilModifier extension = ToilModifier
+    { _tmUtxo    :: !UtxoModifier
+    , _tmStakes  :: !StakesView
+    , _tmMemPool :: !MemPool
+    , _tmUndos   :: !UndoMap
+    , _tmExtra   :: !extension
+    }
+
+type ToilModifier = GenericToilModifier ()
+
+instance Default ext =&gt; Default (GenericToilModifier ext) where
+    def = ToilModifier mempty def def mempty def
+
+makeLenses ''GenericToilModifier
+</span></pre></body></html>

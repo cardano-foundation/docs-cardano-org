@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- | Messages used for communication in GodTossing SSC.</span><span>
+</span><a name="line-2"></a><span>
+</span><a name="line-3"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Ssc</span><span class="hs-operator">.</span><span class="hs-identifier">GodTossing</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span><span class="hs-operator">.</span><span class="hs-identifier">Message</span><span>
+</span><a name="line-4"></a><span>       </span><span class="hs-special">(</span><span> </span><a href="Pos.Ssc.GodTossing.Types.Message.html#MCCommitment"><span class="hs-identifier hs-type">MCCommitment</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-5"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Ssc.GodTossing.Types.Message.html#MCOpening"><span class="hs-identifier hs-type">MCOpening</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-6"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Ssc.GodTossing.Types.Message.html#MCShares"><span class="hs-identifier hs-type">MCShares</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-7"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Ssc.GodTossing.Types.Message.html#MCVssCertificate"><span class="hs-identifier hs-type">MCVssCertificate</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-8"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Ssc.GodTossing.Types.Message.html#_MCCommitment"><span class="hs-identifier hs-var">_MCCommitment</span></a><span>
+</span><a name="line-9"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Ssc.GodTossing.Types.Message.html#_MCOpening"><span class="hs-identifier hs-var">_MCOpening</span></a><span>
+</span><a name="line-10"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Ssc.GodTossing.Types.Message.html#_MCShares"><span class="hs-identifier hs-var">_MCShares</span></a><span>
+</span><a name="line-11"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Ssc.GodTossing.Types.Message.html#_MCVssCertificate"><span class="hs-identifier hs-var">_MCVssCertificate</span></a><span>
+</span><a name="line-12"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Ssc.GodTossing.Types.Message.html#HasGtTag"><span class="hs-identifier hs-type">HasGtTag</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-13"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Ssc.GodTossing.Toss.Types.html#GtTag"><span class="hs-identifier hs-type">GtTag</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-14"></a><span>       </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-15"></a><span>
+</span><a name="line-16"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Lens</span><span>                  </span><span class="hs-special">(</span><span class="hs-identifier hs-var">makePrisms</span><span class="hs-special">)</span><span>
+</span><a name="line-17"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Text</span><span class="hs-operator">.</span><span class="hs-identifier">Buildable</span><span>           </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">Buildable</span><span>
+</span><a name="line-18"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Formatting</span><span>                    </span><span class="hs-special">(</span><span class="hs-identifier hs-var">bprint</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">build</span><span class="hs-special">,</span><span> </span><span class="hs-special">(</span><span class="hs-operator hs-var">%</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-19"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Universum</span><span>
+</span><a name="line-20"></a><span>
+</span><a name="line-21"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Core</span><span>                      </span><span class="hs-special">(</span><span class="hs-identifier hs-type">StakeholderId</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">addressHash</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">VssCertificate</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">getCertId</span><span class="hs-special">)</span><span>
+</span><a name="line-22"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Ssc.GodTossing.Core.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Ssc</span><span class="hs-operator">.</span><span class="hs-identifier">GodTossing</span><span class="hs-operator">.</span><span class="hs-identifier">Core</span></a><span>       </span><span class="hs-special">(</span><a href="Pos.Ssc.GodTossing.Core.Types.html#InnerSharesMap"><span class="hs-identifier hs-type">InnerSharesMap</span></a><span class="hs-special">,</span><span> </span><a href="Pos.Ssc.GodTossing.Core.Types.html#Opening"><span class="hs-identifier hs-type">Opening</span></a><span class="hs-special">,</span><span> </span><a href="Pos.Ssc.GodTossing.Core.Types.html#SignedCommitment"><span class="hs-identifier hs-type">SignedCommitment</span></a><span class="hs-special">)</span><span>
+</span><a name="line-23"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Ssc.GodTossing.Toss.Types.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Ssc</span><span class="hs-operator">.</span><span class="hs-identifier">GodTossing</span><span class="hs-operator">.</span><span class="hs-identifier">Toss</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span></a><span> </span><span class="hs-special">(</span><a href="Pos.Ssc.GodTossing.Toss.Types.html#GtTag"><span class="hs-identifier hs-type">GtTag</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-24"></a><span>
+</span><a name="line-25"></a><span class="hs-keyword">class</span><span> </span><a name="HasGtTag"><a href="Pos.Ssc.GodTossing.Types.Message.html#HasGtTag"><span class="hs-identifier">HasGtTag</span></a></a><span> </span><a name="local-6989586621679523895"><a href="#local-6989586621679523895"><span class="hs-identifier">a</span></a></a><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-26"></a><span>    </span><span class="hs-identifier">toGtTag</span><span> </span><span class="hs-glyph">::</span><span> </span><a href="#local-6989586621679523895"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><a href="Pos.Ssc.GodTossing.Toss.Types.html#GtTag"><span class="hs-identifier hs-type">GtTag</span></a><span>
+</span><a name="line-27"></a><span>
+</span><a name="line-28"></a><span class="hs-keyword">data</span><span> </span><a name="MCCommitment"><a href="Pos.Ssc.GodTossing.Types.Message.html#MCCommitment"><span class="hs-identifier">MCCommitment</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a name="MCCommitment"><a href="Pos.Ssc.GodTossing.Types.Message.html#MCCommitment"><span class="hs-identifier">MCCommitment</span></a></a><span> </span><span class="hs-glyph">!</span><a href="Pos.Ssc.GodTossing.Core.Types.html#SignedCommitment"><span class="hs-identifier hs-type">SignedCommitment</span></a><span>
+</span><a name="line-29"></a><span>    </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Show</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Eq</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Generic</span><span class="hs-special">)</span><span>
+</span><a name="line-30"></a><span>
+</span><a name="line-31"></a><span class="hs-keyword">data</span><span> </span><a name="MCOpening"><a href="Pos.Ssc.GodTossing.Types.Message.html#MCOpening"><span class="hs-identifier">MCOpening</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a name="MCOpening"><a href="Pos.Ssc.GodTossing.Types.Message.html#MCOpening"><span class="hs-identifier">MCOpening</span></a></a><span> </span><span class="hs-glyph">!</span><span class="hs-identifier hs-type">StakeholderId</span><span> </span><span class="hs-glyph">!</span><a href="Pos.Ssc.GodTossing.Core.Types.html#Opening"><span class="hs-identifier hs-type">Opening</span></a><span>
+</span><a name="line-32"></a><span>    </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Show</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Eq</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Generic</span><span class="hs-special">)</span><span>
+</span><a name="line-33"></a><span>
+</span><a name="line-34"></a><span class="hs-keyword">data</span><span> </span><a name="MCShares"><a href="Pos.Ssc.GodTossing.Types.Message.html#MCShares"><span class="hs-identifier">MCShares</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a name="MCShares"><a href="Pos.Ssc.GodTossing.Types.Message.html#MCShares"><span class="hs-identifier">MCShares</span></a></a><span> </span><span class="hs-glyph">!</span><span class="hs-identifier hs-type">StakeholderId</span><span> </span><span class="hs-glyph">!</span><a href="Pos.Ssc.GodTossing.Core.Types.html#InnerSharesMap"><span class="hs-identifier hs-type">InnerSharesMap</span></a><span>
+</span><a name="line-35"></a><span>    </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Show</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Eq</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Generic</span><span class="hs-special">)</span><span>
+</span><a name="line-36"></a><span>
+</span><a name="line-37"></a><span class="hs-keyword">data</span><span> </span><a name="MCVssCertificate"><a href="Pos.Ssc.GodTossing.Types.Message.html#MCVssCertificate"><span class="hs-identifier">MCVssCertificate</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a name="MCVssCertificate"><a href="Pos.Ssc.GodTossing.Types.Message.html#MCVssCertificate"><span class="hs-identifier">MCVssCertificate</span></a></a><span> </span><span class="hs-glyph">!</span><span class="hs-identifier hs-type">VssCertificate</span><span>
+</span><a name="line-38"></a><span>    </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Show</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Eq</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Generic</span><span class="hs-special">)</span><span>
+</span><a name="line-39"></a><span>
+</span><a name="line-40"></a><span class="hs-identifier hs-var">makePrisms</span><span> </span><span class="hs-char">''MCCommitment
+makePrisms ''MCOpening
+makePrisms ''MCShares
+makePrisms ''MCVssCertificate
+
+instance Buildable MCCommitment where
+    build (MCCommitment (pk, _, _))  =
+        bprint (&quot;commitment contents from &quot;%build) $ addressHash pk
+
+instance Buildable MCOpening where
+    build (MCOpening k _) =
+        bprint (&quot;opening contents from &quot;%build) k
+
+instance Buildable MCShares where
+    build (MCShares k _) =
+        bprint (&quot;shares contents from &quot;%build) k
+
+instance Buildable MCVssCertificate where
+    build (MCVssCertificate c) =
+        bprint (&quot;VSS certificate contents from &quot;%build) $ getCertId c
+
+instance HasGtTag MCCommitment where
+    toGtTag _ = CommitmentMsg
+
+instance HasGtTag MCOpening where
+    toGtTag _ = OpeningMsg
+
+instance HasGtTag MCShares where
+    toGtTag _ = SharesMsg
+
+instance HasGtTag MCVssCertificate where
+    toGtTag _ = VssCertificateMsg
+</span></pre></body></html>

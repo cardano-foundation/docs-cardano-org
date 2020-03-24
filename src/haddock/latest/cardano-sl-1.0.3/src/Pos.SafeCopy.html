@@ -1,0 +1,357 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- | SafeCopy serialization of the world, required for wallet. &#9749;</span><span>
+</span><a name="line-2"></a><span>
+</span><a name="line-3"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">SafeCopy</span><span>
+</span><a name="line-4"></a><span>       </span><span class="hs-special">(</span><span>
+</span><a name="line-5"></a><span>       </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-6"></a><span>
+</span><a name="line-7"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Universum</span><span>
+</span><a name="line-8"></a><span>
+</span><a name="line-9"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Cardano</span><span class="hs-operator">.</span><span class="hs-identifier">Crypto</span><span class="hs-operator">.</span><span class="hs-identifier">Wallet</span><span>           </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">CC</span><span>
+</span><a name="line-10"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Cardano</span><span class="hs-operator">.</span><span class="hs-identifier">Crypto</span><span class="hs-operator">.</span><span class="hs-identifier">Wallet</span><span class="hs-operator">.</span><span class="hs-identifier">Encrypted</span><span> </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">CC</span><span>
+</span><a name="line-11"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Crypto</span><span class="hs-operator">.</span><span class="hs-identifier">ECC</span><span class="hs-operator">.</span><span class="hs-identifier">Edwards25519</span><span>         </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">ED25519</span><span>
+</span><a name="line-12"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Crypto</span><span class="hs-operator">.</span><span class="hs-identifier">Sign</span><span class="hs-operator">.</span><span class="hs-identifier">Ed25519</span><span>             </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">EDS25519</span><span>
+</span><a name="line-13"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">SafeCopy</span><span>                   </span><span class="hs-special">(</span><span class="hs-identifier hs-type">SafeCopy</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">base</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">contain</span><span class="hs-special">,</span><span>
+</span><a name="line-14"></a><span>                                                  </span><span class="hs-identifier hs-var">deriveSafeCopySimple</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">safeGet</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">safePut</span><span class="hs-special">)</span><span>
+</span><a name="line-15"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Serialize</span><span>                  </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">Cereal</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Serialize</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">getWord8</span><span class="hs-special">,</span><span>
+</span><a name="line-16"></a><span>                                                            </span><span class="hs-identifier hs-var">putWord8</span><span class="hs-special">)</span><span>
+</span><a name="line-17"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Serokell</span><span class="hs-operator">.</span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Memory</span><span class="hs-operator">.</span><span class="hs-identifier">Units</span><span>      </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Byte</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">fromBytes</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">toBytes</span><span class="hs-special">)</span><span>
+</span><a name="line-18"></a><span>
+</span><a name="line-19"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Binary</span><span class="hs-operator">.</span><span class="hs-identifier">Class</span><span>                </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Bi</span><span class="hs-special">)</span><span>
+</span><a name="line-20"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Binary</span><span class="hs-operator">.</span><span class="hs-identifier">Class</span><span>                </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">Bi</span><span>
+</span><a name="line-21"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Block.Core.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Block</span><span class="hs-operator">.</span><span class="hs-identifier">Core</span></a><span>
+</span><a name="line-22"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Core</span><span class="hs-operator">.</span><span class="hs-identifier">Fee</span><span>                    </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Coeff</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">TxFeePolicy</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a name="line-23"></a><span>                                                  </span><span class="hs-identifier hs-type">TxSizeLinear</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-24"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Core</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span><span>                  </span><span class="hs-special">(</span><span class="hs-identifier hs-type">AddrAttributes</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a name="line-25"></a><span>                                                  </span><span class="hs-identifier hs-type">AddrSpendingData</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a name="line-26"></a><span>                                                  </span><span class="hs-identifier hs-type">AddrStakeDistribution</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a name="line-27"></a><span>                                                  </span><span class="hs-identifier hs-type">AddrType</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Address</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a name="line-28"></a><span>                                                  </span><span class="hs-identifier hs-type">Address'</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">ApplicationName</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a name="line-29"></a><span>                                                  </span><span class="hs-identifier hs-type">BlockCount</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">BlockVersion</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a name="line-30"></a><span>                                                  </span><span class="hs-identifier hs-type">BlockVersionData</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a name="line-31"></a><span>                                                  </span><span class="hs-identifier hs-type">ChainDifficulty</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Coin</span><span class="hs-special">,</span><span>
+</span><a name="line-32"></a><span>                                                  </span><span class="hs-identifier hs-type">CoinPortion</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">EpochIndex</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a name="line-33"></a><span>                                                  </span><span class="hs-identifier hs-type">EpochOrSlot</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">LocalSlotIndex</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a name="line-34"></a><span>                                                  </span><span class="hs-identifier hs-type">Script</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">SharedSeed</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a name="line-35"></a><span>                                                  </span><span class="hs-identifier hs-type">SlotCount</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">SlotId</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a name="line-36"></a><span>                                                  </span><span class="hs-identifier hs-type">SoftforkRule</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">SoftwareVersion</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-37"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Core</span><span class="hs-operator">.</span><span class="hs-identifier">Vss</span><span>                    </span><span class="hs-special">(</span><span class="hs-identifier hs-type">VssCertificate</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-38"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Crypto</span><span class="hs-operator">.</span><span class="hs-identifier">Hashing</span><span>              </span><span class="hs-special">(</span><span class="hs-identifier hs-type">AbstractHash</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-39"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Crypto</span><span class="hs-operator">.</span><span class="hs-identifier">HD</span><span>                   </span><span class="hs-special">(</span><span class="hs-identifier hs-type">HDAddressPayload</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-40"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Crypto</span><span class="hs-operator">.</span><span class="hs-identifier">SecretSharing</span><span>        </span><span class="hs-special">(</span><span class="hs-identifier hs-type">SecretProof</span><span class="hs-special">)</span><span>
+</span><a name="line-41"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Crypto</span><span class="hs-operator">.</span><span class="hs-identifier">Signing</span><span class="hs-operator">.</span><span class="hs-identifier">Redeem</span><span>       </span><span class="hs-special">(</span><span class="hs-identifier hs-type">RedeemPublicKey</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a name="line-42"></a><span>                                                  </span><span class="hs-identifier hs-type">RedeemSecretKey</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a name="line-43"></a><span>                                                  </span><span class="hs-identifier hs-type">RedeemSignature</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-44"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Crypto</span><span class="hs-operator">.</span><span class="hs-identifier">Signing</span><span class="hs-operator">.</span><span class="hs-identifier">Signing</span><span>      </span><span class="hs-special">(</span><span class="hs-identifier hs-type">ProxyCert</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">ProxySecretKey</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a name="line-45"></a><span>                                                  </span><span class="hs-identifier hs-type">ProxySignature</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">PublicKey</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a name="line-46"></a><span>                                                  </span><span class="hs-identifier hs-type">SecretKey</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Signature</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a name="line-47"></a><span>                                                  </span><span class="hs-identifier hs-type">Signed</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-48"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Attributes</span><span>             </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Attributes</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">UnparsedFields</span><span class="hs-special">)</span><span>
+</span><a name="line-49"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Delegation.Types.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Delegation</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span></a><span>            </span><span class="hs-special">(</span><a href="Pos.Delegation.Types.html#DlgPayload"><span class="hs-identifier hs-type">DlgPayload</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-50"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Merkle</span><span>                      </span><span class="hs-special">(</span><span class="hs-identifier hs-type">MerkleNode</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">MerkleRoot</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a name="line-51"></a><span>                                                  </span><span class="hs-identifier hs-type">MerkleTree</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-52"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Ssc</span><span class="hs-operator">.</span><span class="hs-identifier">Class</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span><span>             </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Ssc</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-53"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Ssc</span><span class="hs-operator">.</span><span class="hs-identifier">GodTossing</span><span class="hs-operator">.</span><span class="hs-identifier">Core</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span><span>   </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Commitment</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">CommitmentsMap</span><span class="hs-special">,</span><span>
+</span><a name="line-54"></a><span>                                                  </span><span class="hs-identifier hs-type">GtPayload</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">GtProof</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a name="line-55"></a><span>                                                  </span><span class="hs-identifier hs-type">Opening</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-56"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Txp</span><span class="hs-operator">.</span><span class="hs-identifier">Core</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span><span>              </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Tx</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">TxIn</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">TxInWitness</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a name="line-57"></a><span>                                                  </span><span class="hs-identifier hs-type">TxOut</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">TxOutAux</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a name="line-58"></a><span>                                                  </span><span class="hs-identifier hs-type">TxPayload</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">TxProof</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-59"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Update</span><span class="hs-operator">.</span><span class="hs-identifier">Core</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span><span>           </span><span class="hs-special">(</span><span class="hs-identifier hs-type">BlockVersionModifier</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a name="line-60"></a><span>                                                  </span><span class="hs-identifier hs-type">SystemTag</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">UpdateData</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a name="line-61"></a><span>                                                  </span><span class="hs-identifier hs-type">UpdatePayload</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">UpdateProposal</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a name="line-62"></a><span>                                                  </span><span class="hs-identifier hs-type">UpdateVote</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-63"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Util</span><span class="hs-operator">.</span><span class="hs-identifier">Modifier</span><span>               </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">MM</span><span>
+</span><a name="line-64"></a><span>
+</span><a name="line-65"></a><span>
+</span><a name="line-66"></a><span class="hs-comment">----------------------------------------------------------------------------</span><span>
+</span><a name="line-67"></a><span class="hs-comment">-- Core types</span><span>
+</span><a name="line-68"></a><span class="hs-comment">----------------------------------------------------------------------------</span><span>
+</span><a name="line-69"></a><span>
+</span><a name="line-70"></a><span class="hs-identifier hs-var">deriveSafeCopySimple</span><span> </span><span class="hs-number">0</span><span> </span><span class="hs-char">'base ''Script
+deriveSafeCopySimple 0 'base ''ApplicationName
+deriveSafeCopySimple 0 'base ''BlockVersion
+deriveSafeCopySimple 0 'base ''SoftwareVersion
+
+deriveSafeCopySimple 0 'base ''ED25519.PointCompressed
+deriveSafeCopySimple 0 'base ''ED25519.Scalar
+deriveSafeCopySimple 0 'base ''ED25519.Signature
+--
+deriveSafeCopySimple 0 'base ''CC.EncryptedKey
+deriveSafeCopySimple 0 'base ''CC.ChainCode
+deriveSafeCopySimple 0 'base ''CC.XPub
+deriveSafeCopySimple 0 'base ''CC.XPrv
+deriveSafeCopySimple 0 'base ''CC.XSignature
+
+deriveSafeCopySimple 0 'base ''PublicKey
+deriveSafeCopySimple 0 'base ''SecretKey
+
+deriveSafeCopySimple 0 'base ''ProxySecretKey
+
+deriveSafeCopySimple 0 'base ''EDS25519.PublicKey
+deriveSafeCopySimple 0 'base ''EDS25519.SecretKey
+deriveSafeCopySimple 0 'base ''EDS25519.Signature
+
+deriveSafeCopySimple 0 'base ''RedeemPublicKey
+deriveSafeCopySimple 0 'base ''RedeemSecretKey
+
+instance Bi SecretProof =&gt; SafeCopy SecretProof where
+    getCopy = Bi.getCopyBi
+    putCopy = Bi.putCopyBi
+
+----------------------------------------------------------------------------
+-- God tossing
+----------------------------------------------------------------------------
+
+deriveSafeCopySimple 0 'base ''VssCertificate
+deriveSafeCopySimple 0 'base ''Opening
+deriveSafeCopySimple 0 'base ''Commitment
+deriveSafeCopySimple 0 'base ''CommitmentsMap
+
+deriveSafeCopySimple 0 'base ''GtPayload
+deriveSafeCopySimple 0 'base ''GtProof
+
+----------------------------------------------------------------------------
+-- Base types
+----------------------------------------------------------------------------
+
+deriveSafeCopySimple 0 'base ''CoinPortion
+deriveSafeCopySimple 0 'base ''EpochIndex
+deriveSafeCopySimple 0 'base ''LocalSlotIndex
+deriveSafeCopySimple 0 'base ''SlotId
+deriveSafeCopySimple 0 'base ''EpochOrSlot
+deriveSafeCopySimple 0 'base ''UnparsedFields
+deriveSafeCopySimple 0 'base ''BlockCount
+deriveSafeCopySimple 0 'base ''SlotCount
+deriveSafeCopySimple 0 'base ''Coin
+deriveSafeCopySimple 0 'base ''HDAddressPayload
+deriveSafeCopySimple 0 'base ''AddrType -- &#9731;
+deriveSafeCopySimple 0 'base ''AddrStakeDistribution
+deriveSafeCopySimple 0 'base ''AddrSpendingData
+deriveSafeCopySimple 0 'base ''AddrAttributes
+deriveSafeCopySimple 0 'base ''Address'
+deriveSafeCopySimple 0 'base ''Address
+deriveSafeCopySimple 0 'base ''TxInWitness
+deriveSafeCopySimple 0 'base ''TxIn
+deriveSafeCopySimple 0 'base ''TxOut
+deriveSafeCopySimple 0 'base ''TxOutAux
+deriveSafeCopySimple 0 'base ''Tx
+deriveSafeCopySimple 0 'base ''TxProof
+deriveSafeCopySimple 0 'base ''TxPayload
+deriveSafeCopySimple 0 'base ''SharedSeed
+
+deriveSafeCopySimple 0 'base ''DlgPayload
+
+deriveSafeCopySimple 0 'base ''MainExtraBodyData
+deriveSafeCopySimple 0 'base ''MainExtraHeaderData
+deriveSafeCopySimple 0 'base ''GenesisExtraHeaderData
+deriveSafeCopySimple 0 'base ''GenesisExtraBodyData
+
+deriveSafeCopySimple 0 'base ''SystemTag
+deriveSafeCopySimple 0 'base ''UpdateData
+deriveSafeCopySimple 0 'base ''Coeff
+deriveSafeCopySimple 0 'base ''TxSizeLinear
+deriveSafeCopySimple 0 'base ''TxFeePolicy
+deriveSafeCopySimple 0 'base ''SoftforkRule -- &#128139;
+deriveSafeCopySimple 0 'base ''BlockVersionData
+deriveSafeCopySimple 0 'base ''BlockVersionModifier
+deriveSafeCopySimple 0 'base ''UpdateProposal
+deriveSafeCopySimple 0 'base ''UpdateVote
+deriveSafeCopySimple 0 'base ''UpdatePayload
+
+-- Manually written instances can't be derived because
+-- 'deriveSafeCopySimple' is not clever enough to add
+-- &#8220;SafeCopy (Whatever a) =&gt;&#8221; constraints.
+-- Written by hand, because @deriveSafeCopySimple@ generates redundant
+-- constraint (SafeCopy w) though it's phantom.
+----------------------------------------------------------------------------
+-- Manual instances
+----------------------------------------------------------------------------
+
+instance ( SafeCopy (BHeaderHash b)
+         , SafeCopy (BodyProof b)
+         , SafeCopy (ConsensusData b)
+         , SafeCopy (ExtraHeaderData b)
+         ) =&gt;
+         SafeCopy (GenericBlockHeader b) where
+    getCopy =
+        contain $
+        do _gbhPrevBlock &lt;- safeGet
+           _gbhBodyProof &lt;- safeGet
+           _gbhConsensus &lt;- safeGet
+           _gbhExtra &lt;- safeGet
+           return $! UnsafeGenericBlockHeader {..}
+    putCopy UnsafeGenericBlockHeader {..} =
+        contain $
+        do safePut _gbhPrevBlock
+           safePut _gbhBodyProof
+           safePut _gbhConsensus
+           safePut _gbhExtra
+
+instance ( SafeCopy (BHeaderHash b)
+         , SafeCopy (BodyProof b)
+         , SafeCopy (ConsensusData b)
+         , SafeCopy (ExtraHeaderData b)
+         , SafeCopy (Body b)
+         , SafeCopy (ExtraBodyData b)
+         ) =&gt;
+         SafeCopy (GenericBlock b) where
+    getCopy =
+        contain $
+        do _gbHeader &lt;- safeGet
+           _gbBody &lt;- safeGet
+           _gbExtra &lt;- safeGet
+           return $! UnsafeGenericBlock {..}
+    putCopy UnsafeGenericBlock {..} =
+        contain $
+        do safePut _gbHeader
+           safePut _gbBody
+           safePut _gbExtra
+
+deriveSafeCopySimple 0 'base ''ChainDifficulty
+
+instance (Ssc ssc, SafeCopy (SscProof ssc)) =&gt;
+         SafeCopy (BodyProof (MainBlockchain ssc)) where
+    getCopy = contain $ do
+        mpTxProof &lt;- safeGet
+        mpMpcProof      &lt;- safeGet
+        mpProxySKsProof &lt;- safeGet
+        mpUpdateProof   &lt;- safeGet
+        return $! MainProof{..}
+    putCopy MainProof {..} = contain $ do
+        safePut mpTxProof
+        safePut mpMpcProof
+        safePut mpProxySKsProof
+        safePut mpUpdateProof
+
+instance SafeCopy (BodyProof (GenesisBlockchain ssc)) where
+    getCopy =
+        contain $
+        do x &lt;- safeGet
+           return $! GenesisProof x
+    putCopy (GenesisProof x) =
+        contain $
+        do safePut x
+
+instance SafeCopy (BlockSignature ssc) where
+    getCopy = contain $ Cereal.getWord8 &gt;&gt;= \case
+        0 -&gt; BlockSignature &lt;$&gt; safeGet
+        1 -&gt; BlockPSignatureLight &lt;$&gt; safeGet
+        2 -&gt; BlockPSignatureHeavy &lt;$&gt; safeGet
+        t -&gt; fail $ &quot;getCopy@BlockSignature: couldn't read tag: &quot; &lt;&gt; show t
+    putCopy (BlockSignature sig)       = contain $ Cereal.putWord8 0 &gt;&gt; safePut sig
+    putCopy (BlockPSignatureLight proxySig) = contain $ Cereal.putWord8 1 &gt;&gt; safePut proxySig
+    putCopy (BlockPSignatureHeavy proxySig) = contain $ Cereal.putWord8 2 &gt;&gt; safePut proxySig
+
+instance SafeCopy (ConsensusData (MainBlockchain ssc)) where
+    getCopy =
+        contain $
+        do _mcdSlot &lt;- safeGet
+           _mcdLeaderKey &lt;- safeGet
+           _mcdDifficulty &lt;- safeGet
+           _mcdSignature &lt;- safeGet
+           return $! MainConsensusData {..}
+    putCopy MainConsensusData {..} =
+        contain $
+        do safePut _mcdSlot
+           safePut _mcdLeaderKey
+           safePut _mcdDifficulty
+           safePut _mcdSignature
+
+instance SafeCopy (ConsensusData (GenesisBlockchain ssc)) where
+    getCopy =
+        contain $
+        do _gcdEpoch &lt;- safeGet
+           _gcdDifficulty &lt;- safeGet
+           return $! GenesisConsensusData {..}
+    putCopy GenesisConsensusData {..} =
+        contain $
+        do safePut _gcdEpoch
+           safePut _gcdDifficulty
+
+instance (Ssc ssc, SafeCopy (SscPayload ssc)) =&gt;
+         SafeCopy (Body (MainBlockchain ssc)) where
+    getCopy = contain $ do
+        _mbTxPayload     &lt;- safeGet
+        _mbSscPayload    &lt;- safeGet
+        _mbDlgPayload    &lt;- safeGet
+        _mbUpdatePayload &lt;- safeGet
+        return $! MainBody{..}
+    putCopy MainBody {..} = contain $ do
+        safePut _mbTxPayload
+        safePut _mbSscPayload
+        safePut _mbDlgPayload
+        safePut _mbUpdatePayload
+
+instance SafeCopy (Body (GenesisBlockchain ssc)) where
+    getCopy =
+        contain $
+        do _gbLeaders &lt;- safeGet
+           return $! GenesisBody {..}
+    putCopy GenesisBody {..} =
+        contain $
+        do safePut _gbLeaders
+
+instance SafeCopy (RedeemSignature a) where
+    putCopy (RedeemSignature sig) = contain $ safePut sig
+    getCopy = contain $ RedeemSignature &lt;$&gt; safeGet
+
+instance SafeCopy (Signature a) where
+    putCopy (Signature sig) = contain $ safePut sig
+    getCopy = contain $ Signature &lt;$&gt; safeGet
+
+instance (Bi (Signature a), Bi a) =&gt; SafeCopy (Signed a) where
+    putCopy (Signed v s) = contain $ safePut (Bi.serialize' (v,s))
+    getCopy = contain $ do
+        bs &lt;- safeGet
+        case Bi.decodeFull bs of
+            Left err    -&gt; fail $ toString $ &quot;getCopy@SafeCopy: &quot; &lt;&gt; err
+            Right (v,s) -&gt; pure $ Signed v s
+
+instance SafeCopy (ProxyCert w) where
+    putCopy (ProxyCert sig) = contain $ safePut sig
+    getCopy = contain $ ProxyCert &lt;$&gt; safeGet
+
+instance (SafeCopy w) =&gt; SafeCopy (ProxySignature w a) where
+    putCopy ProxySignature{..} = contain $ do
+        safePut psigPsk
+        safePut psigSig
+    getCopy = contain $ ProxySignature &lt;$&gt; safeGet &lt;*&gt; safeGet
+
+instance (Bi (MerkleRoot a), Typeable a) =&gt; SafeCopy (MerkleRoot a) where
+    getCopy = Bi.getCopyBi
+    putCopy = Bi.putCopyBi
+
+instance (Bi (MerkleNode a), Typeable a) =&gt; SafeCopy (MerkleNode a) where
+    getCopy = Bi.getCopyBi
+    putCopy = Bi.putCopyBi
+
+instance (Bi (MerkleTree a), Typeable a) =&gt; SafeCopy (MerkleTree a) where
+    getCopy = Bi.getCopyBi
+    putCopy = Bi.putCopyBi
+
+instance SafeCopy h =&gt; SafeCopy (Attributes h) where
+    getCopy =
+        contain $
+        do attrData &lt;- safeGet
+           attrRemain &lt;- safeGet
+           return $! Attributes {..}
+    putCopy Attributes {..} =
+        contain $
+        do safePut attrData
+           safePut attrRemain
+
+instance (Bi (AbstractHash algo a), Typeable algo, Typeable a) =&gt;
+        SafeCopy (AbstractHash algo a) where
+   putCopy = Bi.putCopyBi
+   getCopy = Bi.getCopyBi
+
+instance Cereal.Serialize Byte where
+    get = fromBytes &lt;$&gt; Cereal.get
+    put = Cereal.put . toBytes
+
+instance SafeCopy Byte
+
+instance (SafeCopy k, SafeCopy v, Eq k, Hashable k) =&gt; SafeCopy (MM.MapModifier k v) where
+    getCopy = contain $ MM.fromHashMap &lt;$&gt; safeGet
+    putCopy mm = contain $ safePut (MM.toHashMap mm)
+</span></pre></body></html>

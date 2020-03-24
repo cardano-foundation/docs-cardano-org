@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- | Types describing runtime errors related to Wallet.</span><span>
+</span><a name="line-2"></a><span>
+</span><a name="line-3"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Wallet</span><span class="hs-operator">.</span><span class="hs-identifier">Web</span><span class="hs-operator">.</span><span class="hs-identifier">Error</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span><span>
+</span><a name="line-4"></a><span>       </span><span class="hs-special">(</span><span> </span><a href="Pos.Wallet.Web.Error.Types.html#WalletError"><span class="hs-identifier hs-type">WalletError</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-5"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.Error.Types.html#_InternalError"><span class="hs-identifier hs-var">_InternalError</span></a><span>
+</span><a name="line-6"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.Error.Types.html#_RequestError"><span class="hs-identifier hs-var">_RequestError</span></a><span>
+</span><a name="line-7"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Wallet.Web.Error.Types.html#_DecodeError"><span class="hs-identifier hs-var">_DecodeError</span></a><span>
+</span><a name="line-8"></a><span>       </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-9"></a><span>
+</span><a name="line-10"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Universum</span><span>
+</span><a name="line-11"></a><span>
+</span><a name="line-12"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Lens</span><span>        </span><span class="hs-special">(</span><span class="hs-identifier hs-var">makePrisms</span><span class="hs-special">)</span><span>
+</span><a name="line-13"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Text</span><span class="hs-operator">.</span><span class="hs-identifier">Buildable</span><span>
+</span><a name="line-14"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Formatting</span><span>          </span><span class="hs-special">(</span><span class="hs-identifier hs-var">bprint</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">stext</span><span class="hs-special">,</span><span> </span><span class="hs-special">(</span><span class="hs-operator hs-var">%</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-15"></a><span>
+</span><a name="line-16"></a><span class="hs-keyword">data</span><span> </span><a name="WalletError"><a href="Pos.Wallet.Web.Error.Types.html#WalletError"><span class="hs-identifier">WalletError</span></a></a><span>
+</span><a name="line-17"></a><span>    </span><span class="hs-comment">-- | Reasonable error for given request</span><span>
+</span><a name="line-18"></a><span>    </span><span class="hs-comment">-- (e.g. get info about non-existent wallet).</span><span>
+</span><a name="line-19"></a><span>    </span><span class="hs-comment">-- However, this separation is still a bit conditional, may require remake</span><span>
+</span><a name="line-20"></a><span>    </span><span class="hs-glyph">=</span><span> </span><a name="RequestError"><a href="Pos.Wallet.Web.Error.Types.html#RequestError"><span class="hs-identifier">RequestError</span></a></a><span> </span><span class="hs-glyph">!</span><span class="hs-identifier hs-type">Text</span><span>
+</span><a name="line-21"></a><span>    </span><span class="hs-comment">-- | Internal info, which ideally should never happen</span><span>
+</span><a name="line-22"></a><span>    </span><span class="hs-glyph">|</span><span> </span><a name="InternalError"><a href="Pos.Wallet.Web.Error.Types.html#InternalError"><span class="hs-identifier">InternalError</span></a></a><span> </span><span class="hs-glyph">!</span><span class="hs-identifier hs-type">Text</span><span>
+</span><a name="line-23"></a><span>    </span><span class="hs-comment">-- | Failed to decode from @CType@ to original type</span><span>
+</span><a name="line-24"></a><span>    </span><span class="hs-glyph">|</span><span> </span><a name="DecodeError"><a href="Pos.Wallet.Web.Error.Types.html#DecodeError"><span class="hs-identifier">DecodeError</span></a></a><span> </span><span class="hs-glyph">!</span><span class="hs-identifier hs-type">Text</span><span>
+</span><a name="line-25"></a><span>    </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Show</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Generic</span><span class="hs-special">)</span><span>
+</span><a name="line-26"></a><span>
+</span><a name="line-27"></a><span class="hs-identifier hs-var">makePrisms</span><span> </span><span class="hs-char">''WalletError
+
+instance Exception WalletError
+
+instance Buildable WalletError where
+    build (RequestError  msg) = bprint (&quot;Request error (&quot;%stext%&quot;)&quot;) msg
+    build (InternalError msg) = bprint (&quot;Internal error (&quot;%stext%&quot;)&quot;) msg
+    build (DecodeError   msg) = bprint (&quot;Decoding error (&quot;%stext%&quot;)&quot;) msg
+</span></pre></body></html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE CPP          #-}</span><span>
+</span><a name="line-2"></a><span class="hs-pragma">{-# LANGUAGE ViewPatterns #-}</span><span>
+</span><a name="line-3"></a><span>
+</span><a name="line-4"></a><span class="hs-comment">-- | Serializable instances for Pos.Crypto.*</span><span>
+</span><a name="line-5"></a><span>
+</span><a name="line-6"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Binary</span><span class="hs-operator">.</span><span class="hs-identifier">Crypto</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-7"></a><span>
+</span><a name="line-8"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Universum</span><span>
+</span><a name="line-9"></a><span>
+</span><a name="line-10"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Cardano</span><span class="hs-operator">.</span><span class="hs-identifier">Crypto</span><span class="hs-operator">.</span><span class="hs-identifier">Wallet</span><span>    </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">CC</span><span>
+</span><a name="line-11"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Crypto</span><span class="hs-operator">.</span><span class="hs-identifier">ECC</span><span class="hs-operator">.</span><span class="hs-identifier">Edwards25519</span><span>  </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">Ed25519</span><span>
+</span><a name="line-12"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Crypto</span><span class="hs-operator">.</span><span class="hs-identifier">Hash</span><span>              </span><span class="hs-special">(</span><span class="hs-identifier hs-var">digestFromByteString</span><span class="hs-special">)</span><span>
+</span><a name="line-13"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Crypto</span><span class="hs-operator">.</span><span class="hs-identifier">PVSS</span><span>              </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">Pvss</span><span>
+</span><a name="line-14"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Crypto</span><span class="hs-operator">.</span><span class="hs-identifier">SCRAPE</span><span>            </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">Scrape</span><span>
+</span><a name="line-15"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Crypto</span><span class="hs-operator">.</span><span class="hs-identifier">Sign</span><span class="hs-operator">.</span><span class="hs-identifier">Ed25519</span><span>      </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">EdStandard</span><span>
+</span><a name="line-16"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">ByteArray</span><span>           </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">ByteArray</span><span>
+</span><a name="line-17"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">ByteString</span><span>          </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">BS</span><span>
+</span><a name="line-18"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">SafeCopy</span><span>            </span><span class="hs-special">(</span><span class="hs-identifier hs-type">SafeCopy</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-19"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Formatting</span><span>               </span><span class="hs-special">(</span><span class="hs-identifier hs-var">int</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">sformat</span><span class="hs-special">,</span><span> </span><span class="hs-special">(</span><span class="hs-operator hs-var">%</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-20"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Crypto.AsBinary.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Crypto</span><span class="hs-operator">.</span><span class="hs-identifier">AsBinary</span></a><span>      </span><span class="hs-special">(</span><a href="Pos.Crypto.AsBinary.html#decShareBytes"><span class="hs-identifier hs-var">decShareBytes</span></a><span class="hs-special">,</span><span> </span><a href="Pos.Crypto.AsBinary.html#encShareBytes"><span class="hs-identifier hs-var">encShareBytes</span></a><span class="hs-special">,</span><span> </span><a href="Pos.Crypto.AsBinary.html#secretBytes"><span class="hs-identifier hs-var">secretBytes</span></a><span class="hs-special">,</span><span>
+</span><a name="line-21"></a><span>                                           </span><a href="Pos.Crypto.AsBinary.html#vssPublicKeyBytes"><span class="hs-identifier hs-var">vssPublicKeyBytes</span></a><span class="hs-special">)</span><span>
+</span><a name="line-22"></a><span>
+</span><a name="line-23"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Binary.Class.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Binary</span><span class="hs-operator">.</span><span class="hs-identifier">Class</span></a><span>         </span><span class="hs-special">(</span><a href="Pos.Binary.Class.Primitive.html#AsBinary"><span class="hs-identifier hs-type">AsBinary</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><a href="Pos.Binary.Class.Core.html#Bi"><span class="hs-identifier hs-type">Bi</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><a href="Pos.Binary.Class.TH.html#Cons"><span class="hs-identifier hs-type">Cons</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><a href="Pos.Binary.Class.TH.html#Field"><span class="hs-identifier hs-type">Field</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a name="line-24"></a><span>                                           </span><a href="Pos.Binary.Class.Core.html#decodeBinary"><span class="hs-identifier hs-var">decodeBinary</span></a><span class="hs-special">,</span><span> </span><a href="Pos.Binary.Class.TH.html#deriveSimpleBi"><span class="hs-identifier hs-var">deriveSimpleBi</span></a><span class="hs-special">,</span><span> </span><a href="Pos.Binary.Class.Core.html#encodeBinary"><span class="hs-identifier hs-var">encodeBinary</span></a><span class="hs-special">,</span><span>
+</span><a name="line-25"></a><span>                                           </span><span class="hs-identifier hs-var">encodeListLen</span><span class="hs-special">,</span><span> </span><a href="Pos.Binary.Class.Core.html#enforceSize"><span class="hs-identifier hs-var">enforceSize</span></a><span class="hs-special">,</span><span> </span><a href="Pos.Binary.Class.Primitive.html#getCopyBi"><span class="hs-identifier hs-var">getCopyBi</span></a><span class="hs-special">,</span><span>
+</span><a name="line-26"></a><span>                                           </span><a href="Pos.Binary.Class.Primitive.html#putCopyBi"><span class="hs-identifier hs-var">putCopyBi</span></a><span class="hs-special">)</span><span>
+</span><a name="line-27"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Crypto.Hashing.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Crypto</span><span class="hs-operator">.</span><span class="hs-identifier">Hashing</span></a><span>       </span><span class="hs-special">(</span><a href="Pos.Crypto.Hashing.html#AbstractHash"><span class="hs-identifier hs-type">AbstractHash</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">HashAlgorithm</span><span class="hs-special">,</span><span>
+</span><a name="line-28"></a><span>                                           </span><a href="Pos.Crypto.Hashing.html#WithHash"><span class="hs-identifier hs-type">WithHash</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><a href="Pos.Crypto.Hashing.html#withHash"><span class="hs-identifier hs-var">withHash</span></a><span class="hs-special">)</span><span>
+</span><a name="line-29"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Crypto.HD.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Crypto</span><span class="hs-operator">.</span><span class="hs-identifier">HD</span></a><span>            </span><span class="hs-special">(</span><a href="Pos.Crypto.HD.html#HDAddressPayload"><span class="hs-identifier hs-type">HDAddressPayload</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-30"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Crypto.Scrypt.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Crypto</span><span class="hs-operator">.</span><span class="hs-identifier">Scrypt</span></a><span>        </span><span class="hs-special">(</span><span class="hs-identifier hs-type">EncryptedPass</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-31"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><a href="Pos.Crypto.SecretSharing.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Crypto</span><span class="hs-operator">.</span><span class="hs-identifier">SecretSharing</span></a><span> </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">C</span><span>
+</span><a name="line-32"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Crypto.Signing.Types.Redeem.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Crypto</span><span class="hs-operator">.</span><span class="hs-identifier">Signing</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span><span class="hs-operator">.</span><span class="hs-identifier">Redeem</span></a><span> </span><span class="hs-special">(</span><a href="Pos.Crypto.Signing.Types.Redeem.html#RedeemPublicKey"><span class="hs-identifier hs-type">RedeemPublicKey</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><a href="Pos.Crypto.Signing.Types.Redeem.html#RedeemSecretKey"><span class="hs-identifier hs-type">RedeemSecretKey</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a name="line-33"></a><span>                                                  </span><a href="Pos.Crypto.Signing.Types.Redeem.html#RedeemSignature"><span class="hs-identifier hs-type">RedeemSignature</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-34"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Crypto.Signing.Types.Safe.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Crypto</span><span class="hs-operator">.</span><span class="hs-identifier">Signing</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span><span class="hs-operator">.</span><span class="hs-identifier">Safe</span></a><span> </span><span class="hs-special">(</span><a href="Pos.Crypto.Signing.Types.Safe.html#EncryptedSecretKey"><span class="hs-identifier hs-type">EncryptedSecretKey</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><a href="Pos.Crypto.Signing.Types.Safe.html#PassPhrase"><span class="hs-identifier hs-type">PassPhrase</span></a><span class="hs-special">,</span><span>
+</span><a name="line-35"></a><span>                                                </span><a href="Pos.Crypto.Signing.Types.Safe.html#passphraseLength"><span class="hs-identifier hs-var">passphraseLength</span></a><span class="hs-special">)</span><span>
+</span><a name="line-36"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Crypto.Signing.Types.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Crypto</span><span class="hs-operator">.</span><span class="hs-identifier">Signing</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span></a><span> </span><span class="hs-special">(</span><a href="Pos.Crypto.Signing.Types.Signing.html#ProxyCert"><span class="hs-identifier hs-type">ProxyCert</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><a href="Pos.Crypto.Signing.Types.Signing.html#ProxySecretKey"><span class="hs-identifier hs-type">ProxySecretKey</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a name="line-37"></a><span>                                           </span><a href="Pos.Crypto.Signing.Types.Signing.html#ProxySignature"><span class="hs-identifier hs-type">ProxySignature</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><a href="Pos.Crypto.Signing.Types.Signing.html#PublicKey"><span class="hs-identifier hs-type">PublicKey</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a name="line-38"></a><span>                                           </span><a href="Pos.Crypto.Signing.Types.Signing.html#SecretKey"><span class="hs-identifier hs-type">SecretKey</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><a href="Pos.Crypto.Signing.Types.Signing.html#Signature"><span class="hs-identifier hs-type">Signature</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><a href="Pos.Crypto.Signing.Types.Signing.html#Signed"><span class="hs-identifier hs-type">Signed</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-39"></a><span>
+</span><a name="line-40"></a><span class="hs-keyword">instance</span><span> </span><a href="Pos.Binary.Class.Core.html#Bi"><span class="hs-identifier hs-type">Bi</span></a><span> </span><a href="#local-6989586621679902450"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-glyph">=&gt;</span><span> </span><a href="Pos.Binary.Class.Core.html#Bi"><span class="hs-identifier hs-type">Bi</span></a><span> </span><span class="hs-special">(</span><a href="Pos.Crypto.Hashing.html#WithHash"><span class="hs-identifier hs-type">WithHash</span></a><span> </span><a href="#local-6989586621679902450"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-41"></a><span>    </span><a name="local-8214565720324304357"><a href="Pos.Binary.Class.Core.html#encode"><span class="hs-identifier">encode</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Pos.Binary.Class.Core.html#encode"><span class="hs-identifier hs-var">encode</span></a><span> </span><span class="hs-operator hs-var">.</span><span> </span><span class="hs-identifier">whData</span><span>
+</span><a name="line-42"></a><span>    </span><a name="local-8214565720324304358"><a href="Pos.Binary.Class.Core.html#decode"><span class="hs-identifier">decode</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Pos.Crypto.Hashing.html#withHash"><span class="hs-identifier hs-var">withHash</span></a><span> </span><span class="hs-operator hs-var">&lt;$&gt;</span><span> </span><a href="Pos.Binary.Class.Core.html#decode"><span class="hs-identifier hs-var">decode</span></a><span>
+</span><a name="line-43"></a><span>
+</span><a name="line-44"></a><span class="hs-keyword">instance</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Typeable</span><span> </span><a href="#local-6989586621679902449"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">,</span><span> </span><a href="Pos.Binary.Class.Core.html#Bi"><span class="hs-identifier hs-type">Bi</span></a><span> </span><a href="#local-6989586621679902449"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="hs-identifier hs-type">SafeCopy</span><span> </span><span class="hs-special">(</span><a href="Pos.Crypto.Hashing.html#WithHash"><span class="hs-identifier hs-type">WithHash</span></a><span> </span><a href="#local-6989586621679902449"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-45"></a><span>    </span><a name="local-8214565720323828048"><span class="hs-identifier">putCopy</span></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Pos.Binary.Class.Primitive.html#putCopyBi"><span class="hs-identifier hs-var">putCopyBi</span></a><span>
+</span><a name="line-46"></a><span>    </span><a name="local-8214565720323828052"><span class="hs-identifier">getCopy</span></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Pos.Binary.Class.Primitive.html#getCopyBi"><span class="hs-identifier hs-var">getCopyBi</span></a><span>
+</span><a name="line-47"></a><span>
+</span><a name="line-48"></a><span class="hs-comment">----------------------------------------------------------------------------</span><span>
+</span><a name="line-49"></a><span class="hs-comment">-- Hashing</span><span>
+</span><a name="line-50"></a><span class="hs-comment">----------------------------------------------------------------------------</span><span>
+</span><a name="line-51"></a><span>
+</span><a name="line-52"></a><span class="hs-keyword">instance</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Typeable</span><span> </span><a href="#local-6989586621679902444"><span class="hs-identifier hs-type">algo</span></a><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Typeable</span><span> </span><a href="#local-6989586621679902445"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">HashAlgorithm</span><span> </span><a href="#local-6989586621679902444"><span class="hs-identifier hs-type">algo</span></a><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><a href="Pos.Binary.Class.Core.html#Bi"><span class="hs-identifier hs-type">Bi</span></a><span> </span><span class="hs-special">(</span><a href="Pos.Crypto.Hashing.html#AbstractHash"><span class="hs-identifier hs-type">AbstractHash</span></a><span> </span><a href="#local-6989586621679902444"><span class="hs-identifier hs-type">algo</span></a><span> </span><a href="#local-6989586621679902445"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-53"></a><span>    </span><a name="local-8214565720324304357"><a href="Pos.Binary.Class.Core.html#encode"><span class="hs-identifier">encode</span></a></a><span> </span><span class="hs-special">(</span><a href="Pos.Crypto.Hashing.html#AbstractHash"><span class="hs-identifier hs-var">AbstractHash</span></a><span> </span><a name="local-6989586621679902446"><a href="#local-6989586621679902446"><span class="hs-identifier">digest</span></a></a><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><a href="Pos.Binary.Class.Core.html#encode"><span class="hs-identifier hs-var">encode</span></a><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-var">ByteArray</span><span class="hs-operator hs-var">.</span><span class="hs-identifier hs-var">convert</span><span> </span><a href="#local-6989586621679902446"><span class="hs-identifier hs-var">digest</span></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">ByteString</span><span class="hs-special">)</span><span>
+</span><a name="line-54"></a><span>    </span><a name="local-8214565720324304358"><a href="Pos.Binary.Class.Core.html#decode"><span class="hs-identifier">decode</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><a name="line-55"></a><span>        </span><a name="local-6989586621679902447"><a href="#local-6989586621679902447"><span class="hs-identifier">bs</span></a></a><span> </span><span class="hs-glyph">&lt;-</span><span> </span><a href="Pos.Binary.Class.Core.html#decode"><span class="hs-identifier hs-var">decode</span></a><span> </span><span class="hs-glyph">@</span><span class="hs-identifier hs-type">ByteString</span><span>
+</span><a name="line-56"></a><span>        </span><span class="hs-keyword">case</span><span> </span><span class="hs-identifier hs-var">digestFromByteString</span><span> </span><a href="#local-6989586621679902447"><span class="hs-identifier hs-var">bs</span></a><span> </span><span class="hs-keyword">of</span><span>
+</span><a name="line-57"></a><span>            </span><span class="hs-identifier hs-var">Nothing</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-var">fail</span><span> </span><span class="hs-string">&quot;AbstractHash.decode: invalid digest&quot;</span><span>
+</span><a name="line-58"></a><span>            </span><span class="hs-identifier hs-var">Just</span><span> </span><a name="local-6989586621679902448"><a href="#local-6989586621679902448"><span class="hs-identifier">x</span></a></a><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-identifier hs-var">pure</span><span> </span><span class="hs-special">(</span><a href="Pos.Crypto.Hashing.html#AbstractHash"><span class="hs-identifier hs-var">AbstractHash</span></a><span> </span><a href="#local-6989586621679902448"><span class="hs-identifier hs-var">x</span></a><span class="hs-special">)</span><span>
+</span><a name="line-59"></a><span>
+</span><a name="line-60"></a><span class="hs-comment">----------------------------------------------------------------------------</span><span>
+</span><a name="line-61"></a><span class="hs-comment">-- SecretSharing</span><span>
+</span><a name="line-62"></a><span class="hs-comment">----------------------------------------------------------------------------</span><span>
+</span><a name="line-63"></a><span>
+</span><a name="line-64"></a><span class="hs-cpp">#define BiPvss(T, PT) \
+  instance Bi T where {\
+    encode = encodeBinary ;\
+    decode = decodeBinary };\
+  deriving instance Bi PT ;\
+</span><span>
+</span><a name="line-70"></a><span class="hs-identifier">BiPvss</span><span> </span><span class="hs-special">(</span><span class="hs-identifier">Scrape</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">PublicKey</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">C</span><span class="hs-operator hs-type">.</span><span class="hs-identifier">VssPublicKey</span><span class="hs-special">)</span><span>
+</span><a name="line-71"></a><span class="hs-identifier">BiPvss</span><span> </span><span class="hs-special">(</span><span class="hs-identifier">Scrape</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">KeyPair</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">C</span><span class="hs-operator hs-type">.</span><span class="hs-identifier">VssKeyPair</span><span class="hs-special">)</span><span>
+</span><a name="line-72"></a><span class="hs-identifier">BiPvss</span><span> </span><span class="hs-special">(</span><span class="hs-identifier">Scrape</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">Secret</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">C</span><span class="hs-operator hs-type">.</span><span class="hs-identifier">Secret</span><span class="hs-special">)</span><span>
+</span><a name="line-73"></a><span class="hs-identifier">BiPvss</span><span> </span><span class="hs-special">(</span><span class="hs-identifier">Scrape</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">DecryptedShare</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">C</span><span class="hs-operator hs-type">.</span><span class="hs-identifier">DecShare</span><span class="hs-special">)</span><span>
+</span><a name="line-74"></a><span class="hs-identifier">BiPvss</span><span> </span><span class="hs-special">(</span><span class="hs-identifier">Scrape</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">EncryptedSi</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">C</span><span class="hs-operator hs-type">.</span><span class="hs-identifier">EncShare</span><span class="hs-special">)</span><span>
+</span><a name="line-75"></a><span>
+</span><a name="line-76"></a><span class="hs-keyword">instance</span><span> </span><a href="Pos.Binary.Class.Core.html#Bi"><span class="hs-identifier hs-type">Bi</span></a><span> </span><span class="hs-identifier hs-type">Scrape</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">ExtraGen</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-77"></a><span>    </span><a name="local-8214565720324304357"><a href="Pos.Binary.Class.Core.html#encode"><span class="hs-identifier">encode</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Pos.Binary.Class.Core.html#encodeBinary"><span class="hs-identifier hs-var">encodeBinary</span></a><span>
+</span><a name="line-78"></a><span>    </span><a name="local-8214565720324304358"><a href="Pos.Binary.Class.Core.html#decode"><span class="hs-identifier">decode</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Pos.Binary.Class.Core.html#decodeBinary"><span class="hs-identifier hs-var">decodeBinary</span></a><span>
+</span><a name="line-79"></a><span>
+</span><a name="line-80"></a><span class="hs-keyword">instance</span><span> </span><a href="Pos.Binary.Class.Core.html#Bi"><span class="hs-identifier hs-type">Bi</span></a><span> </span><span class="hs-identifier hs-type">Scrape</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">Commitment</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-81"></a><span>    </span><a name="local-8214565720324304357"><a href="Pos.Binary.Class.Core.html#encode"><span class="hs-identifier">encode</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Pos.Binary.Class.Core.html#encodeBinary"><span class="hs-identifier hs-var">encodeBinary</span></a><span>
+</span><a name="line-82"></a><span>    </span><a name="local-8214565720324304358"><a href="Pos.Binary.Class.Core.html#decode"><span class="hs-identifier">decode</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Pos.Binary.Class.Core.html#decodeBinary"><span class="hs-identifier hs-var">decodeBinary</span></a><span>
+</span><a name="line-83"></a><span>
+</span><a name="line-84"></a><span class="hs-keyword">instance</span><span> </span><a href="Pos.Binary.Class.Core.html#Bi"><span class="hs-identifier hs-type">Bi</span></a><span> </span><span class="hs-identifier hs-type">Scrape</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">Proof</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-85"></a><span>    </span><a name="local-8214565720324304357"><a href="Pos.Binary.Class.Core.html#encode"><span class="hs-identifier">encode</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Pos.Binary.Class.Core.html#encodeBinary"><span class="hs-identifier hs-var">encodeBinary</span></a><span>
+</span><a name="line-86"></a><span>    </span><a name="local-8214565720324304358"><a href="Pos.Binary.Class.Core.html#decode"><span class="hs-identifier">decode</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Pos.Binary.Class.Core.html#decodeBinary"><span class="hs-identifier hs-var">decodeBinary</span></a><span>
+</span><a name="line-87"></a><span>
+</span><a name="line-88"></a><span class="hs-keyword">instance</span><span> </span><a href="Pos.Binary.Class.Core.html#Bi"><span class="hs-identifier hs-type">Bi</span></a><span> </span><span class="hs-identifier hs-type">Scrape</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">ParallelProofs</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-89"></a><span>    </span><a name="local-8214565720324304357"><a href="Pos.Binary.Class.Core.html#encode"><span class="hs-identifier">encode</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Pos.Binary.Class.Core.html#encodeBinary"><span class="hs-identifier hs-var">encodeBinary</span></a><span>
+</span><a name="line-90"></a><span>    </span><a name="local-8214565720324304358"><a href="Pos.Binary.Class.Core.html#decode"><span class="hs-identifier">decode</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Pos.Binary.Class.Core.html#decodeBinary"><span class="hs-identifier hs-var">decodeBinary</span></a><span>
+</span><a name="line-91"></a><span>
+</span><a name="line-92"></a><a href="#local-6989586621679903726"><span class="hs-identifier hs-var">deriveSimpleBi</span></a><span> </span><span class="hs-char">''C.SecretProof [
+    Cons 'C.SecretProof [
+        Field [| C.spExtraGen       :: Scrape.ExtraGen       |],
+        Field [| C.spProof          :: Scrape.Proof          |],
+        Field [| C.spParallelProofs :: Scrape.ParallelProofs |],
+        Field [| C.spCommitments    :: [Scrape.Commitment]   |]
+    ]
+  ]
+
+----------------------------------------------------------------------------
+-- SecretSharing AsBinary
+----------------------------------------------------------------------------
+
+-- !A note about these instances! --
+--
+-- For most of the secret sharing types the only check we do during
+-- deserialization is length check. As long as length matches our
+-- expectations, the decoding succeeds (look at 'Binary' instances in
+-- 'pvss') which in turn means that we can use 'fromBinary' and be
+-- quite sure it will succeed. That's why it's important to check
+-- length here (this check is cheap, so it's good to do it as soon as
+-- possible). The only exception is 'SecretSharingExtra' (because we
+-- don't know its length in advance). Currently we check that
+-- 'SecretSharingExtra' can be parsed in 'verifyCommitment' function.
+--
+#define BiMacro(B, BYTES) \
+  instance Bi (AsBinary B) where {\
+    encode (AsBinary bs) = encode bs ;\
+    decode = do { bs &lt;- decode \
+                ; when (BYTES /= length bs) (fail $ &quot;AsBinary B: length mismatch!&quot;) \
+                ; return (AsBinary bs) } }; \
+
+BiMacro(C.VssPublicKey, vssPublicKeyBytes)
+BiMacro(C.Secret, secretBytes)
+BiMacro(C.DecShare, decShareBytes)
+BiMacro(C.EncShare, encShareBytes)
+
+----------------------------------------------------------------------------
+-- Signing
+----------------------------------------------------------------------------
+
+instance Bi Ed25519.PointCompressed where
+    encode (Ed25519.unPointCompressed -&gt; k) = encode k
+    decode = Ed25519.pointCompressed &lt;$&gt; decode
+
+instance Bi Ed25519.Scalar where
+    encode (Ed25519.unScalar -&gt; k) = encode k
+    decode = Ed25519.scalar &lt;$&gt; decode
+
+instance Bi Ed25519.Signature where
+    encode (Ed25519.Signature s) = encode s
+    decode = Ed25519.Signature &lt;$&gt; decode
+
+instance Bi CC.ChainCode where
+    encode (CC.ChainCode c) = encode c
+    decode = CC.ChainCode &lt;$&gt; decode
+
+instance Bi CC.XPub where
+    encode (CC.unXPub -&gt; kc) = encode kc
+    decode = either fail pure . CC.xpub =&lt;&lt; decode
+
+instance Bi CC.XPrv where
+    encode (CC.unXPrv -&gt; kc) = encode kc
+    decode = either fail pure . CC.xprv =&lt;&lt; decode @ByteString
+
+instance Bi CC.XSignature where
+    encode (CC.unXSignature -&gt; bs) = encode bs
+    decode = either fail pure . CC.xsignature =&lt;&lt; decode
+
+deriving instance Typeable a =&gt; Bi (Signature a)
+deriving instance Bi PublicKey
+deriving instance Bi SecretKey
+
+instance Bi EncryptedSecretKey where
+    encode (EncryptedSecretKey sk pph) = encodeListLen 2
+                                      &lt;&gt; encode sk
+                                      &lt;&gt; encode pph
+    decode = EncryptedSecretKey
+         &lt;$  enforceSize &quot;EncryptedSecretKey&quot; 2
+         &lt;*&gt; decode
+         &lt;*&gt; decode
+
+instance Bi a =&gt; Bi (Signed a) where
+    encode (Signed v s) = encodeListLen 2
+                       &lt;&gt; encode v
+                       &lt;&gt; encode s
+    decode = Signed
+         &lt;$  enforceSize &quot;Signed&quot; 2
+         &lt;*&gt; decode
+         &lt;*&gt; decode
+
+deriving instance Typeable w =&gt; Bi (ProxyCert w)
+
+instance Bi w =&gt; Bi (ProxySecretKey w) where
+    encode ProxySecretKey{..} = encodeListLen 4
+                             &lt;&gt; encode pskOmega
+                             &lt;&gt; encode pskIssuerPk
+                             &lt;&gt; encode pskDelegatePk
+                             &lt;&gt; encode pskCert
+    decode = ProxySecretKey &lt;$  enforceSize &quot;ProxySecretKey&quot; 4
+                            &lt;*&gt; decode
+                            &lt;*&gt; decode
+                            &lt;*&gt; decode
+                            &lt;*&gt; decode
+
+instance (Typeable a, Bi w) =&gt; Bi (ProxySignature w a) where
+    encode ProxySignature{..} = encodeListLen 2
+                             &lt;&gt; encode psigPsk
+                             &lt;&gt; encode psigSig
+    decode = ProxySignature
+          &lt;$  enforceSize &quot;ProxySignature&quot; 2
+          &lt;*&gt; decode
+          &lt;*&gt; decode
+
+instance Bi PassPhrase where
+    encode pp = encode (ByteArray.convert pp :: ByteString)
+    decode = do
+        bs &lt;- decode @ByteString
+        let bl = BS.length bs
+        -- Currently passphrase may be either 32-byte long or empty (for
+        -- unencrypted keys).
+        if bl == 0 || bl == passphraseLength
+            then pure $ ByteArray.convert bs
+            else fail . toString $ sformat
+                 (&quot;put@PassPhrase: expected length 0 or &quot;%int%&quot;, not &quot;%int)
+                 passphraseLength bl
+
+instance Bi EncryptedPass where
+    encode (EncryptedPass ep) = encode ep
+    decode = EncryptedPass &lt;$&gt; decode
+
+-------------------------------------------------------------------------------
+-- Hierarchical derivation
+-------------------------------------------------------------------------------
+
+instance Bi HDAddressPayload where
+    encode (HDAddressPayload payload) = encode payload
+    decode = HDAddressPayload &lt;$&gt; decode
+
+-------------------------------------------------------------------------------
+-- Standard Ed25519 instances for ADA redeem keys
+-------------------------------------------------------------------------------
+
+instance Bi EdStandard.PublicKey where
+    encode (EdStandard.PublicKey k) = encode k
+    decode = EdStandard.PublicKey &lt;$&gt; decode
+
+instance Bi EdStandard.SecretKey where
+    encode (EdStandard.SecretKey k) = encode k
+    decode = EdStandard.SecretKey &lt;$&gt; decode
+
+instance Bi EdStandard.Signature where
+    encode (EdStandard.Signature s) = encode s
+    decode = EdStandard.Signature &lt;$&gt; decode
+
+deriving instance Bi RedeemPublicKey
+deriving instance Bi RedeemSecretKey
+deriving instance Typeable a =&gt; Bi (RedeemSignature a)
+</span></pre></body></html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Core</span><span class="hs-operator">.</span><span class="hs-identifier">Script</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-2"></a><span>
+</span><a name="line-3"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Universum</span><span>
+</span><a name="line-4"></a><span>
+</span><a name="line-5"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Eq</span><span class="hs-operator">.</span><span class="hs-identifier">Deriving</span><span>   </span><span class="hs-special">(</span><span class="hs-identifier hs-var">deriveEq1</span><span class="hs-special">)</span><span>
+</span><a name="line-6"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">PlutusCore</span><span class="hs-operator">.</span><span class="hs-identifier">Program</span><span> </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">PLCore</span><span>
+</span><a name="line-7"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">PlutusCore</span><span class="hs-operator">.</span><span class="hs-identifier">Term</span><span>    </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">PLCore</span><span>
+</span><a name="line-8"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">PlutusTypes</span><span class="hs-operator">.</span><span class="hs-identifier">ConSig</span><span> </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">PLTypes</span><span>
+</span><a name="line-9"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">PlutusTypes</span><span class="hs-operator">.</span><span class="hs-identifier">Type</span><span>   </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">PLTypes</span><span>
+</span><a name="line-10"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Utils</span><span class="hs-operator">.</span><span class="hs-identifier">ABT</span><span>          </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">ABT</span><span>
+</span><a name="line-11"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Utils</span><span class="hs-operator">.</span><span class="hs-identifier">Names</span><span>        </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">Names</span><span>
+</span><a name="line-12"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Utils</span><span class="hs-operator">.</span><span class="hs-identifier">Vars</span><span>         </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">Vars</span><span>
+</span><a name="line-13"></a><span>
+</span><a name="line-14"></a><span class="hs-comment">----------------------------------------------------------------------------</span><span>
+</span><a name="line-15"></a><span class="hs-comment">-- Orphan instances, to be included into plutus-prototype</span><span>
+</span><a name="line-16"></a><span class="hs-comment">----------------------------------------------------------------------------</span><span>
+</span><a name="line-17"></a><span>
+</span><a name="line-18"></a><span class="hs-keyword">deriving</span><span> </span><span class="hs-keyword">instance</span><span> </span><span class="hs-identifier hs-type">Show</span><span> </span><span class="hs-identifier hs-type">PLCore</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">PrimData</span><span>
+</span><a name="line-19"></a><span class="hs-keyword">deriving</span><span> </span><span class="hs-keyword">instance</span><span> </span><span class="hs-identifier hs-type">Show</span><span> </span><span class="hs-identifier hs-type">PLCore</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">SimplePattern</span><span>
+</span><a name="line-20"></a><span>
+</span><a name="line-21"></a><span class="hs-keyword">deriving</span><span> </span><span class="hs-keyword">instance</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Show</span><span> </span><a href="#local-6989586621679477579"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Show</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">PLCore</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">ClauseF</span><span> </span><a href="#local-6989586621679477579"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="hs-identifier hs-type">Show</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">PLCore</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">TermF</span><span> </span><a href="#local-6989586621679477579"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span>
+</span><a name="line-22"></a><span class="hs-keyword">deriving</span><span> </span><span class="hs-keyword">instance</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Eq</span><span> </span><a href="#local-6989586621679477578"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Eq</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">PLCore</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">ClauseF</span><span> </span><a href="#local-6989586621679477578"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="hs-identifier hs-type">Eq</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">PLCore</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">TermF</span><span> </span><a href="#local-6989586621679477578"><span class="hs-identifier hs-type">a</span></a><span class="hs-special">)</span><span>
+</span><a name="line-23"></a><span>
+</span><a name="line-24"></a><span class="hs-keyword">deriving</span><span> </span><span class="hs-keyword">instance</span><span> </span><span class="hs-identifier hs-type">Eq</span><span> </span><span class="hs-identifier hs-type">PLTypes</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">TyConSig</span><span>
+</span><a name="line-25"></a><span class="hs-keyword">deriving</span><span> </span><span class="hs-keyword">instance</span><span> </span><span class="hs-identifier hs-type">Eq</span><span> </span><span class="hs-identifier hs-type">PLTypes</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">ConSig</span><span>
+</span><a name="line-26"></a><span class="hs-keyword">deriving</span><span> </span><span class="hs-keyword">instance</span><span> </span><span class="hs-identifier hs-type">Eq</span><span> </span><span class="hs-identifier hs-type">PLCore</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">SimplePattern</span><span>
+</span><a name="line-27"></a><span class="hs-keyword">deriving</span><span> </span><span class="hs-keyword">instance</span><span> </span><span class="hs-identifier hs-type">Eq</span><span> </span><span class="hs-identifier hs-type">PLCore</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">Program</span><span>
+</span><a name="line-28"></a><span>
+</span><a name="line-29"></a><span class="hs-identifier hs-var">deriveEq1</span><span> </span><span class="hs-char">''PLCore.ClauseF
+deriveEq1 ''PLCore.TermF
+deriveEq1 ''PLTypes.TypeF
+
+deriving instance Show r =&gt; Show (PLCore.ClauseF r)
+
+instance NFData Vars.FreeVar
+instance NFData Vars.MetaVar
+instance NFData Vars.BoundVar
+instance NFData PLTypes.TyConSig
+instance NFData PLTypes.ConSig
+instance NFData a =&gt; NFData (Names.Sourced a)
+instance NFData ABT.Variable
+instance NFData (f (ABT.Scope f)) =&gt; NFData (ABT.ABT f)
+instance NFData (f (ABT.Scope f)) =&gt; NFData (ABT.Scope f)
+instance NFData r =&gt; NFData (PLCore.ClauseF r)
+instance NFData a =&gt; NFData (PLCore.TermF a)
+instance NFData a =&gt; NFData (PLTypes.TypeF a)
+instance NFData PLCore.PrimData
+instance NFData PLCore.SimplePattern
+instance NFData PLCore.Program
+</span></pre></body></html>

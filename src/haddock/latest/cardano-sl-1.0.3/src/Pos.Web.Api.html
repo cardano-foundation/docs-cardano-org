@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE DataKinds     #-}</span><span>
+</span><a name="line-2"></a><span class="hs-pragma">{-# LANGUAGE TypeOperators #-}</span><span>
+</span><a name="line-3"></a><span>
+</span><a name="line-4"></a><span class="hs-comment">-- | Web API exposed by node.</span><span>
+</span><a name="line-5"></a><span>
+</span><a name="line-6"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Web</span><span class="hs-operator">.</span><span class="hs-identifier">Api</span><span>
+</span><a name="line-7"></a><span>       </span><span class="hs-special">(</span><span> </span><a href="Pos.Web.Api.html#BaseNodeApi"><span class="hs-identifier hs-type">BaseNodeApi</span></a><span>
+</span><a name="line-8"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Web.Api.html#baseNodeApi"><span class="hs-identifier hs-var">baseNodeApi</span></a><span>
+</span><a name="line-9"></a><span>
+</span><a name="line-10"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Web.Api.html#HealthCheckApi"><span class="hs-identifier hs-type">HealthCheckApi</span></a><span>
+</span><a name="line-11"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Web.Api.html#healthCheckApi"><span class="hs-identifier hs-var">healthCheckApi</span></a><span>
+</span><a name="line-12"></a><span>
+</span><a name="line-13"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Web.Api.html#GodTossingApi"><span class="hs-identifier hs-type">GodTossingApi</span></a><span>
+</span><a name="line-14"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Web.Api.html#godTossingApi"><span class="hs-identifier hs-var">godTossingApi</span></a><span>
+</span><a name="line-15"></a><span>
+</span><a name="line-16"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Web.Api.html#GtNodeApi"><span class="hs-identifier hs-type">GtNodeApi</span></a><span>
+</span><a name="line-17"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Web.Api.html#gtNodeApi"><span class="hs-identifier hs-var">gtNodeApi</span></a><span>
+</span><a name="line-18"></a><span>       </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-19"></a><span>
+</span><a name="line-20"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Servant</span><span class="hs-operator">.</span><span class="hs-identifier">API</span><span>        </span><span class="hs-special">(</span><span class="hs-special">(</span><span class="hs-operator hs-type">:&lt;|&gt;</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-special">(</span><span class="hs-operator hs-type">:&gt;</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Capture</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Get</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">JSON</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">PlainText</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">Post</span><span class="hs-special">,</span><span>
+</span><a name="line-21"></a><span>                                     </span><span class="hs-identifier hs-type">QueryParam</span><span class="hs-special">)</span><span>
+</span><a name="line-22"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Universum</span><span>
+</span><a name="line-23"></a><span>
+</span><a name="line-24"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Crypto</span><span>         </span><span class="hs-special">(</span><span class="hs-identifier hs-type">PublicKey</span><span class="hs-special">)</span><span>
+</span><a name="line-25"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Ssc.GodTossing.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Ssc</span><span class="hs-operator">.</span><span class="hs-identifier">GodTossing</span></a><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">SscGodTossing</span><span class="hs-special">)</span><span>
+</span><a name="line-26"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Txp.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Txp</span></a><span>            </span><span class="hs-special">(</span><span class="hs-identifier hs-type">TxOut</span><span class="hs-special">)</span><span>
+</span><a name="line-27"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Types.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span></a><span>          </span><span class="hs-special">(</span><span class="hs-identifier hs-type">EpochIndex</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">HeaderHash</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">SlotLeaders</span><span class="hs-special">)</span><span>
+</span><a name="line-28"></a><span>
+</span><a name="line-29"></a><span class="hs-comment">-- | Servant API which provides access to full node internals.</span><span>
+</span><a name="line-30"></a><span class="hs-comment">--</span><span>
+</span><a name="line-31"></a><span class="hs-comment">-- Implementations of these methods are in</span><span>
+</span><a name="line-32"></a><span class="hs-comment">-- 'Pos.Web.Server.baseServantHandlers'.</span><span>
+</span><a name="line-33"></a><span class="hs-keyword">type</span><span> </span><a name="BaseNodeApi"><a href="Pos.Web.Api.html#BaseNodeApi"><span class="hs-identifier">BaseNodeApi</span></a></a><span> </span><a name="local-6989586621681624802"><a href="#local-6989586621681624802"><span class="hs-identifier">ssc</span></a></a><span> </span><span class="hs-glyph">=</span><span>
+</span><a name="line-34"></a><span>    </span><span class="hs-comment">-- &quot;current_slot&quot;</span><span>
+</span><a name="line-35"></a><span>    </span><span class="hs-comment">--     :&gt; Get '[JSON] SlotId</span><span>
+</span><a name="line-36"></a><span>    </span><span class="hs-comment">-- :&lt;|&gt;</span><span>
+</span><a name="line-37"></a><span>    </span><span class="hs-string">&quot;leaders&quot;</span><span>
+</span><a name="line-38"></a><span>        </span><span class="hs-operator">:&gt;</span><span> </span><span class="hs-identifier hs-type">QueryParam</span><span> </span><span class="hs-string">&quot;epoch&quot;</span><span> </span><span class="hs-identifier hs-type">EpochIndex</span><span>
+</span><a name="line-39"></a><span>        </span><span class="hs-operator">:&gt;</span><span> </span><span class="hs-identifier hs-type">Get</span><span> </span><span class="hs-char">'[JSON] SlotLeaders
+    :&lt;|&gt;
+    &quot;utxo&quot;
+        :&gt; Get '[JSON] [TxOut]
+    :&lt;|&gt;
+    &quot;spending_key&quot;
+        :&gt; Get '[JSON] PublicKey
+    :&lt;|&gt;
+    &quot;head_hash&quot;
+        :&gt; Get '[JSON] HeaderHash
+    :&lt;|&gt;
+    &quot;local_txs_num&quot;
+        :&gt; Get '[JSON] Word
+
+-- | Helper Proxy.
+healthCheckApi :: Proxy HealthCheckApi
+healthCheckApi = Proxy
+
+type HealthCheckApi =
+    &quot;healthcheck&quot; :&gt; &quot;route53&quot; :&gt; Get '[PlainText] String
+
+-- | Helper Proxy.
+baseNodeApi :: Proxy (BaseNodeApi ssc)
+baseNodeApi = Proxy
+
+-- | GodTossing specific API.
+type GodTossingApi =
+    &quot;toggle&quot;
+        :&gt; Capture &quot;enable&quot; Bool
+        :&gt; Post '[JSON] ()
+    -- :&lt;|&gt;
+    -- &quot;has_secret&quot; :&gt; Get '[JSON] Bool :&lt;|&gt;
+    -- &quot;secret&quot; :&gt; Get '[JSON] SharedSeed :&lt;|&gt;
+    -- &quot;stage&quot; :&gt; Get '[JSON] GodTossingStage
+
+-- | Helper Proxy.
+godTossingApi :: Proxy GodTossingApi
+godTossingApi = Proxy
+
+-- | Servant API which provides access to full node internals with
+-- GodTossing SSC.
+type GtNodeApi =
+    BaseNodeApi SscGodTossing
+    :&lt;|&gt;
+    &quot;god_tossing&quot;
+        :&gt; GodTossingApi
+
+-- | Helper Proxy.
+gtNodeApi :: Proxy GtNodeApi
+gtNodeApi = Proxy
+</span></pre></body></html>

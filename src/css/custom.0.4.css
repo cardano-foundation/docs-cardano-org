@@ -1,0 +1,139 @@
+html {  background:#111}
+.body,
+h1,h2,h3,h4,h5,h6{	font-family: 'Roboto', sans-serif;color:#444}
+h1,h2{font-weight: 100}
+h3{font-weight:300}
+body{background:#fff;color:#555;padding-top:80px;}
+
+a{color:#0C3675;}
+
+.clear{both}
+
+@media (min-width:768px){
+  .nodesktop{display: none !important}
+}
+
+.navbar{	font-family: 'Montserrat', sans-serif;color:#444}
+.headerlink{display:none}
+
+a{outline: 0 !important;}
+hr{border-color: #222}
+
+.navbar {background:rgba(255,255,255,0.95);border-radius: 0 ;border:0;background-size:cover;   background-repeat: no-repeat;color:#aaa;	font-weight:200;letter-spacing: 0.05em;min-height:60px;margin:0;}
+.navbar-brand {padding:31px 15px;letter-spacing: .1em;margin:0;font:400 15px/20px  'Montserrat', sans-serif;}
+.navbar-brand a{}
+.navbar-brand img{width:33px;height: auto;margin:0 8px 0 0}
+
+.navbar-nav > li > a {font-weight:200;font-size:12px; padding-top:30px; padding-bottom:30px;color:#415C72 !important;}
+
+
+#top{background: url('/images/bg1.jpg') no-repeat center bottom;min-height:650px}
+#top {padding:35px 0 0 0}
+#top h1{font-size:450%;letter-spacing:-.03em;color:#0C3675;margin:0;}
+#top h2{font-size:230%;letter-spacing:-.03em;color:#415C72;margin:0;}
+
+@media (min-width:768px){
+#top h1{padding:0px 0 470px 0}
+#top h2{padding:0;margin:0}
+}
+
+@media (max-width:992px){
+#top h1{padding:0px 0 300px 0}
+#top{background-size:cover;min-height:550px}
+}
+
+@media (max-width:767px){
+#top h1{font-size:300%;padding:0px 0 200px 0}
+#top{background-size:cover;min-height:380px}
+}
+
+@media (max-width:460px){
+#top h1{font-size:250%;padding:0px 0 200px 0}
+}
+
+
+
+#download {background:#F0F0F0;}
+#download .grad{height:40px}
+#download .grad.top{
+background: rgb(206,206,206); /* Old browsers background-size:cover; */
+background: -moz-linear-gradient(top, rgba(206,206,206,1) 0%, rgba(240,240,240,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, rgba(206,206,206,1) 0%,rgba(240,240,240,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, rgba(206,206,206,1) 0%,rgba(240,240,240,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cecece', endColorstr='#f0f0f0',GradientType=0 ); /* IE6-9 */;
+}
+#download .grad.bottom{
+background: rgb(206,206,206); /* Old browsers background-size:cover; */
+background: -moz-linear-gradient(top, rgba(240,240,240,1) 0%, rgba(206,206,206,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, rgba(240,240,240,1) 0%,rgba(206,206,206,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, rgba(240,240,240,1) 0%,rgba(206,206,206,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cecece', endColorstr='#f0f0f0',GradientType=0 ); /* IE6-9 */;
+}
+
+#download .downloads{background: url('/images/line.png') repeat-x center;}
+#download .downloads a{display:inline-block;width:140px;margin:0 30px;text-decoration: none}
+#download .downloads a b{color:#666;text-shadow:#fff 0px -1px 0px}
+#download .downloads a:hover b{color:#333}
+
+#download h2{margin:0 0 20px 0;color:#777;text-shadow:#fff 0px -1px 0px}
+
+#about {background:#F0F0F0;padding:20px 0}
+#about .iso{margin:-50px 0 0 0}
+
+
+
+.info{padding:50px 0 50px 0}
+.foot{font-size: 85%;color:#555;background:#111;padding:0px 0;clear:both}
+.foot .note {	color:#555;padding:10px 0;margin:0px 0 0 0;border-top:1px solid #222;font-size: 85%;font-weight:bold; text-align: center;text-transform: uppercase;}
+
+
+
+
+
+.daedalus.logo a{text-decoration: none;}
+.daedalus.logo .supported_project {margin:-13px 0 0 47px;}
+.daedalus.logo .supported_project a{	color:#777;text-transform: uppercase;font-size: 80%}
+
+.foot .navbar-brand {padding:0;float:none}
+.foot .navbar-brand a{color:#82C4EA;}
+
+.foot .logo a{text-decoration: none;}
+.foot .logo a span{font-family: 'Montserrat', sans-serif;text-transform: uppercase;color:#fff;font-size:160%;letter-spacing: .1em;display: inline-block;padding:0 0 0 10px}
+.foot .logo .supported_project {margin:-13px 0 0 53px;}
+.foot .logo .supported_project a{	color:#777;text-transform: uppercase;font-size: 80%}
+
+
+
+.foot .grad{ height:30px;
+  background: rgb(0,0,0); /* Old browsers */
+  background: -moz-linear-gradient(top, rgba(0,0,0,1) 0%, rgba(17,17,17,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(0,0,0,1) 0%,rgba(17,17,17,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(0,0,0,1) 0%,rgba(17,17,17,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#111111',GradientType=0 );
+}
+
+
+.links {color:#333}
+.links a{padding:0 10px;color:#eee}
+.links a:hover{text-decoration: none}
+.links.network a:hover{color:#00C3FF !important;}
+
+.links.network{padding:0px 0 35px 0;font-size:120%;margin:10px 0 0 0;line-height: 1.5}
+
+#foot {margin:0px 0 0 0}
+#foot .footer{font-size:85%;font-weight:400;padding:30px 0 10px 0;}
+#foot h4{font-size:150%;font-weight:500}
+
+#foot hr{margin: 0 0 10px 0}
+#foot .footer .links{margin:22px 0 0 0;}
+
+#foot .iohk_qeditas_link{font-size:250%;color:#555;font-weight:200;letter-spacing:-.02em;text-decoration:none}
+#foot .iohk_qeditas_link .red{color:#f00}
+#foot .iohk_link img{margin:10px 0 0 0}
+
+#foot .navbar-nav li a {padding:0px 10px 25px 10px;color:#555}
+
+
+@media (max-width:768px){
+#foot .navbar-nav li a{padding:0 0 5px 10px}
+}

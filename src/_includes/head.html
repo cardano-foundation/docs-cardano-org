@@ -1,0 +1,74 @@
+{% if page.redirect %}<script>location.href='{{page.redirect}}';</script>{% endif %}
+<head>
+<title>{% if page.permalink == '/' %}{{ site.title }} - {{ site.description }}{% else %}{{ page.title }} - {{ site.title }}{% endif %}</title>
+<meta charset="utf-8">
+
+{% assign urlprefix = site.baseurl %}
+
+{% include analytics.html %}
+
+<meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<meta name="twitter:card" content="{{ page.title }}">
+<meta name="twitter:site" content="{{ site.title }}">
+<meta name="twitter:creator" content="{{ site.title }}">
+
+<meta name="twitter:title" content="{{ page.title }}">
+<meta name="twitter:description" content="{{ page.title }}">
+
+<meta property="og:title" content="{{ page.title }}" />
+<meta property="og:type" content="page" />
+<meta property="og:url" content="{{site.baseurl}}{{page.permalink}}" />
+
+
+<meta property="og:description" content="{{site.description}}" />
+<meta property="og:site_name" content="{{ site.title }}" />
+
+
+
+
+{% if page.thumbnail %}
+<meta name="twitter:image" content="{{page.thumbnail}}">
+{% else %}
+<meta name="twitter:image" content="//cardano-docs.iohk.io/img/sharing.jpg">
+{% endif %}
+
+{% if page.thumbnail %}
+<meta property="og:image" content="{{page.thumbnail}}" />
+{% else %}
+<meta property="og:image" content="//cardano-docs.iohk.io/img/sharing.jpg" />
+{% endif %}
+
+
+
+
+
+<script>(function(){document.documentElement.className='js'})();</script>
+
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css" media="all" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto%3A100%2C300%2C500&#038;subset=latin&#038;ver=4.4.2" type="text/css" media="all" />
+
+
+<link href="/css/montserrat.css" rel="stylesheet">
+<link href="/css/app.css" rel="stylesheet" media="screen">
+<link href="/css/custom.0.16.css" rel="stylesheet" media="screen">
+
+<!--[if lte IE 10]>
+<script>webglIE = false;</script>
+<style>#io_intro_nav {display: none !important}</style>
+<![endif]-->
+<!--[if lt IE 9]>
+<link rel="stylesheet"  href="{{ "/css/ie.css" | prepend: site.baseurl }}" type="text/css" media="all" />
+<script src="{{ "/js/html5.js" | prepend: site.baseurl }}"></script>
+<![endif]-->
+<!--[if lt IE 8]>
+<script>lowerie = true;</script>
+<link rel="stylesheet"  href="{{ "/css/ieoff.css" | prepend: site.baseurl }}" type="text/css" media="all" />
+<![endif]-->
+
+<script type="text/javascript" src="{{ '/js/app/jquery-1.11.2.min.js' | prepend: urlprefix }}"></script>
+<script type="text/javascript" src="{{ '/js/app/jquery-ui.js' | prepend: urlprefix }}"></script>
+
+</head>

@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- | Data which is stored in memory and is related to GState.</span><span>
+</span><a name="line-2"></a><span>
+</span><a name="line-3"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">GState</span><span class="hs-operator">.</span><span class="hs-identifier">Context</span><span>
+</span><a name="line-4"></a><span>       </span><span class="hs-special">(</span><span> </span><a href="Pos.GState.Context.html#GStateContext"><span class="hs-identifier hs-type">GStateContext</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-5"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.GState.Context.html#HasGStateContext"><span class="hs-identifier hs-type">HasGStateContext</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-6"></a><span>
+</span><a name="line-7"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.GState.Context.html#cloneGStateContext"><span class="hs-identifier hs-var">cloneGStateContext</span></a><span>
+</span><a name="line-8"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.GState.Context.html#withClonedGState"><span class="hs-identifier hs-var">withClonedGState</span></a><span>
+</span><a name="line-9"></a><span>       </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-10"></a><span>
+</span><a name="line-11"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Universum</span><span>
+</span><a name="line-12"></a><span>
+</span><a name="line-13"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Lens</span><span>           </span><span class="hs-special">(</span><span class="hs-identifier hs-var">makeClassy</span><span class="hs-special">)</span><span>
+</span><a name="line-14"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">System</span><span class="hs-operator">.</span><span class="hs-identifier">Wlog</span><span>            </span><span class="hs-special">(</span><span class="hs-identifier hs-type">WithLogger</span><span class="hs-special">)</span><span>
+</span><a name="line-15"></a><span>
+</span><a name="line-16"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Block.Slog.Context.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Block</span><span class="hs-operator">.</span><span class="hs-identifier">Slog</span><span class="hs-operator">.</span><span class="hs-identifier">Context</span></a><span> </span><span class="hs-special">(</span><a href="Pos.Block.Slog.Context.html#cloneSlogGState"><span class="hs-identifier hs-var">cloneSlogGState</span></a><span class="hs-special">)</span><span>
+</span><a name="line-17"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Block.Slog.Types.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Block</span><span class="hs-operator">.</span><span class="hs-identifier">Slog</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span></a><span>   </span><span class="hs-special">(</span><a href="Pos.Block.Slog.Types.html#HasSlogGState"><span class="hs-identifier hs-type">HasSlogGState</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><a href="Pos.Block.Slog.Types.html#SlogGState"><span class="hs-identifier hs-type">SlogGState</span></a><span class="hs-special">)</span><span>
+</span><a name="line-18"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">DB</span><span class="hs-operator">.</span><span class="hs-identifier">Pure</span><span>            </span><span class="hs-special">(</span><span class="hs-identifier hs-var">cloneDBPure</span><span class="hs-special">)</span><span>
+</span><a name="line-19"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">DB</span><span class="hs-operator">.</span><span class="hs-identifier">Sum</span><span>             </span><span class="hs-special">(</span><span class="hs-identifier hs-type">DBSum</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-20"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Lrc</span><span class="hs-operator">.</span><span class="hs-identifier">Context</span><span>        </span><span class="hs-special">(</span><span class="hs-identifier hs-type">LrcContext</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">cloneLrcContext</span><span class="hs-special">)</span><span>
+</span><a name="line-21"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Slotting</span><span>           </span><span class="hs-special">(</span><span class="hs-identifier hs-type">SlottingData</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">cloneSlottingVar</span><span class="hs-special">)</span><span>
+</span><a name="line-22"></a><span>
+</span><a name="line-23"></a><span class="hs-comment">-- | This type contains DB and in-memory contexts which basically</span><span>
+</span><a name="line-24"></a><span class="hs-comment">-- replicate GState. It's parameterized by DB type, because we have</span><span>
+</span><a name="line-25"></a><span class="hs-comment">-- multiple DB implementations.</span><span>
+</span><a name="line-26"></a><span class="hs-comment">--</span><span>
+</span><a name="line-27"></a><span class="hs-comment">-- [CSL-1390] FIXME: add SSC GState here too!</span><span>
+</span><a name="line-28"></a><span class="hs-keyword">data</span><span> </span><a name="GStateContext"><a href="Pos.GState.Context.html#GStateContext"><span class="hs-identifier">GStateContext</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a name="GStateContext"><a href="Pos.GState.Context.html#GStateContext"><span class="hs-identifier">GStateContext</span></a></a><span>
+</span><a name="line-29"></a><span>    </span><span class="hs-special">{</span><span> </span><a name="_gscDB"><a href="Pos.GState.Context.html#_gscDB"><span class="hs-identifier">_gscDB</span></a></a><span>          </span><span class="hs-glyph">::</span><span> </span><span class="hs-glyph">!</span><span class="hs-identifier hs-type">DBSum</span><span>
+</span><a name="line-30"></a><span>    </span><span class="hs-special">,</span><span> </span><a name="_gscLrcContext"><a href="Pos.GState.Context.html#_gscLrcContext"><span class="hs-identifier">_gscLrcContext</span></a></a><span>  </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">LrcContext</span><span>
+</span><a name="line-31"></a><span>    </span><span class="hs-special">,</span><span> </span><a name="_gscSlogGState"><a href="Pos.GState.Context.html#_gscSlogGState"><span class="hs-identifier">_gscSlogGState</span></a></a><span>  </span><span class="hs-glyph">::</span><span> </span><a href="Pos.Block.Slog.Types.html#SlogGState"><span class="hs-identifier hs-type">SlogGState</span></a><span>
+</span><a name="line-32"></a><span>    </span><span class="hs-special">,</span><span> </span><a name="_gscSlottingVar"><a href="Pos.GState.Context.html#_gscSlottingVar"><span class="hs-identifier">_gscSlottingVar</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">TVar</span><span> </span><span class="hs-identifier hs-type">SlottingData</span><span>
+</span><a name="line-33"></a><span>    </span><span class="hs-comment">-- Fields are lazy to be used with future.</span><span>
+</span><a name="line-34"></a><span>    </span><span class="hs-special">}</span><span>
+</span><a name="line-35"></a><span>
+</span><a name="line-36"></a><span class="hs-identifier hs-var">makeClassy</span><span> </span><span class="hs-char">''GStateContext
+
+instance HasSlogGState GStateContext where
+    slogGState = gscSlogGState
+
+-- | Create a new 'GStateContext' which is a copy of the given context
+-- and can be modified independently.
+cloneGStateContext ::
+       (MonadIO m, WithLogger m, MonadThrow m)
+    =&gt; GStateContext
+    -&gt; m GStateContext
+cloneGStateContext GStateContext {..} = case _gscDB of
+    RealDB _ -&gt; error &quot;You may not copy RealDB&quot; -- TODO maybe exception?
+    PureDB pdb -&gt; GStateContext &lt;$&gt;
+        (PureDB &lt;$&gt; cloneDBPure pdb) &lt;*&gt;
+        cloneLrcContext _gscLrcContext &lt;*&gt;
+        cloneSlogGState _gscSlogGState &lt;*&gt;
+        cloneSlottingVar _gscSlottingVar
+
+-- | Make a full copy of GState and run given action with this copy.
+withClonedGState ::
+       ( MonadIO m
+       , WithLogger m
+       , MonadThrow m
+       , MonadReader ctx m
+       , HasGStateContext ctx
+       )
+    =&gt; m a
+    -&gt; m a
+withClonedGState action = do
+    cloned &lt;- cloneGStateContext =&lt;&lt; view gStateContext
+    local (set gStateContext cloned) action
+</span></pre></body></html>

@@ -1,0 +1,17 @@
+{% assign title = page.title %}
+{% assign permalink = page.permalink %}
+{% if include.item %}
+{% assign title = include.item.title %}
+{% assign permalink = include.item.permalink %}
+{% endif %}
+
+<div class="btn-group bigger" role="group" aria-label="View controls">
+    <a href="javascript:;" class=" c_555 nomobile" onclick="window.print()"><em class="fa fa-print"></em></a> &nbsp;&nbsp;
+    {% if include.item.pdfurl %}<a href="{{include.item.pdfurl}}" target="_blank" class="c_555"><em class="fa fa-file-pdf-o"></em></a> &nbsp;&nbsp;  {% endif %}
+    <a href="javascript:io_send_mail(this)" class="c_555" data-title="{{title}}" data-link="{{permalink}}" onclick=""><em class="fa fa-envelope"></em></a> &nbsp;&nbsp;
+    <a class="c_555" href="http://twitter.com/share?url={{site.url}}{{permalink}}&text={{title}}" target="_blank"><em class="fa fa-twitter"></em></a> &nbsp;&nbsp;
+    <a class="c_555" href="http://www.facebook.com/sharer.php?u={{site.url}}{{permalink}}&t={{title}}" target="_blank"><em class="fa fa-facebook"></em></a> &nbsp;&nbsp;
+    <a class="c_555" href="http://www.linkedin.com/shareArticle?mini=true&url={{site.url}}{{permalink}}" target="_blank"><em class="fa fa-linkedin"></em></a> &nbsp;&nbsp;
+    <a class="c_555" href="https://plusone.google.com/_/+1/confirm?hl=en&url={{site.url}}{{permalink}}" target="_blank"><em class="fa fa-google-plus"></em></a> &nbsp;&nbsp;
+    <a class="c_555" href="http://reddit.com/submit?url={{site.url}}{{permalink}}&title={{title}}" target="_blank"><em class="fa fa-reddit"></em></a>
+</div>

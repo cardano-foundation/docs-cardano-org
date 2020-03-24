@@ -1,0 +1,79 @@
+<div class="top">
+
+  <nav class="navbar navbar-default  navbar-inverse">
+    <div class="container">
+
+
+      <div class="navbar-header cardano logo">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#cardano-nav" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/"><img src="//static.iohk.io/cardano/images/cardano-white-120.png" alt="" width="50" height="45" /></a>
+        <ul id="lang-select" class="lang-select menu pad0 langs">
+          <li><a href="/"> <img width="23px" height="17px" src="/img/en.png" alt="English"/> English </a></li>
+          <li><a href="/cn"> <img width="23px" height="17px" src="/img/cn.png" alt="Chinese"/> 中文 </a></li>
+        </ul>
+      </div>
+      
+
+    </div><!-- /.container -->
+  </nav>
+
+<div class="banner">
+  <noscript class="noscript">
+             <div id="div100">
+             Please enable scripts for all features of this site to work.
+             </div>
+          </noscript>
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-6 col-md-offset-3">
+        
+        
+        {% if page.language == "en" %}
+
+      <h1>Cardano Settlement Layer <span>Documentation</span></h1>
+
+        {% endif %}
+
+        {% if page.language == "cn" %}
+
+        <h1>卡尔达诺结算层文档</h1>
+
+        {% endif %}
+
+      <form id="site_search_form" class="" action="javascript:io_search_site()">
+
+
+                      {% if page.language == "en" %}
+                      <div class="input-group">
+                        <input id="site_search_input" type="text" class="form-control input-lg" placeholder="Search docs ..." onfocus="io_search_site()" />
+                            <span class="input-group-btn">
+                              <button type="submit" class="btn btn-default btn-lg"><em class="fa fa-search"></em></button>
+                            </span>
+                          </div><!-- /input-group -->
+                          {% endif %}
+
+                        {% if page.language == "cn" %}
+                          <div class="input-group">
+                           <input id="site_search_input" type="text" class="form-control input-lg" placeholder="搜索文档 ..." onfocus="io_search_site()" />
+                            <span class="input-group-btn">
+                              <button type="submit" class="btn btn-default btn-lg"><em class="fa fa-search"></em></button>
+                            </span>
+                          </div><!-- /input-group -->
+                          {% endif %}
+
+      </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="navbar-grad"></div>

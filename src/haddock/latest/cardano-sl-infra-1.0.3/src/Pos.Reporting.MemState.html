@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE TypeFamilies #-}</span><span>
+</span><a name="line-2"></a><span>
+</span><a name="line-3"></a><span class="hs-comment">-- | Reporting functionality abstracted.</span><span>
+</span><a name="line-4"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Reporting</span><span class="hs-operator">.</span><span class="hs-identifier">MemState</span><span>
+</span><a name="line-5"></a><span>       </span><span class="hs-special">(</span><span> </span><a href="Pos.Reporting.MemState.html#ReportingContext"><span class="hs-identifier hs-type">ReportingContext</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-6"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Reporting.MemState.html#HasReportServers"><span class="hs-identifier hs-type">HasReportServers</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-7"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Reporting.MemState.html#HasLoggerConfig"><span class="hs-identifier hs-type">HasLoggerConfig</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-8"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Reporting.MemState.html#HasReportingContext"><span class="hs-identifier hs-type">HasReportingContext</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-9"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Reporting.MemState.html#emptyReportingContext"><span class="hs-identifier hs-var">emptyReportingContext</span></a><span>
+</span><a name="line-10"></a><span>       </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-11"></a><span>
+</span><a name="line-12"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Lens</span><span>             </span><span class="hs-special">(</span><span class="hs-identifier hs-var">makeLenses</span><span class="hs-special">)</span><span>
+</span><a name="line-13"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">System</span><span class="hs-operator">.</span><span class="hs-identifier">Wlog</span><span class="hs-operator">.</span><span class="hs-identifier">LoggerConfig</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">LoggerConfig</span><span class="hs-special">)</span><span>
+</span><a name="line-14"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Universum</span><span>
+</span><a name="line-15"></a><span>
+</span><a name="line-16"></a><span class="hs-comment">-- | Context needed to provide remote reporting capabilities.</span><span>
+</span><a name="line-17"></a><span class="hs-keyword">data</span><span> </span><a name="ReportingContext"><a href="Pos.Reporting.MemState.html#ReportingContext"><span class="hs-identifier">ReportingContext</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a name="ReportingContext"><a href="Pos.Reporting.MemState.html#ReportingContext"><span class="hs-identifier">ReportingContext</span></a></a><span>
+</span><a name="line-18"></a><span>    </span><span class="hs-special">{</span><span> </span><a name="_rcReportServers"><a href="Pos.Reporting.MemState.html#_rcReportServers"><span class="hs-identifier">_rcReportServers</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-glyph">!</span><span class="hs-special">[</span><span class="hs-identifier hs-type">Text</span><span class="hs-special">]</span><span> </span><span class="hs-comment">-- ^ Report servers list (urls)</span><span>
+</span><a name="line-19"></a><span>    </span><span class="hs-special">,</span><span> </span><a name="_rcLoggingConfig"><a href="Pos.Reporting.MemState.html#_rcLoggingConfig"><span class="hs-identifier">_rcLoggingConfig</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-glyph">!</span><span class="hs-identifier hs-type">LoggerConfig</span><span>
+</span><a name="line-20"></a><span>    </span><span class="hs-special">}</span><span>
+</span><a name="line-21"></a><span>
+</span><a name="line-22"></a><span class="hs-identifier hs-var">makeLenses</span><span> </span><span class="hs-char">''ReportingContext
+
+class HasReportServers ctx where
+    reportServers :: Lens' ctx [Text]
+
+instance HasReportServers ReportingContext where
+    reportServers = rcReportServers
+
+class HasLoggerConfig ctx where
+    loggerConfig :: Lens' ctx LoggerConfig
+
+instance HasLoggerConfig ReportingContext where
+    loggerConfig = rcLoggingConfig
+
+class HasReportingContext ctx where
+    reportingContext :: Lens' ctx ReportingContext
+
+emptyReportingContext :: ReportingContext
+emptyReportingContext = ReportingContext [] mempty
+</span></pre></body></html>

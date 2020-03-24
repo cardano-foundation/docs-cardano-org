@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE CPP           #-}</span><span>
+</span><a name="line-2"></a><span class="hs-pragma">{-# LANGUAGE TypeFamilies  #-}</span><span>
+</span><a name="line-3"></a><span class="hs-pragma">{-# LANGUAGE TypeOperators #-}</span><span>
+</span><a name="line-4"></a><span class="hs-pragma">{-# OPTIONS -fno-warn-unused-top-binds #-}</span><span> </span><span class="hs-comment">-- for lenses</span><span>
+</span><a name="line-5"></a><span>
+</span><a name="line-6"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">WorkMode</span><span>
+</span><a name="line-7"></a><span>       </span><span class="hs-special">(</span><span> </span><a href="Pos.WorkMode.Class.html#WorkMode"><span class="hs-identifier hs-type">WorkMode</span></a><span>
+</span><a name="line-8"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.WorkMode.Class.html#MinWorkMode"><span class="hs-identifier hs-type">MinWorkMode</span></a><span>
+</span><a name="line-9"></a><span>
+</span><a name="line-10"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.WorkMode.Class.html#TxpExtra_TMP"><span class="hs-identifier hs-type">TxpExtra_TMP</span></a><span>
+</span><a name="line-11"></a><span>
+</span><a name="line-12"></a><span>       </span><span class="hs-comment">-- * Actual modes</span><span>
+</span><a name="line-13"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.WorkMode.html#RealMode"><span class="hs-identifier hs-type">RealMode</span></a><span>
+</span><a name="line-14"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.WorkMode.html#RealModeContext"><span class="hs-identifier hs-type">RealModeContext</span></a><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-15"></a><span>
+</span><a name="line-16"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Util.OutboundQueue.html#OQ"><span class="hs-identifier hs-type">OQ</span></a><span>
+</span><a name="line-17"></a><span>       </span><span class="hs-special">,</span><span> </span><a href="Pos.Util.OutboundQueue.html#EnqueuedConversation"><span class="hs-identifier hs-type">EnqueuedConversation</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><a name="line-18"></a><span>       </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-19"></a><span>
+</span><a name="line-20"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Universum</span><span>
+</span><a name="line-21"></a><span>
+</span><a name="line-22"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Lens</span><span>           </span><span class="hs-special">(</span><span class="hs-identifier hs-var">makeLensesWith</span><span class="hs-special">)</span><span>
+</span><a name="line-23"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Monad</span><span class="hs-operator">.</span><span class="hs-identifier">Reader</span><span>   </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">Mtl</span><span>
+</span><a name="line-24"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Ether</span><span class="hs-operator">.</span><span class="hs-identifier">Internal</span><span>         </span><span class="hs-special">(</span><span class="hs-identifier hs-type">HasLens</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-25"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Mockable</span><span>               </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Production</span><span class="hs-special">)</span><span>
+</span><a name="line-26"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">System</span><span class="hs-operator">.</span><span class="hs-identifier">Wlog</span><span>            </span><span class="hs-special">(</span><span class="hs-identifier hs-type">HasLoggerName</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">LoggerName</span><span class="hs-special">)</span><span>
+</span><a name="line-27"></a><span>
+</span><a name="line-28"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Block.BListener.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Block</span><span class="hs-operator">.</span><span class="hs-identifier">BListener</span></a><span>    </span><span class="hs-special">(</span><a href="Pos.Block.BListener.html#MonadBListener"><span class="hs-identifier hs-type">MonadBListener</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><a href="Pos.Block.BListener.html#onApplyBlocksStub"><span class="hs-identifier hs-var">onApplyBlocksStub</span></a><span class="hs-special">,</span><span>
+</span><a name="line-29"></a><span>                                         </span><a href="Pos.Block.BListener.html#onRollbackBlocksStub"><span class="hs-identifier hs-var">onRollbackBlocksStub</span></a><span class="hs-special">)</span><span>
+</span><a name="line-30"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Block.Core.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Block</span><span class="hs-operator">.</span><span class="hs-identifier">Core</span></a><span>         </span><span class="hs-special">(</span><a href="Pos.Block.Core.Union.Types.html#Block"><span class="hs-identifier hs-type">Block</span></a><span class="hs-special">,</span><span> </span><a href="Pos.Block.Core.Union.Types.html#BlockHeader"><span class="hs-identifier hs-type">BlockHeader</span></a><span class="hs-special">)</span><span>
+</span><a name="line-31"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Block.Slog.Types.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Block</span><span class="hs-operator">.</span><span class="hs-identifier">Slog</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span></a><span>   </span><span class="hs-special">(</span><a href="Pos.Block.Slog.Types.html#HasSlogContext"><span class="hs-identifier hs-type">HasSlogContext</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><a href="Pos.Block.Slog.Types.html#HasSlogGState"><span class="hs-identifier hs-type">HasSlogGState</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-32"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Block.Types.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Block</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span></a><span>        </span><span class="hs-special">(</span><a href="Pos.Block.Types.html#Undo"><span class="hs-identifier hs-type">Undo</span></a><span class="hs-special">)</span><span>
+</span><a name="line-33"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Context.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Context</span></a><span>            </span><span class="hs-special">(</span><a href="Pos.Context.Context.html#HasNodeContext"><span class="hs-identifier hs-type">HasNodeContext</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">HasPrimaryKey</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a name="line-34"></a><span>                                         </span><span class="hs-identifier hs-type">HasSscContext</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><a href="Pos.Context.Context.html#NodeContext"><span class="hs-identifier hs-type">NodeContext</span></a><span class="hs-special">)</span><span>
+</span><a name="line-35"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Core</span><span>               </span><span class="hs-special">(</span><span class="hs-identifier hs-type">HasConfiguration</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">IsHeader</span><span class="hs-special">)</span><span>
+</span><a name="line-36"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">DB</span><span>                 </span><span class="hs-special">(</span><span class="hs-identifier hs-type">MonadGState</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">NodeDBs</span><span class="hs-special">)</span><span>
+</span><a name="line-37"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.DB.Block.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">DB</span><span class="hs-operator">.</span><span class="hs-identifier">Block</span></a><span>           </span><span class="hs-special">(</span><a href="Pos.DB.Block.html#dbGetBlockDefault"><span class="hs-identifier hs-var">dbGetBlockDefault</span></a><span class="hs-special">,</span><span> </span><a href="Pos.DB.Block.html#dbGetBlockSscDefault"><span class="hs-identifier hs-var">dbGetBlockSscDefault</span></a><span class="hs-special">,</span><span>
+</span><a name="line-38"></a><span>                                         </span><a href="Pos.DB.Block.html#dbGetHeaderDefault"><span class="hs-identifier hs-var">dbGetHeaderDefault</span></a><span class="hs-special">,</span><span> </span><a href="Pos.DB.Block.html#dbGetHeaderSscDefault"><span class="hs-identifier hs-var">dbGetHeaderSscDefault</span></a><span class="hs-special">,</span><span>
+</span><a name="line-39"></a><span>                                         </span><a href="Pos.DB.Block.html#dbGetUndoDefault"><span class="hs-identifier hs-var">dbGetUndoDefault</span></a><span class="hs-special">,</span><span> </span><a href="Pos.DB.Block.html#dbGetUndoSscDefault"><span class="hs-identifier hs-var">dbGetUndoSscDefault</span></a><span class="hs-special">,</span><span>
+</span><a name="line-40"></a><span>                                         </span><a href="Pos.DB.Block.html#dbPutBlundDefault"><span class="hs-identifier hs-var">dbPutBlundDefault</span></a><span class="hs-special">)</span><span>
+</span><a name="line-41"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">DB</span><span class="hs-operator">.</span><span class="hs-identifier">Class</span><span>           </span><span class="hs-special">(</span><span class="hs-identifier hs-type">MonadBlockDBGeneric</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a name="line-42"></a><span>                                         </span><span class="hs-identifier hs-type">MonadBlockDBGenericWrite</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">MonadDB</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a name="line-43"></a><span>                                         </span><span class="hs-identifier hs-type">MonadDBRead</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-44"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">DHT</span><span class="hs-operator">.</span><span class="hs-identifier">Real</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span><span>     </span><span class="hs-special">(</span><span class="hs-identifier hs-type">KademliaDHTInstance</span><span class="hs-special">)</span><span>
+</span><a name="line-45"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Network</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span><span>      </span><span class="hs-special">(</span><span class="hs-identifier hs-type">HasNodeType</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">getNodeTypeDefault</span><span class="hs-special">)</span><span>
+</span><a name="line-46"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.DB.DB.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">DB</span><span class="hs-operator">.</span><span class="hs-identifier">DB</span></a><span>              </span><span class="hs-special">(</span><a href="Pos.DB.DB.html#gsAdoptedBVDataDefault"><span class="hs-identifier hs-var">gsAdoptedBVDataDefault</span></a><span class="hs-special">)</span><span>
+</span><a name="line-47"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">DB</span><span class="hs-operator">.</span><span class="hs-identifier">Rocks</span><span>           </span><span class="hs-special">(</span><span class="hs-identifier hs-var">dbDeleteDefault</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">dbGetDefault</span><span class="hs-special">,</span><span>
+</span><a name="line-48"></a><span>                                         </span><span class="hs-identifier hs-var">dbIterSourceDefault</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">dbPutDefault</span><span class="hs-special">,</span><span>
+</span><a name="line-49"></a><span>                                         </span><span class="hs-identifier hs-var">dbWriteBatchDefault</span><span class="hs-special">)</span><span>
+</span><a name="line-50"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Delegation.Class.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Delegation</span><span class="hs-operator">.</span><span class="hs-identifier">Class</span></a><span>   </span><span class="hs-special">(</span><a href="Pos.Delegation.Class.html#DelegationVar"><span class="hs-identifier hs-type">DelegationVar</span></a><span class="hs-special">)</span><span>
+</span><a name="line-51"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Infra</span><span class="hs-operator">.</span><span class="hs-identifier">Configuration</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-type">HasInfraConfiguration</span><span class="hs-special">)</span><span>
+</span><a name="line-52"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">KnownPeers</span><span>         </span><span class="hs-special">(</span><span class="hs-identifier hs-type">MonadFormatPeers</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">MonadKnownPeers</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-53"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Reporting</span><span>          </span><span class="hs-special">(</span><span class="hs-identifier hs-type">HasReportingContext</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-54"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Shutdown</span><span>           </span><span class="hs-special">(</span><span class="hs-identifier hs-type">HasShutdownContext</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-55"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Slotting</span><span class="hs-operator">.</span><span class="hs-identifier">Class</span><span>     </span><span class="hs-special">(</span><span class="hs-identifier hs-type">MonadSlots</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-56"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Slotting</span><span class="hs-operator">.</span><span class="hs-identifier">Impl</span><span class="hs-operator">.</span><span class="hs-identifier">Sum</span><span>  </span><span class="hs-special">(</span><span class="hs-identifier hs-var">currentTimeSlottingSum</span><span class="hs-special">,</span><span>
+</span><a name="line-57"></a><span>                                         </span><span class="hs-identifier hs-var">getCurrentSlotBlockingSum</span><span class="hs-special">,</span><span>
+</span><a name="line-58"></a><span>                                         </span><span class="hs-identifier hs-var">getCurrentSlotInaccurateSum</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-var">getCurrentSlotSum</span><span class="hs-special">)</span><span>
+</span><a name="line-59"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Slotting</span><span class="hs-operator">.</span><span class="hs-identifier">MemState</span><span>  </span><span class="hs-special">(</span><span class="hs-identifier hs-type">HasSlottingVar</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">MonadSlotsData</span><span class="hs-special">)</span><span>
+</span><a name="line-60"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Ssc</span><span class="hs-operator">.</span><span class="hs-identifier">Class</span><span class="hs-operator">.</span><span class="hs-identifier">Helpers</span><span>  </span><span class="hs-special">(</span><span class="hs-identifier hs-type">SscHelpersClass</span><span class="hs-special">)</span><span>
+</span><a name="line-61"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Ssc</span><span class="hs-operator">.</span><span class="hs-identifier">Class</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span><span>    </span><span class="hs-special">(</span><span class="hs-identifier hs-type">SscBlock</span><span class="hs-special">)</span><span>
+</span><a name="line-62"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Ssc</span><span class="hs-operator">.</span><span class="hs-identifier">Extra</span><span>          </span><span class="hs-special">(</span><span class="hs-identifier hs-type">SscMemTag</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">SscState</span><span class="hs-special">)</span><span>
+</span><a name="line-63"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Txp</span><span class="hs-operator">.</span><span class="hs-identifier">MemState</span><span>       </span><span class="hs-special">(</span><span class="hs-identifier hs-type">GenericTxpLocalData</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">TxpHolderTag</span><span class="hs-special">)</span><span>
+</span><a name="line-64"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Util.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Util</span></a><span>               </span><span class="hs-special">(</span><span class="hs-identifier hs-type">Some</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-65"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Util.JsonLog.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Util</span><span class="hs-operator">.</span><span class="hs-identifier">JsonLog</span></a><span>       </span><span class="hs-special">(</span><a href="Pos.Util.JsonLog.html#HasJsonLogConfig"><span class="hs-identifier hs-type">HasJsonLogConfig</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-identifier hs-type">JsonLogConfig</span><span class="hs-special">,</span><span>
+</span><a name="line-66"></a><span>                                         </span><a href="Pos.Util.JsonLog.html#jsonLogDefault"><span class="hs-identifier hs-var">jsonLogDefault</span></a><span class="hs-special">)</span><span>
+</span><a name="line-67"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Util.LoggerName.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Util</span><span class="hs-operator">.</span><span class="hs-identifier">LoggerName</span></a><span>    </span><span class="hs-special">(</span><a href="Pos.Util.LoggerName.html#HasLoggerName%27"><span class="hs-identifier hs-type">HasLoggerName'</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><a href="Pos.Util.LoggerName.html#getLoggerNameDefault"><span class="hs-identifier hs-var">getLoggerNameDefault</span></a><span class="hs-special">,</span><span>
+</span><a name="line-68"></a><span>                                         </span><a href="Pos.Util.LoggerName.html#modifyLoggerNameDefault"><span class="hs-identifier hs-var">modifyLoggerNameDefault</span></a><span class="hs-special">)</span><span>
+</span><a name="line-69"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Util.OutboundQueue.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Util</span><span class="hs-operator">.</span><span class="hs-identifier">OutboundQueue</span></a><span> </span><span class="hs-special">(</span><a href="Pos.Util.OutboundQueue.html#EnqueuedConversation"><span class="hs-identifier hs-type">EnqueuedConversation</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><a href="Pos.Util.OutboundQueue.html#OQ"><span class="hs-identifier hs-type">OQ</span></a><span class="hs-special">)</span><span>
+</span><a name="line-70"></a><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><a href="Pos.Util.OutboundQueue.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Util</span><span class="hs-operator">.</span><span class="hs-identifier">OutboundQueue</span></a><span> </span><span class="hs-keyword">as</span><span> </span><span class="hs-identifier">OQ</span><span class="hs-operator">.</span><span class="hs-identifier">Reader</span><span>
+</span><a name="line-71"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Util</span><span class="hs-operator">.</span><span class="hs-identifier">TimeWarp</span><span>      </span><span class="hs-special">(</span><span class="hs-identifier hs-type">CanJsonLog</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-72"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.Util.UserSecret.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Util</span><span class="hs-operator">.</span><span class="hs-identifier">UserSecret</span></a><span>    </span><span class="hs-special">(</span><a href="Pos.Util.UserSecret.html#HasUserSecret"><span class="hs-identifier hs-type">HasUserSecret</span></a><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-73"></a><span class="hs-keyword">import</span><span>           </span><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">Util</span><span class="hs-operator">.</span><span class="hs-identifier">Util</span><span>          </span><span class="hs-special">(</span><span class="hs-identifier hs-var">postfixLFields</span><span class="hs-special">)</span><span>
+</span><a name="line-74"></a><span class="hs-keyword">import</span><span>           </span><a href="Pos.WorkMode.Class.html"><span class="hs-identifier">Pos</span><span class="hs-operator">.</span><span class="hs-identifier">WorkMode</span><span class="hs-operator">.</span><span class="hs-identifier">Class</span></a><span>     </span><span class="hs-special">(</span><a href="Pos.WorkMode.Class.html#MinWorkMode"><span class="hs-identifier hs-type">MinWorkMode</span></a><span class="hs-special">,</span><span> </span><a href="Pos.WorkMode.Class.html#TxpExtra_TMP"><span class="hs-identifier hs-type">TxpExtra_TMP</span></a><span class="hs-special">,</span><span> </span><a href="Pos.WorkMode.Class.html#WorkMode"><span class="hs-identifier hs-type">WorkMode</span></a><span class="hs-special">)</span><span>
+</span><a name="line-75"></a><span>
+</span><a name="line-76"></a><span>
+</span><a name="line-77"></a><span class="hs-keyword">data</span><span> </span><a name="RealModeContext"><a href="Pos.WorkMode.html#RealModeContext"><span class="hs-identifier">RealModeContext</span></a></a><span> </span><a name="local-6989586621682666494"><a href="#local-6989586621682666494"><span class="hs-identifier">ssc</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a name="RealModeContext"><a href="Pos.WorkMode.html#RealModeContext"><span class="hs-identifier">RealModeContext</span></a></a><span>
+</span><a name="line-78"></a><span>    </span><span class="hs-special">{</span><span> </span><a name="rmcNodeDBs"><a href="Pos.WorkMode.html#rmcNodeDBs"><span class="hs-identifier">rmcNodeDBs</span></a></a><span>       </span><span class="hs-glyph">::</span><span> </span><span class="hs-glyph">!</span><span class="hs-identifier hs-type">NodeDBs</span><span>
+</span><a name="line-79"></a><span>    </span><span class="hs-special">,</span><span> </span><a name="rmcSscState"><a href="Pos.WorkMode.html#rmcSscState"><span class="hs-identifier">rmcSscState</span></a></a><span>      </span><span class="hs-glyph">::</span><span> </span><span class="hs-glyph">!</span><span class="hs-special">(</span><span class="hs-identifier hs-type">SscState</span><span> </span><a href="#local-6989586621682666494"><span class="hs-identifier hs-type">ssc</span></a><span class="hs-special">)</span><span>
+</span><a name="line-80"></a><span>    </span><span class="hs-special">,</span><span> </span><a name="rmcTxpLocalData"><a href="Pos.WorkMode.html#rmcTxpLocalData"><span class="hs-identifier">rmcTxpLocalData</span></a></a><span>  </span><span class="hs-glyph">::</span><span> </span><span class="hs-glyph">!</span><span class="hs-special">(</span><span class="hs-identifier hs-type">GenericTxpLocalData</span><span> </span><a href="Pos.WorkMode.Class.html#TxpExtra_TMP"><span class="hs-identifier hs-type">TxpExtra_TMP</span></a><span class="hs-special">)</span><span>
+</span><a name="line-81"></a><span>    </span><span class="hs-special">,</span><span> </span><a name="rmcDelegationVar"><a href="Pos.WorkMode.html#rmcDelegationVar"><span class="hs-identifier">rmcDelegationVar</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-glyph">!</span><a href="Pos.Delegation.Class.html#DelegationVar"><span class="hs-identifier hs-type">DelegationVar</span></a><span>
+</span><a name="line-82"></a><span>    </span><span class="hs-special">,</span><span> </span><a name="rmcJsonLogConfig"><a href="Pos.WorkMode.html#rmcJsonLogConfig"><span class="hs-identifier">rmcJsonLogConfig</span></a></a><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-glyph">!</span><span class="hs-identifier hs-type">JsonLogConfig</span><span>
+</span><a name="line-83"></a><span>    </span><span class="hs-special">,</span><span> </span><a name="rmcLoggerName"><a href="Pos.WorkMode.html#rmcLoggerName"><span class="hs-identifier">rmcLoggerName</span></a></a><span>    </span><span class="hs-glyph">::</span><span> </span><span class="hs-glyph">!</span><span class="hs-identifier hs-type">LoggerName</span><span>
+</span><a name="line-84"></a><span>    </span><span class="hs-special">,</span><span> </span><a name="rmcNodeContext"><a href="Pos.WorkMode.html#rmcNodeContext"><span class="hs-identifier">rmcNodeContext</span></a></a><span>   </span><span class="hs-glyph">::</span><span> </span><span class="hs-glyph">!</span><span class="hs-special">(</span><a href="Pos.Context.Context.html#NodeContext"><span class="hs-identifier hs-type">NodeContext</span></a><span> </span><a href="#local-6989586621682666494"><span class="hs-identifier hs-type">ssc</span></a><span class="hs-special">)</span><span>
+</span><a name="line-85"></a><span>    </span><span class="hs-special">,</span><span> </span><a name="rmcOutboundQ"><a href="Pos.WorkMode.html#rmcOutboundQ"><span class="hs-identifier">rmcOutboundQ</span></a></a><span>     </span><span class="hs-glyph">::</span><span> </span><span class="hs-glyph">!</span><span class="hs-special">(</span><a href="Pos.Util.OutboundQueue.html#OQ"><span class="hs-identifier hs-type">OQ</span></a><span> </span><span class="hs-special">(</span><a href="Pos.WorkMode.html#RealMode"><span class="hs-identifier hs-type">RealMode</span></a><span> </span><a href="#local-6989586621682666494"><span class="hs-identifier hs-type">ssc</span></a><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a name="line-86"></a><span>    </span><span class="hs-special">}</span><span>
+</span><a name="line-87"></a><span>
+</span><a name="line-88"></a><span class="hs-keyword">type</span><span> </span><a name="RealMode"><a href="Pos.WorkMode.html#RealMode"><span class="hs-identifier">RealMode</span></a></a><span> </span><a name="local-6989586621682666493"><a href="#local-6989586621682666493"><span class="hs-identifier">ssc</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-type">Mtl</span><span class="hs-operator hs-type">.</span><span class="hs-identifier hs-type">ReaderT</span><span> </span><span class="hs-special">(</span><a href="Pos.WorkMode.html#RealModeContext"><span class="hs-identifier hs-type">RealModeContext</span></a><span> </span><a href="#local-6989586621682666493"><span class="hs-identifier hs-type">ssc</span></a><span class="hs-special">)</span><span> </span><span class="hs-identifier hs-type">Production</span><span>
+</span><a name="line-89"></a><span>
+</span><a name="line-90"></a><span class="hs-identifier hs-var">makeLensesWith</span><span> </span><span class="hs-identifier hs-var">postfixLFields</span><span> </span><span class="hs-char">''RealModeContext
+
+instance HasLens NodeDBs (RealModeContext ssc) NodeDBs where
+    lensOf = rmcNodeDBs_L
+
+instance HasLens SscMemTag (RealModeContext ssc) (SscState ssc) where
+    lensOf = rmcSscState_L
+
+instance HasLens TxpHolderTag (RealModeContext ssc) (GenericTxpLocalData TxpExtra_TMP) where
+    lensOf = rmcTxpLocalData_L
+
+instance HasLens DelegationVar (RealModeContext ssc) DelegationVar where
+    lensOf = rmcDelegationVar_L
+
+instance HasNodeType (RealModeContext ssc) where
+    getNodeType = getNodeTypeDefault @KademliaDHTInstance
+
+instance {-# OVERLAPPABLE #-}
+    HasLens tag (NodeContext ssc) r =&gt;
+    HasLens tag (RealModeContext ssc) r
+  where
+    lensOf = rmcNodeContext_L . lensOf @tag
+
+instance HasSscContext ssc (RealModeContext ssc) where
+    sscContext = rmcNodeContext_L . sscContext
+
+instance HasPrimaryKey (RealModeContext ssc) where
+    primaryKey = rmcNodeContext_L . primaryKey
+
+instance HasReportingContext (RealModeContext ssc) where
+    reportingContext = rmcNodeContext_L . reportingContext
+
+instance HasUserSecret (RealModeContext ssc) where
+    userSecret = rmcNodeContext_L . userSecret
+
+instance HasShutdownContext (RealModeContext ssc) where
+    shutdownContext = rmcNodeContext_L . shutdownContext
+
+instance HasSlottingVar (RealModeContext ssc) where
+    slottingTimestamp = rmcNodeContext_L . slottingTimestamp
+    slottingVar = rmcNodeContext_L . slottingVar
+
+instance HasSlogContext (RealModeContext ssc) where
+    slogContext = rmcNodeContext_L . slogContext
+
+instance HasSlogGState (RealModeContext ssc) where
+    slogGState = slogContext . scGState
+
+instance HasNodeContext ssc (RealModeContext ssc) where
+    nodeContext = rmcNodeContext_L
+
+instance HasLoggerName' (RealModeContext ssc) where
+    loggerName = rmcLoggerName_L
+
+instance HasJsonLogConfig (RealModeContext ssc) where
+    jsonLogConfig = rmcJsonLogConfig_L
+
+instance {-# OVERLAPPING #-} HasLoggerName (RealMode ssc) where
+    getLoggerName = getLoggerNameDefault
+    modifyLoggerName = modifyLoggerNameDefault
+
+instance {-# OVERLAPPING #-} CanJsonLog (RealMode ssc) where
+    jsonLog = jsonLogDefault
+
+instance (HasConfiguration, HasInfraConfiguration, MonadSlotsData ctx (RealMode ssc))
+      =&gt; MonadSlots ctx (RealMode ssc)
+  where
+    getCurrentSlot = getCurrentSlotSum
+    getCurrentSlotBlocking = getCurrentSlotBlockingSum
+    getCurrentSlotInaccurate = getCurrentSlotInaccurateSum
+    currentTimeSlotting = currentTimeSlottingSum
+
+instance HasConfiguration =&gt; MonadGState (RealMode ssc) where
+    gsAdoptedBVData = gsAdoptedBVDataDefault
+
+instance HasConfiguration =&gt; MonadDBRead (RealMode ssc) where
+    dbGet = dbGetDefault
+    dbIterSource = dbIterSourceDefault
+
+instance HasConfiguration =&gt; MonadDB (RealMode ssc) where
+    dbPut = dbPutDefault
+    dbWriteBatch = dbWriteBatchDefault
+    dbDelete = dbDeleteDefault
+
+instance MonadBListener (RealMode ssc) where
+    onApplyBlocks = onApplyBlocksStub
+    onRollbackBlocks = onRollbackBlocksStub
+
+instance
+    (HasConfiguration, SscHelpersClass ssc) =&gt;
+    MonadBlockDBGeneric (BlockHeader ssc) (Block ssc) Undo (RealMode ssc)
+  where
+    dbGetBlock  = dbGetBlockDefault @ssc
+    dbGetUndo   = dbGetUndoDefault @ssc
+    dbGetHeader = dbGetHeaderDefault @ssc
+
+instance
+    (HasConfiguration, SscHelpersClass ssc) =&gt;
+    MonadBlockDBGeneric (Some IsHeader) (SscBlock ssc) () (RealMode ssc)
+  where
+    dbGetBlock  = dbGetBlockSscDefault @ssc
+    dbGetUndo   = dbGetUndoSscDefault @ssc
+    dbGetHeader = dbGetHeaderSscDefault @ssc
+
+instance (HasConfiguration, SscHelpersClass ssc) =&gt;
+         MonadBlockDBGenericWrite (BlockHeader ssc) (Block ssc) Undo (RealMode ssc) where
+    dbPutBlund = dbPutBlundDefault
+
+instance MonadKnownPeers (RealMode ssc) where
+    updatePeersBucket = OQ.Reader.updatePeersBucketReader rmcOutboundQ
+
+instance MonadFormatPeers (RealMode scc) where
+    formatKnownPeers = OQ.Reader.formatKnownPeersReader rmcOutboundQ
+</span></pre></body></html>
