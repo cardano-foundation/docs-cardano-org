@@ -1,0 +1,22 @@
+{
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 2017
+  },
+  "plugins": ["react"],
+  "extends": ["standard", "standard-react"],
+  "globals": {
+    "WebSocket": true,
+    "jest": true,
+    "describe": true,
+    "expect": true,
+    "test": true,
+    "beforeEach": true,
+    "afterEach": true,
+    "it": true,
+    "requestAnimationFrame": true,
+    "cancelAnimationFrame": true,
+    "Image": true,
+    "fetch": true
+  }
+}
