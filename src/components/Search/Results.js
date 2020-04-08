@@ -88,7 +88,7 @@ const Results = ({ query, onPageChange, searchData, page, resultsPerPage }) => {
       const posts = searchData
       const index = new FlexSearch({
         encode: 'icase',
-        tokenize: 'strict',
+        tokenize: 'full',
         threshold: 7,
         depth: 3,
         doc: {
