@@ -1,6 +1,5 @@
 import React, { useState, Fragment, useEffect } from 'react'
 import styled from 'styled-components'
-import { LanguageConsumer } from '../../state'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import Query from './Query'
 import PropTypes from 'prop-types'
@@ -14,7 +13,6 @@ import {
 } from '../../helpers/dom'
 import { SearchField } from '../Search'
 import PickerContainer from '../PickerContainer'
-import { navigate } from 'gatsby'
 
 const MobilePicker = styled.div`
   > div {
@@ -138,10 +136,6 @@ const MobileNavigation = ({ className }) => {
     removeEventListener('scroll', onScroll)
   }
 
-  const onSubmit = (lang) => (value) => {
-    navigate(`/${lang}/search/?query=${encodeURIComponent(value)}`)
-  }
-
   useEffect(() => {
     removeEventListeners()
     addEventListeners()
@@ -191,11 +185,7 @@ const MobileNavigation = ({ className }) => {
                       </li>
                     ))}
                     <li className='search-input'>
-                      <LanguageConsumer>
-                        {({ lang }) => (
-                          <SearchField onSubmit={onSubmit(lang)} lang={lang} />
-                        )}
-                      </LanguageConsumer>
+                      <SearchField />
                     </li>
                     <li>
                       <MobilePicker>

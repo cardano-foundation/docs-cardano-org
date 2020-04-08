@@ -6,7 +6,8 @@ import {
   ThemeConsumer,
   LanguageProvider,
   PageLoaderProvider,
-  ScreenSizeProvider
+  ScreenSizeProvider,
+  SearchProvider
 } from './state'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -29,11 +30,13 @@ const App = ({ element }) => (
               <GlobalStyles />
               <LanguageProvider>
                 <PageLoaderProvider>
-                  <Fragment>
-                    <Header />
-                    {element}
-                    <Footer />
-                  </Fragment>
+                  <SearchProvider>
+                    <Fragment>
+                      <Header />
+                      {element}
+                      <Footer />
+                    </Fragment>
+                  </SearchProvider>
                 </PageLoaderProvider>
               </LanguageProvider>
             </Fragment>

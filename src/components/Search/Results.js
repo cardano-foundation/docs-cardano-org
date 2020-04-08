@@ -64,7 +64,15 @@ const NavWrap = styled.div`
   justify-content:space-between;    
 `
 
-const Results = ({ query, onSearch, onPageChange, searchData, page, resultsPerPage }) => {
+const SearchContainer = styled.div`
+  display: none;
+
+  @media (max-width: ${({ theme }) => theme.dimensions.mobileBreakpoint}px) {
+    display: block;
+  }
+`
+
+const Results = ({ query, onPageChange, searchData, page, resultsPerPage }) => {
   const [ results, setResults ] = useState(null)
 
   const sanitizeContent = (content) => {
@@ -115,12 +123,14 @@ const Results = ({ query, onSearch, onPageChange, searchData, page, resultsPerPa
       <Wrapper>
         <HeadingWrap>
           <h1 className='section-title'>Search</h1>
-          <SearchField initialValue={query} onSubmit={(value, lang) => onSearch(value, lang)} />
+          <SearchContainer>
+            <SearchField />
+          </SearchContainer>
         </HeadingWrap>
         <div className='content'>
           {results && results.length > 0 &&
             <div>
-              <p>Showing {page * resultsPerPage + 1} - {Math.min(page * resultsPerPage + resultsPerPage, results.length)} of {results.length} results.</p>
+              <p>Showing {page * resultsPerPage + 1} - {Math.min(page * resultsPerPage + resultsPerPage, results.length)} of {results.length} results for <em>{query}</em>.</p>
               <ul className='items'>
                 {results.slice(page * resultsPerPage, page * resultsPerPage + resultsPerPage).map((post, i) => (
                   <Result key={i} result={post} query={query} />
@@ -168,7 +178,6 @@ const Results = ({ query, onSearch, onPageChange, searchData, page, resultsPerPa
 
 Results.propTypes = {
   query: PropTypes.string,
-  onSearch: PropTypes.func.isRequired,
   onPageChange: PropTypes.func.isRequired,
   searchData: PropTypes.arrayOf(PropTypes.object).isRequired,
   page: PropTypes.number.isRequired,

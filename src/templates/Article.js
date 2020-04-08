@@ -1,13 +1,10 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { LanguageConsumer } from '../state'
 import Markdown from '../components/Markdown'
 import FullWidthSection from '../components/FullWidthSection'
 import SideNav from '../components/SideNav'
 import PageTitle from '../components/PageTitle'
-import { SearchField } from '../components/Search'
-import { navigate } from 'gatsby'
 
 const NavCol = styled.nav`
   @media(min-width: ${({ theme }) => theme.dimensions.mobileBreakpoint}px) {
@@ -27,45 +24,25 @@ const ContentWrap = styled.main`
   }
 `
 
-const SearchWrap = styled.aside`
-  padding: 4rem 3rem 3rem 0;
-  @media(max-width: ${({ theme }) => theme.dimensions.mobileBreakpoint}px) {
-    display:flex;
-    justify-content:center;
-    padding:3rem 0;
-  }
-`
-
 const Article = ({ pageContext }) => {
   console.log('Article', pageContext)
 
-  const onSubmit = (lang) => (value) => {
-    navigate(`/${lang}/search/?query=${encodeURIComponent(value)}`)
-  }
-
   return (
-    <LanguageConsumer>
-      {({ lang }) => (
-        <Fragment>
-          <PageTitle title={pageContext.navigationContext.title} />
-          <FullWidthSection>
-            <ContentWrap>
-              {pageContext.navigationContext.children.length > 0 &&
-                <NavCol>
-                  <SearchWrap className='search-input'>
-                    <SearchField onSubmit={onSubmit(lang)} lang={lang} />
-                  </SearchWrap>
-                  <SideNav items={pageContext.navigationContext.children} path={`/${pageContext.navigationContext.key}`} />
-                </NavCol>
-              }
-              <ContentCol>
-                <Markdown source={pageContext.content} />
-              </ContentCol>
-            </ContentWrap>
-          </FullWidthSection>
-        </Fragment>
-      )}
-    </LanguageConsumer>
+    <Fragment>
+      <PageTitle title={pageContext.navigationContext.title} />
+      <FullWidthSection>
+        <ContentWrap>
+          {pageContext.navigationContext.children.length > 0 &&
+            <NavCol>
+              <SideNav items={pageContext.navigationContext.children} path={`/${pageContext.navigationContext.key}`} />
+            </NavCol>
+          }
+          <ContentCol>
+            <Markdown source={pageContext.content} />
+          </ContentCol>
+        </ContentWrap>
+      </FullWidthSection>
+    </Fragment>
   )
 }
 

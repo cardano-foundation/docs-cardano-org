@@ -41,10 +41,6 @@ const SearchPageInner = ({ data, pageContext, location }) => {
     if (newPage !== page) setPage(newPage)
   }, [ location, query, page ])
 
-  function onSearch (newQuery) {
-    navigate(`/${pageContext.lang}/search/?query=${encodeURIComponent(newQuery)}&page=${encodeURIComponent(page + 1)}`)
-  }
-
   function onPageChange (newPage) {
     navigate(`/${pageContext.lang}/search/?query=${encodeURIComponent(query)}&page=${encodeURIComponent(newPage + 1)}`)
   }
@@ -52,8 +48,6 @@ const SearchPageInner = ({ data, pageContext, location }) => {
   return (
     <Fragment>
       <Results
-        lang={pageContext.lang}
-        onSearch={onSearch}
         onPageChange={onPageChange}
         query={query}
         page={page - 1}

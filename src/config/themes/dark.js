@@ -127,7 +127,7 @@ export default {
   dimensions: {
     contentWidth: '85vw',
     contentGutterSize: '2rem',
-    mobileBreakpoint: 800,
+    mobileBreakpoint: 900,
     screenSizes: {
       small: 576,
       medium: 768,
