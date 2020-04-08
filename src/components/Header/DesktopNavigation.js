@@ -1,23 +1,26 @@
 /* eslint-disable */
-import React from 'react'
+import React, { useState, Fragment } from 'react'
 import styled from 'styled-components'
 import Query from './Query'
-import Link from '../Link'
+import TabNav from './TabNav'
 import PropTypes from 'prop-types'
 import { Location } from '@reach/router'
 
 const Container = styled.div`
-  width:100%;
-  flex: 2;
+  max-width: 100vw;
+  /* flex: 2;
   display: flex;
   justify-content: flex-start;
   @media (max-width: ${({ theme }) => theme.dimensions.mobileBreakpoint}px) {
     flex: 1 100%;
-  }
+  } */
 `
 
-const Nav = styled.nav`
-  margin-left: -2rem;
+const Nav = styled(Container)`
+  div {
+    background: transparent;
+    box-shadow: none;
+  }
   a {
     font-weight: 600;
     letter-spacing: 0.1em;
@@ -40,64 +43,52 @@ const Nav = styled.nav`
         left:25%;
         opacity: 0.5;
       }
-    }
-  > ul {
-    margin: 0;
-
-    > li {
-      margin: 0;
-      display: inline-block;
-      position: relative;
-      a {
-        padding: 2rem;
-        display: inline-block;
-
-        &.active {
-          color: ${({ theme }) => theme.colors.text};
-        }
+      &.active {
+        border:none;
       }
     }
-  }
 `
 
-function isActive (path, currentPathname) {
-  let rootPath = path
+function getPath(path) {
+   let rootPath = path
     .replace(/^\//, '')
     .replace(/\/$/, '')
     .split('/').slice(0, 2).join('/')
-  
+
   rootPath = `/${rootPath}/`
-  return currentPathname.substring(0, rootPath.length) === rootPath
+
+  return rootPath
 }
 
-const DesktopNavigation = ({ className }) => (
-  <Location>
-    {({ location }) => (
-      <Container className={`${className}`}>
-        <Query
-          render={items => (
-            <Nav className='text-transform-uppercase'>
-              <ul>
-                {items.map(item => (
-                  <li key={item.path}>
-                    <Link
-                      href={item.path}
-                      className={isActive(item.path, location.pathname) ? 'active' : ''}
-                      tracking={{ label: 'desktop_navigation_' + item.path }}
-                      title={item.label}
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </Nav>
-          )}
-        />
-      </Container>
-    )}
-  </Location>
-)
+const DesktopNavigation = () => {
+
+  const [value, setValue] = useState(getPath(location.pathname))
+  
+  const handleChange = (e, value) => {
+    setValue(value)
+  }
+
+  return (
+    <Location>
+      {({ location }) => (
+        <Fragment>
+          <Nav>
+            <Query
+              render={items => (
+                <TabNav
+                  tabItems={items}
+                  selectedTab={value}
+                  onChange={handleChange}
+                />
+              )}
+            />
+          </Nav>
+        </Fragment>
+      )}
+    </Location >
+  )
+
+}
 
 DesktopNavigation.propTypes = {
   className: PropTypes.string
