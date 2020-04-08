@@ -125,7 +125,7 @@ export default {
     active: '#ffffff'
   },
   dimensions: {
-    contentWidth: '98vw',
+    contentWidth: '85vw',
     contentGutterSize: '2rem',
     mobileBreakpoint: 800,
     screenSizes: {
