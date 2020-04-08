@@ -9,7 +9,7 @@ export default createGlobalStyle`
     font-size: 62.5%;
 
     @media screen and (min-width: 2048px) {
-      font-size: 100%;
+      font-size: 68%;
     }
   }
 
