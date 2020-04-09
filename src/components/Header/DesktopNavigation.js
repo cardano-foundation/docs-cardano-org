@@ -12,7 +12,7 @@ const DesktopNavigation = ({ path }) => (
     render={items => (
       <Box maxWidth='100vw'>
         <Tabs
-          value={path}
+          value={items.filter(item => item.path === path).shift() ? path : false}
           indicatorColor='primary'
           textColor='primary'
           variant='scrollable'
