@@ -5,7 +5,8 @@ import Logo from './Logo'
 import { ThemeConsumer } from '../../state'
 import LanguagePicker from '../../components/PickerContainer/LanguagePicker'
 import ThemePicker from '../../components/PickerContainer/ThemePicker'
-// import { Typography } from '@material-ui/core'
+import { SearchField } from '../Search'
+import { Box } from '@material-ui/core'
 
 const Header = styled.header`
   min-height: 8rem;
@@ -44,11 +45,13 @@ export default () => (
         <Header>
           <HeaderTitleLogo>
             <Logo />
-            {/* <Typography variant='h4' color='primary'>
-              Material-UI Version
-            </Typography> */}
           </HeaderTitleLogo>
           <PickerComponent>
+            <li>
+              <Box marginRight={1}>
+                <SearchField />
+              </Box>
+            </li>
             <li>
               <LanguagePicker />
             </li>

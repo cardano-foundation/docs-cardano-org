@@ -11,6 +11,10 @@ import {
   Provider as ScreenSizeProvider
 } from './ScreenSize'
 import {
+  Consumer as SearchConsumer,
+  Provider as SearchProvider
+} from './Search'
+import {
   Consumer as ThemeConsumer,
   Provider as ThemeProvider
 } from './Theme'
@@ -23,5 +27,7 @@ export {
   ThemeConsumer,
   ThemeProvider,
   ScreenSizeConsumer,
-  ScreenSizeProvider
+  ScreenSizeProvider,
+  SearchConsumer,
+  SearchProvider
 }

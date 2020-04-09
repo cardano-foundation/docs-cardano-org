@@ -64,9 +64,16 @@ const NavWrap = styled.div`
   justify-content:space-between;    
 `
 
-const Results = ({ query, onSearch, searchData }) => {
-  const [results, setResults] = useState(null)
-  const [page, setPage] = useState(0)
+const SearchContainer = styled.div`
+  display: none;
+
+  @media (max-width: ${({ theme }) => theme.dimensions.mobileBreakpoint}px) {
+    display: block;
+  }
+`
+
+const Results = ({ query, onPageChange, searchData, page, resultsPerPage }) => {
+  const [ results, setResults ] = useState(null)
 
   const sanitizeContent = (content) => {
     const converter = new showdown.Converter()
@@ -81,7 +88,7 @@ const Results = ({ query, onSearch, searchData }) => {
       const posts = searchData
       const index = new FlexSearch({
         encode: 'icase',
-        tokenize: 'strict',
+        tokenize: 'full',
         threshold: 7,
         depth: 3,
         doc: {
@@ -108,7 +115,7 @@ const Results = ({ query, onSearch, searchData }) => {
 
   useEffect(() => {
     loadResults()
-  }, [query])
+  }, [ query ])
 
   return (
     <FullWidthSection>
@@ -116,17 +123,16 @@ const Results = ({ query, onSearch, searchData }) => {
       <Wrapper>
         <HeadingWrap>
           <h1 className='section-title'>Search</h1>
-          <SearchField initialValue={query} onSubmit={(value, lang) => {
-            setPage(0)
-            onSearch(value, lang)
-          }} />
+          <SearchContainer>
+            <SearchField />
+          </SearchContainer>
         </HeadingWrap>
         <div className='content'>
-          {results &&
+          {results && results.length > 0 &&
             <div>
-              <p>Showing {page * 10 + 1} - {Math.min(page * 10 + 10, results.length)} of {results.length} results.</p>
+              <p>Showing {page * resultsPerPage + 1} - {Math.min(page * resultsPerPage + resultsPerPage, results.length)} of {results.length} results for <em>{query}</em>.</p>
               <ul className='items'>
-                {results.slice(page * 10, page * 10 + 10).map((post, i) => (
+                {results.slice(page * resultsPerPage, page * resultsPerPage + resultsPerPage).map((post, i) => (
                   <Result key={i} result={post} query={query} />
                 ))}
               </ul>
@@ -136,8 +142,7 @@ const Results = ({ query, onSearch, searchData }) => {
                     <Button
                       onClick={e => {
                         e.preventDefault()
-                        if (page === 0) return
-                        setPage(page - 1)
+                        onPageChange(page - 1)
                       }}
                     >
                       Previous
@@ -145,11 +150,11 @@ const Results = ({ query, onSearch, searchData }) => {
                   }
                 </div>
                 <div>
-                  {page < Math.floor(results.length / 10) && page * 10 + 10 < results.length &&
+                  {page < Math.floor(results.length / resultsPerPage) && page * resultsPerPage + resultsPerPage < results.length &&
                     <Button
                       onClick={e => {
                         e.preventDefault()
-                        setPage(page + 1)
+                        onPageChange(page + 1)
                       }}
                     >
                       Next
@@ -173,8 +178,10 @@ const Results = ({ query, onSearch, searchData }) => {
 
 Results.propTypes = {
   query: PropTypes.string,
-  onSearch: PropTypes.func.isRequired,
-  searchData: PropTypes.arrayOf(PropTypes.object).isRequired
+  onPageChange: PropTypes.func.isRequired,
+  searchData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  page: PropTypes.number.isRequired,
+  resultsPerPage: PropTypes.number.isRequired
 }
 
 export default Results
