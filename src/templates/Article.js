@@ -5,6 +5,8 @@ import Markdown from '../components/Markdown'
 import FullWidthSection from '../components/FullWidthSection'
 import SideNav from '../components/SideNav'
 import PageTitle from '../components/PageTitle'
+import SuggestChanges from '../components/SuggestChanges'
+import Box from '@material-ui/core/Box'
 
 const NavCol = styled.nav`
   @media(min-width: ${({ theme }) => theme.dimensions.mobileBreakpoint}px) {
@@ -39,6 +41,9 @@ const Article = ({ pageContext }) => {
           }
           <ContentCol>
             <Markdown source={pageContext.content} />
+            <Box marginTop={4} textAlign='right'>
+              <SuggestChanges />
+            </Box>
           </ContentCol>
         </ContentWrap>
       </FullWidthSection>
