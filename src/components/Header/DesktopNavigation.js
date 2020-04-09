@@ -1,106 +1,48 @@
-/* eslint-disable */
-import React from 'react'
-import styled from 'styled-components'
+import React, { forwardRef } from 'react'
 import Query from './Query'
-import Link from '../Link'
 import PropTypes from 'prop-types'
 import { Location } from '@reach/router'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+import Box from '@material-ui/core/Box'
+import Link from '../Link'
 
-const Container = styled.div`
-  width:100%;
-  flex: 2;
-  display: flex;
-  justify-content: flex-start;
-  @media (max-width: ${({ theme }) => theme.dimensions.mobileBreakpoint}px) {
-    flex: 1 100%;
-  }
-`
-
-const Nav = styled.nav`
-  margin-left: -2rem;
-  a {
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    position:relative;
-      &:hover,
-      &:focus {
-        color: ${({ theme }) => theme.colors.interactiveHighlight};
-        background: ${({ background, theme }) =>
-    background || theme.colors.subtle}
-      }
-      &.active:after {
-        position:absolute;
-        content: ' ';
-        border-top-left-radius: 4px;
-        border-top-right-radius: 4px;
-        background: ${({ theme }) => theme.colors.interactiveHighlight};
-        height:4px;
-        width: 50%;
-        bottom:0;
-        left:25%;
-        opacity: 0.5;
-      }
-    }
-  > ul {
-    margin: 0;
-
-    > li {
-      margin: 0;
-      display: inline-block;
-      position: relative;
-      a {
-        padding: 2rem;
-        display: inline-block;
-
-        &.active {
-          color: ${({ theme }) => theme.colors.text};
-        }
-      }
-    }
-  }
-`
-
-function isActive (path, currentPathname) {
-  let rootPath = path
-    .replace(/^\//, '')
-    .replace(/\/$/, '')
-    .split('/').slice(0, 2).join('/')
-  
-  rootPath = `/${rootPath}/`
-  return currentPathname.substring(0, rootPath.length) === rootPath
-}
-
-const DesktopNavigation = ({ className }) => (
-  <Location>
-    {({ location }) => (
-      <Container className={`${className}`}>
-        <Query
-          render={items => (
-            <Nav className='text-transform-uppercase'>
-              <ul>
-                {items.map(item => (
-                  <li key={item.path}>
-                    <Link
-                      href={item.path}
-                      className={isActive(item.path, location.pathname) ? 'active' : ''}
-                      tracking={{ label: 'desktop_navigation_' + item.path }}
-                      title={item.label}
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </Nav>
-          )}
-        />
-      </Container>
+const DesktopNavigation = ({ path }) => (
+  <Query
+    render={items => (
+      <Box maxWidth='100vw'>
+        <Tabs
+          value={items.filter(item => item.path === path).shift() ? path : false}
+          indicatorColor='primary'
+          textColor='primary'
+          variant='scrollable'
+          scrollButtons='on'
+          aria-label='scrollable auto tabs example'
+        >
+          {items.map(({ label, path }) => (
+            <Tab
+              label={label}
+              aria-controls={`scrollable-auto-tabpanel-${label.toLowerCase().replace(/ /g, '-')}`}
+              key={path}
+              href={path}
+              component={forwardRef((props, ref) => <Link {...props} {...ref} />)}
+              value={path}
+            />
+          ))}
+        </Tabs>
+      </Box>
     )}
-  </Location>
+  />
 )
 
 DesktopNavigation.propTypes = {
-  className: PropTypes.string
+  path: PropTypes.string.isRequired
 }
 
-export default DesktopNavigation
+export default () => (
+  <Location>
+    {({ location }) => (
+      <DesktopNavigation path={location.pathname} />
+    )}
+  </Location>
+)
