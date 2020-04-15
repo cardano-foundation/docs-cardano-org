@@ -24,27 +24,23 @@ const ContentWrap = styled.main`
   }
 `
 
-const Article = ({ pageContext }) => {
-  console.log('Article', pageContext)
-
-  return (
-    <Fragment>
-      <PageTitle title={pageContext.navigationContext.title} />
-      <FullWidthSection>
-        <ContentWrap>
-          {pageContext.navigationContext.children.length > 0 &&
-            <NavCol>
-              <SideNav items={pageContext.navigationContext.children} path={`/${pageContext.navigationContext.key}`} />
-            </NavCol>
-          }
-          <ContentCol>
-            <Markdown source={pageContext.content} />
-          </ContentCol>
-        </ContentWrap>
-      </FullWidthSection>
-    </Fragment>
-  )
-}
+const Article = ({ pageContext }) => (
+  <Fragment>
+    <PageTitle title={pageContext.navigationContext.title} />
+    <FullWidthSection>
+      <ContentWrap>
+        {pageContext.navigationContext.children.length > 0 &&
+          <NavCol>
+            <SideNav items={pageContext.navigationContext.children} path={`/${pageContext.navigationContext.key}`} />
+          </NavCol>
+        }
+        <ContentCol>
+          <Markdown source={pageContext.content} />
+        </ContentCol>
+      </ContentWrap>
+    </FullWidthSection>
+  </Fragment>
+)
 
 Article.propTypes = {
   pageContext: PropTypes.shape({
