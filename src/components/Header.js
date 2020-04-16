@@ -156,7 +156,7 @@ const NavigationFixedCompensator = styled.div`
     height: ${NAV_OFFSET / 10}rem;
   }
 
-  ${({ theme }) => theme.breakpoints.up('md')} {
+  ${({ theme }) => theme.breakpoints.down('sm')} {
     display: none;
   }
 `
