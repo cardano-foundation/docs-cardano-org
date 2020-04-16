@@ -207,6 +207,17 @@ const TabsContainer = styled(Box)`
   }
 `
 
+const PageTitleContainer = styled.div`
+  position: relative;
+  background-color: ${({ theme }) => theme.colors.background.default};
+  z-index: 7;
+
+  h1 {
+    margin: 0;
+    padding: 1.8rem 0
+  }
+`
+
 const Navigation = styled.nav`
   border-bottom: 0.1rem solid ${({ theme }) => new TinyColor(theme.palette.text.primary).setAlpha(0.2).toString()};
   position: relative;
@@ -391,11 +402,13 @@ export default () => {
     const activeIndex = getActiveIndex({ navigation, path })
     if (activeIndex === false || !navigation[activeIndex]) return null
     return (
-      <Container maxWidth='xl'>
-        <Box paddingTop={1}>
-          <h1>{navigation[activeIndex].label}</h1>
-        </Box>
-      </Container>
+      <PageTitleContainer>
+        <Container maxWidth='xl'>
+          <Box paddingTop={1}>
+            <h1>{navigation[activeIndex].label}</h1>
+          </Box>
+        </Container>
+      </PageTitleContainer>
     )
   }
 
