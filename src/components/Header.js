@@ -161,6 +161,34 @@ const NavigationFixedCompensator = styled.div`
   }
 `
 
+const TabsContainer = styled(Box)`
+  .MuiTabs-root {
+    .MuiTabs-scrollButtons {
+      &:not([aria-disabled="false"]) {
+        position: relative;
+
+        &:after {
+          content: '<';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%,-50%) scaleX(0.5);
+          font-weight: 900;
+          opacity: 0.5;
+        }
+      }
+
+      &:last-of-type {
+        &:not([aria-disabled="false"]) {
+          &:after {
+            content: '>';
+          }
+        }
+      }
+    }
+  }
+`
+
 const Navigation = styled.nav`
   border-bottom: 0.1rem solid ${({ theme }) => new TinyColor(theme.palette.text.primary).setAlpha(0.2).toString()};
   position: relative;
@@ -346,7 +374,7 @@ export default () => {
     if (activeIndex === false || !navigation[activeIndex]) return null
     return (
       <Container maxWidth='xl'>
-        <Box paddingTop={1} paddingLeft={3}>
+        <Box paddingTop={1}>
           <h1>{navigation[activeIndex].label}</h1>
         </Box>
       </Container>
@@ -417,14 +445,14 @@ export default () => {
                 <div>
                   <Navigation className={`position-${!renderPageTitle(navigation, location.pathname) ? 'static' : navigationPosition}`} ref={navigationRef}>
                     <Container maxWidth='xl'>
-                      <Box marginLeft={-2} marginRight={-2}>
-                        <Box maxWidth='100%'>
+                      <Box marginLeft={-1.2} marginRight={-1.2}>
+                        <TabsContainer maxWidth='100%'>
                           <Tabs
                             value={getActiveIndex({ navigation, path: location.pathname })}
                             indicatorColor='primary'
                             textColor='primary'
                             variant='scrollable'
-                            scrollButtons='on'
+                            scrollButtons='auto'
                           >
                             {navigation.map(({ label, path }) => (
                               <Tab
@@ -435,7 +463,7 @@ export default () => {
                               />
                             ))}
                           </Tabs>
-                        </Box>
+                        </TabsContainer>
                       </Box>
                     </Container>
                   </Navigation>
