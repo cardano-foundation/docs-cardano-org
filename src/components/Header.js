@@ -445,7 +445,7 @@ export default () => {
                 <div>
                   <Navigation className={`position-${!renderPageTitle(navigation, location.pathname) ? 'static' : navigationPosition}`} ref={navigationRef}>
                     <Container maxWidth='xl'>
-                      <Box marginLeft={-1.2} marginRight={-1.2}>
+                      <Box>
                         <TabsContainer maxWidth='100%'>
                           <Tabs
                             value={getActiveIndex({ navigation, path: location.pathname })}
