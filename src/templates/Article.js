@@ -49,6 +49,10 @@ const SideNavigationContainer = styled(Box)`
 const MainContent = styled(Box)`
   padding-left: 4rem;
 
+  &.no-nav {
+    padding-left: 0;
+  }
+
   ${({ theme }) => theme.breakpoints.down('sm')} {
     padding-left: 0;
   }
@@ -357,7 +361,7 @@ const Article = ({ pageContext }) => {
                   />
                 </SideNavigationContainer>
               }
-              <MainContent flex={4}>
+              <MainContent className={pageContext.navigationContext.children.length === 0 ? 'no-nav' : ''} flex={4}>
                 {pageContext.navigationContext.children.length > 0 &&
                   <MobileInlineNavigation className={mobileTopNavigationOpen ? 'open' : ''}>
                     <div>
