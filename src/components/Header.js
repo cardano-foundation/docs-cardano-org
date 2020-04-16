@@ -186,6 +186,24 @@ const TabsContainer = styled(Box)`
         }
       }
     }
+
+    .MuiTabs-flexContainer {
+      a {
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 1.2rem;
+        margin-right: 1.2rem;
+        min-width: 0;
+
+        &:first-of-type {
+          margin-left: 0;
+        }
+
+        &:last-of-type {
+          margin-right: 0;
+        }
+      }
+    }
   }
 `
 
