@@ -174,7 +174,7 @@ const TabsContainer = styled(Box)`
           left: 50%;
           transform: translate(-50%,-50%) scaleX(0.5);
           font-weight: 900;
-          opacity: 0.5;
+          opacity: 0.42;
         }
       }
 
