@@ -95,7 +95,6 @@ const App = ({ element }) => {
                       <Language.Consumer>
                         {({ key: lang }) => (
                           <LinkProvider lang={lang} component={Link}>
-                            {console.log({ theme })}
                             <Styles theme={originalTheme.config} />
                             <Header />
                             <Router>

@@ -80,7 +80,6 @@ const SearchPageInner = ({ data, pageContext, location }) => {
 
 const SearchPage = ({ data, pageContext }) => (
   <Layout>
-    {console.log({ pageContext })}
     <Location>
       {({ location }) => (
         <SearchPageInner data={data} pageContext={pageContext} location={location} />
