@@ -16,3 +16,21 @@ export const getLanguageSelectWidget = ({ name = 'lang', label = 'Language', req
   })),
   default: config.availableLanguages[0].key
 })
+
+export const getAllArticlesWidget = (
+  language,
+  { name = 'article', label = 'Article', required, multiple, hint } = {}
+) => ({
+  label,
+  name,
+  required,
+  multiple,
+  hint,
+  widget: 'select',
+  options: JSON.parse(process.env.IOHK_AVAILABLE_ARTICLES)[language].map(
+    article => ({
+      label: article.label,
+      value: article.value
+    })
+  )
+})

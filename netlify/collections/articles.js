@@ -1,4 +1,4 @@
-import config from '../../site.config.json'
+import config from '../../src/config'
 import { getAllArticlesWidget } from '../helpers'
 const buildCollection = language => {
   return {
@@ -36,6 +36,7 @@ const buildCollection = language => {
         name: 'external_href',
         widget: 'string',
         default: '',
+        required: false,
         hint: 'Link to an external resource instead of providing content. The link will slot into the navigation.'
       },
       {
@@ -49,4 +50,4 @@ const buildCollection = language => {
   }
 }
 
-export default Object.keys(config.availableLanguages).map(buildCollection)
+export default config.availableLanguages.map(({ key }) => buildCollection(key))

@@ -3,6 +3,34 @@ const path = require('path')
 const fs = require('fs')
 const environment = require('./node/environment')
 const config = require('./node/config')
+const fm = require('front-matter')
+
+const articles = {}
+config.availableLanguages.forEach(({ key: language }) => {
+  articles[language] = fs
+    .readdirSync(
+      path.join(__dirname, `resources/content/articles/${language}`),
+      { encoding: 'utf8' }
+    )
+    .map(filename => {
+      const data = fs.readFileSync(
+        path.join(
+          __dirname,
+          `resources/content/articles/${language}`,
+          filename
+        ),
+        { encoding: 'utf8' }
+      )
+      const content = fm(data)
+      const slug = filename.replace(new RegExp(`^(.*?)-${language}.md$`), '$1')
+
+      return {
+        label: content.attributes.title,
+        value: slug
+      }
+    })
+})
+process.env.IOHK_AVAILABLE_ARTICLES = JSON.stringify(articles)
 
 const getRandomString = () => {
   let s = ''
