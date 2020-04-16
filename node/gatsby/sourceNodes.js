@@ -7,7 +7,7 @@ module.exports = ({ actions }) => {
 
   function findNextLink (children, basePath) {
     let path
-    const childrenValues = [...children]
+    const childrenValues = [ ...children ]
     while (!path && childrenValues.length > 0) {
       const next = childrenValues.shift()
       if (next.content) {

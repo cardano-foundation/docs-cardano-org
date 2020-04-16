@@ -1,0 +1,36 @@
+{
+  "title": "Themes",
+  "description": "",
+  "steps": [
+    {
+      "file": "src/themes.js",
+      "line": 4,
+      "description": "The starter supports multiple themes using the [@input-output-hk/front-end-core-components Theme context](https://github.com/input-output-hk/front-end-core-components/blob/master/docs/components/Theme.md). By default the available themes are pulled from [@input-output-hk/front-end-themes](https://github.com/input-output-hk/front-end-themes).\n\nIf you want to define a custom theme simply create them here or elsewhere and modify the `getThemes` function to return an object with the keys being the name of the theme and the values being the themes themselves. Just ensure the themes follow the same structure as in [@input-output-hk/front-end-themes](https://github.com/input-output-hk/front-end-themes) for full compatibility."
+    },
+    {
+      "file": "src/templates/Main.js",
+      "line": 24,
+      "description": "The theme can be accessed in the Theme consumer as seen here."
+    },
+    {
+      "file": "src/App.js",
+      "line": 90,
+      "description": "It is also applied to Material UI."
+    },
+    {
+      "file": "src/components/Header.js",
+      "line": 13,
+      "description": "It can also be accessed in styled components as follows:\n\n```JavaScript\ncolor: ${({ theme }) => theme.palette.primary.main};\n```\n\nWill output a CSS colour value of `theme.palette.primary.main`."
+    },
+    {
+      "file": "src/components/SelectTheme.js",
+      "line": 8,
+      "description": "A component to select the theme (from all themes available) via a select input is available."
+    },
+    {
+      "file": "src/themes.js",
+      "line": 4,
+      "description": "Now you've learned how themes work in the IOHK default Gatsby starter why not check out some more tours.\n\n* For a more in-depth look at the internals take the tour on the \"Core components\"\n* For more design take the tour on \"Templates\"\n* To learn more about localization take the tour on \"Localization\"\n* Want to create some pages? Check out the tour \"Creating pages\" to see how easy it is to create new pages\n* For advanced client side routing see the tour on \"Client side routing\""
+    }
+  ]
+}

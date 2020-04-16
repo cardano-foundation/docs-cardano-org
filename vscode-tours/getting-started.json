@@ -1,0 +1,46 @@
+{
+  "title": "Getting started",
+  "description": "Getting started with the gatsby-starter-iohk-default Gatsby starter",
+  "steps": [
+    {
+      "file": "package.json",
+      "line": 77,
+      "description": "Welcome to the IOHK default Gatsby starter. First of all you may want to review the default configuration. [Full configuration reference](https://github.com/input-output-hk/gatsby-starter-iohk-default#configuration)"
+    },
+    {
+      "file": "src/pages/index.js",
+      "line": 7,
+      "description": "Like any Gatsby JS site the pages directory is going to contain the page level components. This is the home page. Go ahead and start the site if you haven't already running `npm start`.\n\nNavigating to `/` or `/en/` will present you with the home page here."
+    },
+    {
+      "file": "resources/content/pages/index/index-en.md",
+      "line": 6,
+      "description": "With localization baked in, all content should be kept inside markdown resource files which are suffixed by the language they correspond to. Lets add a new field to this markdown file under `default_content` called `additional_content`. Give it a value of `I made some new content`."
+    },
+    {
+      "file": "src/queries/IndexPageQuery.js",
+      "line": 18,
+      "description": "This is where the content from the markdown files is resolved by language and output for use via the `render` prop. Similar to how the `StaticQuery` in GatsbyJS works, but abstracting the query at a page/global content level. To access the new string in markdown we'll need to add it to our query here. Go ahead and add `additional_content` underneath `default_content` in our GraphQL query."
+    },
+    {
+      "file": "src/pages/index.js",
+      "line": 17,
+      "description": "Back inside our page component we will no have access to our new content from our markdown file. Try it out by adding a new `<p />` tag under the existing one and instead of outputting `content.default_content` use `content.additional_content`. Check the results in the browser. GatsbyJS can compile new GraphQL types in develop mode now so no having to restart the process!"
+    },
+    {
+      "file": "netlify/collections/pages/home.js",
+      "line": 22,
+      "description": "The last step with adding content is to enable the option to edit the content in Netlify CMS. Unfortunately Netlify does not support partial editing of markdown files, so if you have any CMS config for a markdown file you will need to ensure each field is accounted for in the Netlify config otherwise they will be lost in the CMS.\n\nGo ahead and duplicate the `default_content` configuration object and place it underneath in the \"fields\" array replacing the name and label with `additional_content` and `Additional content` respectively. [Full Netlify widget documentation](https://www.netlifycms.org/docs/widgets/)"
+    },
+    {
+      "file": "resources/content/meta/index-en.md",
+      "line": 7,
+      "description": "Here you can modify the meta data for the site and it's pages. This file contains the meta data for the English version of the home page. The Netlify CMS is configured to allow all meta data to be edited. [Meta data documentation](https://github.com/input-output-hk/gatsby-starter-iohk-default#meta-data)"
+    },
+    {
+      "file": "src/pages/index.js",
+      "line": 8,
+      "description": "Congratulations! You now know the basics of the IOHK default Gatsby starter.\n\n* For a more in-depth look at the internals take the tour on the \"Core components\"\n* For design take the tour on \"Themes\" and \"Templates\"\n* To learn more about localization take the tour on \"Localization\"\n* Want to create some pages? Check out the tour \"Creating pages\" to see how easy it is to create new pages\n* For advanced client side routing see the tour on \"Client side routing\""
+    }
+  ]
+}

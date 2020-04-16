@@ -1,0 +1,26 @@
+{
+  "title": "Templates",
+  "description": "",
+  "steps": [
+    {
+      "file": "src/templates/Main.js",
+      "line": 30,
+      "description": "The main layout of your site should be controlled via Templates. These will provide the main header, navigation and footer structure. Of course you can have multiple templates per site. The template is specified via the Layout component which you'll see on the next step. It's important not to delete this `Main` template as it's the default template."
+    },
+    {
+      "file": "src/components/Layout.js",
+      "line": 10,
+      "description": "As you can see the Layout component accepts a `template` prop which defaults to the `Main` template we just saw."
+    },
+    {
+      "file": "src/pages/index.js",
+      "line": 11,
+      "description": "When creating a page you should wrap the page in the `Layout` component. Here you can optionally pass the `template` prop to a template component other than `Main`."
+    },
+    {
+      "file": "src/templates/Main.js",
+      "line": 16,
+      "description": "Congratulations you now understand how the templating system works in the IOHK default Gatsby starter!\n\n* For a more in-depth look at the internals take the tour on the \"Core components\"\n* For more design take the tour on \"Themes\"\n* To learn more about localization take the tour on \"Localization\"\n* Want to create some pages? Check out the tour \"Creating pages\" to see how easy it is to create new pages\n* For advanced client side routing see the tour on \"Client side routing\""
+    }
+  ]
+}

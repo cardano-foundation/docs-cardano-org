@@ -32,11 +32,18 @@ const buildCollection = language => {
           'The position of this article relative to its siblings. (Lower numbers first)'
       },
       {
+        label: 'External link',
+        name: 'external_href',
+        widget: 'string',
+        default: '',
+        hint: 'Link to an external resource instead of providing content. The link will slot into the navigation.'
+      },
+      {
         label: 'Body',
         name: 'body',
         widget: 'markdown',
         required: false,
-        hint: "If no body is provided, then title appears as a 'heading'"
+        hint: 'If no body is provided, then title appears as a \'heading\''
       }
     ]
   }

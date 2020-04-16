@@ -1,10 +1,11 @@
 import 'whatwg-fetch'
+import { analytics } from '@input-output-hk/front-end-core-libraries'
 import App from './src/App'
 import Root from './src/Root'
-import { setPageLoading } from './src/state/PageLoader'
-import { pageView, timing, autoCapture } from './src/helpers/analytics'
-import { languageSetInURL } from './src/helpers/url'
-import { RENDER_TIMING, NAVIGATE_TIMING, UX } from './src/constants/analytics'
+import config from './src/config'
+
+// Setup analytics if GA tracking id is present in config
+if (config.ga && config.ga.trackingID) analytics.initialize(config.ga.trackingID)
 
 export const wrapPageElement = App
 export const wrapRootElement = Root
@@ -13,45 +14,47 @@ let entryTime
 const prefetchTimings = {}
 const routeUpdateTimings = {}
 
+// https://www.gatsbyjs.org/docs/browser-apis/#onClientEntry
 export const onClientEntry = () => {
   entryTime = Date.now()
 }
 
+// https://www.gatsbyjs.org/docs/browser-apis/#onInitialClientRender
 export const onInitialClientRender = () => {
   const renderTime = Date.now() - entryTime
-  if (entryTime) timing({ category: RENDER_TIMING, label: 'Initial site render time', value: renderTime, variable: 'initial_render' })
-  setPageLoading(false)
+  if (entryTime) analytics.timing({ category: analytics.constants.RENDER_TIMING, label: 'Initial site render time', value: renderTime, variable: 'initial_render' })
 }
 
 const getTimingKey = location => `${location.pathname}`
 
+// https://www.gatsbyjs.org/docs/browser-apis/#onRouteUpdate
 export const onRouteUpdate = ({ location, prevLocation }) => {
   const startTime = routeUpdateTimings[getTimingKey(location)]
   if (startTime) {
     const navigationTime = Date.now() - startTime
-    timing({ category: NAVIGATE_TIMING, label: prevLocation ? 'navigate' : 'initial_load', value: navigationTime, variable: location.pathname })
+    analytics.timing({ category: analytics.constants.NAVIGATE_TIMING, label: prevLocation ? 'navigate' : 'initial_load', value: navigationTime, variable: location.pathname })
   }
 
-  // The site will always redirect to a language prefix. If we track unprefixed URL's the bounce
-  // rate data will be incorrect, therefore we should only track the prefixed pages
-  if (languageSetInURL()) pageView(location.pathname)
-  setPageLoading(false)
+  analytics.pageView(location.pathname)
 }
 
+// https://www.gatsbyjs.org/docs/browser-apis/#onRouteUpdateDelayed
 export const onRouteUpdateDelayed = ({ location }) => {
-  setPageLoading(true)
-  autoCapture({ category: UX, label: location.pathname, action: 'route_update_delayed' })
+  analytics.autoCapture({ category: analytics.constants.UX, label: location.pathname, action: 'route_update_delayed' })
 }
 
+// https://www.gatsbyjs.org/docs/browser-apis/#onPreRouteUpdate
 export const onPreRouteUpdate = ({ location }) => {
   routeUpdateTimings[getTimingKey(location)] = Date.now()
 }
 
+// https://www.gatsbyjs.org/docs/browser-apis/#onPrefetchPathname
 export const onPrefetchPathname = ({ pathname }) => {
   prefetchTimings[pathname] = Date.now()
 }
 
+// https://www.gatsbyjs.org/docs/browser-apis/#onPostPrefetchPathname
 export const onPostPrefetchPathname = ({ pathname }) => {
   const startTime = routeUpdateTimings[pathname]
-  if (startTime) timing({ category: NAVIGATE_TIMING, label: 'prefetch', value: Date.now() - startTime, variable: pathname })
+  if (startTime) analytics.timing({ category: analytics.constants.NAVIGATE_TIMING, label: 'prefetch', value: Date.now() - startTime, variable: pathname })
 }

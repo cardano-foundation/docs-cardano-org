@@ -1,0 +1,26 @@
+{
+  "title": "Client side routing",
+  "description": "",
+  "steps": [
+    {
+      "file": "package.json",
+      "line": 97,
+      "description": "Client side routing can be defined in the \"routes\" configuration which takes an array of objects. Each object contains a \"path\", using the format of [@reach/router's URL paths](https://reach.tech/router/tutorial/05-url-parameters) as well as a \"component\" which is the relative path to the component from `src/routes/` minus the `.js` extension.\n\nLets add a client side route.\n\n```JavaScript\n{\n  \"path\": \"/custom/:id\",\n  \"component\": \"CustomRoute\"\n}\n```"
+    },
+    {
+      "file": "src/routes/Fallback.js",
+      "line": 7,
+      "description": "We now need to create a new file alongside the `Fallback.js` component called `CustomRoute.js`. Make the contents:\n\n```JavaScript\nimport React from 'react'\nimport PropTypes from 'prop-types'\nimport Link from '@input-output-hk/front-end-core-components/components/Link'\nimport Layout from '../components/Layout'\n\nconst CustomRoute = ({ id }) => (\n  <Layout>\n    <p>Current id - {id}</p>\n    <p>\n      <Link href={`/custom/${parseInt(id) - 1}/`}>Previous id {parseInt(id) - 1}</Link>\n      <Link href={`/custom/${parseInt(id) + 1}/`}>Next id {parseInt(id) + 1}</Link>\n    </p>\n  </Layout>\n)\n\nCustomRoute.propTypes = {\n  id: PropTypes.string\n}\n\nexport default CustomRoute\n\n```\n\nHere we've created a simple component assuming `id` is an integer (all props will be strings in prop types as they are taken from the URL).\n\nRunning `npm start` and navigating to `/custom/100/` you will see our client side route. Click around on the links to navigate to new id's."
+    },
+    {
+      "file": "package.json",
+      "line": 35,
+      "description": "To see how the server will serve your client side routes you can kill the `npm start` process and run `npm run build && npm run serve`. Then navigate to `/custom/123/` and see you will be served with the \"Fallback\" component from the server before the client side routing takes over bypassing a 404 response from the server. This is managed in the generated `netlify.toml` for Netlify's hosting. If you are hosting elsewhere you'll need to build this functionality yourself."
+    },
+    {
+      "file": "package.json",
+      "line": 97,
+      "description": "Congratulations! You've implemented client side routing.\n\n* For a more in-depth look at the internals take the tour on the \"Core components\"\n* For design take the tour on \"Themes\" and \"Templates\"\n* To learn more about localization take the tour on \"Localization\"\n* Want to create some pages? Check out the tour \"Creating pages\" to see how easy it is to create new pages\n* For advanced client side routing see the tour on \""
+    }
+  ]
+}

@@ -70,3 +70,7 @@ yarn.lock
 .yarn-integrity
 
 .vscode
+
+# Ignore the netlify.toml file as it is generated
+# incorporating client side routing redirects
+netlify.toml

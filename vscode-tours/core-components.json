@@ -1,0 +1,51 @@
+{
+  "title": "Core components",
+  "description": "",
+  "steps": [
+    {
+      "file": "src/App.js",
+      "line": 1,
+      "description": "The starter ships with some core code which shouldn't need to be modified expect for some advanced usage. The `App.js` file sets up the theme and localization state as well as client side routing and other uses of the [React Context API](https://reactjs.org/docs/context.html).\n\nIt's important to not delete any of these core files, otherwise the app may not work as expected."
+    },
+    {
+      "file": "src/Root.js",
+      "line": 7,
+      "description": "The `Root.js` file handles redirects for Netlify CMS authentication."
+    },
+    {
+      "file": "src/themes.js",
+      "line": 4,
+      "description": "The themes file is consumed by `App.js` in relation to the Theme state."
+    },
+    {
+      "file": "src/config.js",
+      "line": 2,
+      "description": "The config is resolved from the `package.json` config."
+    },
+    {
+      "file": "src/templates/Main.js",
+      "line": 16,
+      "description": "This is the default template for the site."
+    },
+    {
+      "file": "src/routes/Fallback.js",
+      "line": 7,
+      "description": "The fallback component is used for client side routing and is rendered by the server for a fallback to client side routes."
+    },
+    {
+      "file": "src/pages/404.js",
+      "line": 6,
+      "description": "The Gatsby 404 page."
+    },
+    {
+      "file": "src/components/Layout.js",
+      "line": 10,
+      "description": "The Layout component is responsible for resolving meta data at a global site, page and component level."
+    },
+    {
+      "file": "src/App.js",
+      "line": 16,
+      "description": "Congratulations! You've now had a brief overview of the core components of the IOHK default Gatsby starter.\n\n* For design take the tour on \"Themes\" and \"Templates\"\n* To learn more about localization take the tour on \"Localization\"\n* Want to create some pages? Check out the tour \"Creating pages\" to see how easy it is to create new pages\n* For advanced client side routing see the tour on \"Client side routing\""
+    }
+  ]
+}

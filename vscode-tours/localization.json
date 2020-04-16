@@ -1,0 +1,56 @@
+{
+  "title": "Localization",
+  "description": "",
+  "steps": [
+    {
+      "file": "package.json",
+      "line": 85,
+      "description": "Localization is interfaced with via the configuration in `package.json`. See [configuration documentation](https://github.com/input-output-hk/gatsby-starter-iohk-default#configuration) for full reference.\n\nLets start by adding a new language in `availableLanguages` after `en`. First of all stop any processes running the site such as `npm start` etc.\n\n```JavaScript\n{\n  \"key\": \"fr\",\n  \"label\": \"Français\",\n  \"flag\": \"🇫🇷\",\n  \"locale\": \"fr_FR\"\n}\n```"
+    },
+    {
+      "file": "src/pages/index.js",
+      "line": 16,
+      "description": "Now that we've added a new language we need to create the content in that language. Luckily it's just as easy as running `npm run create-pages -- /`. This will create the additional markdown we require for `fr`. If we tried to run `npm start` prior to creating the markdown for the language we would have got an error letting us know that no content existed for the home page of that language."
+    },
+    {
+      "file": "resources/content/pages/404/404-en.md",
+      "line": 6,
+      "description": "We'll also need to create the localized 404 page content. Go ahead and copy this file in the same directory and name it `404-fr.md`."
+    },
+    {
+      "file": "resources/content/meta/404-en.md",
+      "line": 12,
+      "description": "We'll also need to create the localized 404 page meta data. Go ahead and copy this file in the same directory and name it `404-fr.md`."
+    },
+    {
+      "file": "resources/content/global/global-en.md",
+      "line": 7,
+      "description": "We'll also need to create the localized global content. Go ahead and copy this file in the same directory and name it `global-fr.md`."
+    },
+    {
+      "file": "src/pages/index.js",
+      "line": 24,
+      "description": "Now we are ready to run the site. Go ahead and run the `npm start` command and you should see the site available in `Français` via the language selector in the header."
+    },
+    {
+      "file": "src/components/SelectLanguage.js",
+      "line": 10,
+      "description": "This select language component is the select input that renders in the header of the site. It's a good reference point for how to use consume the language via the [@input-output-hk/front-end-core-components language context](https://github.com/input-output-hk/front-end-core-components/blob/master/docs/components/Language.md)."
+    },
+    {
+      "file": "src/queries/IndexPageQuery.js",
+      "line": 28,
+      "description": "This is our code which resolves the content from the GraphQL query on content. For a handful of languages this is performant enough, however for dozens of languages a more performant approach may be to resolve the content using the Gatsby node API. This of course depends on the amount of localized content."
+    },
+    {
+      "file": "src/queries/GlobalContentQuery.js",
+      "line": 17,
+      "description": "The same applies for the global content. If the global content grows to a size where it becomes less performant it may make sense to break the content up into smaller files which are only consumed where they are required."
+    },
+    {
+      "file": "src/pages/index.js",
+      "line": 24,
+      "description": "Congratulations you now have a basic understanding of the localization within the IOHK default Gatsby starter!\n\n* For a more in-depth look at the internals take the tour on the \"Core components\"\n* For design take the tour on \"Themes\" and \"Templates\"\n* Want to create some pages? Check out the tour \"Creating pages\" to see how easy it is to create new pages\n* For advanced client side routing see the tour on \"Client side routing\""
+    }
+  ]
+}

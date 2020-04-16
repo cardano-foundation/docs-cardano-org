@@ -7,16 +7,17 @@
   "extends": ["standard", "standard-react"],
   "globals": {
     "WebSocket": true,
-    "jest": true,
-    "describe": true,
-    "expect": true,
-    "test": true,
-    "beforeEach": true,
-    "afterEach": true,
-    "it": true,
     "requestAnimationFrame": true,
     "cancelAnimationFrame": true,
     "Image": true,
     "fetch": true
+  },
+  "rules": {
+    "array-bracket-spacing": [ "error", "always" ],
+    "react/jsx-fragments": [ "error", "element" ],
+    "quotes": [ "error", "single", { "allowTemplateLiterals": true } ],
+    "react/jsx-curly-newline": [ "off" ],
+    "react/jsx-tag-spacing": [ "error", { "closingSlash": "never", "beforeSelfClosing": "always", "afterOpening": "never", "beforeClosing": "never" } ],
+    "react/jsx-curly-brace-presence": [ "error", "never" ]
   }
 }
