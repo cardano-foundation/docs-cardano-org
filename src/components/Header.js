@@ -15,6 +15,7 @@ import SelectLanguage from './SelectLanguage'
 import CardanoLogo from '../../resources/images/cardano-logo.svg'
 import GlobalContentQuery from '../queries/GlobalContentQuery'
 import { APP_BAR_OFFSET, NAV_OFFSET } from '../constants'
+import { Consumer as ScreenSizeConsumer } from '../state/ScreenSize'
 
 const Bar = styled(AppBar)`
   a,
@@ -413,125 +414,129 @@ export default () => {
   }
 
   return (
-    <GlobalContentQuery
-      render={(content, navigation) => (
-        <Fragment>
-          <Bar position='fixed'>
-            <Container maxWidth='xl'>
-              <Box paddingTop={0.8} paddingBottom={0.8} display='flex'>
-                <Box display='flex'>
-                  <Logo>
-                    <Link href='/'>
+    <ScreenSizeConsumer>
+      {({ screenSize, screenWidth }) => (
+        <GlobalContentQuery
+          render={(content, navigation) => (
+            <Fragment>
+              <Bar position='fixed'>
+                <Container maxWidth='xl'>
+                  <Box paddingTop={0.8} paddingBottom={0.8} display='flex'>
+                    <Box display='flex'>
+                      <Logo>
+                        <Link href='/'>
+                          <Column>
+                            <img src={CardanoLogo} />
+                          </Column>
+                          <SiteTitle marginLeft={1}>
+                            <span>{content.main_title}</span>
+                          </SiteTitle>
+                        </Link>
+                      </Logo>
+                    </Box>
+                    <Box flex={1} display='flex' justifyContent='flex-end'>
+                      <SearchFieldContainer marginRight={2}>
+                        <SearchField />
+                      </SearchFieldContainer>
                       <Column>
-                        <img src={CardanoLogo} />
+                        <SelectLanguage />
                       </Column>
-                      <SiteTitle marginLeft={1}>
-                        <span>{content.main_title}</span>
-                      </SiteTitle>
-                    </Link>
-                  </Logo>
-                </Box>
-                <Box flex={1} display='flex' justifyContent='flex-end'>
-                  <SearchFieldContainer marginRight={2}>
-                    <SearchField />
-                  </SearchFieldContainer>
-                  <Column>
-                    <SelectLanguage />
-                  </Column>
-                  <MobileSearchIconContainer>
-                    <Link href='#' onClick={toggleMobileSearchBar}>
-                      <MdSearch />
-                    </Link>
-                  </MobileSearchIconContainer>
-                  <MobileNavContainer marginLeft={1}>
-                    <Link href='#' onClick={toggleMobileMenu}>
-                      {mobileMenuOpen && <MdClose />}
-                      {!mobileMenuOpen && <MdMenu />}
-                    </Link>
-                  </MobileNavContainer>
-                </Box>
-              </Box>
-            </Container>
-          </Bar>
-          <TransitionGroup>
-            {mobileSearchBarOpen &&
-              <CSSTransition
-                key='mobile-search-bar'
-                timeout={300}
-                classNames='mobile-search-bar'
-              >
-                <MobileSearchBar ref={mobileSearchBarRef}>
-                  <Container maxWidth='xs'>
-                    <SearchField onSearch={() => setMobileSearchBarOpen(false)} />
-                  </Container>
-                </MobileSearchBar>
-              </CSSTransition>
-            }
-          </TransitionGroup>
-          <BarOffset />
-          <Location>
-            {({ location }) => (
-              <Fragment>
-                {renderPageTitle(navigation, location.pathname)}
-                <div>
-                  <Navigation className={`position-${!renderPageTitle(navigation, location.pathname) ? 'static' : navigationPosition}`} ref={navigationRef}>
-                    <Container maxWidth='xl'>
-                      <Box>
-                        <TabsContainer maxWidth='100%'>
-                          <Tabs
-                            value={getActiveIndex({ navigation, path: location.pathname })}
-                            indicatorColor='primary'
-                            textColor='primary'
-                            variant='scrollable'
-                            scrollButtons='auto'
-                          >
-                            {navigation.map(({ label, path }) => (
-                              <Tab
-                                label={label}
-                                key={path}
-                                href={path}
-                                component={forwardRef((props, ref) => <Link {...props} {...ref} />)}
-                              />
-                            ))}
-                          </Tabs>
-                        </TabsContainer>
-                      </Box>
-                    </Container>
-                  </Navigation>
-                </div>
-                <NavigationFixedCompensator className={`${!renderPageTitle(navigation, location.pathname) ? '' : navigationPosition === 'fixed' ? 'active' : ''}`} />
-                <TransitionGroup>
-                  {mobileMenuOpen &&
-                    <CSSTransition
-                      key='mobile-menu'
-                      timeout={400}
-                      classNames='mobile-menu'
-                    >
-                      <MobileMenu>
-                        <MobileMenuInner>
-                          <MobileMenuScrollContainer>
-                            <MobileLogo>
-                              <Link href='/' onClick={() => setMobileMenuOpen(false)}>
-                                <Column>
-                                  <img src={CardanoLogo} />
-                                </Column>
-                                <MobileSiteTitle marginLeft={1}>
-                                  <span>{content.main_title}</span>
-                                </MobileSiteTitle>
-                              </Link>
-                            </MobileLogo>
-                            {renderMobileNavLinks(navigation, location.pathname)}
-                          </MobileMenuScrollContainer>
-                        </MobileMenuInner>
-                      </MobileMenu>
-                    </CSSTransition>
-                  }
-                </TransitionGroup>
-              </Fragment>
-            )}
-          </Location>
-        </Fragment>
+                      <MobileSearchIconContainer>
+                        <Link href='#' onClick={toggleMobileSearchBar}>
+                          <MdSearch />
+                        </Link>
+                      </MobileSearchIconContainer>
+                      <MobileNavContainer marginLeft={1}>
+                        <Link href='#' onClick={toggleMobileMenu}>
+                          {mobileMenuOpen && <MdClose />}
+                          {!mobileMenuOpen && <MdMenu />}
+                        </Link>
+                      </MobileNavContainer>
+                    </Box>
+                  </Box>
+                </Container>
+              </Bar>
+              <TransitionGroup>
+                {mobileSearchBarOpen &&
+                  <CSSTransition
+                    key='mobile-search-bar'
+                    timeout={300}
+                    classNames='mobile-search-bar'
+                  >
+                    <MobileSearchBar ref={mobileSearchBarRef}>
+                      <Container maxWidth='xs'>
+                        <SearchField onSearch={() => setMobileSearchBarOpen(false)} />
+                      </Container>
+                    </MobileSearchBar>
+                  </CSSTransition>
+                }
+              </TransitionGroup>
+              <BarOffset />
+              <Location>
+                {({ location }) => (
+                  <Fragment>
+                    {renderPageTitle(navigation, location.pathname)}
+                    <div>
+                      <Navigation className={`position-${!renderPageTitle(navigation, location.pathname) ? 'static' : navigationPosition}`} ref={navigationRef}>
+                        <Container maxWidth='xl'>
+                          <Box>
+                            <TabsContainer maxWidth='100%'>
+                              <Tabs
+                                value={getActiveIndex({ navigation, path: location.pathname })}
+                                indicatorColor='primary'
+                                textColor='primary'
+                                variant='scrollable'
+                                scrollButtons='auto'
+                              >
+                                {navigation.map(({ label, path }) => (
+                                  <Tab
+                                    label={label}
+                                    key={path}
+                                    href={path}
+                                    component={forwardRef((props, ref) => <Link {...props} {...ref} />)}
+                                  />
+                                ))}
+                              </Tabs>
+                            </TabsContainer>
+                          </Box>
+                        </Container>
+                      </Navigation>
+                    </div>
+                    <NavigationFixedCompensator className={`${!renderPageTitle(navigation, location.pathname) ? '' : navigationPosition === 'fixed' ? 'active' : ''}`} />
+                    <TransitionGroup>
+                      {mobileMenuOpen &&
+                        <CSSTransition
+                          key='mobile-menu'
+                          timeout={400}
+                          classNames='mobile-menu'
+                        >
+                          <MobileMenu>
+                            <MobileMenuInner>
+                              <MobileMenuScrollContainer>
+                                <MobileLogo>
+                                  <Link href='/' onClick={() => setMobileMenuOpen(false)}>
+                                    <Column>
+                                      <img src={CardanoLogo} />
+                                    </Column>
+                                    <MobileSiteTitle marginLeft={1}>
+                                      <span>{content.main_title}</span>
+                                    </MobileSiteTitle>
+                                  </Link>
+                                </MobileLogo>
+                                {renderMobileNavLinks(navigation, location.pathname)}
+                              </MobileMenuScrollContainer>
+                            </MobileMenuInner>
+                          </MobileMenu>
+                        </CSSTransition>
+                      }
+                    </TransitionGroup>
+                  </Fragment>
+                )}
+              </Location>
+            </Fragment>
+          )}
+        />
       )}
-    />
+    </ScreenSizeConsumer>
   )
 }

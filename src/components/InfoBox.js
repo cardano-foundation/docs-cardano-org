@@ -6,7 +6,7 @@ import { makeTransparent } from '../helpers/color'
 const Container = styled.div`
   width: 100%;
   padding: 5rem;
-  background-color: ${({ theme }) => theme.colors.secondary.light};
+  background:${({ theme }) => makeTransparent(theme.palette.secondary.light, 0.8)};
   color: ${({ theme }) => theme.colors.primary.contrastText};
   text-align: center;
   position: relative;
@@ -46,7 +46,7 @@ const Triangle = styled.div`
 `
 
 const Body = styled.div`
-  color: ${({ theme }) => makeTransparent(theme.colors.primary.contrastText, 0.5)};
+  color: ${({ theme }) => makeTransparent(theme.colors.primary.contrastText, 0.75)};
 `
 
 const InfoBox = ({ title, children }) => (
