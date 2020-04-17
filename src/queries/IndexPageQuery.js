@@ -15,7 +15,30 @@ const IndexPageQuery = ({ render }) => (
                 childMarkdownRemark{
                   frontmatter {
                     content {
-                      default_content
+                      title
+                      description
+                      subtitle
+                      hero {
+                        hero_title
+                        hero_subtitle
+                        hero_body
+                        hero_cta
+                        hero_cta_link
+                      }
+                      ouroboros {
+                        ouroboros_lead
+                        ouroboros_body
+                        ouroboros_links {
+                          ouroboros_link_title
+                          ouroboros_link_href
+                        }
+                      }
+                      topics {
+                        topic_title
+                        topic_link
+                        topic_body
+                        topic_icon
+                      }
                     }
                   }
                 }
