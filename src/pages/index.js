@@ -46,8 +46,8 @@ const OuroborosImage = styled.img`
 `
 
 const OuroborosLogo = styled.img`
-width: 68px;
-height: 40px;
+width: auto;
+height: 80px;
 object-fit: contain;
 `
 
