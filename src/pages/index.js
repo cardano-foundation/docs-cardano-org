@@ -4,12 +4,10 @@ import Theme from '@input-output-hk/front-end-core-components/components/Theme'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
-import { withStyles } from '@material-ui/core/styles'
 import Markdown from '@input-output-hk/front-end-core-components/components/Markdown'
 import TinyColor from '@ctrl/tinycolor'
 import Layout from '../components/Layout'
 import Container from '../components/Container'
-import InfoBox from '../components/InfoBox'
 import IndexPageQuery from '../queries/IndexPageQuery'
 import styled from 'styled-components'
 
@@ -82,12 +80,51 @@ const TopicsSection = styled.div`
   }
 `
 
-const StyledButton = withStyles({
-  root: {
-    color: 'black',
-    fontSize: '1.4rem'
+const InfoBoxContainer = styled.div`
+  width: 100%;
+  padding: 5rem;
+  background:${({ theme }) => new TinyColor(theme.palette.secondary.light).setAlpha(0.8).toString()};
+  color: ${({ theme }) => theme.palette.secondary.contrastText};
+  text-align: center;
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-top: 0.1rem solid ${({ theme }) => theme.palette.info.light};
+    width: 12rem;
+    color: ${({ theme }) => theme.palette.primary.contrastText};
   }
-})(Button)
+`
+
+const Triangle = styled.div`
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-width: 2.6rem 1.5rem 0 1.5rem;
+  border-color: ${({ theme }) => theme.palette.info.light} transparent transparent transparent;
+  border-style: solid;
+  width: 0;
+  height: 0;
+
+  &:after {
+    content: '';
+    border-width: 2.4rem 1.3rem 0 1.3rem;
+    border-color: ${({ theme }) => theme.palette.secondary.dark} transparent transparent transparent;
+    border-style: solid;
+    transform: translate(-50%, -2.5rem);
+    left: 50%;
+    position: absolute;
+  }
+`
+
+const InfoBoxContent = styled.div`
+  color: ${({ theme }) => new TinyColor(theme.palette.primary.contrastText).setAlpha(0.75).toString()};
+`
 
 export default () => (
   <Theme.Consumer>
@@ -106,12 +143,21 @@ export default () => (
                     </Box>
                   </Box>
                   <Box maxWidth='65rem' display='block' marginBottom={15} marginLeft='auto' marginRight='auto'>
-                    <InfoBox>
-                      <Box marginBottom={5}>
-                        <Typography>{content.hero.hero_body}</Typography>
-                      </Box>
-                      <StyledButton variant='contained' size='large' color='primary' href={content.hero.hero_cta_link}>{content.hero.hero_cta}</StyledButton>
-                    </InfoBox>
+                    <InfoBoxContainer>
+                      <Triangle />
+                      <InfoBoxContent>
+                        <Box marginBottom={5}>
+                          <Typography>{content.hero.hero_body}</Typography>
+                        </Box>
+                        <Button
+                          variant='contained'
+                          color='primary'
+                          href={content.hero.hero_cta_link}
+                        >
+                          {content.hero.hero_cta}
+                        </Button>
+                      </InfoBoxContent>
+                    </InfoBoxContainer>
                   </Box>
                 </Box>
               </Container>
