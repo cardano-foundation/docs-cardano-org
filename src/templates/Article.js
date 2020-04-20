@@ -136,6 +136,7 @@ const AccordionToggle = styled(Link)`
 
 const MarkdownContent = styled.div`
   word-break: break-word;
+  max-width: 80rem;
 `
 
 const MobileInlineNavigation = styled.div`
