@@ -474,7 +474,7 @@ export default () => {
               <Fragment>
                 {renderPageTitle(navigation, location.pathname)}
                 <div>
-                  <Navigation className={`position-${!renderPageTitle(navigation, location.pathname) ? 'static' : navigationPosition}`} ref={navigationRef}>
+                  <Navigation className={`position-${!renderPageTitle(navigation, location.pathname) ? 'fixed' : navigationPosition}`} ref={navigationRef}>
                     <Container maxWidth='xl'>
                       <Box>
                         <TabsContainer maxWidth='100%'>
