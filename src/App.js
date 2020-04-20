@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { Location, Router } from '@reach/router'
 import Language from '@input-output-hk/front-end-core-components/components/Language'
@@ -19,7 +19,7 @@ const DefaultRoute = ({ element }) => element
 DefaultRoute.propTypes = { element: PropTypes.node.isRequired }
 
 // Used to render all links via @input-output-hk/front-end-core-components/components/Link
-const Link = (props) => {
+const Link = forwardRef((props, ref) => {
   const componentProps = { ...props }
   let Component = GatsbyLink
   if (props.isStatic || !props.isRelative) {
@@ -35,15 +35,17 @@ const Link = (props) => {
 
   delete componentProps.isStatic
   delete componentProps.isRelative
+  delete componentProps.component
 
   return (
-    <Component {...componentProps} />
+    <Component ref={ref} {...componentProps} />
   )
-}
+})
 
 Link.propTypes = {
   isStatic: PropTypes.bool.isRequired,
-  isRelative: PropTypes.bool.isRequired
+  isRelative: PropTypes.bool.isRequired,
+  component: PropTypes.any
 }
 
 const App = ({ element }) => {

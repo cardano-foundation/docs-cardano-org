@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import Markdown from '@input-output-hk/front-end-core-components/components/Markdown'
+import Link from '@input-output-hk/front-end-core-components/components/Link'
 import TinyColor from '@ctrl/tinycolor'
 import Layout from '../components/Layout'
 import Container from '../components/Container'
@@ -151,6 +152,7 @@ export default () => (
                         </Box>
                         <Button
                           variant='contained'
+                          component={Link}
                           color='primary'
                           href={content.hero.hero_cta_link}
                         >
@@ -199,13 +201,13 @@ export default () => (
                       <li key={index}>
                         <div className='inner'>
                           <Box marginBottom={3} maxHeight='6rem'>
-                            <a href={topic.topic_link}><img src={topic.topic_icon} alt='' /></a>
+                            <img src={topic.topic_icon} alt='' />
                           </Box>
                           <Box marginBottom={4}>
                             <Typography>{topic.topic_body}</Typography>
                           </Box>
                           <Box>
-                            <Typography variant='h5'><a href={topic.topic_link}>{topic.topic_title}</a></Typography>
+                            <Typography variant='h5'><Link href={topic.topic_link}>{topic.topic_title}</Link></Typography>
                           </Box>
                         </div>
                       </li>
