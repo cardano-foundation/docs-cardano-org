@@ -14,7 +14,7 @@ import IndexPageQuery from '../queries/IndexPageQuery'
 import styled from 'styled-components'
 
 const Hero = styled.section`
-  background: #070d22 url('/images/uploads/hh.png') no-repeat center center;
+  background: ${({ theme }) => new TinyColor(theme.palette.background.default).darken().toString()} url('/images/uploads/hh.png') no-repeat center center;
   text-align:center;
 `
 
@@ -29,7 +29,7 @@ const Ouroboros = styled.section`
     margin:7rem 0 0;
     li {
       display:inline-block;
-      border-left:.3rem solid #fff;
+      border-left:.3rem solid ${({ theme }) => theme.palette.primary.contrastText};
       padding:.5rem 3.5rem .5rem 1.5rem;
       h4 {
         margin:0;
