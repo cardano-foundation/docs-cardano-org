@@ -11,6 +11,7 @@ import TinyColor from '@ctrl/tinycolor'
 import { FaChevronRight, FaChevronDown, FaEllipsisH, FaChevronUp, FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 import Link from '@input-output-hk/front-end-core-components/components/Link'
 import { FIXED_HEADER_OFFSET } from '../constants'
+import GlobalContentQuery from '../queries/GlobalContentQuery'
 
 const PageContent = styled.div`
   display: flex;
@@ -166,6 +167,12 @@ const MobileInlineNavigation = styled.div`
 
 const ReportAnIssueLink = styled(Link)`
   display: flex;
+`
+
+const LastUpdated = styled.div`
+  p {
+    margin: 0;
+  }
 `
 
 const ExternalLink = styled(Link)`
@@ -343,100 +350,109 @@ const Article = ({ pageContext }) => {
   }
 
   return (
-    <Fragment>
-      <Container maxWidth='xl'>
-        <Location>
-          {({ location }) => (
-            <PageContent>
-              {pageContext.navigationContext.children.length > 0 &&
-                <SideNavigationContainer minHeight={minHeight || 0} className={`position-${position}`}>
-                  <NavigationTree
-                    lang={pageContext.lang}
-                    items={pageContext.navigationContext.children}
-                    path={`/${pageContext.navigationContext.key}`}
-                    currentPathname={location.pathname}
-                    position={position}
-                    setPosition={setPosition}
-                    minHeight={minHeight}
-                    setMinHeight={setMinHeight}
-                  />
-                </SideNavigationContainer>
-              }
-              <MainContent className={pageContext.navigationContext.children.length === 0 ? 'no-nav' : ''} flex={4}>
-                {pageContext.navigationContext.children.length > 0 &&
-                  <MobileInlineNavigation className={mobileTopNavigationOpen ? 'open' : ''}>
-                    <div>
+    <GlobalContentQuery
+      render={(content) => (
+        <Fragment>
+          <Container maxWidth='xl'>
+            <Location>
+              {({ location }) => (
+                <PageContent>
+                  {pageContext.navigationContext.children.length > 0 &&
+                    <SideNavigationContainer minHeight={minHeight || 0} className={`position-${position}`}>
                       <NavigationTree
                         lang={pageContext.lang}
                         items={pageContext.navigationContext.children}
                         path={`/${pageContext.navigationContext.key}`}
                         currentPathname={location.pathname}
-                        autoScroll={false}
+                        position={position}
+                        setPosition={setPosition}
+                        minHeight={minHeight}
+                        setMinHeight={setMinHeight}
                       />
-                    </div>
-                    <Link
-                      href='#'
-                      onClick={(e) => {
-                        e.preventDefault()
-                        setMobileTopNavigationOpen(!mobileTopNavigationOpen)
-                      }}
-                    >
-                      {mobileTopNavigationOpen && <FaChevronUp />}
-                      {!mobileTopNavigationOpen && <FaEllipsisH />}
-                    </Link>
-                  </MobileInlineNavigation>
-                }
-                <MarkdownContent>
-                  <Markdown source={pageContext.content} />
-                </MarkdownContent>
-                <Box marginTop={2} marginBottom={2}>
-                  <Box display='flex'>
-                    <ReportAnIssueLink
-                      href={getReportIssueHref(location)}
-                    >
-                      <Box display='flex' marginRight={1} flexDirection='column' justifyContent='center'>
-                        <FaGithub />
+                    </SideNavigationContainer>
+                  }
+                  <MainContent className={pageContext.navigationContext.children.length === 0 ? 'no-nav' : ''} flex={4}>
+                    {pageContext.navigationContext.children.length > 0 &&
+                      <MobileInlineNavigation className={mobileTopNavigationOpen ? 'open' : ''}>
+                        <div>
+                          <NavigationTree
+                            lang={pageContext.lang}
+                            items={pageContext.navigationContext.children}
+                            path={`/${pageContext.navigationContext.key}`}
+                            currentPathname={location.pathname}
+                            autoScroll={false}
+                          />
+                        </div>
+                        <Link
+                          href='#'
+                          onClick={(e) => {
+                            e.preventDefault()
+                            setMobileTopNavigationOpen(!mobileTopNavigationOpen)
+                          }}
+                        >
+                          {mobileTopNavigationOpen && <FaChevronUp />}
+                          {!mobileTopNavigationOpen && <FaEllipsisH />}
+                        </Link>
+                      </MobileInlineNavigation>
+                    }
+                    <MarkdownContent>
+                      <Markdown source={pageContext.content} />
+                    </MarkdownContent>
+                    <Box marginTop={2} marginBottom={2}>
+                      {pageContext.lastUpdated &&
+                        <LastUpdated>
+                          <p><small><em>{content.last_updated}: {pageContext.lastUpdated}</em></small></p>
+                        </LastUpdated>
+                      }
+                      <Box display='flex'>
+                        <ReportAnIssueLink
+                          href={getReportIssueHref(location)}
+                        >
+                          <Box display='flex' marginRight={1} flexDirection='column' justifyContent='center'>
+                            <FaGithub />
+                          </Box>
+                          <Box display='flex' flexDirection='column' justifyContent='center'>
+                            <p>{content.report_an_issue}</p>
+                          </Box>
+                        </ReportAnIssueLink>
                       </Box>
-                      <Box display='flex' flexDirection='column' justifyContent='center'>
-                        <p>Report an issue</p>
-                      </Box>
-                    </ReportAnIssueLink>
-                  </Box>
-                </Box>
-                {pageContext.navigationContext.children.length > 0 &&
-                  <MobileInlineNavigation className={mobileBottomNavigationOpen ? 'open' : ''}>
-                    <div>
-                      <NavigationTree
-                        lang={pageContext.lang}
-                        items={pageContext.navigationContext.children}
-                        path={`/${pageContext.navigationContext.key}`}
-                        currentPathname={location.pathname}
-                        autoScroll={false}
-                      />
-                    </div>
-                    <Link
-                      href='#'
-                      onClick={(e) => {
-                        e.preventDefault()
-                        setMobileBottomNavigationOpen(!mobileBottomNavigationOpen)
-                      }}
-                    >
-                      {mobileBottomNavigationOpen && <FaChevronUp />}
-                      {!mobileBottomNavigationOpen && <FaEllipsisH />}
-                    </Link>
-                  </MobileInlineNavigation>
-                }
-              </MainContent>
-            </PageContent>
-          )}
-        </Location>
-        <Theme.Consumer>
-          {({ theme }) => (
-            <Footer theme={theme.palette.type} variant='cardano' />
-          )}
-        </Theme.Consumer>
-      </Container>
-    </Fragment>
+                    </Box>
+                    {pageContext.navigationContext.children.length > 0 &&
+                      <MobileInlineNavigation className={mobileBottomNavigationOpen ? 'open' : ''}>
+                        <div>
+                          <NavigationTree
+                            lang={pageContext.lang}
+                            items={pageContext.navigationContext.children}
+                            path={`/${pageContext.navigationContext.key}`}
+                            currentPathname={location.pathname}
+                            autoScroll={false}
+                          />
+                        </div>
+                        <Link
+                          href='#'
+                          onClick={(e) => {
+                            e.preventDefault()
+                            setMobileBottomNavigationOpen(!mobileBottomNavigationOpen)
+                          }}
+                        >
+                          {mobileBottomNavigationOpen && <FaChevronUp />}
+                          {!mobileBottomNavigationOpen && <FaEllipsisH />}
+                        </Link>
+                      </MobileInlineNavigation>
+                    }
+                  </MainContent>
+                </PageContent>
+              )}
+            </Location>
+            <Theme.Consumer>
+              {({ theme }) => (
+                <Footer theme={theme.palette.type} variant='cardano' />
+              )}
+            </Theme.Consumer>
+          </Container>
+        </Fragment>
+      )}
+    />
   )
 }
 
@@ -444,6 +460,7 @@ Article.propTypes = {
   pageContext: PropTypes.shape({
     content: PropTypes.string.isRequired,
     navigationContext: PropTypes.object.isRequired,
+    lastUpdated: PropTypes.string,
     lang: PropTypes.string.isRequired
   }).isRequired
 }

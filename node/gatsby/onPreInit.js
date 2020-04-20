@@ -35,6 +35,7 @@ const buildArticles = (markdownArticles, { key, baseURL = '/' } = {}) => {
     articles.push({
       title: content.attributes.title,
       content: content.body,
+      lastUpdated: content.attributes.last_updated,
       key,
       path: `${baseURL}${key}/`,
       order: content.attributes.order || 1,

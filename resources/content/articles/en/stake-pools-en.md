@@ -2,6 +2,7 @@
 title: stake pools
 parent: ''
 order: 4
+last_updated: "2020-04-20"
 ---
 ## Running a stake pool
 
