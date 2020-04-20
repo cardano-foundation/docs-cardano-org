@@ -35,7 +35,6 @@ const Link = forwardRef((props, ref) => {
 
   delete componentProps.isStatic
   delete componentProps.isRelative
-  delete componentProps.component
 
   return (
     <Component ref={ref} {...componentProps} />
