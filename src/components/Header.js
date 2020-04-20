@@ -147,7 +147,7 @@ const MobileSearchIconContainer = styled(Column)`
 `
 
 const BarOffset = styled.div`
-  margin-top: 6rem;
+  margin-top: ${APP_BAR_OFFSET / 10}rem;
 `
 
 const NavigationFixedCompensator = styled.div`
@@ -499,7 +499,9 @@ export default () => {
                     </Container>
                   </Navigation>
                 </div>
-                <NavigationFixedCompensator className={`${!renderPageTitle(navigation, location.pathname) ? '' : navigationPosition === 'fixed' ? 'active' : ''}`} />
+                <NavigationFixedCompensator
+                  className={`${!renderPageTitle(navigation, location.pathname) ? 'active' : navigationPosition === 'fixed' ? 'active' : ''}`}
+                />
                 <TransitionGroup>
                   {mobileMenuOpen &&
                     <CSSTransition

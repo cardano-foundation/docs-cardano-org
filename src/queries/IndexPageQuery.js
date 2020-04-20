@@ -33,11 +33,20 @@ const IndexPageQuery = ({ render }) => (
                           ouroboros_link_href
                         }
                       }
-                      topics {
+                      cardano_topic {
                         topic_title
                         topic_link
                         topic_body
-                        topic_icon
+                      }
+                      stake_pool_topic {
+                        topic_title
+                        topic_link
+                        topic_body
+                      }
+                      exchange_topic {
+                        topic_title
+                        topic_link
+                        topic_body
                       }
                     }
                   }

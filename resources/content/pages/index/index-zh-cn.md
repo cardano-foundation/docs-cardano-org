@@ -1,6 +1,6 @@
 ---
 # Netlify identifier
-title: Cn (Chinese) Home page content
+title: zh-cn (Chinese) Home page content
 content:
   title: Cardano Documentation
   subtitle: Cardano Settlement Layer Documentation
@@ -22,17 +22,16 @@ content:
         ouroboros_link_href: /
       - ouroboros_link_title: Scalable
         ouroboros_link_href: /
-  topics:
-    - topic_title: Learn more about Cardano
-      topic_link: /about-cardano/
-      topic_body: Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto
-      topic_icon: /images/uploads/topic_cardano.png
-    - topic_title: Run a stake pool
-      topic_link: /about-cardano/about-stake-pools/
-      topic_body: Esit voluptatem accusantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto ut perspiciatis unde omnis iste natus error 
-      topic_icon: /images/uploads/topic_pool.png
-    - topic_title: Support ada on your exchange
-      topic_link: /exchanges/getting-started/
-      topic_body: Diste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto
-      topic_icon: /images/uploads/topic_ada.png
+  cardano_topic:
+    topic_title: Learn more about Cardano
+    topic_link: /about-cardano/
+    topic_body: Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto
+  stake_pool_topic:
+    topic_title: Run a stake pool
+    topic_link: /about-cardano/about-stake-pools/
+    topic_body: Esit voluptatem accusantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto ut perspiciatis unde omnis iste natus error
+  exchange_topic:
+    topic_title: Support ada on your exchange
+    topic_link: /exchanges/getting-started/
+    topic_body: Diste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto
 ---

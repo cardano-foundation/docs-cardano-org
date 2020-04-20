@@ -50,8 +50,10 @@ Link.propTypes = {
 
 const App = ({ element }) => {
   function languageOnUpdate ({ lang, prevLang, url, prevURL }) {
-    navigate(`/${lang}/`)
-    if (prevLang && lang !== prevLang) analytics.autoCapture({ category: analytics.constants.LANGUAGE, action: 'language_updated', label: lang })
+    if (prevLang && lang !== prevLang) {
+      navigate(`/${lang}/`)
+      analytics.autoCapture({ category: analytics.constants.LANGUAGE, action: 'language_updated', label: lang })
+    }
   }
 
   function themeOnUpdate ({ theme, prevTheme }) {

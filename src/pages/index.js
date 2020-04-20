@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 import Box from '@material-ui/core/Box'
 import Theme from '@input-output-hk/front-end-core-components/components/Theme'
 import Grid from '@material-ui/core/Grid'
@@ -10,10 +11,10 @@ import TinyColor from '@ctrl/tinycolor'
 import Layout from '../components/Layout'
 import Container from '../components/Container'
 import IndexPageQuery from '../queries/IndexPageQuery'
-import styled from 'styled-components'
+import CardanoLogo from '../../resources/images/cardano-logo.svg'
 
 const Hero = styled.section`
-  background: ${({ theme }) => new TinyColor(theme.palette.background.default).darken().toString()} url('/images/uploads/hh.png') no-repeat center center;
+  background: ${({ theme }) => new TinyColor(theme.palette.background.default).darken().toString()} url('/images/uploads/hero.png') no-repeat center center;
   text-align:center;
 `
 
@@ -196,21 +197,45 @@ export default () => (
               <TopicsSection>
                 <Box paddingTop={15} paddingBottom={15}>
                   <ul>
-                    {content.topics.map((topic, index) => (
-                      <li key={index}>
-                        <div className='inner'>
-                          <Box marginBottom={3} maxHeight='6rem'>
-                            <img src={topic.topic_icon} alt='' />
-                          </Box>
-                          <Box marginBottom={4}>
-                            <Typography>{topic.topic_body}</Typography>
-                          </Box>
-                          <Box>
-                            <Typography variant='h5'><Link href={topic.topic_link}>{topic.topic_title}</Link></Typography>
-                          </Box>
-                        </div>
-                      </li>
-                    ))}
+                    <li>
+                      <div className='inner'>
+                        <Box marginBottom={3} maxHeight='6rem'>
+                          <img src={CardanoLogo} alt='Cardano' />
+                        </Box>
+                        <Box marginBottom={4}>
+                          <Typography>{content.cardano_topic.topic_body}</Typography>
+                        </Box>
+                        <Box>
+                          <Typography variant='h5'><Link href={content.cardano_topic.topic_link}>{content.cardano_topic.topic_title}</Link></Typography>
+                        </Box>
+                      </div>
+                    </li>
+                    <li>
+                      <div className='inner'>
+                        <Box marginBottom={3} maxHeight='6rem'>
+                          <img src='/images/uploads/stake-pool.png' alt='Cardano Stake Pool' />
+                        </Box>
+                        <Box marginBottom={4}>
+                          <Typography>{content.stake_pool_topic.topic_body}</Typography>
+                        </Box>
+                        <Box>
+                          <Typography variant='h5'><Link href={content.stake_pool_topic.topic_link}>{content.stake_pool_topic.topic_title}</Link></Typography>
+                        </Box>
+                      </div>
+                    </li>
+                    <li>
+                      <div className='inner'>
+                        <Box marginBottom={3} maxHeight='6rem'>
+                          <img src='/images/uploads/ada-icon.png' alt='ADA' />
+                        </Box>
+                        <Box marginBottom={4}>
+                          <Typography>{content.exchange_topic.topic_body}</Typography>
+                        </Box>
+                        <Box>
+                          <Typography variant='h5'><Link href={content.exchange_topic.topic_link}>{content.exchange_topic.topic_title}</Link></Typography>
+                        </Box>
+                      </div>
+                    </li>
                   </ul>
                 </Box>
               </TopicsSection>
