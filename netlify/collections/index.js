@@ -1,5 +1,11 @@
-import footer from './footer'
 import metaData from './metaData'
+import globalContent from './globalContent'
 import articles from './articles'
+import pages from './pages'
 
-export default [footer, metaData, ...articles]
+export default [
+  metaData,
+  articles,
+  globalContent,
+  ...pages
+]

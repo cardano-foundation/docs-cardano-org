@@ -1,178 +1,248 @@
-import React, { Fragment } from 'react'
-import PropTypes from 'prop-types'
-import { StaticQuery, graphql } from 'gatsby'
-import DesktopNavigation from '../components/Header/DesktopNavigation'
-import FullWidthSection from '../components/FullWidthSection'
-import Button from '../components/Button'
+import React from 'react'
 import styled from 'styled-components'
-import { LanguageConsumer } from '../state'
+import Box from '@material-ui/core/Box'
+import Theme from '@input-output-hk/front-end-core-components/components/Theme'
+import Grid from '@material-ui/core/Grid'
+import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
+import Markdown from '@input-output-hk/front-end-core-components/components/Markdown'
+import Link from '@input-output-hk/front-end-core-components/components/Link'
+import TinyColor from '@ctrl/tinycolor'
+import Layout from '../components/Layout'
+import Container from '../components/Container'
+import IndexPageQuery from '../queries/IndexPageQuery'
+import CardanoLogo from '../../resources/images/cardano-logo.svg'
 
-const HeadingWrap = styled.div`
+const Hero = styled.section`
+  background: ${({ theme }) => new TinyColor(theme.palette.background.default).darken().toString()} url('/images/uploads/hero.png') no-repeat center center;
+  text-align:center;
+`
+
+const Ouroboros = styled.section`
+  background: ${({ theme }) => theme.palette.secondary.light};
+
+  p {
+    color: ${({ theme }) => new TinyColor(theme.palette.text.primary).setAlpha(0.85).toString()};
+  }
+  ul {
+    list-style-type:none;
+    margin:7rem 0 0;
+    li {
+      display:inline-block;
+      border-left:.3rem solid ${({ theme }) => theme.palette.text.primary};
+      padding:.5rem 3.5rem .5rem 1.5rem;
+      h4 {
+        margin:0;
+      }
+      a {
+        display:inline-block;
+      }
+    }
+  }
+`
+
+const OuroborosImage = styled.img`
+  mix-blend-mode: lighten;
+  object-fit: contain;
+`
+
+const OuroborosLogo = styled.img`
+width: auto;
+height: 8rem;
+object-fit: contain;
+`
+
+const TopicsSection = styled.div`
+  background:url('/images/uploads/topics-bg.png') no-repeat center center;
+  background-size:45rem;
+  text-align:center;
+  ul {
+    display:flex;
+    ${({ theme }) => theme.breakpoints.down('sm')} {
+      flex-direction:column;
+    }
+    li {
+      background:${({ theme }) => new TinyColor(theme.palette.secondary.light).setAlpha(0.7).toString()};
+      display:inline-block;
+      margin:0 1rem;
+      ${({ theme }) => theme.breakpoints.up('md')} {
+        width:33%;
+      }
+      vertical-align:middle;
+      .inner {
+        color: ${({ theme }) => new TinyColor(theme.palette.secondary.contrastText).setAlpha(0.7).toString()};
+        padding:4rem 5rem;
+        img {
+          height: 6rem;
+          width:auto;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+`
+
+const InfoBoxContainer = styled.div`
   width: 100%;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.subtleAccent};
-`
+  padding: 5rem;
+  background:${({ theme }) => new TinyColor(theme.palette.secondary.light).setAlpha(0.8).toString()};
+  color: ${({ theme }) => theme.palette.secondary.contrastText};
+  text-align: center;
+  position: relative;
 
-const NavWrap = styled.div`
-width:100%;
-  display: flex;
-  align-items: center;
-  flex-direction:column;
-  h1 {
-    margin: 3rem 0;
-  }
-  @media (max-width: ${({ theme }) => theme.dimensions.mobileBreakpoint}px) {
-    flex-flow: wrap;
-    > div {
-      display: none;
-    }
-  }
-`
-
-const Title = styled.div`
-  width:100%;
-  h1 {
-    span {
-      margin: 0 0.4rem;
-      position: relative;
-    }
-  }
-  margin: 0;
-  @media (max-width: ${({ theme }) => theme.dimensions.mobileBreakpoint}px) {
-    flex: 1 100%;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-top: 0.1rem solid ${({ theme }) => theme.palette.info.light};
+    width: 12rem;
+    color: ${({ theme }) => theme.palette.text.primary};
   }
 `
 
-const PageContent = styled.div`
-  padding: 3rem 0;
-  ${({ theme }) => theme.colors.secondaryText};
-`
+const Triangle = styled.div`
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-width: 2.6rem 1.5rem 0 1.5rem;
+  border-color: ${({ theme }) => theme.palette.info.light} transparent transparent transparent;
+  border-style: solid;
+  width: 0;
+  height: 0;
 
-const HomepageSection = styled.section`
-  max-width:90vw;
-  width:120rem;
-  margin:0 auto;
-`
-
-const HeroSection = styled.section`
-  * {
-    margin: 0;
-  }
-  max-width:90vw;
-  width:60rem;
-  margin:0 auto;
-  h2 {
-    padding-top:8rem;
-  }
-  span {
-    display: inline-block;
-    margin: 4rem 0;
+  &:after {
+    content: '';
+    border-width: 2.4rem 1.3rem 0 1.3rem;
+    border-color: ${({ theme }) => theme.palette.secondary.dark} transparent transparent transparent;
+    border-style: solid;
+    transform: translate(-50%, -2.5rem);
+    left: 50%;
+    position: absolute;
   }
 `
 
-const CTASection = styled.div`
-  display:flex;
-  align-content: center;
-  justify-content: space-between;
-  @media screen and (max-width: ${({ theme }) => theme.dimensions.screenSizes.small}px) {
-    flex-direction:column;
-  }
-  a {
-    display:block
-  }
+const InfoBoxContent = styled.div`
+  color: ${({ theme }) => new TinyColor(theme.palette.text.primary).setAlpha(0.75).toString()};
 `
-
-const Query = ({ render }) => (
-  <LanguageConsumer>
-    {({ lang }) => (
-      <StaticQuery
-        query={graphql`
-          query {
-            allFile(filter:{relativePath:{glob:"content/pages/home/*.md"}}) {
-              nodes {
-                relativePath
-                childMarkdownRemark {
-                  html
-                  frontmatter {
-                    content {
-                      title
-                      description
-                      subtitle
-                      hero {
-                        cta
-                        link
-                      }
-                      callOutOne {
-                        cta
-                        link
-                      }
-                      callOutTwo {
-                        cta
-                        link
-                      }
-                      callOutThree {
-                        cta
-                        link
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        `}
-        render={({ allFile }) => {
-          const content = allFile.nodes.filter(node => node.relativePath === `content/pages/home/home-${lang}.md`).shift()
-          if (!content) throw new Error(`No content found for Home page using language ${lang}`)
-          return render(content.childMarkdownRemark)
-        }}
-      />
-    )}
-  </LanguageConsumer>
-)
-
-Query.propTypes = {
-  render: PropTypes.func.isRequired
-}
 
 export default () => (
-  <Fragment>
-    <Query
-      render={({ frontmatter, html }) => (
-        <Fragment>
-          <HeadingWrap>
-            <FullWidthSection>
-              <NavWrap>
-                <Title>
-                  <h1>
-                    <span data-text={frontmatter.content.title.toUpperCase()}>{frontmatter.content.title.toUpperCase()}</span>
-                  </h1>
-                </Title>
-                <DesktopNavigation />
-              </NavWrap>
-            </FullWidthSection>
-          </HeadingWrap>
-          <FullWidthSection>
-            <HomepageSection>
-              <HeroSection>
-                <h2>{frontmatter.content.hero.cta}</h2>
-                <Button size='large' href='/'>Explore the network</Button>
-              </HeroSection>
-              <PageContent dangerouslySetInnerHTML={{ __html: html }} />
-              <CTASection>
-                <a href={frontmatter.content.callOutOne.link}>
-                  <h3>{frontmatter.content.callOutOne.cta}</h3>
-                </a>
-                <a href={frontmatter.content.callOutTwo.link}>
-                  <h3>{frontmatter.content.callOutTwo.cta}</h3>
-                </a>
-                <a href={frontmatter.content.callOutThree.link}>
-                  <h3>{frontmatter.content.callOutThree.cta}</h3>
-                </a>
-              </CTASection>
-            </HomepageSection>
-          </FullWidthSection>
-        </Fragment>
-      )}
-    />
-  </Fragment>
+  <Theme.Consumer>
+    {({ theme }) => (
+      <IndexPageQuery
+        render={(content) => (
+          <Layout>
+            <Hero>
+              <Container>
+                <Box paddingTop={5} paddingBottom={5}>
+                  <Box maxWidth='80rem' display='block' marginBottom={3} marginLeft='auto' marginRight='auto'>
+                    <Typography variant='h1'>{content.hero.hero_title}</Typography>
+                    <Box maxWidth='80rem' display='inline-block' marginBottom={5}>
+                      <Typography variant='h2'>{content.hero.hero_subtitle}</Typography>
+                    </Box>
+                  </Box>
+                  <Box maxWidth='65rem' display='block' marginBottom={15} marginLeft='auto' marginRight='auto'>
+                    <InfoBoxContainer>
+                      <Triangle />
+                      <InfoBoxContent>
+                        <Box marginBottom={5}>
+                          <Typography>{content.hero.hero_body}</Typography>
+                        </Box>
+                        <Button
+                          variant='contained'
+                          component={Link}
+                          color='primary'
+                          href={content.hero.hero_cta_link}
+                        >
+                          {content.hero.hero_cta}
+                        </Button>
+                      </InfoBoxContent>
+                    </InfoBoxContainer>
+                  </Box>
+                </Box>
+              </Container>
+            </Hero>
+            <Ouroboros>
+              <Container>
+                <Box paddingTop={5} paddingBottom={8}>
+                  <Grid container>
+                    <Grid item md={6}>
+                      <OuroborosLogo src='/images/uploads/ouroboros-logo.svg' alt='' />
+                      <Typography component='div' variant='h3'>
+                        <Markdown source={content.ouroboros.ouroboros_lead} />
+                      </Typography>
+                      <Box marginTop={3}>
+                        <Typography component='div'>
+                          <Markdown source={content.ouroboros.ouroboros_body} />
+                        </Typography>
+                      </Box>
+                      <ul>
+                        {content.ouroboros.ouroboros_links.map((link, index) => (
+                          <li key={index}>
+                            <Typography variant='h4'>{link.ouroboros_link_title}</Typography>
+                          </li>
+                        ))}
+                      </ul>
+                    </Grid>
+                    <Grid item md={6}>
+                      <OuroborosImage src='/images/uploads/ouroboros.png' alt='' />
+                    </Grid>
+                  </Grid>
+                </Box>
+              </Container>
+            </Ouroboros>
+            <Container>
+              <TopicsSection>
+                <Box paddingTop={15} paddingBottom={15}>
+                  <ul>
+                    <li>
+                      <div className='inner'>
+                        <Box marginBottom={3} maxHeight='6rem'>
+                          <img src={CardanoLogo} alt='Cardano' />
+                        </Box>
+                        <Box marginBottom={4}>
+                          <Typography>{content.cardano_topic.topic_body}</Typography>
+                        </Box>
+                        <Box>
+                          <Typography variant='h5'><Link href={content.cardano_topic.topic_link}>{content.cardano_topic.topic_title}</Link></Typography>
+                        </Box>
+                      </div>
+                    </li>
+                    <li>
+                      <div className='inner'>
+                        <Box marginBottom={3} maxHeight='6rem'>
+                          <img src='/images/uploads/stake-pool.png' alt='Cardano Stake Pool' />
+                        </Box>
+                        <Box marginBottom={4}>
+                          <Typography>{content.stake_pool_topic.topic_body}</Typography>
+                        </Box>
+                        <Box>
+                          <Typography variant='h5'><Link href={content.stake_pool_topic.topic_link}>{content.stake_pool_topic.topic_title}</Link></Typography>
+                        </Box>
+                      </div>
+                    </li>
+                    <li>
+                      <div className='inner'>
+                        <Box marginBottom={3} maxHeight='6rem'>
+                          <img src='/images/uploads/ada-icon.png' alt='ADA' />
+                        </Box>
+                        <Box marginBottom={4}>
+                          <Typography>{content.exchange_topic.topic_body}</Typography>
+                        </Box>
+                        <Box>
+                          <Typography variant='h5'><Link href={content.exchange_topic.topic_link}>{content.exchange_topic.topic_title}</Link></Typography>
+                        </Box>
+                      </div>
+                    </li>
+                  </ul>
+                </Box>
+              </TopicsSection>
+            </Container>
+          </Layout>
+        )}
+      />
+    )}
+  </Theme.Consumer>
 )

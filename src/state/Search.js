@@ -23,7 +23,7 @@ Provider.propTypes = {
   children: PropTypes.node.isRequired
 }
 
-export {
+export default {
   Consumer,
   Provider
 }

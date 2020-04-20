@@ -2,8 +2,20 @@ import React, { Fragment, useState, useEffect } from 'react'
 import { graphql, navigate } from 'gatsby'
 import PropTypes from 'prop-types'
 import { Location } from '@reach/router'
-import { getSearchParam } from '../helpers/url'
-import { Results } from '../components/Search'
+import Container from '@material-ui/core/Container'
+import Layout from '../components/Layout'
+// import SearchPageQuery from '../queries/SearchPageQuery'
+import SearchResults from '../components/SearchResults'
+
+function getSearchParam (search, key) {
+  const params = (search || '').replace(/^\?/, '').split('&')
+  while (params.length > 0) {
+    const [ k, v ] = params.shift().split('=')
+    if (k === key) return decodeURIComponent(v)
+  }
+
+  return null
+}
 
 export const query = graphql`
   query($lang:String) {
@@ -47,29 +59,33 @@ const SearchPageInner = ({ data, pageContext, location }) => {
 
   return (
     <Fragment>
-      <Results
-        onPageChange={onPageChange}
-        query={query}
-        page={page - 1}
-        resultsPerPage={10}
-        searchData={
-          data.allCardanoDocsArticle.edges.map(({ node: { title, path, content } }) => ({
-            title,
-            path: `/${pageContext.lang}${path}`,
-            content
-          }))
-        }
-      />
+      <Container maxWidth='xl'>
+        <SearchResults
+          onPageChange={onPageChange}
+          query={query}
+          page={page - 1}
+          resultsPerPage={10}
+          searchData={
+            data.allCardanoDocsArticle.edges.map(({ node: { title, path, content } }) => ({
+              title,
+              path: `/${pageContext.lang}${path}`,
+              content
+            }))
+          }
+        />
+      </Container>
     </Fragment>
   )
 }
 
 const SearchPage = ({ data, pageContext }) => (
-  <Location>
-    {({ location }) => (
-      <SearchPageInner data={data} pageContext={pageContext} location={location} />
-    )}
-  </Location>
+  <Layout>
+    <Location>
+      {({ location }) => (
+        <SearchPageInner data={data} pageContext={pageContext} location={location} />
+      )}
+    </Location>
+  </Layout>
 )
 
 SearchPage.propTypes = {

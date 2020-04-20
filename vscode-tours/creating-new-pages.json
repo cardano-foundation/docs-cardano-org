@@ -1,0 +1,26 @@
+{
+  "title": "Creating new pages",
+  "description": "",
+  "steps": [
+    {
+      "file": "src/pages/index.js",
+      "line": 9,
+      "description": "To assist with creating new pages there is a script `npm run create-pages` which sets up all the boilerplate code and markdown for new pages for each language.\n\nIt's worth noting that when a new language is added you will need to run `npm run create-pages` for your pages to generate the boilerplate markdown and edit the markdown thereafter."
+    },
+    {
+      "file": "src/pages/index.js",
+      "line": 10,
+      "description": "Lets create some new pages. Run `npm run create-pages -- /about-us/ /contact-us/ /about-us/more-info/`. This will create three new pages `/about-us/`, `/contact-us/` and `/about-us/more-info/`. It will also setup the content for all supported languages. Navigating to these pages in the browser will greet you with some information on how to edit the pages.\n\nIt's safe to run `npm run create-pages` over existing pages. Any existing files will not be overwritten, this is why it's safe to add new pages using this script when adding new languages."
+    },
+    {
+      "file": "src/pages/index.js",
+      "line": 11,
+      "description": "Now you've probably got a bunch of useless pages and lots of new files go ahead and run `npm run delete-pages -- /about-us/ /contact-us/ /about-us/more-info/` to delete the files you just generated."
+    },
+    {
+      "file": "src/pages/index.js",
+      "line": 12,
+      "description": "Congratulations! Those are the basics of creating and deleting pages using the relevant `npm` scripts.\n\n* For a more in-depth look at the internals take the tour on the \"Core components\"\n* For design take the tour on \"Themes\" and \"Templates\"\n* To learn more about localization take the tour on \"Localization\"\n* For advanced client side routing see the tour on \"Client side routing\""
+    }
+  ]
+}

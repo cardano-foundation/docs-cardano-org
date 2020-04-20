@@ -5,21 +5,16 @@ export const isProduction = () => process.env.NODE_ENV === 'production'
 // BRANCH environment variable is defined on Netlify's build servers
 export const getBranch = () => process.env.HEAD
 
-export const getLanguageSelectWidget = ({
-  name = 'lang',
-  label = 'Language',
-  required
-} = {}) => ({
+export const getLanguageSelectWidget = ({ name = 'lang', label = 'Language', required } = {}) => ({
   label,
   name,
   required,
   widget: 'select',
-  options: Object.keys(config.availableLanguages).map(lang => ({
-    label: `${config.availableLanguages[lang].label} ${config
-      .availableLanguages[lang].flag || ''}`,
-    value: lang
+  options: config.availableLanguages.map(({ key, label, flag }) => ({
+    label: `${label} ${flag || ''}`,
+    value: key
   })),
-  default: Object.keys(config.availableLanguages)[0]
+  default: config.availableLanguages[0].key
 })
 
 export const getAllArticlesWidget = (
