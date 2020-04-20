@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import Footer from '@input-output-hk/front-end-site-components/components/Footer'
 import Theme from '@input-output-hk/front-end-core-components/components/Theme'
 import Container from '@material-ui/core/Container'
-import { Consumer as ScreenSizeConsumer } from '../state/ScreenSize'
 
 const StyledMain = styled.main`
   position: relative;
@@ -14,22 +13,18 @@ const StyledMain = styled.main`
 `
 
 const Main = ({ children }) => (
-  <ScreenSizeConsumer>
-    {({ screenSize, screenWidth }) => (
-      <Fragment>
-        <StyledMain>
-          {children}
-        </StyledMain>
-        <Container maxWidth={(screenWidth > 2048) ? 'xl' : 'lg'}>
-          <Theme.Consumer>
-            {({ theme }) => (
-              <Footer theme={theme.palette.type} variant='cardano' />
-            )}
-          </Theme.Consumer>
-        </Container>
-      </Fragment>
-    )}
-  </ScreenSizeConsumer>
+  <Fragment>
+    <StyledMain>
+      {children}
+    </StyledMain>
+    <Container maxWidth='lg'>
+      <Theme.Consumer>
+        {({ theme }) => (
+          <Footer theme={theme.palette.type} variant='cardano' />
+        )}
+      </Theme.Consumer>
+    </Container>
+  </Fragment>
 )
 
 Main.propTypes = {

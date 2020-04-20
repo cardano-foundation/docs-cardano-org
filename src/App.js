@@ -13,7 +13,6 @@ import config from './config'
 import { getThemes } from './themes'
 import Search from './state/Search'
 import Header from './components/Header'
-import { Provider as ScreenSizeProvider } from './state/ScreenSize'
 
 // Default route uses SSR from "pages"
 const DefaultRoute = ({ element }) => element
@@ -93,20 +92,18 @@ const App = ({ element }) => {
                 {({ theme, originalTheme }) => (
                   <MaterialUIThemeProvider theme={theme}>
                     <StyledThemeProvider theme={theme}>
-                      <ScreenSizeProvider screenSizes={theme.breakpoints.values}>
-                        <Language.Consumer>
-                          {({ key: lang }) => (
-                            <LinkProvider lang={lang} component={Link}>
-                              <Styles theme={originalTheme.config} />
-                              <Header />
-                              <Router>
-                                {getRoutes(lang)}
-                                <DefaultRoute default element={element} />
-                              </Router>
-                            </LinkProvider>
-                          )}
-                        </Language.Consumer>
-                      </ScreenSizeProvider>
+                      <Language.Consumer>
+                        {({ key: lang }) => (
+                          <LinkProvider lang={lang} component={Link}>
+                            <Styles theme={originalTheme.config} />
+                            <Header />
+                            <Router>
+                              {getRoutes(lang)}
+                              <DefaultRoute default element={element} />
+                            </Router>
+                          </LinkProvider>
+                        )}
+                      </Language.Consumer>
                     </StyledThemeProvider>
                   </MaterialUIThemeProvider>
                 )}
