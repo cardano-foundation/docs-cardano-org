@@ -133,7 +133,6 @@ export default () => (
       <IndexPageQuery
         render={(content) => (
           <Layout>
-            {console.log({ theme })}
             <Hero>
               <Container>
                 <Box paddingTop={5} paddingBottom={5}>
