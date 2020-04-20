@@ -16,6 +16,7 @@ const NotFoundPageQuery = ({ render }) => (
                   frontmatter {
                     content {
                       title
+                      body_content
                     }
                   }
                 }
