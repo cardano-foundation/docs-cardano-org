@@ -17,9 +17,12 @@ import GlobalContentQuery from '../queries/GlobalContentQuery'
 import { APP_BAR_OFFSET, NAV_OFFSET } from '../constants'
 
 const Bar = styled(AppBar)`
+  background-color: ${({ theme }) => new TinyColor(theme.palette.background.default).lighten(5).toString()};
+  color: ${({ theme }) => theme.palette.text.primary};
+
   a,
   a:hover {
-    color: ${({ theme }) => theme.palette.primary.contrastText};
+    color: ${({ theme }) => theme.palette.text.primary};
   }
 `
 
@@ -30,7 +33,7 @@ const MobileSearchBar = styled.div`
   padding: 1.6rem 0 0.8rem;
   left: 0;
   right: 0;
-  background-color: ${({ theme }) => theme.palette.primary.dark};
+  background-color: ${({ theme }) => theme.palette.background.default};
   transform: translate(0, 0);
   transition: transform 0.3s ease-in-out;
 
@@ -158,6 +161,10 @@ const NavigationFixedCompensator = styled.div`
 
   ${({ theme }) => theme.breakpoints.down('sm')} {
     display: none;
+
+    &.active {
+      display: none;
+    }
   }
 `
 
@@ -244,7 +251,7 @@ const MobileMenu = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: ${({ theme }) => theme.palette.primary.main};
+  background-color: ${({ theme }) => new TinyColor(theme.palette.background.default).lighten(5).toString()};
   transform: translate(0, 0);
   transition: transform 0.4s ease-in-out;
   overflow: hidden;
@@ -285,7 +292,7 @@ const MobileMenuScrollContainer = styled.div`
 
   a,
   a:hover {
-    color: ${({ theme }) => theme.palette.primary.contrastText};
+    color: ${({ theme }) => theme.palette.text.primary};
   }
 
   ul {
@@ -304,7 +311,7 @@ const MobileMenuScrollContainer = styled.div`
 
       &.active {
         a {
-          border-bottom: 0.1rem solid ${({ theme }) => theme.palette.primary.contrastText};
+          border-bottom: 0.1rem solid ${({ theme }) => theme.palette.text.primary};
         }
       }
 

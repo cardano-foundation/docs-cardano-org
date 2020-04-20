@@ -15,7 +15,7 @@ const TriggerButton = styled(Button)`
   padding: 0.9rem 1.8rem;
   text-transform: none;
   border-radius: 0.5rem;
-  border: 0.1rem solid ${({ theme }) => theme.palette.primary.contrastText};
+  border: 0.1rem solid ${({ theme }) => theme.palette.text.primary};
 
   ${({ theme }) => theme.breakpoints.down('sm')} {
     margin-right: 1rem;

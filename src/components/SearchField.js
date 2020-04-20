@@ -13,16 +13,16 @@ const Form = styled.form`
 
 const Input = styled.input`
   width: 80%;
-  border: 0.1rem solid ${({ theme }) => theme.palette.primary.contrastText}};
+  border: 0.1rem solid ${({ theme }) => theme.palette.text.primary}};
   background: transparent;
   height: 3.8rem;
   padding: 0 2rem;
   border-radius: 1.9rem 0 0 1.9rem;
   vertical-align: middle;
-  color: ${({ theme }) => theme.palette.primary.contrastText};
+  color: ${({ theme }) => theme.palette.text.primary};
 
   &::placeholder {
-    color: ${({ theme }) => theme.palette.primary.contrastText};
+    color: ${({ theme }) => theme.palette.text.primary};
   }
 
   &:focus{
@@ -40,12 +40,12 @@ const Submit = styled.button`
   width: 20%;
   vertical-align: middle;
   height: 3.8rem;
-  border: 0.1rem solid ${({ theme }) => theme.palette.primary.contrastText};
+  border: 0.1rem solid ${({ theme }) => theme.palette.text.primary};
   border-left: 0;
   background-color: transparent;
   opacity: ${({ disabled }) => disabled ? 0.4 : 1};
   transition: opacity 0.2s ease-in-out, background-color 0.2s ease-in-out;
-  color: ${({ theme }) => theme.palette.primary.contrastText};
+  color: ${({ theme }) => theme.palette.text.primary};
   font-weight: 600;
   border-radius: 0 1.9rem 1.9rem 0;
   position: relative;

@@ -22,14 +22,14 @@ const Ouroboros = styled.section`
   background: ${({ theme }) => theme.palette.secondary.light};
 
   p {
-    color: ${({ theme }) => new TinyColor(theme.palette.primary.contrastText).setAlpha(0.85).toString()};
+    color: ${({ theme }) => new TinyColor(theme.palette.text.primary).setAlpha(0.85).toString()};
   }
   ul {
     list-style-type:none;
     margin:7rem 0 0;
     li {
       display:inline-block;
-      border-left:.3rem solid ${({ theme }) => theme.palette.primary.contrastText};
+      border-left:.3rem solid ${({ theme }) => theme.palette.text.primary};
       padding:.5rem 3.5rem .5rem 1.5rem;
       h4 {
         margin:0;
@@ -70,7 +70,7 @@ const TopicsSection = styled.div`
       }
       vertical-align:middle;
       .inner {
-        color: ${({ theme }) => new TinyColor(theme.palette.primary.contrastText).setAlpha(0.7).toString()};
+        color: ${({ theme }) => new TinyColor(theme.palette.secondary.contrastText).setAlpha(0.7).toString()};
         padding:4rem 5rem;
         img {
           height: 6rem;
@@ -98,7 +98,7 @@ const InfoBoxContainer = styled.div`
     transform: translate(-50%, -50%);
     border-top: 0.1rem solid ${({ theme }) => theme.palette.info.light};
     width: 12rem;
-    color: ${({ theme }) => theme.palette.primary.contrastText};
+    color: ${({ theme }) => theme.palette.text.primary};
   }
 `
 
@@ -125,7 +125,7 @@ const Triangle = styled.div`
 `
 
 const InfoBoxContent = styled.div`
-  color: ${({ theme }) => new TinyColor(theme.palette.primary.contrastText).setAlpha(0.75).toString()};
+  color: ${({ theme }) => new TinyColor(theme.palette.text.primary).setAlpha(0.75).toString()};
 `
 
 export default () => (
