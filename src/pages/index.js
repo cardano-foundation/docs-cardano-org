@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import Box from '@material-ui/core/Box'
-import Theme from '@input-output-hk/front-end-core-components/components/Theme'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
@@ -129,120 +128,116 @@ const InfoBoxContent = styled.div`
 `
 
 export default () => (
-  <Theme.Consumer>
-    {({ theme }) => (
-      <IndexPageQuery
-        render={(content) => (
-          <Layout>
-            <Hero>
-              <Container>
-                <Box paddingTop={5} paddingBottom={5}>
-                  <Box maxWidth='80rem' display='block' marginBottom={3} marginLeft='auto' marginRight='auto'>
-                    <Typography variant='h1'>{content.hero.hero_title}</Typography>
-                    <Box maxWidth='80rem' display='inline-block' marginBottom={5}>
-                      <Typography variant='h2'>{content.hero.hero_subtitle}</Typography>
+  <IndexPageQuery
+    render={(content) => (
+      <Layout>
+        <Hero>
+          <Container>
+            <Box paddingTop={5} paddingBottom={5}>
+              <Box maxWidth='80rem' display='block' marginBottom={3} marginLeft='auto' marginRight='auto'>
+                <Typography variant='h1'>{content.hero.hero_title}</Typography>
+                <Box maxWidth='80rem' display='inline-block' marginBottom={5}>
+                  <Typography variant='h2'>{content.hero.hero_subtitle}</Typography>
+                </Box>
+              </Box>
+              <Box maxWidth='65rem' display='block' marginBottom={15} marginLeft='auto' marginRight='auto'>
+                <InfoBoxContainer>
+                  <Triangle />
+                  <InfoBoxContent>
+                    <Box marginBottom={5}>
+                      <Typography>{content.hero.hero_body}</Typography>
                     </Box>
+                    <Button
+                      variant='contained'
+                      component={Link}
+                      color='primary'
+                      href={content.hero.hero_cta_link}
+                    >
+                      {content.hero.hero_cta}
+                    </Button>
+                  </InfoBoxContent>
+                </InfoBoxContainer>
+              </Box>
+            </Box>
+          </Container>
+        </Hero>
+        <Ouroboros>
+          <Container>
+            <Box paddingTop={5} paddingBottom={8}>
+              <Grid container>
+                <Grid item md={6}>
+                  <OuroborosLogo src='/images/uploads/ouroboros-logo.svg' alt='' />
+                  <Typography component='div' variant='h3'>
+                    <Markdown source={content.ouroboros.ouroboros_lead} />
+                  </Typography>
+                  <Box marginTop={3}>
+                    <Typography component='div'>
+                      <Markdown source={content.ouroboros.ouroboros_body} />
+                    </Typography>
                   </Box>
-                  <Box maxWidth='65rem' display='block' marginBottom={15} marginLeft='auto' marginRight='auto'>
-                    <InfoBoxContainer>
-                      <Triangle />
-                      <InfoBoxContent>
-                        <Box marginBottom={5}>
-                          <Typography>{content.hero.hero_body}</Typography>
-                        </Box>
-                        <Button
-                          variant='contained'
-                          component={Link}
-                          color='primary'
-                          href={content.hero.hero_cta_link}
-                        >
-                          {content.hero.hero_cta}
-                        </Button>
-                      </InfoBoxContent>
-                    </InfoBoxContainer>
-                  </Box>
-                </Box>
-              </Container>
-            </Hero>
-            <Ouroboros>
-              <Container>
-                <Box paddingTop={5} paddingBottom={8}>
-                  <Grid container>
-                    <Grid item md={6}>
-                      <OuroborosLogo src='/images/uploads/ouroboros-logo.svg' alt='' />
-                      <Typography component='div' variant='h3'>
-                        <Markdown source={content.ouroboros.ouroboros_lead} />
-                      </Typography>
-                      <Box marginTop={3}>
-                        <Typography component='div'>
-                          <Markdown source={content.ouroboros.ouroboros_body} />
-                        </Typography>
-                      </Box>
-                      <ul>
-                        {content.ouroboros.ouroboros_links.map((link, index) => (
-                          <li key={index}>
-                            <Typography variant='h4'>{link.ouroboros_link_title}</Typography>
-                          </li>
-                        ))}
-                      </ul>
-                    </Grid>
-                    <Grid item md={6}>
-                      <OuroborosImage src='/images/uploads/ouroboros.png' alt='' />
-                    </Grid>
-                  </Grid>
-                </Box>
-              </Container>
-            </Ouroboros>
-            <Container>
-              <TopicsSection>
-                <Box paddingTop={15} paddingBottom={15}>
                   <ul>
-                    <li>
-                      <div className='inner'>
-                        <Box marginBottom={3} maxHeight='6rem'>
-                          <img src={CardanoLogo} alt='Cardano' />
-                        </Box>
-                        <Box marginBottom={4}>
-                          <Typography>{content.cardano_topic.topic_body}</Typography>
-                        </Box>
-                        <Box>
-                          <Typography variant='h5'><Link href={content.cardano_topic.topic_link}>{content.cardano_topic.topic_title}</Link></Typography>
-                        </Box>
-                      </div>
-                    </li>
-                    <li>
-                      <div className='inner'>
-                        <Box marginBottom={3} maxHeight='6rem'>
-                          <img src='/images/uploads/stake-pool.png' alt='Cardano Stake Pool' />
-                        </Box>
-                        <Box marginBottom={4}>
-                          <Typography>{content.stake_pool_topic.topic_body}</Typography>
-                        </Box>
-                        <Box>
-                          <Typography variant='h5'><Link href={content.stake_pool_topic.topic_link}>{content.stake_pool_topic.topic_title}</Link></Typography>
-                        </Box>
-                      </div>
-                    </li>
-                    <li>
-                      <div className='inner'>
-                        <Box marginBottom={3} maxHeight='6rem'>
-                          <img src='/images/uploads/ada-icon.png' alt='ADA' />
-                        </Box>
-                        <Box marginBottom={4}>
-                          <Typography>{content.exchange_topic.topic_body}</Typography>
-                        </Box>
-                        <Box>
-                          <Typography variant='h5'><Link href={content.exchange_topic.topic_link}>{content.exchange_topic.topic_title}</Link></Typography>
-                        </Box>
-                      </div>
-                    </li>
+                    {content.ouroboros.ouroboros_links.map((link, index) => (
+                      <li key={index}>
+                        <Typography variant='h4'>{link.ouroboros_link_title}</Typography>
+                      </li>
+                    ))}
                   </ul>
-                </Box>
-              </TopicsSection>
-            </Container>
-          </Layout>
-        )}
-      />
+                </Grid>
+                <Grid item md={6}>
+                  <OuroborosImage src='/images/uploads/ouroboros.png' alt='' />
+                </Grid>
+              </Grid>
+            </Box>
+          </Container>
+        </Ouroboros>
+        <Container>
+          <TopicsSection>
+            <Box paddingTop={15} paddingBottom={15}>
+              <ul>
+                <li>
+                  <div className='inner'>
+                    <Box marginBottom={3} maxHeight='6rem'>
+                      <img src={CardanoLogo} alt='Cardano' />
+                    </Box>
+                    <Box marginBottom={4}>
+                      <Typography>{content.cardano_topic.topic_body}</Typography>
+                    </Box>
+                    <Box>
+                      <Typography variant='h5'><Link href={content.cardano_topic.topic_link}>{content.cardano_topic.topic_title}</Link></Typography>
+                    </Box>
+                  </div>
+                </li>
+                <li>
+                  <div className='inner'>
+                    <Box marginBottom={3} maxHeight='6rem'>
+                      <img src='/images/uploads/stake-pool.png' alt='Cardano Stake Pool' />
+                    </Box>
+                    <Box marginBottom={4}>
+                      <Typography>{content.stake_pool_topic.topic_body}</Typography>
+                    </Box>
+                    <Box>
+                      <Typography variant='h5'><Link href={content.stake_pool_topic.topic_link}>{content.stake_pool_topic.topic_title}</Link></Typography>
+                    </Box>
+                  </div>
+                </li>
+                <li>
+                  <div className='inner'>
+                    <Box marginBottom={3} maxHeight='6rem'>
+                      <img src='/images/uploads/ada-icon.png' alt='ADA' />
+                    </Box>
+                    <Box marginBottom={4}>
+                      <Typography>{content.exchange_topic.topic_body}</Typography>
+                    </Box>
+                    <Box>
+                      <Typography variant='h5'><Link href={content.exchange_topic.topic_link}>{content.exchange_topic.topic_title}</Link></Typography>
+                    </Box>
+                  </div>
+                </li>
+              </ul>
+            </Box>
+          </TopicsSection>
+        </Container>
+      </Layout>
     )}
-  </Theme.Consumer>
+  />
 )
