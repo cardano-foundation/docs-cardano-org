@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Footer from '@input-output-hk/front-end-site-components/components/Footer'
 import Theme from '@input-output-hk/front-end-core-components/components/Theme'
-import Container from '@material-ui/core/Container'
+import Container from '../components/Container'
 
 const StyledMain = styled.main`
   position: relative;
@@ -17,7 +17,7 @@ const Main = ({ children }) => (
     <StyledMain>
       {children}
     </StyledMain>
-    <Container maxWidth='lg'>
+    <Container>
       <Theme.Consumer>
         {({ theme }) => (
           <Footer theme={theme.palette.type} variant='cardano' />

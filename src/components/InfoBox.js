@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { makeTransparent } from '../helpers/color'
+import TinyColor from '@ctrl/tinycolor'
 
 const Container = styled.div`
   width: 100%;
   padding: 5rem;
-  background:${({ theme }) => makeTransparent(theme.palette.secondary.light, 0.8)};
-  color: ${({ theme }) => theme.colors.primary.contrastText};
+  background:${({ theme }) => new TinyColor(theme.palette.secondary.light).setAlpha(0.8).toString()};
+  color: ${({ theme }) => theme.palette.secondary.contrastText};
   text-align: center;
   position: relative;
 
@@ -17,9 +17,9 @@ const Container = styled.div`
     top: 0;
     left: 50%;
     transform: translate(-50%, -50%);
-    border-top: 1px solid ${({ theme }) => theme.colors.info.light};
+    border-top: 1px solid ${({ theme }) => theme.palette.info.light};
     width: 12rem;
-    color: ${({ theme }) => theme.colors.primary.contrastText};
+    color: ${({ theme }) => theme.palette.primary.contrastText};
   }
 `
 
@@ -29,7 +29,7 @@ const Triangle = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   border-width: 2.6rem 1.5rem 0 1.5rem;
-  border-color: ${({ theme }) => theme.colors.info.light} transparent transparent transparent;
+  border-color: ${({ theme }) => theme.palette.info.light} transparent transparent transparent;
   border-style: solid;
   width: 0;
   height: 0;
@@ -37,7 +37,7 @@ const Triangle = styled.div`
   &:after {
     content: '';
     border-width: 2.4rem 1.3rem 0 1.3rem;
-    border-color: ${({ theme }) => theme.colors.secondary.dark} transparent transparent transparent;
+    border-color: ${({ theme }) => theme.palette.secondary.dark} transparent transparent transparent;
     border-style: solid;
     transform: translate(-50%, -2.5rem);
     left: 50%;
@@ -46,7 +46,7 @@ const Triangle = styled.div`
 `
 
 const Body = styled.div`
-  color: ${({ theme }) => makeTransparent(theme.colors.primary.contrastText, 0.75)};
+  color: ${({ theme }) => new TinyColor(theme.palette.primary.contrastText).setAlpha(0.75).toString()};
 `
 
 const InfoBox = ({ title, children }) => (
