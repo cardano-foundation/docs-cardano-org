@@ -17,7 +17,7 @@ const Container = styled.div`
     top: 0;
     left: 50%;
     transform: translate(-50%, -50%);
-    border-top: 1px solid ${({ theme }) => theme.palette.info.light};
+    border-top: 0.1rem solid ${({ theme }) => theme.palette.info.light};
     width: 12rem;
     color: ${({ theme }) => theme.palette.primary.contrastText};
   }
