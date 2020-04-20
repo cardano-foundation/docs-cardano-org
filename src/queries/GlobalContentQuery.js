@@ -18,6 +18,8 @@ const GlobalContentQuery = ({ render }) => (
                       main_title
                       select_language
                       select_theme
+                      last_updated
+                      report_an_issue
                     }
                   }
                 }

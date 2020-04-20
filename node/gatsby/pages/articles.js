@@ -1,5 +1,8 @@
 const path = require('path')
 const data = require('../data')
+const moment = require('moment')
+require('moment/locale/en-gb')
+require('moment/locale/zh-cn')
 
 function cleanNavigationContext (context) {
   context.hasContent = Boolean(context.content)
@@ -27,6 +30,7 @@ module.exports = ({ createPage }) => {
           context: {
             navigationContext,
             content: article.content,
+            lastUpdated: moment(article.lastUpdated, 'YYYY-MM-DD').format('MMMM D, YYYY'),
             lang
           }
         })
@@ -38,6 +42,7 @@ module.exports = ({ createPage }) => {
 
   const articles = data.get('articles')
   Object.keys(articles).forEach((lang) => {
+    moment.locale(lang)
     createChildPages(lang, articles[lang])
   })
 }
