@@ -1,8 +1,8 @@
 ---
 title: en (English) site content
 head:
-  title: Search
+  title: Cardano Docs - Search
   meta:
-    - { name: "twitter:title", content: "Search", file: "" }
-    - { name: "og:title", content: "Search", file: "" }
+    - { name: "twitter:title", content: "Cardano Docs - Search", file: "" }
+    - { name: "og:title", content: "Cardano Docs - Search", file: "" }
 ---
