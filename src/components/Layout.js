@@ -69,6 +69,7 @@ const Layout = ({ children, headData = {}, template = Main }) => {
                       const page = pageHeadData.nodes.filter(node => node.relativePath === `content/meta/${pageContentPath}-${lang}.md`).shift()
                       const site = siteHeadData.nodes.filter(node => node.relativePath === `content/meta/__site-${lang}.md`).shift()
 
+                      console.log({ headData })
                       return (
                         <Head
                           site={{

@@ -10,6 +10,8 @@ import Container from '@material-ui/core/Container'
 import TinyColor from '@ctrl/tinycolor'
 import { FaChevronRight, FaChevronDown, FaEllipsisH, FaChevronUp, FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 import Link from '@input-output-hk/front-end-core-components/components/Link'
+import Layout from '../components/Layout'
+import Blank from './Blank'
 import { FIXED_HEADER_OFFSET } from '../constants'
 import GlobalContentQuery from '../queries/GlobalContentQuery'
 
@@ -135,7 +137,7 @@ const AccordionToggle = styled(Link)`
   }
 `
 
-const MarkdownContent = styled.div`
+const MarkdownContent = styled.article`
   word-break: break-word;
   max-width: 80rem;
 `
@@ -352,7 +354,15 @@ const Article = ({ pageContext }) => {
   return (
     <GlobalContentQuery
       render={(content) => (
-        <Fragment>
+        <Layout
+          template={Blank}
+          headData={{
+            title: `Cardano Docs - ${pageContext.pageTitle}`,
+            meta: [
+              { name: 'description', content: '' }
+            ]
+          }}
+        >
           <Container maxWidth='xl'>
             <Location>
               {({ location }) => (
@@ -450,7 +460,7 @@ const Article = ({ pageContext }) => {
               )}
             </Theme.Consumer>
           </Container>
-        </Fragment>
+        </Layout>
       )}
     />
   )
@@ -458,6 +468,7 @@ const Article = ({ pageContext }) => {
 
 Article.propTypes = {
   pageContext: PropTypes.shape({
+    pageTitle: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
     navigationContext: PropTypes.object.isRequired,
     lastUpdated: PropTypes.string,

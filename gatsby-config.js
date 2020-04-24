@@ -19,11 +19,12 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'IOHK Gatsby Starter',
-        short_name: 'IOHK Starter',
+        name: 'Cardano Documentation',
+        short_name: 'Cardano Docs',
         start_url: '/',
-        background_color: '#131325',
-        theme_color: '#131325',
+        icon: 'resources/images/cardano-logo.png',
+        background_color: '#121326',
+        theme_color: '#1fc1c3',
         display: 'minimal-ui',
         icon_options: {
           purpose: 'maskable'

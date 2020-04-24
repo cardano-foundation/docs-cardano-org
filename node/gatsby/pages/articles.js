@@ -28,6 +28,7 @@ module.exports = ({ createPage }) => {
           path: `/${lang}${article.path}`,
           component: articleTemplate,
           context: {
+            pageTitle: article.title,
             navigationContext,
             content: article.content,
             lastUpdated: moment(article.lastUpdated, 'YYYY-MM-DD').format('MMMM D, YYYY'),

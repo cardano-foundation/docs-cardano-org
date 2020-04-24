@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { graphql, navigate } from 'gatsby'
 import PropTypes from 'prop-types'
 import { Location } from '@reach/router'
@@ -58,7 +58,7 @@ const SearchPageInner = ({ data, pageContext, location }) => {
   }
 
   return (
-    <Fragment>
+    <Layout headData={{ title: `Cardano Docs - Search: ${query}` }}>
       <Container maxWidth='xl'>
         <SearchResults
           onPageChange={onPageChange}
@@ -74,18 +74,16 @@ const SearchPageInner = ({ data, pageContext, location }) => {
           }
         />
       </Container>
-    </Fragment>
+    </Layout>
   )
 }
 
 const SearchPage = ({ data, pageContext }) => (
-  <Layout>
-    <Location>
-      {({ location }) => (
-        <SearchPageInner data={data} pageContext={pageContext} location={location} />
-      )}
-    </Location>
-  </Layout>
+  <Location>
+    {({ location }) => (
+      <SearchPageInner data={data} pageContext={pageContext} location={location} />
+    )}
+  </Location>
 )
 
 SearchPage.propTypes = {
