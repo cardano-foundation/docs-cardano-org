@@ -6,3 +6,5 @@ last_updated: "2020-04-20"
 ---
 ## Stake pools
 ### parent: About Cardano
+
+{{!-- include components/ExampleComponent --}}

@@ -14,6 +14,7 @@ import Layout from '../components/Layout'
 import Blank from './Blank'
 import { FIXED_HEADER_OFFSET } from '../constants'
 import GlobalContentQuery from '../queries/GlobalContentQuery'
+import MarkdownComponents from '../components/MarkdownComponents'
 
 const PageContent = styled.div`
   display: flex;
@@ -354,6 +355,45 @@ const Article = ({ pageContext }) => {
     return `${baseHref}${encodeURIComponent(`Invalid content ${pathname}${query || ''}${hash || ''}`)}`
   }
 
+  /**
+   * Replaces references to custom components with rendered component
+   * e.g. {{!-- include components/OtherComponent --}} -> renders components/MarkdownComponents/OtherComponent if it exists
+   */
+  function renderArticleContent () {
+    let remainingContent = pageContext.content
+    const contentParts = []
+    // Matches {{!-- include components/<MyComponent> --}} - where <MyComponent> is Alpha string reference to component
+    // in src/components/MarkdownComponent/index.js
+    const pattern = /{{!--\sinclude\scomponents\/([a-zA-Z]+)\s--}}/
+    let match = remainingContent.match(pattern)
+    let customComponentIndex = match ? match.index : -1
+
+    while (remainingContent.length > 0 && customComponentIndex >= 0) {
+      if (customComponentIndex > 0) {
+        contentParts.push(<Markdown source={remainingContent.substring(0, customComponentIndex)} />)
+      }
+
+      const Component = MarkdownComponents[match[1]]
+      if (Component) contentParts.push(<Component />)
+
+      remainingContent = remainingContent.substring(customComponentIndex + match[0].length)
+      match = remainingContent.match(pattern)
+      customComponentIndex = match ? match.index : -1
+    }
+
+    if (remainingContent) contentParts.push(<Markdown source={remainingContent} />)
+
+    return (
+      <Fragment>
+        {contentParts.map((content, index) => (
+          <Fragment key={index}>
+            {content}
+          </Fragment>
+        ))}
+      </Fragment>
+    )
+  }
+
   return (
     <GlobalContentQuery
       render={(content) => (
@@ -410,7 +450,7 @@ const Article = ({ pageContext }) => {
                       </MobileInlineNavigation>
                     }
                     <MarkdownContent>
-                      <Markdown source={pageContext.content} />
+                      {renderArticleContent()}
                     </MarkdownContent>
                     <Box marginTop={2} marginBottom={2}>
                       {pageContext.lastUpdated &&
