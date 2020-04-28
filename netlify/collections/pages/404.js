@@ -19,6 +19,11 @@ export default {
           name: 'title',
           label: 'Title',
           widget: 'string'
+        },
+        {
+          name: 'body_content',
+          label: 'Content',
+          widget: 'markdown'
         }
       ]
     }

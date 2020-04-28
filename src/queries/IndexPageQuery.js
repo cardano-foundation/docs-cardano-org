@@ -16,8 +16,6 @@ const IndexPageQuery = ({ render }) => (
                   frontmatter {
                     content {
                       title
-                      description
-                      subtitle
                       hero {
                         hero_title
                         hero_subtitle
@@ -28,10 +26,8 @@ const IndexPageQuery = ({ render }) => (
                       ouroboros {
                         ouroboros_lead
                         ouroboros_body
-                        ouroboros_links {
-                          ouroboros_link_title
-                          ouroboros_link_href
-                        }
+                        ouroboros_resilient
+                        ouroboros_scalable
                       }
                       cardano_topic {
                         topic_title

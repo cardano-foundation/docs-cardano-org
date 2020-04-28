@@ -183,11 +183,12 @@ export default () => (
                     </Typography>
                   </Box>
                   <ul>
-                    {content.ouroboros.ouroboros_links.map((link, index) => (
-                      <li key={index}>
-                        <Typography variant='h4'>{link.ouroboros_link_title}</Typography>
-                      </li>
-                    ))}
+                    <li>
+                      <Typography variant='h4'>{content.ouroboros.ouroboros_resilient}</Typography>
+                    </li>
+                    <li>
+                      <Typography variant='h4'>{content.ouroboros.ouroboros_scalable}</Typography>
+                    </li>
                   </ul>
                 </Grid>
                 <Grid item md={6}>

@@ -29,6 +29,21 @@ export default {
           name: 'select_theme',
           label: 'Select theme label',
           widget: 'string'
+        },
+        {
+          name: 'last_updated',
+          label: 'Last updated label',
+          widget: 'string'
+        },
+        {
+          name: 'report_an_issue',
+          label: 'Report an issue label',
+          widget: 'string'
+        },
+        {
+          name: 'search',
+          label: 'Search label',
+          widget: 'string'
         }
       ]
     }

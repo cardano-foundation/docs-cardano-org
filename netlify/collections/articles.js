@@ -40,6 +40,12 @@ const buildCollection = language => {
         hint: 'Link to an external resource instead of providing content. The link will slot into the navigation.'
       },
       {
+        label: 'When was this article last updated?',
+        name: 'last_updated',
+        widget: 'datetime',
+        format: 'YYYY-MM-DDTHH:mm:ssZ'
+      },
+      {
         label: 'Body',
         name: 'body',
         widget: 'markdown',
