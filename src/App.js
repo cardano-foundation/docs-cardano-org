@@ -33,8 +33,18 @@ const Link = forwardRef((props, ref) => {
     delete componentProps.href
   }
 
+  let tracking = props.tracking
+  if (!tracking && props.href) tracking = { label: props.href }
+  if (tracking) {
+    componentProps.onClick = (e) => {
+      analytics.click({ category: tracking.category || 'link', label: tracking.label, event: e })
+      props.onClick && props.onClick(e)
+    }
+  }
+
   delete componentProps.isStatic
   delete componentProps.isRelative
+  delete componentProps.tracking
 
   return (
     <Component ref={ref} {...componentProps} />
@@ -44,7 +54,13 @@ const Link = forwardRef((props, ref) => {
 Link.propTypes = {
   isStatic: PropTypes.bool.isRequired,
   isRelative: PropTypes.bool.isRequired,
-  component: PropTypes.any
+  component: PropTypes.any,
+  href: PropTypes.string,
+  tracking: PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    category: PropTypes.string
+  }),
+  onClick: PropTypes.func
 }
 
 const App = ({ element }) => {

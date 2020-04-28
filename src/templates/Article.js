@@ -268,6 +268,7 @@ const NavigationTree = ({ items, lang, path, currentPathname, isRoot = true, pos
               activeClassName='active'
               title={item.title}
               partiallyActive
+              tracking={{ category: 'article_navigation', label: item.path }}
             >
               {item.title}
             </Link>
@@ -276,6 +277,7 @@ const NavigationTree = ({ items, lang, path, currentPathname, isRoot = true, pos
             <ExternalLink
               href={`${item.externalHref}`}
               title={item.title}
+              tracking={{ category: 'article_navigation_external', label: item.externalHref }}
             >
               <Box display='flex'>
                 <Box display='flex' flexDirection='column' justifyContent='center'>
@@ -295,6 +297,7 @@ const NavigationTree = ({ items, lang, path, currentPathname, isRoot = true, pos
                 onClick={toggleAccordion(item)}
                 activeClassName='active'
                 partiallyActive
+                tracking={{ category: 'article_navigation', label: `toggle_accordion_${item.path}` }}
               >
                 <Box display='flex'>
                   <Box flex={1} justifyContent='center' flexDirection='column' display='flex'>
@@ -395,6 +398,7 @@ const Article = ({ pageContext }) => {
                         </div>
                         <Link
                           href='#'
+                          tracking={{ label: 'toggle_mobile_article_navigation_top' }}
                           onClick={(e) => {
                             e.preventDefault()
                             setMobileTopNavigationOpen(!mobileTopNavigationOpen)
@@ -417,6 +421,7 @@ const Article = ({ pageContext }) => {
                       <Box display='flex'>
                         <ReportAnIssueLink
                           href={getReportIssueHref(location)}
+                          tracking={{ category: 'article', label: 'report_an_issue' }}
                         >
                           <Box display='flex' marginRight={1} flexDirection='column' justifyContent='center'>
                             <FaGithub />
@@ -440,6 +445,7 @@ const Article = ({ pageContext }) => {
                         </div>
                         <Link
                           href='#'
+                          tracking={{ label: 'toggle_mobile_article_navigation_bottom' }}
                           onClick={(e) => {
                             e.preventDefault()
                             setMobileBottomNavigationOpen(!mobileBottomNavigationOpen)

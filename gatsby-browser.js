@@ -5,7 +5,7 @@ import Root from './src/Root'
 import config from './src/config'
 
 // Setup analytics if GA tracking id is present in config
-if (config.ga && config.ga.trackingID) analytics.initialize(config.ga.trackingID)
+if (config.ga && config.ga.trackingID) analytics.initialize(config.ga.trackingID, { titleCase: false })
 
 export const wrapPageElement = App
 export const wrapRootElement = Root

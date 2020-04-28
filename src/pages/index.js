@@ -101,6 +101,12 @@ const InfoBoxContainer = styled.div`
   }
 `
 
+const CTAButton = styled(Button)`
+  &:hover {
+    color: ${({ theme }) => theme.palette.primary.contrastText};
+  }
+`
+
 const Triangle = styled.div`
   position: absolute;
   top: 0;
@@ -147,14 +153,15 @@ export default () => (
                     <Box marginBottom={5}>
                       <Typography>{content.hero.hero_body}</Typography>
                     </Box>
-                    <Button
+                    <CTAButton
                       variant='contained'
                       component={Link}
                       color='primary'
                       href={content.hero.hero_cta_link}
+                      tracking={{ label: 'home_page_hero_cta' }}
                     >
                       {content.hero.hero_cta}
-                    </Button>
+                    </CTAButton>
                   </InfoBoxContent>
                 </InfoBoxContainer>
               </Box>
@@ -203,7 +210,14 @@ export default () => (
                       <Typography>{content.cardano_topic.topic_body}</Typography>
                     </Box>
                     <Box>
-                      <Typography variant='h5'><Link href={content.cardano_topic.topic_link}>{content.cardano_topic.topic_title}</Link></Typography>
+                      <Typography variant='h5'>
+                        <Link
+                          href={content.cardano_topic.topic_link}
+                          tracking={{ label: 'home_page_cardano_topic' }}
+                        >
+                          {content.cardano_topic.topic_title}
+                        </Link>
+                      </Typography>
                     </Box>
                   </div>
                 </li>
@@ -216,7 +230,14 @@ export default () => (
                       <Typography>{content.stake_pool_topic.topic_body}</Typography>
                     </Box>
                     <Box>
-                      <Typography variant='h5'><Link href={content.stake_pool_topic.topic_link}>{content.stake_pool_topic.topic_title}</Link></Typography>
+                      <Typography variant='h5'>
+                        <Link
+                          href={content.stake_pool_topic.topic_link}
+                          tracking={{ label: 'home_page_pool_topic' }}
+                        >
+                          {content.stake_pool_topic.topic_title}
+                        </Link>
+                      </Typography>
                     </Box>
                   </div>
                 </li>
@@ -229,7 +250,14 @@ export default () => (
                       <Typography>{content.exchange_topic.topic_body}</Typography>
                     </Box>
                     <Box>
-                      <Typography variant='h5'><Link href={content.exchange_topic.topic_link}>{content.exchange_topic.topic_title}</Link></Typography>
+                      <Typography variant='h5'>
+                        <Link
+                          href={content.exchange_topic.topic_link}
+                          tracking={{ label: 'home_page_exchange_topic' }}
+                        >
+                          {content.exchange_topic.topic_title}
+                        </Link>
+                      </Typography>
                     </Box>
                   </div>
                 </li>

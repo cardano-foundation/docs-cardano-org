@@ -6,9 +6,9 @@
   "dependencies": {
     "@ctrl/tinycolor": "^2.6.1",
     "@input-output-hk/front-end-core-components": "^1.0.6",
-    "@input-output-hk/front-end-core-libraries": "^1.1.0",
-    "@input-output-hk/front-end-site-components": "^1.2.0",
-    "@input-output-hk/front-end-themes": "^1.2.5",
+    "@input-output-hk/front-end-core-libraries": "^1.2.0",
+    "@input-output-hk/front-end-site-components": "^1.2.2",
+    "@input-output-hk/front-end-themes": "^1.2.6",
     "@material-ui/core": "^4.9.9",
     "@rhysforyou/gatsby-plugin-react-helmet-async": "^0.1.3",
     "flexsearch": "^0.6.32",
@@ -107,7 +107,7 @@
       "cardano"
     ],
     "ga": {
-      "trackingId": null
+      "trackingID": "UA-119953429-2"
     },
     "localization": {
       "createLocalizedPages": true,
