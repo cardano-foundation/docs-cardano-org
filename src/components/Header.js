@@ -398,7 +398,7 @@ export default () => {
       <ul>
         {navigation.map(({ label, path }, index) => (
           <li key={path} className={activeIndex === index ? 'active' : ''}>
-            <Link onClick={() => setMobileMenuOpen(false)} href={path}>{label}</Link>
+            <Link tracking={{ category: 'mobile_navigation', label: path }} onClick={() => setMobileMenuOpen(false)} href={path}>{label}</Link>
           </li>
         ))}
       </ul>
@@ -428,7 +428,7 @@ export default () => {
               <Box paddingTop={0.8} paddingBottom={0.8} display='flex'>
                 <Box display='flex'>
                   <Logo>
-                    <Link href='/'>
+                    <Link href='/' tracking={{ label: 'header_cardano_logo' }}>
                       <Column>
                         <img src={CardanoLogo} />
                       </Column>
@@ -446,12 +446,12 @@ export default () => {
                     <SelectLanguage />
                   </Column>
                   <MobileSearchIconContainer>
-                    <Link href='#' onClick={toggleMobileSearchBar}>
+                    <Link href='#' tracking={{ label: 'header_toggle_mobile_search_bar' }} onClick={toggleMobileSearchBar}>
                       <MdSearch />
                     </Link>
                   </MobileSearchIconContainer>
                   <MobileNavContainer marginLeft={1}>
-                    <Link href='#' onClick={toggleMobileMenu}>
+                    <Link href='#' tracking={{ label: 'header_toggle_mobile_menu' }} onClick={toggleMobileMenu}>
                       {mobileMenuOpen && <MdClose />}
                       {!mobileMenuOpen && <MdMenu />}
                     </Link>
@@ -497,6 +497,7 @@ export default () => {
                                 label={label}
                                 key={path}
                                 href={path}
+                                tracking={{ category: 'tabs_navigation', label: path }}
                                 component={forwardRef((props, ref) => <Link {...props} {...ref} />)}
                               />
                             ))}
@@ -520,7 +521,7 @@ export default () => {
                         <MobileMenuInner>
                           <MobileMenuScrollContainer>
                             <MobileLogo>
-                              <Link href='/' onClick={() => setMobileMenuOpen(false)}>
+                              <Link href='/' tracking={{ label: 'header_close_mobile_menu' }} onClick={() => setMobileMenuOpen(false)}>
                                 <Column>
                                   <img src={CardanoLogo} />
                                 </Column>

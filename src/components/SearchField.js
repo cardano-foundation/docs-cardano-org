@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { FiSearch } from 'react-icons/fi'
 import { navigate } from 'gatsby'
 import Language from '@input-output-hk/front-end-core-components/components/Language'
+import analytics from '@input-output-hk/front-end-core-libraries/build/analytics'
 import Search from '../state/Search'
 
 const Form = styled.form`
@@ -54,6 +55,7 @@ const Submit = styled.button`
 const SearchField = ({ onSearch }) => {
   const onFormSubmit = (search, lang, setSearch) => (e) => {
     e.preventDefault()
+    analytics.capture({ category: 'form', action: 'submit_search', label: search })
     onSearch && onSearch(search)
     setSearch('')
     navigate(`/${lang}/search/?query=${encodeURIComponent(search)}&page=1`)
@@ -74,7 +76,10 @@ const SearchField = ({ onSearch }) => {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
-              <Submit type='submit'>
+              <Submit
+                type='submit'
+                onClick={(e) => analytics.click({ category: 'form', label: 'search_submit', event: e })}
+              >
                 <FiSearch />
               </Submit>
             </Form>

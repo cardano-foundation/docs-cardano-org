@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Button from '@material-ui/core/Button'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
+import analytics from '@input-output-hk/front-end-core-libraries/build/analytics'
 import Language from '@input-output-hk/front-end-core-components/components/Language'
 
 const StyledMenuItem = styled(MenuItem)`
@@ -38,6 +39,7 @@ export default () => {
           <TriggerButton
             onClick={e => {
               e.preventDefault()
+              analytics.click({ category: 'toggle_language_selector', event: e })
               setAnchorEl(e.currentTarget)
             }}
           >
@@ -55,6 +57,7 @@ export default () => {
                 component='button'
                 onClick={e => {
                   e.preventDefault()
+                  analytics.click({ category: 'language_selector', label: language.key, event: e })
                   setLang(language.key)
                   onClose()
                 }}
