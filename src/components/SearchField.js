@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { FiSearch } from 'react-icons/fi'
 import { navigate } from 'gatsby'
 import Language from '@input-output-hk/front-end-core-components/components/Language'
-import analytics from '@input-output-hk/front-end-core-libraries/build/analytics'
+import { analytics } from '@input-output-hk/front-end-core-libraries'
 import Search from '../state/Search'
 
 const Form = styled.form`

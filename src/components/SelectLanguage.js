@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Button from '@material-ui/core/Button'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
-import analytics from '@input-output-hk/front-end-core-libraries/build/analytics'
+import { analytics } from '@input-output-hk/front-end-core-libraries'
 import Language from '@input-output-hk/front-end-core-components/components/Language'
 
 const StyledMenuItem = styled(MenuItem)`

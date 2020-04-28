@@ -31,7 +31,7 @@ const ResultWrap = styled.li`
     }
   }
 `
-const Result = ({ result, query }) => {
+const SearchResult = ({ result, query }) => {
   const highlightMatch = (text, query, { indexes = [], limit = null, surroundingContext = false } = {}) => {
     const startIndex = indexes[indexes.length - 1]
     const remainingText = text.substring(startIndex === undefined ? 0 : (startIndex + query.length))
@@ -92,9 +92,9 @@ const Result = ({ result, query }) => {
   )
 }
 
-Result.propTypes = {
+SearchResult.propTypes = {
   query: PropTypes.string,
   result: PropTypes.object
 }
 
-export default Result
+export default SearchResult
