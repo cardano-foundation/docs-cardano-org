@@ -6,6 +6,7 @@ import { navigate } from 'gatsby'
 import Language from '@input-output-hk/front-end-core-components/components/Language'
 import { analytics } from '@input-output-hk/front-end-core-libraries'
 import Search from '../state/Search'
+import GlobalContentQuery from '../queries/GlobalContentQuery'
 
 const Form = styled.form`
   width: 100%;
@@ -62,31 +63,35 @@ const SearchField = ({ onSearch }) => {
   }
 
   return (
-    <Language.Consumer>
-      {({ key: lang }) => (
-        <Search.Consumer>
-          {({ search, setSearch }) => (
-            <Form
-              onSubmit={onFormSubmit(search, lang, setSearch)}
-            >
-              <Input
-                type='text'
-                name='search-field'
-                placeholder='Search'
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
-              <Submit
-                type='submit'
-                onClick={(e) => analytics.click({ category: 'form', label: 'search_submit', event: e })}
-              >
-                <FiSearch />
-              </Submit>
-            </Form>
+    <GlobalContentQuery
+      render={globalContent => (
+        <Language.Consumer>
+          {({ key: lang }) => (
+            <Search.Consumer>
+              {({ search, setSearch }) => (
+                <Form
+                  onSubmit={onFormSubmit(search, lang, setSearch)}
+                >
+                  <Input
+                    type='text'
+                    name='search-field'
+                    placeholder={globalContent.search}
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                  />
+                  <Submit
+                    type='submit'
+                    onClick={(e) => analytics.click({ category: 'form', label: 'search_submit', event: e })}
+                  >
+                    <FiSearch />
+                  </Submit>
+                </Form>
+              )}
+            </Search.Consumer>
           )}
-        </Search.Consumer>
+        </Language.Consumer>
       )}
-    </Language.Consumer>
+    />
   )
 }
 

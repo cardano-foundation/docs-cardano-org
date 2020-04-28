@@ -6,4 +6,5 @@ content:
   select_theme: Select theme
   last_updated: Last updated
   report_an_issue: Report an issue
+  search: Search
 ---
