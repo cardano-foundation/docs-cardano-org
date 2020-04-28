@@ -76,12 +76,18 @@ const SearchResult = ({ result, query }) => {
   return (
     <ResultWrap className='item' key={result.key}>
       <strong className='title'>
-        <Link href={result.path}>
+        <Link
+          href={result.path}
+          tracking={{ category: 'search_result', label: 'title' }}
+        >
           {result.title && <span>{result.title}</span>}
         </Link>
       </strong>
       <div>
-        <Link href={result.path}>
+        <Link
+          href={result.path}
+          tracking={{ category: 'search_result', label: 'path' }}
+        >
           <small>{result.path}</small>
         </Link>
       </div>
