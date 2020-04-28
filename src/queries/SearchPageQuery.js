@@ -15,7 +15,11 @@ const SearchPageQuery = ({ render }) => (
                 childMarkdownRemark{
                   frontmatter {
                     content {
-                      default_content
+                      title
+                      showing_results
+                      previous
+                      next
+                      no_results
                     }
                   }
                 }

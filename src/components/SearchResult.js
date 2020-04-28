@@ -31,7 +31,7 @@ const ResultWrap = styled.li`
     }
   }
 `
-const Result = ({ result, query }) => {
+const SearchResult = ({ result, query }) => {
   const highlightMatch = (text, query, { indexes = [], limit = null, surroundingContext = false } = {}) => {
     const startIndex = indexes[indexes.length - 1]
     const remainingText = text.substring(startIndex === undefined ? 0 : (startIndex + query.length))
@@ -76,12 +76,18 @@ const Result = ({ result, query }) => {
   return (
     <ResultWrap className='item' key={result.key}>
       <strong className='title'>
-        <Link href={result.path}>
+        <Link
+          href={result.path}
+          tracking={{ category: 'search_result', label: 'title' }}
+        >
           {result.title && <span>{result.title}</span>}
         </Link>
       </strong>
       <div>
-        <Link href={result.path}>
+        <Link
+          href={result.path}
+          tracking={{ category: 'search_result', label: 'path' }}
+        >
           <small>{result.path}</small>
         </Link>
       </div>
@@ -92,9 +98,9 @@ const Result = ({ result, query }) => {
   )
 }
 
-Result.propTypes = {
+SearchResult.propTypes = {
   query: PropTypes.string,
   result: PropTypes.object
 }
 
-export default Result
+export default SearchResult
