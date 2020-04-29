@@ -89,20 +89,9 @@
         "label": "English",
         "flag": "🇺🇸",
         "locale": "en_US"
-      },
-      {
-        "key": "zh-cn",
-        "label": "中文",
-        "flag": "🇨🇳",
-        "locale": "zh_CN"
       }
     ],
-    "alternativeLanguages": [
-      {
-        "key": "cn",
-        "languageKey": "zh-cn"
-      }
-    ],
+    "alternativeLanguages": [],
     "themes": [
       "cardano"
     ],
