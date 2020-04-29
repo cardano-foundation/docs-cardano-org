@@ -19,8 +19,8 @@ const Main = ({ children }) => (
     </StyledMain>
     <Container>
       <Theme.Consumer>
-        {({ theme }) => (
-          <Footer theme={theme.palette.type} variant='cardano' />
+        {({ theme, key }) => (
+          <Footer theme={theme.palette.type} variant={key} />
         )}
       </Theme.Consumer>
     </Container>

@@ -1,6 +1,9 @@
 const fs = require('fs')
 const path = require('path')
 const fm = require('front-matter')
+const moment = require('moment')
+require('moment/locale/en-gb')
+require('moment/locale/zh-cn')
 const config = require('../config')
 const data = require('./data')
 
@@ -32,9 +35,13 @@ const buildArticles = (markdownArticles, { key, baseURL = '/' } = {}) => {
   }
 
   filteredArticles.forEach(({ key, content }) => {
+    const lastUpdated = moment(content.attributes.last_updated, 'YYYY-MM-DDTHH:mm:ssZ')
+    lastUpdated.utcOffset(0)
+
     articles.push({
       title: content.attributes.title,
       content: content.body,
+      lastUpdatedFormatted: lastUpdated.format('MMMM D, YYYY HH:mm [UTC]'),
       lastUpdated: content.attributes.last_updated,
       key,
       path: `${baseURL}${key}/`,
@@ -71,6 +78,7 @@ module.exports = async ({ store }) => {
 
   const articles = {}
   config.availableLanguages.forEach(({ key: lang }) => {
+    moment.locale(lang)
     const languageArticles = getArticles(lang)
     if (languageArticles) articles[lang] = getArticles(lang)
   })

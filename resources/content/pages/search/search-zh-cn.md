@@ -6,4 +6,5 @@ content:
   no_results: No matching results for {{ query }}
   previous: Previous
   next: Next
+  last_updated: Last updated
 ---

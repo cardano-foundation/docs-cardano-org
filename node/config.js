@@ -38,7 +38,8 @@ function getConfig () {
       useNavigator: true,
       persistLang: true
     },
-    routes: []
+    routes: [],
+    gitHubRepository: null
   }
 
   const customConfig = packageConfig['gatsby-starter-iohk-default'] || {}

@@ -15,6 +15,7 @@ import { FIXED_HEADER_OFFSET } from '../constants'
 import GlobalContentQuery from '../queries/GlobalContentQuery'
 import MarkdownComponents from '../components/MarkdownComponents'
 import Container from '../components/Container'
+import config from '../config'
 
 const PageContent = styled.div`
   display: flex;
@@ -358,7 +359,7 @@ const Article = ({ pageContext }) => {
   const [ mobileBottomNavigationOpen, setMobileBottomNavigationOpen ] = useState(false)
 
   function getReportIssueHref ({ pathname, query, hash }) {
-    const baseHref = 'https://github.com/cardano-foundation/docs-cardano-org/issues/new?assignees=&labels=content&template=content-issue.md&title='
+    const baseHref = `https://github.com/${config.gitHubRepository}/issues/new?assignees=&labels=content&template=content-issue.md&title=`
     return `${baseHref}${encodeURIComponent(`Invalid content ${pathname}${query || ''}${hash || ''}`)}`
   }
 
@@ -463,24 +464,26 @@ const Article = ({ pageContext }) => {
                       {renderArticleContent()}
                     </MarkdownContent>
                     <Box marginTop={2} marginBottom={2}>
-                      {pageContext.lastUpdated &&
+                      {pageContext.lastUpdatedFormatted &&
                         <LastUpdated>
-                          <p><small><em>{content.last_updated}: {pageContext.lastUpdated}</em></small></p>
+                          <p><small><em>{content.last_updated}: {pageContext.lastUpdatedFormatted}</em></small></p>
                         </LastUpdated>
                       }
-                      <Box display='flex'>
-                        <ReportAnIssueLink
-                          href={getReportIssueHref(location)}
-                          tracking={{ category: 'article', label: 'report_an_issue' }}
-                        >
-                          <Box display='flex' marginRight={1} flexDirection='column' justifyContent='center'>
-                            <FaGithub />
-                          </Box>
-                          <Box display='flex' flexDirection='column' justifyContent='center'>
-                            <p>{content.report_an_issue}</p>
-                          </Box>
-                        </ReportAnIssueLink>
-                      </Box>
+                      {config.gitHubRepository &&
+                        <Box display='flex'>
+                          <ReportAnIssueLink
+                            href={getReportIssueHref(location)}
+                            tracking={{ category: 'article', label: 'report_an_issue' }}
+                          >
+                            <Box display='flex' marginRight={1} flexDirection='column' justifyContent='center'>
+                              <FaGithub />
+                            </Box>
+                            <Box display='flex' flexDirection='column' justifyContent='center'>
+                              <p>{content.report_an_issue}</p>
+                            </Box>
+                          </ReportAnIssueLink>
+                        </Box>
+                      }
                     </Box>
                     {pageContext.navigationContext.children.length > 0 &&
                       <MobileInlineNavigation className={mobileBottomNavigationOpen ? 'open' : ''}>
@@ -513,8 +516,8 @@ const Article = ({ pageContext }) => {
               )}
             </Location>
             <Theme.Consumer>
-              {({ theme }) => (
-                <Footer theme={theme.palette.type} variant='cardano' />
+              {({ theme, key }) => (
+                <Footer theme={theme.palette.type} variant={key} />
               )}
             </Theme.Consumer>
           </Container>
@@ -529,7 +532,7 @@ Article.propTypes = {
     pageTitle: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
     navigationContext: PropTypes.object.isRequired,
-    lastUpdated: PropTypes.string,
+    lastUpdatedFormatted: PropTypes.string,
     lang: PropTypes.string.isRequired
   }).isRequired
 }

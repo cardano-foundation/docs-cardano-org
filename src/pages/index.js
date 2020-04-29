@@ -10,7 +10,7 @@ import TinyColor from '@ctrl/tinycolor'
 import Layout from '../components/Layout'
 import Container from '../components/Container'
 import IndexPageQuery from '../queries/IndexPageQuery'
-import CardanoLogo from '../../resources/images/cardano-logo.svg'
+import Logo from '../../resources/images/logo.svg'
 
 const Hero = styled.section`
   background: ${({ theme }) => new TinyColor(theme.palette.background.default).darken().toString()} url('/images/uploads/hero.png') no-repeat center center;
@@ -206,7 +206,7 @@ export default () => (
                 <li>
                   <div className='inner'>
                     <Box marginBottom={3} maxHeight='6rem'>
-                      <img src={CardanoLogo} alt='Cardano logo' />
+                      <img src={Logo} alt='Cardano logo' />
                     </Box>
                     <Box marginBottom={4}>
                       <Typography>{content.cardano_topic.topic_body}</Typography>

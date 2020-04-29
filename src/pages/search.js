@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import styled from 'styled-components'
 import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
@@ -103,6 +103,7 @@ export const query = graphql`
           path
           lang
           content
+          lastUpdatedFormatted
         }
       }
     }
@@ -136,10 +137,11 @@ const SearchPageInner = ({ data, pageContext, location }) => {
 
   const loadResults = () => {
     try {
-      const posts = data.allCardanoDocsArticle.edges.map(({ node: { title, path, content } }) => ({
+      const posts = data.allCardanoDocsArticle.edges.map(({ node: { title, path, content, lastUpdatedFormatted } }) => ({
         title,
         path: `/${pageContext.lang}${path}`,
-        content
+        content,
+        lastUpdatedFormatted
       }))
 
       const index = new FlexSearch({
@@ -232,7 +234,9 @@ const SearchPageInner = ({ data, pageContext, location }) => {
                   <Markdown source={showingResults(pageContent.showing_results)} />
                   <Items>
                     {results.results.slice(page * RESULTS_PER_PAGE, page * RESULTS_PER_PAGE + RESULTS_PER_PAGE).map((post, i) => (
-                      <SearchResult key={i} result={post} query={query} />
+                      <Fragment key={post.path}>
+                        <SearchResult result={post} query={query} />
+                      </Fragment>
                     ))}
                   </Items>
                   <NavWrap>

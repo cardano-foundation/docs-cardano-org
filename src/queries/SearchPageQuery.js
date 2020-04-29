@@ -20,6 +20,7 @@ const SearchPageQuery = ({ render }) => (
                       previous
                       next
                       no_results
+                      last_updated
                     }
                   }
                 }

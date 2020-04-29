@@ -12,10 +12,11 @@ import { MdMenu, MdClose, MdSearch } from 'react-icons/md'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import SearchField from './SearchField'
 import SelectLanguage from './SelectLanguage'
-import CardanoLogo from '../../resources/images/cardano-logo.svg'
+import LogoImage from '../../resources/images/logo.svg'
 import GlobalContentQuery from '../queries/GlobalContentQuery'
 import { APP_BAR_OFFSET, NAV_OFFSET } from '../constants'
 import Container from './Container'
+import config from '../config'
 
 const Bar = styled(AppBar)`
   background-color: ${({ theme }) => new TinyColor(theme.palette.background.default).lighten(5).toString()};
@@ -463,9 +464,9 @@ export default () => {
               <Box paddingTop={0.8} paddingBottom={0.8} display='flex'>
                 <Box display='flex'>
                   <Logo>
-                    <Link href='/' aria-label={content.main_title_aria_label} tracking={{ label: 'header_cardano_logo' }}>
+                    <Link href='/' aria-label={content.main_title_aria_label} tracking={{ label: 'header_logo' }}>
                       <Column>
-                        <img alt='Cardano Logo' aria-hidden='true' src={CardanoLogo} />
+                        <img alt='Logo' aria-hidden='true' src={LogoImage} />
                       </Column>
                       <SiteTitle marginLeft={1}>
                         <span>{content.main_title}</span>
@@ -477,9 +478,11 @@ export default () => {
                   <SearchFieldContainer marginRight={2}>
                     <SearchField />
                   </SearchFieldContainer>
-                  <Column>
-                    <SelectLanguage />
-                  </Column>
+                  {config.availableLanguages.length > 1 &&
+                    <Column>
+                      <SelectLanguage />
+                    </Column>
+                  }
                   <MobileSearchIconContainer>
                     <Link
                       href='#'
@@ -582,7 +585,7 @@ export default () => {
                             <MobileLogo>
                               <Link href='/' aria-label={content.main_title_aria_label} tracking={{ label: 'header_close_mobile_menu' }} onClick={() => setMobileMenuOpen(false)}>
                                 <Column>
-                                  <img alt='Cardano Logo' aria-hidden='true' src={CardanoLogo} />
+                                  <img alt='Cardano Logo' aria-hidden='true' src={LogoImage} />
                                 </Column>
                                 <MobileSiteTitle marginLeft={1}>
                                   <span>{content.main_title}</span>

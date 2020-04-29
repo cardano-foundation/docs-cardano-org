@@ -117,6 +117,7 @@
       "useNavigator": true,
       "persistLang": true
     },
-    "routes": []
+    "routes": [],
+    "gitHubRepository": "cardano-foundation/docs-cardano-org"
   }
 }

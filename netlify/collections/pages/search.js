@@ -23,13 +23,13 @@ export default {
         {
           name: 'showing_results',
           label: 'Showing results template label',
-          hint: '{{ from }} is replaced with pagination start index, {{ to }} is replaced with pagination end index, {{ total }} is replaced with total results, {{ query }} is replaced with the search query.\n\nAn example search of "cardano" returning 48 results with a template label of:\n"Showing {{ from }} - {{ to }} of {{ total }} results for {{ query }}"\nOn page 1 would read:\n"Showing 1 - 10 of 48 results for cardano"',
+          hint: '{{ from }} is replaced with pagination start index, {{ to }} is replaced with pagination end index, {{ total }} is replaced with total results, {{ query }} is replaced with the search query.\n\nAn example search of "documentation" returning 48 results with a template label of:\n"Showing {{ from }} - {{ to }} of {{ total }} results for {{ query }}"\nOn page 1 would read:\n"Showing 1 - 10 of 48 results for documentation"',
           widget: 'string'
         },
         {
           name: 'no_results',
           label: 'No results template label',
-          hint: '{{ query }} is replaced with the search query.\n\nAn example search of "cardano" returning 0 results with a template label of:\n"No matching results for {{ query }}"\nWould read:\n"No matching results for cardano"',
+          hint: '{{ query }} is replaced with the search query.\n\nAn example search of "documentation" returning 0 results with a template label of:\n"No matching results for {{ query }}"\nWould read:\n"No matching results for documentation"',
           widget: 'string'
         },
         {

@@ -22,7 +22,7 @@ module.exports = {
         name: 'Cardano Documentation',
         short_name: 'Cardano Docs',
         start_url: '/',
-        icon: 'resources/images/cardano-logo.png',
+        icon: 'resources/images/manifest-icon.png',
         background_color: '#121326',
         theme_color: '#1fc1c3',
         display: 'minimal-ui',
