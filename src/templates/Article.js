@@ -6,7 +6,6 @@ import Markdown from '@input-output-hk/front-end-core-components/components/Mark
 import Footer from '@input-output-hk/front-end-site-components/components/Footer'
 import Theme from '@input-output-hk/front-end-core-components/components/Theme'
 import Box from '@material-ui/core/Box'
-import Container from '@material-ui/core/Container'
 import TinyColor from '@ctrl/tinycolor'
 import { FaChevronRight, FaChevronDown, FaEllipsisH, FaChevronUp, FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 import Link from '@input-output-hk/front-end-core-components/components/Link'
@@ -15,6 +14,7 @@ import Blank from './Blank'
 import { FIXED_HEADER_OFFSET } from '../constants'
 import GlobalContentQuery from '../queries/GlobalContentQuery'
 import MarkdownComponents from '../components/MarkdownComponents'
+import Container from '../components/Container'
 
 const PageContent = styled.div`
   display: flex;
@@ -413,7 +413,7 @@ const Article = ({ pageContext }) => {
             ]
           }}
         >
-          <Container maxWidth='xl'>
+          <Container>
             <Location>
               {({ location }) => (
                 <PageContent>

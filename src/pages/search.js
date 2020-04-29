@@ -4,7 +4,6 @@ import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 import { Location } from '@reach/router'
 import Box from '@material-ui/core/Box'
-import Container from '@material-ui/core/Container'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import TinyColor from '@ctrl/tinycolor'
 import showdown from 'showdown'
@@ -15,6 +14,7 @@ import Layout from '../components/Layout'
 import SearchPageQuery from '../queries/SearchPageQuery'
 import SearchField from '../components/SearchField'
 import SearchResult from '../components/SearchResult'
+import Container from '../components/Container'
 
 const HeadingWrap = styled.div`
   display: flex;
@@ -219,7 +219,7 @@ const SearchPageInner = ({ data, pageContext, location }) => {
     <SearchPageQuery
       render={pageContent => (
         <Layout headData={{ title: `Cardano Docs - Search: ${query}` }}>
-          <Container maxWidth='xl'>
+          <Container>
             <HeadingWrap>
               <h1>{pageContent.title}</h1>
               <SearchContainer>

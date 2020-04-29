@@ -2,7 +2,7 @@ import React, { Fragment, useState, forwardRef, useEffect, useRef, useCallback }
 import styled from 'styled-components'
 import AppBar from '@material-ui/core/AppBar'
 import Box from '@material-ui/core/Box'
-import Container from '@material-ui/core/Container'
+import MUIContainer from '@material-ui/core/Container'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import Link from '@input-output-hk/front-end-core-components/components/Link'
@@ -15,6 +15,7 @@ import SelectLanguage from './SelectLanguage'
 import CardanoLogo from '../../resources/images/cardano-logo.svg'
 import GlobalContentQuery from '../queries/GlobalContentQuery'
 import { APP_BAR_OFFSET, NAV_OFFSET } from '../constants'
+import Container from './Container'
 
 const Bar = styled(AppBar)`
   background-color: ${({ theme }) => new TinyColor(theme.palette.background.default).lighten(5).toString()};
@@ -444,7 +445,7 @@ export default () => {
     if (activeIndex === false || !navigation[activeIndex]) return null
     return (
       <PageTitleContainer>
-        <Container maxWidth='xl'>
+        <Container>
           <Box paddingTop={1}>
             <h1>{navigation[activeIndex].label}</h1>
           </Box>
@@ -458,7 +459,7 @@ export default () => {
       render={(content, navigation) => (
         <div ref={rootRef}>
           <Bar position='fixed'>
-            <Container maxWidth='xl'>
+            <Container>
               <Box paddingTop={0.8} paddingBottom={0.8} display='flex'>
                 <Box display='flex'>
                   <Logo>
@@ -520,9 +521,9 @@ export default () => {
                   aria-labelledby='mobile-search-bar'
                   ariaLabel='Search bar'
                 >
-                  <Container maxWidth='xs'>
+                  <MUIContainer maxWidth='xs'>
                     <SearchField onSearch={() => setMobileSearchBarOpen(false)} />
-                  </Container>
+                  </MUIContainer>
                 </MobileSearchBar>
               </CSSTransition>
             }
@@ -534,7 +535,7 @@ export default () => {
                 {renderPageTitle(navigation, location.pathname)}
                 <div>
                   <Navigation className={`position-${!renderPageTitle(navigation, location.pathname) ? 'fixed' : navigationPosition}`} ref={navigationRef} aria-label='Main'>
-                    <Container maxWidth='xl'>
+                    <Container>
                       <Box>
                         <TabsContainer maxWidth='100%'>
                           <Tabs
