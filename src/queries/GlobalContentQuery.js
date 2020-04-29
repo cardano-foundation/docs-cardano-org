@@ -20,6 +20,7 @@ const GlobalContentQuery = ({ render }) => (
                       select_theme
                       last_updated
                       report_an_issue
+                      search
                     }
                   }
                 }

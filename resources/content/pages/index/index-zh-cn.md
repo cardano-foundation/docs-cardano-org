@@ -3,8 +3,6 @@
 title: zh-cn (Chinese) Home page content
 content:
   title: Cardano Documentation
-  subtitle: Cardano Settlement Layer Documentation
-  description: The purpose of this documentation is to provide you with understanding of the first layer of Cardano Platform stack, the Settlement Layer.
   hero:
     hero_title: Cardano
     hero_subtitle: A resilient, scalable foundation designed for building decentralized applications of the future
@@ -17,11 +15,8 @@ content:
       At Cardano's heart is the groundbreaking **Ouroboros** consensus algorithm, created by IOHK's own academics and subject to constant improvement through new cryptography research. 
     ouroboros_body: |
       Using an unprecedented combination of functional programming, peer-reviewed research, and high-assurance formal methods development, the Cardano network is designed to be a resilient, scalable foundation upon which to build the decentralized applications of the future.
-    ouroboros_links:
-      - ouroboros_link_title: Resilent
-        ouroboros_link_href: /
-      - ouroboros_link_title: Scalable
-        ouroboros_link_href: /
+    ouroboros_resilient: Resilent
+    ouroboros_scalable: Scalable
   cardano_topic:
     topic_title: Learn more about Cardano
     topic_link: /about-cardano/

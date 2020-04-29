@@ -24,6 +24,8 @@ module.exports = ({ createPage }) => {
     articles.forEach((article) => {
       const navigationContext = context || cleanNavigationContext(getContext(article))
       if (article.content) {
+        const lastUpdated = moment(article.lastUpdated, 'YYYY-MM-DDTHH:mm:ssZ')
+        lastUpdated.utcOffset(0)
         createPage({
           path: `/${lang}${article.path}`,
           component: articleTemplate,
@@ -31,7 +33,7 @@ module.exports = ({ createPage }) => {
             pageTitle: article.title,
             navigationContext,
             content: article.content,
-            lastUpdated: moment(article.lastUpdated, 'YYYY-MM-DD').format('MMMM D, YYYY'),
+            lastUpdated: lastUpdated.format('MMMM D, YYYY HH:mm [UTC]'),
             lang
           }
         })
