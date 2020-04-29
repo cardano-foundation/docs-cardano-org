@@ -5,6 +5,7 @@ import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import { analytics } from '@input-output-hk/front-end-core-libraries'
 import Language from '@input-output-hk/front-end-core-components/components/Language'
+import GlobalContentQuery from '../queries/GlobalContentQuery'
 
 const StyledMenuItem = styled(MenuItem)`
   display: block;
@@ -33,41 +34,47 @@ export default () => {
   const onClose = () => setAnchorEl(null)
 
   return (
-    <Language.Consumer>
-      {({ key: lang, availableLanguages, setLang }) => (
-        <Fragment>
-          <TriggerButton
-            onClick={e => {
-              e.preventDefault()
-              analytics.click({ category: 'toggle_language_selector', event: e })
-              setAnchorEl(e.currentTarget)
-            }}
-          >
-            {getCurrentLanguage(lang, availableLanguages)}
-          </TriggerButton>
-          <Menu
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={onClose}
-          >
-            {availableLanguages.map(language => (
-              <StyledMenuItem
-                key={language.key}
-                component='button'
+    <GlobalContentQuery
+      render={globalContent => (
+        <Language.Consumer>
+          {({ key: lang, availableLanguages, setLang }) => (
+            <Fragment>
+              <TriggerButton
                 onClick={e => {
                   e.preventDefault()
-                  analytics.click({ category: 'language_selector', label: language.key, event: e })
-                  setLang(language.key)
-                  onClose()
+                  analytics.click({ category: 'toggle_language_selector', event: e })
+                  setAnchorEl(e.currentTarget)
                 }}
+                aria-label={globalContent.select_language}
               >
-                {language.label}
-              </StyledMenuItem>
-            ))}
-          </Menu>
-        </Fragment>
+                {getCurrentLanguage(lang, availableLanguages)}
+              </TriggerButton>
+              <Menu
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={onClose}
+              >
+                {availableLanguages.map(language => (
+                  <StyledMenuItem
+                    key={language.key}
+                    component='button'
+                    onClick={e => {
+                      e.preventDefault()
+                      analytics.click({ category: 'language_selector', label: language.key, event: e })
+                      setLang(language.key)
+                      onClose()
+                    }}
+                    aria-label={language.label}
+                  >
+                    {language.label}
+                  </StyledMenuItem>
+                ))}
+              </Menu>
+            </Fragment>
+          )}
+        </Language.Consumer>
       )}
-    </Language.Consumer>
+    />
   )
 }

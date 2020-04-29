@@ -159,6 +159,7 @@ export default () => (
                       color='primary'
                       href={content.hero.hero_cta_link}
                       tracking={{ label: 'home_page_hero_cta' }}
+                      role='link'
                     >
                       {content.hero.hero_cta}
                     </CTAButton>
@@ -173,7 +174,7 @@ export default () => (
             <Box paddingTop={5} paddingBottom={8}>
               <Grid container>
                 <Grid item md={6}>
-                  <OuroborosLogo src='/images/uploads/ouroboros-logo.svg' alt='' />
+                  <OuroborosLogo src='/images/uploads/ouroboros-logo.svg' alt='Ouroboros logo' />
                   <Typography component='div' variant='h3'>
                     <Markdown source={content.ouroboros.ouroboros_lead} />
                   </Typography>
@@ -192,7 +193,7 @@ export default () => (
                   </ul>
                 </Grid>
                 <Grid item md={6}>
-                  <OuroborosImage src='/images/uploads/ouroboros.png' alt='' />
+                  <OuroborosImage src='/images/uploads/ouroboros.png' alt='Ouroboros visualization' />
                 </Grid>
               </Grid>
             </Box>
@@ -205,13 +206,13 @@ export default () => (
                 <li>
                   <div className='inner'>
                     <Box marginBottom={3} maxHeight='6rem'>
-                      <img src={CardanoLogo} alt='Cardano' />
+                      <img src={CardanoLogo} alt='Cardano logo' />
                     </Box>
                     <Box marginBottom={4}>
                       <Typography>{content.cardano_topic.topic_body}</Typography>
                     </Box>
                     <Box>
-                      <Typography variant='h5'>
+                      <Typography component='span' variant='h5'>
                         <Link
                           href={content.cardano_topic.topic_link}
                           tracking={{ label: 'home_page_cardano_topic' }}
@@ -225,13 +226,13 @@ export default () => (
                 <li>
                   <div className='inner'>
                     <Box marginBottom={3} maxHeight='6rem'>
-                      <img src='/images/uploads/stake-pool.png' alt='Cardano Stake Pool' />
+                      <img src='/images/uploads/stake-pool.png' alt='Cardano Stake Pool icon' />
                     </Box>
                     <Box marginBottom={4}>
                       <Typography>{content.stake_pool_topic.topic_body}</Typography>
                     </Box>
                     <Box>
-                      <Typography variant='h5'>
+                      <Typography component='span' variant='h5'>
                         <Link
                           href={content.stake_pool_topic.topic_link}
                           tracking={{ label: 'home_page_pool_topic' }}
@@ -245,13 +246,13 @@ export default () => (
                 <li>
                   <div className='inner'>
                     <Box marginBottom={3} maxHeight='6rem'>
-                      <img src='/images/uploads/ada-icon.png' alt='ADA' />
+                      <img src='/images/uploads/ada-icon.png' alt='ADA icon' />
                     </Box>
                     <Box marginBottom={4}>
                       <Typography>{content.exchange_topic.topic_body}</Typography>
                     </Box>
                     <Box>
-                      <Typography variant='h5'>
+                      <Typography component='span' variant='h5'>
                         <Link
                           href={content.exchange_topic.topic_link}
                           tracking={{ label: 'home_page_exchange_topic' }}
