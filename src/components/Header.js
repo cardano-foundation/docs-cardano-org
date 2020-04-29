@@ -271,6 +271,10 @@ const MobileMenu = styled.div`
   &.mobile-menu-exit-active {
     transform: translate(0, -100%);
   }
+
+  ${({ theme }) => theme.breakpoints.up('md')} {
+    display: none;
+  }
 `
 
 const MobileMenuInner = styled.div`
@@ -336,6 +340,7 @@ const MobileMenuScrollContainer = styled.div`
 export default () => {
   const navigationRef = useRef(null)
   const mobileSearchBarRef = useRef(null)
+  const rootRef = useRef(null)
   const [ mobileMenuOpen, setMobileMenuOpen ] = useState(false)
   const [ mobileSearchBarOpen, setMobileSearchBarOpen ] = useState(false)
   const [ navigationPosition, setNavigationPosition ] = useState('static')
@@ -368,16 +373,45 @@ export default () => {
     }
   }, [ navigationRef, navigationPosition ])
 
+  /**
+   * All of this is for accessibility to ensure when the mobile menu is open that
+   * only the header and mobile menu elements can be focussed
+   */
+  const onKeyDown = useCallback((e) => {
+    const mobileMenu = rootRef.current && rootRef.current.querySelector('#mobile-menu')
+    if (e.keyCode === 9 && window.getComputedStyle(mobileMenu).display !== 'none') {
+      const filteredInteractibleElements = []
+      rootRef.current.querySelectorAll('a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select').forEach(el => {
+        if (el.offsetParent !== null) filteredInteractibleElements.push(el)
+      })
+
+      const firstElement = filteredInteractibleElements[0]
+      const lastElement = filteredInteractibleElements[filteredInteractibleElements.length - 1]
+
+      if (!e.shiftKey && document.activeElement === lastElement) {
+        firstElement.focus()
+        return e.preventDefault()
+      }
+
+      if (e.shiftKey && document.activeElement === firstElement) {
+        lastElement.focus()
+        e.preventDefault()
+      }
+    }
+  }, [ rootRef ])
+
   useEffect(() => {
     window.addEventListener('scroll', onScroll)
     window.addEventListener('touchmove', onScroll)
     if (mobileSearchBarOpen) window.document.body.addEventListener('click', bodyClickHandler)
+    if (mobileMenuOpen) window.addEventListener('keydown', onKeyDown)
     return () => {
       window.document.body.removeEventListener('click', bodyClickHandler)
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('touchmove', onScroll)
+      window.removeEventListener('keydown', onKeyDown)
     }
-  }, [ mobileSearchBarOpen, mobileSearchBarRef, navigationRef, navigationPosition ])
+  }, [ mobileSearchBarOpen, mobileSearchBarRef, navigationRef, navigationPosition, mobileMenuOpen, rootRef ])
 
   function getActiveIndex ({ navigation, path }) {
     let activeIndex = false
@@ -422,15 +456,15 @@ export default () => {
   return (
     <GlobalContentQuery
       render={(content, navigation) => (
-        <Fragment>
+        <div ref={rootRef}>
           <Bar position='fixed'>
             <Container maxWidth='xl'>
               <Box paddingTop={0.8} paddingBottom={0.8} display='flex'>
                 <Box display='flex'>
                   <Logo>
-                    <Link href='/' tracking={{ label: 'header_cardano_logo' }}>
+                    <Link href='/' aria-label={content.main_title_aria_label} tracking={{ label: 'header_cardano_logo' }}>
                       <Column>
-                        <img src={CardanoLogo} />
+                        <img alt='Cardano Logo' aria-hidden='true' src={CardanoLogo} />
                       </Column>
                       <SiteTitle marginLeft={1}>
                         <span>{content.main_title}</span>
@@ -446,12 +480,26 @@ export default () => {
                     <SelectLanguage />
                   </Column>
                   <MobileSearchIconContainer>
-                    <Link href='#' tracking={{ label: 'header_toggle_mobile_search_bar' }} onClick={toggleMobileSearchBar}>
+                    <Link
+                      href='#'
+                      tracking={{ label: 'header_toggle_mobile_search_bar' }}
+                      onClick={toggleMobileSearchBar}
+                      aria-expanded={mobileSearchBarOpen}
+                      aria-controls='mobile-search-bar'
+                      aria-label={mobileSearchBarOpen ? 'Close search bar' : 'Open search bar'}
+                    >
                       <MdSearch />
                     </Link>
                   </MobileSearchIconContainer>
                   <MobileNavContainer marginLeft={1}>
-                    <Link href='#' tracking={{ label: 'header_toggle_mobile_menu' }} onClick={toggleMobileMenu}>
+                    <Link
+                      href='#'
+                      tracking={{ label: 'header_toggle_mobile_menu' }}
+                      onClick={toggleMobileMenu}
+                      aria-expanded={mobileMenuOpen}
+                      aria-controls='mobile-search-menu'
+                      aria-label={mobileMenuOpen ? 'Close main navigation menu' : 'Open main navigation'}
+                    >
                       {mobileMenuOpen && <MdClose />}
                       {!mobileMenuOpen && <MdMenu />}
                     </Link>
@@ -467,7 +515,11 @@ export default () => {
                 timeout={300}
                 classNames='mobile-search-bar'
               >
-                <MobileSearchBar ref={mobileSearchBarRef}>
+                <MobileSearchBar
+                  ref={mobileSearchBarRef}
+                  aria-labelledby='mobile-search-bar'
+                  ariaLabel='Search bar'
+                >
                   <Container maxWidth='xs'>
                     <SearchField onSearch={() => setMobileSearchBarOpen(false)} />
                   </Container>
@@ -481,7 +533,7 @@ export default () => {
               <Fragment>
                 {renderPageTitle(navigation, location.pathname)}
                 <div>
-                  <Navigation className={`position-${!renderPageTitle(navigation, location.pathname) ? 'fixed' : navigationPosition}`} ref={navigationRef}>
+                  <Navigation className={`position-${!renderPageTitle(navigation, location.pathname) ? 'fixed' : navigationPosition}`} ref={navigationRef} aria-label='Main'>
                     <Container maxWidth='xl'>
                       <Box>
                         <TabsContainer maxWidth='100%'>
@@ -499,6 +551,7 @@ export default () => {
                                 href={path}
                                 tracking={{ category: 'tabs_navigation', label: path }}
                                 component={forwardRef((props, ref) => <Link {...props} {...ref} />)}
+                                aria-label={label}
                               />
                             ))}
                           </Tabs>
@@ -517,13 +570,18 @@ export default () => {
                       timeout={400}
                       classNames='mobile-menu'
                     >
-                      <MobileMenu>
+                      <MobileMenu
+                        aria-labelledby='mobile-search-menu'
+                        ariaLabel='Main menu'
+                        role='dialog'
+                        id='mobile-menu'
+                      >
                         <MobileMenuInner>
                           <MobileMenuScrollContainer>
                             <MobileLogo>
-                              <Link href='/' tracking={{ label: 'header_close_mobile_menu' }} onClick={() => setMobileMenuOpen(false)}>
+                              <Link href='/' aria-label={content.main_title_aria_label} tracking={{ label: 'header_close_mobile_menu' }} onClick={() => setMobileMenuOpen(false)}>
                                 <Column>
-                                  <img src={CardanoLogo} />
+                                  <img alt='Cardano Logo' aria-hidden='true' src={CardanoLogo} />
                                 </Column>
                                 <MobileSiteTitle marginLeft={1}>
                                   <span>{content.main_title}</span>
@@ -540,7 +598,7 @@ export default () => {
               </Fragment>
             )}
           </Location>
-        </Fragment>
+        </div>
       )}
     />
   )

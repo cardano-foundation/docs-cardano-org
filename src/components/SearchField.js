@@ -71,6 +71,7 @@ const SearchField = ({ onSearch }) => {
               {({ search, setSearch }) => (
                 <Form
                   onSubmit={onFormSubmit(search, lang, setSearch)}
+                  aria-label={globalContent.search_form_aria_label}
                 >
                   <Input
                     type='text'
@@ -78,10 +79,12 @@ const SearchField = ({ onSearch }) => {
                     placeholder={globalContent.search}
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
+                    aria-label={globalContent.search_form_aria_label}
                   />
                   <Submit
                     type='submit'
                     onClick={(e) => analytics.click({ category: 'form', label: 'search_submit', event: e })}
+                    aria-label={globalContent.search_form_submit_aria_label}
                   >
                     <FiSearch />
                   </Submit>

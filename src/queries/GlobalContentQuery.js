@@ -16,11 +16,14 @@ const GlobalContentQuery = ({ render }) => (
                   frontmatter {
                     content {
                       main_title
+                      main_title_aria_label
                       select_language
                       select_theme
                       last_updated
                       report_an_issue
                       search
+                      search_form_aria_label
+                      search_form_submit_aria_label
                     }
                   }
                 }

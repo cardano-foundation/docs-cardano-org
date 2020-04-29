@@ -182,7 +182,7 @@ const ExternalLink = styled(Link)`
   display: inline-block;
 `
 
-const NavigationTree = ({ items, lang, path, currentPathname, isRoot = true, position, setPosition, minHeight, setMinHeight, autoScroll = true }) => {
+const NavigationTree = ({ items, lang, path, ariaLabel, currentPathname, id = '', isRoot = true, position, setPosition, minHeight, setMinHeight, autoScroll = true }) => {
   const rootRef = useRef(null)
   const [ maxWidth, setMaxWidth ] = useState(null)
   const [ expanded, setExpanded ] = useState(getDefaultExpanded())
@@ -260,7 +260,7 @@ const NavigationTree = ({ items, lang, path, currentPathname, isRoot = true, pos
   }, [ isRoot, rootRef, position, expanded, autoScroll ])
 
   return (
-    <Nav key={path} ref={rootRef} className={isRoot ? `position-${position}` : ''} maxWidth={maxWidth}>
+    <Nav id={id} role='navigation' aria-label={ariaLabel} key={path} ref={rootRef} className={isRoot ? `position-${position}` : ''} maxWidth={maxWidth}>
       {items.map((item) => (
         <li key={item.path}>
           {item.children.length === 0 && !item.externalHref &&
@@ -299,6 +299,9 @@ const NavigationTree = ({ items, lang, path, currentPathname, isRoot = true, pos
                 activeClassName='active'
                 partiallyActive
                 tracking={{ category: 'article_navigation', label: `toggle_accordion_${item.path}` }}
+                aria-disabled={isActive(item.path) ? 'true' : 'false'}
+                aria-controls={item.path}
+                aria-expanded={expanded[item.path]}
               >
                 <Box display='flex'>
                   <Box flex={1} justifyContent='center' flexDirection='column' display='flex'>
@@ -309,8 +312,10 @@ const NavigationTree = ({ items, lang, path, currentPathname, isRoot = true, pos
                   </Box>
                 </Box>
               </AccordionToggle>
-              <Accordion className={expanded[item.path] ? 'expanded' : ''}>
+              <Accordion role='region' className={expanded[item.path] ? 'expanded' : ''}>
                 <NavigationTree
+                  aria-labelledby={item.path}
+                  ariaLabel={`${item.title} subnavigation`}
                   items={item.children}
                   path={item.path}
                   lang={lang}
@@ -334,6 +339,8 @@ const NavigationTree = ({ items, lang, path, currentPathname, isRoot = true, pos
 NavigationTree.propTypes = {
   items: PropTypes.array.isRequired,
   lang: PropTypes.string.isRequired,
+  ariaLabel: PropTypes.string.isRequired,
+  id: PropTypes.string,
   currentPathname: PropTypes.string.isRequired,
   path: PropTypes.string.isRequired,
   isRoot: PropTypes.bool,
@@ -413,6 +420,7 @@ const Article = ({ pageContext }) => {
                   {pageContext.navigationContext.children.length > 0 &&
                     <SideNavigationContainer minHeight={minHeight || 0} className={`position-${position}`}>
                       <NavigationTree
+                        ariaLabel={`${pageContext.navigationContext.title} subnavigation`}
                         lang={pageContext.lang}
                         items={pageContext.navigationContext.children}
                         path={`/${pageContext.navigationContext.key}`}
@@ -430,6 +438,7 @@ const Article = ({ pageContext }) => {
                         <div>
                           <NavigationTree
                             lang={pageContext.lang}
+                            ariaLabel={`${pageContext.navigationContext.title} subnavigation`}
                             items={pageContext.navigationContext.children}
                             path={`/${pageContext.navigationContext.key}`}
                             currentPathname={location.pathname}
@@ -438,6 +447,7 @@ const Article = ({ pageContext }) => {
                         </div>
                         <Link
                           href='#'
+                          aria-hidden='true'
                           tracking={{ label: 'toggle_mobile_article_navigation_top' }}
                           onClick={(e) => {
                             e.preventDefault()
@@ -477,6 +487,7 @@ const Article = ({ pageContext }) => {
                         <div>
                           <NavigationTree
                             lang={pageContext.lang}
+                            ariaLabel={`${pageContext.navigationContext.title} subnavigation`}
                             items={pageContext.navigationContext.children}
                             path={`/${pageContext.navigationContext.key}`}
                             currentPathname={location.pathname}
@@ -485,6 +496,7 @@ const Article = ({ pageContext }) => {
                         </div>
                         <Link
                           href='#'
+                          aria-hidden='true'
                           tracking={{ label: 'toggle_mobile_article_navigation_bottom' }}
                           onClick={(e) => {
                             e.preventDefault()
