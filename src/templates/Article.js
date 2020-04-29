@@ -95,13 +95,12 @@ const Nav = styled.ul`
     margin: 1rem 0;
 
     p {
-      font-weight: 600;
+      text-decoration: underline;
     }
 
     a {
       &.active {
-        font-weight: 600;
-        letter-spacing: -0.06rem;
+        text-decoration: underline;
       }
     }
 
