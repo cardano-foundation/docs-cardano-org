@@ -1,0 +1,4 @@
+[build]
+  publish = "/build/html"
+  command = """bash git-clone.sh && \
+  make html"""
