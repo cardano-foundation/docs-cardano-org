@@ -1,3 +1,0 @@
-adrestia https://github.com/input-output-hk/adrestia.git
-cardano-node https://github.com/input-output-hk/cardano-node.git
-cardano-wallet https://github.com/input-output-hk/cardano-wallet.git
