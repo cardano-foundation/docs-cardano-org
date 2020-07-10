@@ -3,7 +3,7 @@ Cardano Documentation
 =====================
 
 .. note:: 
-   Please note, all new documentation is currently hosted in this temporary site design. A new site UI with the refreshed Cardano brand look and feel is in the final stages of production and will be deployed here very soon.
+   If you are looking for a user-friendly wallet for Cardano, If you are looking for a user-friendly wallet for Cardano, please take a look at `Daedalus`_ or `Yoroi`_
 
 Cardano is a decentralized third-generation proof-of-stake blockchain platform and home to the ada cryptocurrency. It is the first blockchain platform to evolve out of a scientific philosophy and a research-first driven approach.
 
@@ -12,3 +12,7 @@ The Cardano platform has been designed from the ground up and verified by an ind
 Cardano has been designed with security as one of its founding principles. It is written in Haskell, a functional programming language. In a functional language like Haskell, building your system using pure functions is encouraged, which leads to a design where components are conveniently testable in isolation. Furthermore, advanced features of Haskell enable us to employ a whole range of powerful methods for ensuring correctness of the code, such as basing the implementation on formal and executable specifications, extensive property-based testing, and running tests in simulation.
 
 Cardano is developing a smart contract platform which seeks to deliver more advanced features than any protocol previously developed and will serve as a stable and secure platform for the development of enterprise-level dApps. In the near future, Cardano will use a democratic governance system that allows the project to evolve over time, and fund itself in a sustainable way through a visionary treasury system. You can read more about Cardano on the `official Cardano website <http://cardano.org/>`_.
+
+
+.. _Daedalus: https://daedaluswallet.io
+.. _Yoroi: https://yoroi-wallet.com
