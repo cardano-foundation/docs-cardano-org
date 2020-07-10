@@ -1,21 +1,23 @@
-# Configuration file for the Sphinx documentation builder.
-#
-# This file only contains a selection of the most common options. For a full
-# list see the documentation:
-# https://www.sphinx-doc.org/en/master/usage/configuration.html
 
-# -- Path setup --------------------------------------------------------------
 
-# If extensions (or modules to document with autodoc) are in another directory,
-# add these directories to sys.path here. If the directory is relative to the
-# documentation root, use os.path.abspath to make it absolute, like shown here.
-#
-# import os
-# import sys
-# sys.path.insert(0, os.path.abspath('.'))
+import sys
+import os
 import sphinx_rtd_theme
 import recommonmark
+
 from recommonmark.transform import AutoStructify
+from os.path import abspath, join, dirname
+
+sys.path.insert(0, abspath(join(dirname(__file__))))
+
+# -- RTD configuration ------------------------------------------------
+
+on_rtd = os.environ.get("READTHEDOCS", None) == "True"
+
+# This is used for linking and such so we link to the thing we're building
+rtd_version = os.environ.get("READTHEDOCS_VERSION", "latest")
+if rtd_version not in ["stable", "latest"]:
+    rtd_version = "stable"
 
 # -- Project information -----------------------------------------------------
 
@@ -35,19 +37,30 @@ master_doc = 'index'
 
 extensions = [
     "sphinx_rtd_theme",
-    'sphinxcontrib.mermaid',
     'recommonmark',
     'sphinx_markdown_tables',
-    'sphinxemoji.sphinxemoji'
+    'sphinxemoji.sphinxemoji',
+    "sphinx.ext.autodoc",
+    "sphinx.ext.autosummary",
+    "sphinx.ext.intersphinx",
+    "sphinx.ext.viewcode",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
-html_static_path = ['_static']
+templates_path = ['.sphinx/_templates']
+html_static_path = ['.sphinx/_static']
 
 source_suffix = {
     '.rst': 'restructuredtext',
     '.md': 'markdown',
+}
+
+intersphinx_mapping = {
+    "cardano-node": (
+        "https://cardano.readthedocs.io/projects/cardano-node/en/%s/"
+        % rtd_version,
+        None,
+    ),
 }
 
 # List of patterns, relative to source directory, that match files and
@@ -65,8 +78,8 @@ html_theme = "sphinx_rtd_theme"
 html_style = 'css/modified-theme.css'
 
 html_theme_options = {
-    'logo_only': True,
-    'display_version': True,
+    'logo_only': False,
+    'display_version': False,
     'prev_next_buttons_location': 'bottom',
     'style_external_links': False,
     'vcs_pageview_mode': '',
@@ -83,7 +96,7 @@ html_theme_options = {
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 
-html_logo = "cardano-logo.png"
+html_logo = ".sphinx/cardano-logo.png"
 
 html_context = {
   "display_github": True, # Add 'Edit on Github' link instead of 'View page source'
@@ -93,6 +106,8 @@ html_context = {
   "conf_py_path": "/",
   "source_suffix": source_suffix,
 }
+
+# -- Custom Document processing ----------------------------------------------
 
 def setup(app):
     app.add_config_value('recommonmark_config', {

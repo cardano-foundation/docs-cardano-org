@@ -19,7 +19,7 @@ Cardano is developing a smart contract platform which seeks to deliver more adva
    :titlesonly:
    :hidden:
 
-   cardano-node Quickstart <cardano-components/cardano-node/doc/cardano-node-quickstart>
+   cardano-node Quickstart <getting-started/cardano-node-quickstart>
    Stake Pool Operators <getting-started/stake-pool-operators/index>
    3rd-party Integration <getting-started/3rd-party-integration/index>
 
@@ -29,18 +29,14 @@ Cardano is developing a smart contract platform which seeks to deliver more adva
    :titlesonly:
    :hidden:
 
-   learn-about-cardano/index
-   cardano-tutorials/README
-   glossary
-   release-notes
-
-.. toctree::
-   :maxdepth: 3
-   :caption: Cardano Components
-   :titlesonly:
-   :hidden:
-
-   cardano-node 2 <https://cardano.readthedocs.io/projects/cardano-node/en/latest/>
+   explore-cardano/what-is-a-cardano-node
+   explore-cardano/understanding-consensus
+   explore-cardano/what-is-a-stakepool
+   explore-cardano/understanding-the-delegation-mechanism
+   explore-cardano/understanding-pledging-and-rewards
+   explore-cardano/further-reading
+   explore-cardano/glossary
+   explore-cardano/release-notes
 
 .. toctree::
    :maxdepth: 3
@@ -48,7 +44,17 @@ Cardano is developing a smart contract platform which seeks to deliver more adva
    :titlesonly:
    :hidden:
 
-   contribute-cardano/providing-feedback
-   contribute-cardano/ambassadors-program
-   contribute-cardano/community-generated-content
-   get-support
+   cardano-community/providing-feedback
+   cardano-community/ambassadors-program
+   cardano-community/community-generated-content
+   cardano-community/get-support
+
+.. toctree::
+   :caption: Cardano Components
+   :titlesonly:
+   :hidden:
+
+   cardano-node <https://cardano.readthedocs.io/projects/cardano-node/en/latest/>
+   cardano-adrestia <https://cardano.readthedocs.io/projects/adrestia/en/latest/>
+   cardano-wallet <https://cardano.readthedocs.io/projects/cardano-wallet/en/latest/>
+   plutus <https://cardano.readthedocs.io/projects/plutus/en/latest/>
