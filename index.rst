@@ -40,10 +40,7 @@ Cardano is developing a smart contract platform which seeks to deliver more adva
    :titlesonly:
    :hidden:
 
-   cardano-components/adrestia/doc/index
-   cardano-components/cardano-node/doc/index
-   cardano-components/cardano-wallet/doc/index
-
+   cardano-node 2 <https://cardano.readthedocs.io/projects/cardano-node/en/latest/>
 
 .. toctree::
    :maxdepth: 3
