@@ -1,7 +1,3 @@
-=====================
-Cardano Documentation
-=====================
-
 .. include:: README.rst
   
 .. toctree::
