@@ -38,7 +38,7 @@ master_doc = 'index'
 extensions = [
     "sphinx_rtd_theme",
     'recommonmark',
-    'sphinx_markdown_tables',
+    #'sphinx_markdown_tables',
     'sphinxemoji.sphinxemoji',
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
