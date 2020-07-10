@@ -3,7 +3,7 @@ Cardano Documentation
 =====================
 
 .. note:: 
-   If you are looking for a user-friendly wallet for Cardano, If you are looking for a user-friendly wallet for Cardano, please take a look at `Daedalus`_ or `Yoroi`_
+   If you are looking for a user-friendly wallet for Cardano, please take a look at `Daedalus`_ or `Yoroi`_.
 
 Cardano is a decentralized third-generation proof-of-stake blockchain platform and home to the ada cryptocurrency. It is the first blockchain platform to evolve out of a scientific philosophy and a research-first driven approach.
 
