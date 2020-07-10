@@ -2,6 +2,12 @@
 Cardano Documentation
 =====================
 
+.. raw:: html
+
+   <p align="center">
+     <a href='https://cardano.readthedocs.io/en/latest/?badge=latest'><img src='https://readthedocs.org/projects/cardano/badge/?version=latest' alt='Documentation Status' /></a>
+   </p>
+
 .. note:: 
    If you are looking for a user-friendly wallet for Cardano, please take a look at `Daedalus`_ or `Yoroi`_.
 
