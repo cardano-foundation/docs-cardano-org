@@ -18,8 +18,8 @@ Stake pools are a key part of a decentralized Cardano, supporting the mechanisms
    metadada
    public-stakepools
    metadata-proxy-servers
-   fernando-test
-   
+
+
 **Recommended setup**
 
 As stake pool operator, you will have two types of nodes, core nodes and relay nodes. Each core node must be accompanied by one or more relay nodes.
