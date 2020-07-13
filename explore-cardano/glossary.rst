@@ -1,5 +1,8 @@
+.. _glossary:
+
 Cardano Glossary
 ################
+
 .. glossary::
     ada
       digital currency of the Cardano blockchain. Units of which are measured in lovelaces.
