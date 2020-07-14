@@ -24,6 +24,7 @@
    explore-cardano/further-reading
    explore-cardano/glossary
    explore-cardano/release-notes
+   explore-cardano/fernando-test
 
 .. toctree::
    :maxdepth: 3
