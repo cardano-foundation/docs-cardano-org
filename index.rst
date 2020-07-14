@@ -21,10 +21,11 @@
    explore-cardano/what-is-a-stakepool
    explore-cardano/understanding-the-delegation-mechanism
    explore-cardano/understanding-pledging-and-rewards
+   explore-cardano/cardano-monetary-policy
    explore-cardano/further-reading
    explore-cardano/glossary
    explore-cardano/release-notes
-   explore-cardano/cardano-monetary-policy
+   
 
 .. toctree::
    :maxdepth: 3
