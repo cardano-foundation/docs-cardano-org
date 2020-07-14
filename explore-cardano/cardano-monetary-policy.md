@@ -16,7 +16,7 @@ Cardano's monetary expansion relies on a long-term commitment by stake pool oper
 
 Cardano's incentive system for stake pool operators is designed to balance k fully saturated pools (where k is the number of desired pools), so this equilibrium means that rewards will be optimal for everybody when all stake is delegated uniformly to the k most attractive pools.
 
-## Monetary Policy
+### Monetary Policy
 
 Cardano's monetary policy addresses two issues: 
 
