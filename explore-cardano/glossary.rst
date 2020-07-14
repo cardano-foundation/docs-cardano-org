@@ -6,6 +6,9 @@ Cardano Glossary
 .. glossary::
     ada
       digital currency of the Cardano blockchain. Units of which are measured in lovelaces.
+    
+    address
+      indicates a unique set of numbers and symbols identifying a particular wallet. The address allows users to receive payments, process transactions, and control their stake.
 
     Adrestia
       name of the Haskell wallet backend.
