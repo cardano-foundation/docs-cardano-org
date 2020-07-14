@@ -6,7 +6,7 @@
    :titlesonly:
    :hidden:
 
-   cardano-node Quickstart <https://cardano.readthedocs.io/projects/cardano-node/en/latest/tutorials/install.html>
+   Installing & Running a Node <https://docs.cardano.org/projects/cardano-node/en/latest/getting-started/install.html>
    Stake Pool Operators <getting-started/stake-pool-operators/index>
    3rd-party Integration <getting-started/3rd-party-integration/index>
 
@@ -42,7 +42,7 @@
    :titlesonly:
    :hidden:
 
-   cardano-node <https://cardano.readthedocs.io/projects/cardano-node/en/latest/>
-   cardano-adrestia <https://cardano.readthedocs.io/projects/adrestia/en/latest/>
-   cardano-wallet <https://cardano.readthedocs.io/projects/cardano-wallet/en/latest/>
-   plutus <https://cardano.readthedocs.io/projects/plutus/en/latest/>
+   cardano-node <https://docs.cardano.org/projects/cardano-node/en/latest/>
+   cardano-adrestia <https://docs.cardano.org/projects/adrestia/en/latest/>
+   cardano-wallet <https://docs.cardano.org/projects/cardano-wallet/en/latest/>
+   plutus <https://docs.cardano.org/projects/plutus/en/latest/>
