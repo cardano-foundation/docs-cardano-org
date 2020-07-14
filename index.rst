@@ -24,7 +24,7 @@
    explore-cardano/further-reading
    explore-cardano/glossary
    explore-cardano/release-notes
-   explore-cardano/fernando-test
+   explore-cardano/cardano-monetary-policy
 
 .. toctree::
    :maxdepth: 3
