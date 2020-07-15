@@ -177,5 +177,3 @@ Cardano Glossary
       
     Yoroi
       a light wallet for Cardano that is used to manage ada balances and conduct transactions. A simple, fast, and secure wallet for daily use purposes that is developed by Emurgo.
-    Test word
-      checking
