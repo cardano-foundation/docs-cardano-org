@@ -75,7 +75,7 @@ exclude_patterns = []
 # a list of builtin themes.
 #
 html_theme = "sphinx_rtd_theme"
-#html_style = 'css/modified-theme.css'
+html_style = '.sphinx/css/modified-theme.css'
 
 html_theme_options = {
     'logo_only': False,
@@ -100,8 +100,8 @@ html_logo = ".sphinx/cardano-logo.png"
 
 html_context = {
   "display_github": True, # Add 'Edit on Github' link instead of 'View page source'
-  "github_user": "input-output-hk",
-  "github_repo": "technical-docs",
+  "github_user": "cardano-foundation",
+  "github_repo": "docs-cardano-org",
   "github_version": "main",
   "conf_py_path": "/",
   "source_suffix": source_suffix,
