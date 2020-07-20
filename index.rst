@@ -25,7 +25,15 @@
    explore-cardano/further-reading
    explore-cardano/glossary
    explore-cardano/release-notes
-   
+
+.. toctree::
+   :caption: Cardano Components
+   :titlesonly:
+   :hidden:
+
+   cardano-node <https://docs.cardano.org/projects/cardano-node/en/latest/>
+   cardano-adrestia <https://docs.cardano.org/projects/adrestia/en/latest/>
+   cardano-wallet <https://docs.cardano.org/projects/cardano-wallet/en/latest/>
 
 .. toctree::
    :maxdepth: 3
@@ -37,5 +45,3 @@
    cardano-community/ambassadors-program
    cardano-community/community-generated-content
    cardano-community/get-support
-
-.. include:: .sphinx/nav-footer.rst
