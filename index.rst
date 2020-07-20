@@ -38,4 +38,4 @@
    cardano-community/community-generated-content
    cardano-community/get-support
 
-.. include:: .sphinx/nav-footer
+.. include:: .sphinx/nav-footer.rst
