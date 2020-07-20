@@ -38,12 +38,4 @@
    cardano-community/community-generated-content
    cardano-community/get-support
 
-.. toctree::
-   :caption: Cardano Components
-   :titlesonly:
-   :hidden:
-
-   cardano-node <https://docs.cardano.org/projects/cardano-node/en/latest/>
-   cardano-adrestia <https://docs.cardano.org/projects/adrestia/en/latest/>
-   cardano-wallet <https://docs.cardano.org/projects/cardano-wallet/en/latest/>
-   plutus <https://docs.cardano.org/projects/plutus/en/latest/>
+.. include:: .sphinx/nav-footer
