@@ -1,5 +1,4 @@
-@import 'theme.css';       /* for the Read the Docs theme */
+/** css/yourtheme.css **/
 
-.wy-side-nav-search .wy-dropdown > a, .wy-side-nav-search > a {
-    color: #003c64;
-}
+/* This line is theme specific - it includes the base theme CSS */
+@import 'theme.css';       /* for the Read the Docs theme */
