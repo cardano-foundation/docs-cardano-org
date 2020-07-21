@@ -6,7 +6,7 @@
    :titlesonly:
    :hidden:
 
-   Installing & Running a Node <https://docs.cardano.org/projects/cardano-node/en/latest/getting-started/install.html>
+   Installing & Running a Node <https://cardano-foundation-cardano.readthedocs-hosted.com/projects/cardano-foundation-cardano-node/en/latest/getting-started/install.html>
    Stake Pool Operators <getting-started/stake-pool-operators/index>
    3rd-party Integration <getting-started/3rd-party-integration/index>
 
