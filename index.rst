@@ -6,7 +6,7 @@
    :titlesonly:
    :hidden:
 
-   Installing & Running a Node <https://cardano-foundation-cardano.readthedocs-hosted.com/projects/cardano-foundation-cardano-node/en/latest/getting-started/install.html>
+   Installing & Running a Node <https://docs.cardano.org/projects/cardano-node/en/latest/getting-started/install.html>
    Stake Pool Operators <getting-started/stake-pool-operators/index>
    3rd-party Integration <getting-started/3rd-party-integration/index>
 
@@ -31,9 +31,9 @@
    :titlesonly:
    :hidden:
 
-   cardano-node <https://cardano-foundation-cardano.readthedocs-hosted.com/projects/cardano-foundation-cardano-node/en/latest/>
-   cardano-adrestia <https://cardano-foundation-cardano.readthedocs-hosted.com/projects/cardano-foundation-cardano-adrestia/en/latest/>
-   cardano-wallet <https://cardano-foundation-cardano.readthedocs-hosted.com/projects/cardano-foundation-cardano-wallet/en/latest/>
+   cardano-node <https://docs.cardano.org/projects/cardano-node/>
+   adrestia <https://docs.cardano.org/projects/adrestia>
+   cardano-wallet <https://docs.cardano.org/projects/cardano-wallet/>
 
 .. toctree::
    :maxdepth: 3
