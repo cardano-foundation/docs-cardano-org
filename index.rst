@@ -31,9 +31,9 @@
    :titlesonly:
    :hidden:
 
-   cardano-node <https://docs.cardano.org/projects/cardano-node/en/latest/>
-   cardano-adrestia <https://docs.cardano.org/projects/adrestia/en/latest/>
-   cardano-wallet <https://docs.cardano.org/projects/cardano-wallet/en/latest/>
+   cardano-node <https://cardano-foundation-cardano.readthedocs-hosted.com/projects/cardano-foundation-cardano-node/en/latest/>
+   cardano-adrestia <https://cardano-foundation-cardano.readthedocs-hosted.com/projects/cardano-foundation-cardano-adrestia/en/latest/>
+   cardano-wallet <https://cardano-foundation-cardano.readthedocs-hosted.com/projects/cardano-foundation-cardano-wallet/en/latest/>
 
 .. toctree::
    :maxdepth: 3
