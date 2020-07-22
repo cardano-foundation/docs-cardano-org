@@ -5,7 +5,7 @@ Cardano Documentation
 .. raw:: html
 
    <p align="center">
-     <a href='https://cardano.readthedocs.io/en/latest/?badge=latest'><img src='https://readthedocs.org/projects/cardano/badge/?version=latest' alt='Documentation Status' /></a>
+     <a href='https://cardano.readthedocs.io/en/latest/?version=latest&style=for-the-badge'><img src='https://readthedocs.org/projects/cardano/badge/?version=latest' alt='Documentation Status' /></a>
    </p>
 
 .. note:: 
