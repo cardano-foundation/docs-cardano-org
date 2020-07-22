@@ -34,6 +34,7 @@
    cardano-node <https://docs.cardano.org/projects/cardano-node/>
    adrestia <https://docs.cardano.org/projects/adrestia>
    cardano-wallet <https://docs.cardano.org/projects/cardano-wallet/>
+   cardano-ledger-specs <https://docs.cardano.org/projects/cardano-ledger-specs/>
 
 .. toctree::
    :maxdepth: 3
