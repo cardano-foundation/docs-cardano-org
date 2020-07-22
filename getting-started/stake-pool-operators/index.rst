@@ -37,6 +37,6 @@ Each node should run on a dedicated server, and the core node server's firewall 
 
 **How to create a stake pool**
 
-To learn how to setup your own stake pool, please follow the `Cardano Tutorials`_
+To learn how to setup your own stake pool, try following our instructions on `how to connect to Shelley Testnet`_
 
-.. _Cardano Tutorials: ../../cardano-tutorials/readme
+.. _how to connect to Shelley Testnet: https://docs.cardano.org/projects/cardano-node/en/latest/stake-pool-operations/getConfigFiles_AND_Connect.html
