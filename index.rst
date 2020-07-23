@@ -37,7 +37,6 @@
    cardano-wallet <https://docs.cardano.org/projects/cardano-wallet/>
    adrestia <https://docs.cardano.org/projects/adrestia>
 
-
 .. toctree::
    :maxdepth: 3
    :caption: Cardano Community
@@ -48,3 +47,10 @@
    cardano-community/ambassadors-program
    cardano-community/community-generated-content
    cardano-community/get-support
+
+.. toctree::
+   :caption: Tools
+   :titlesonly:
+   :hidden:
+
+   Cardano Explorer <https://explorer.cardano.org/>
