@@ -32,9 +32,11 @@
    :hidden:
 
    cardano-node <https://docs.cardano.org/projects/cardano-node/>
-   adrestia <https://docs.cardano.org/projects/adrestia>
-   cardano-wallet <https://docs.cardano.org/projects/cardano-wallet/>
+   cardano-shell <https://docs.cardano.org/projects/cardano-shell/>
    cardano-ledger-specs <https://docs.cardano.org/projects/cardano-ledger-specs/>
+   cardano-wallet <https://docs.cardano.org/projects/cardano-wallet/>
+   adrestia <https://docs.cardano.org/projects/adrestia>
+
 
 .. toctree::
    :maxdepth: 3
