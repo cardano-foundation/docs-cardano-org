@@ -34,6 +34,7 @@
    cardano-node <https://docs.cardano.org/projects/cardano-node/>
    cardano-shell <https://docs.cardano.org/projects/cardano-shell/>
    cardano-ledger-specs <https://docs.cardano.org/projects/cardano-ledger-specs/>
+   cardano-db-sync <https://docs.cardano.org/projects/cardano-db-sync/>
    cardano-wallet <https://docs.cardano.org/projects/cardano-wallet/>
    adrestia <https://docs.cardano.org/projects/adrestia>
 
