@@ -18,6 +18,7 @@ Stake pools are a key part of a decentralized Cardano, supporting the mechanisms
    metadada
    public-stakepools
    metadata-proxy-servers
+   How to set up a stake pool <https://docs.cardano.org/projects/cardano-node/en/latest/getting-started/install.html<
 
 
 **Recommended setup**
@@ -37,6 +38,6 @@ Each node should run on a dedicated server, and the core node server's firewall 
 
 **How to create a stake pool**
 
-To learn how to setup your own stake pool, try following our instructions on `how to connect to Shelley Testnet`_
+To learn how to setup your own stake pool, try following our instructions on `how to setup a stake pool`_
 
-.. _how to connect to Shelley Testnet: https://docs.cardano.org/projects/cardano-node/en/latest/stake-pool-operations/getConfigFiles_AND_Connect.html
+.. _how to setup a stakepool: https://docs.cardano.org/projects/cardano-node/en/latest/getting-started/install.html
