@@ -24,7 +24,7 @@ Stake pools are a key part of a decentralized Cardano, supporting the mechanisms
 
 As stake pool operator, you will have two types of nodes, core nodes and relay nodes. Each core node must be accompanied by one or more relay nodes.
 
-To be clear: Both types of nodes run exactly the same program, cardano-node. The difference between the two types is that core nodes are responsible for producing blocks, while relays are responsible for communicating with other relays int the network and broadcasting blocks. This difference determines how they are configured and how they are connected to the network.
+To be clear: Both types of nodes run exactly the same program, cardano-node. The difference between the two types is that core nodes are responsible for producing blocks, while relays are responsible for communicating with other relays in the network and broadcasting blocks. This difference determines how they are configured and how they are connected to the network.
 
 * A core node is configured with various key-pairs and an operational certificate needed for block generation (cold keys, KES hot keys and VRF hot keys). It only connects to its relay nodes.
 
