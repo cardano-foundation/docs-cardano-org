@@ -35,6 +35,7 @@
    cardano-shell <https://docs.cardano.org/projects/cardano-shell/>
    cardano-ledger-specs <https://docs.cardano.org/projects/cardano-ledger-specs/>
    cardano-db-sync <https://docs.cardano.org/projects/cardano-db-sync/>
+   cardano-rest <https://docs.cardano.org/projects/cardano-rest/>
    cardano-wallet <https://docs.cardano.org/projects/cardano-wallet/>
    ouroboros-network <https://docs.cardano.org/projects/ouroboros-network/>
    adrestia <https://docs.cardano.org/projects/adrestia>
