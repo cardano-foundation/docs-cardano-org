@@ -22,6 +22,7 @@
    explore-cardano/understanding-the-delegation-mechanism
    explore-cardano/understanding-pledging-and-rewards
    explore-cardano/cardano-monetary-policy
+   explore-cardano/design-rationale
    explore-cardano/further-reading
    explore-cardano/glossary
    explore-cardano/release-notes
