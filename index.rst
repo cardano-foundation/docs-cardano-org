@@ -37,6 +37,7 @@
    cardano-db-sync <https://docs.cardano.org/projects/cardano-db-sync/>
    cardano-rest <https://docs.cardano.org/projects/cardano-rest/>
    cardano-wallet <https://docs.cardano.org/projects/cardano-wallet/>
+   smash <https://docs.cardano.org/projects/smash/>
    ouroboros-network <https://docs.cardano.org/projects/ouroboros-network/>
    adrestia <https://docs.cardano.org/projects/adrestia>
 
