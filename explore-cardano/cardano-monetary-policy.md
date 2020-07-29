@@ -21,7 +21,7 @@ Cardano's incentive system for stake pool operators is designed to balance k ful
 Cardano's monetary policy addresses two issues: 
 
 -   The necessity to offer rewards for people who participate in the network
--   Funding the Treasury
+-   Funding the treasury
 
 **Rewards**
 
@@ -29,8 +29,8 @@ The expansion and future improvement of the Cardano blockchain will be greatly i
 
 Staking rewards for delegators and stake pool operators come from two sources:
 
--   Transaction fees - The fees from every transaction from all blocks produced during every epoch go into a virtual 'pot'. A fixed percentage (ρ) of the remaining ada reserves is added to that pot.
--   Monetary expansion - A certain percentage (τ) of the pot is sent to the treasury, and the rest is used as epoch rewards.
+-   Transaction fees - fees from every transaction from all blocks produced during every epoch go into a virtual 'pot'. A fixed percentage (ρ) of the remaining ada reserves is added to that pot.
+-   Monetary expansion - a certain percentage (τ) of the pot is sent to the treasury, and the rest is used as epoch rewards.
 
 This system is designed to ensure that the portion of rewards taken from the reserves is high at the beginning, when transaction numbers are still relatively low. This incentivizes early adopters to move quickly to benefit from high initial rewards. Over time, and as the number of transactions increases, additional fees will compensate for smaller reserves.
 
