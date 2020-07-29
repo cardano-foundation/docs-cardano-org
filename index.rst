@@ -8,7 +8,7 @@
 
    Installing & Running a Node <https://docs.cardano.org/projects/cardano-node/en/latest/getting-started/install.html>
    Stake Pool Operators <getting-started/stake-pool-operators/index>
-   3rd-party Integration <getting-started/3rd-party-integration/index>
+   Third-party Integration <getting-started/3rd-party-integration/index>
 
 .. toctree::
    :maxdepth: 3
@@ -21,8 +21,8 @@
    explore-cardano/what-is-a-stakepool
    explore-cardano/understanding-the-delegation-mechanism
    explore-cardano/understanding-pledging-and-rewards
-   explore-cardano/cardano-monetary-policy
    explore-cardano/design-rationale
+   explore-cardano/cardano-monetary-policy
    explore-cardano/further-reading
    explore-cardano/glossary
    explore-cardano/release-notes
