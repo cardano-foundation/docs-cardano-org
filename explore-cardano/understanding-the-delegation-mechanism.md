@@ -1,4 +1,4 @@
-# Understanding the delegation mechanism
+# Understanding the Delegation Mechanism
 
 As Cardano is a proof-of-stake system, owning ada not only allows you to buy goods or services, but also confers upon you the right and obligation to participate in the protocol and create blocks. 
 
