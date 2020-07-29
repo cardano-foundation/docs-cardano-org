@@ -21,7 +21,7 @@ Stake pools are a key part of a decentralized Cardano, supporting the mechanisms
 
 **How to create a stake pool**
 
-To learn how to setup your own stake pool, follow the instriuctions on `how to setup a stake pool`
+To learn how to setup your own stake pool, follow the instructions on `how to setup a stake pool`_
 
 .. _how to setup a stake pool: https://docs.cardano.org/projects/cardano-node/en/latest/getting-started/install.html
 
