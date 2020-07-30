@@ -23,7 +23,7 @@
    explore-cardano/understanding-pledging-and-rewards
    explore-cardano/design-rationale
    explore-cardano/cardano-monetary-policy
-   explore-cardano/understanding-hard-forks
+   explore-cardano/what-is-a-hard-fork-combinator
    explore-cardano/further-reading
    explore-cardano/glossary
    explore-cardano/release-notes
