@@ -41,7 +41,7 @@ Cardano Glossary
       the total amount of stake that a stake pool controls. It combines the stake that is owned by the pool operator with any stake that has been delegated to the pool by other ada holders. It can be measured as a total ada amount (e.g. 3M ada), or as a percentage of the total supply of ada within the network (e.g. 5%).
 
     cost per epoch
-      a fixed fee, in ada, which the stake pool operator takes every epoch from the pool rewards to cover the costs of running a stake pool. The cost per epoch is subtracted from the total ada that is rewarded to a pool, before the operator takes their profit margin. Whatever remains is shared equally among the delegators.
+      a fixed fee, in ada, which the stake pool operator takes every epoch from the pool rewards to cover the costs of running a stake pool. The cost per epoch is subtracted from the total ada that is rewarded to a pool, before the operator takes their profit margin. Whatever remains is shared proportionally among the delegators.
       
     Daedalus
       a secure wallet for the ada cryptocurrency that manages balances and provides the ability to send and receive payments. Daedalus is a full node wallet which means that it downloads a full copy of the Cardano blockchain and independently validates every transaction in its history. It has a friendly user interface and is recommended for new users to start with.
