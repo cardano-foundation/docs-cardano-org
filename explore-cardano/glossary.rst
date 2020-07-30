@@ -5,7 +5,7 @@ Cardano Glossary
 
 .. glossary::
     ada
-      digital currency of the Cardano blockchain. Units of which are measured in lovelaces.
+      digital currency of the Cardano blockchain. One ada = 1,000,000 lovelaces.
     
     address
       indicates a unique set of numbers and symbols identifying a particular wallet. The address allows users to receive payments, process transactions, and control their stake.
@@ -83,7 +83,7 @@ Cardano Glossary
       a distributed database that is operated in a decentralized manner by multiple nodes across numerous locations.
 
     lovelace
-      subunits of ada. One ada = 1,000,000 lovelaces.
+      the smallest unit of ada, equivalent to one millionth of one ada. A lovelace is to ada what a satoshi is to bitcoin.
       
     mainnet
       a live blockchain that has been deployed and is in operation.
