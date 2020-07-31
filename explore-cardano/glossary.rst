@@ -8,7 +8,7 @@ Cardano Glossary
       digital currency of the Cardano blockchain. One ada = 1,000,000 lovelaces.
     
     address
-      data-structure used in transaction outputs to convey various pieces of information. All addresses carry a network discriminant tag to distinguish them between different network (e.g. Mainnet or Testnet) and a proof of ownership (i.e. telling who owns the transaction output). Some addresses also carry delegation choices or script references.  
+      a data-structure used in transaction outputs to convey various pieces of information. All addresses carry a network discriminant tag to distinguish between different networks (e.g. Mainnet or Testnet) and a proof of ownership (i.e. a proof of who owns the transaction output). Some addresses also carry delegation choices or script references.  
       
       indicates a unique set of numbers and symbols identifying a particular wallet. The address allows users to receive payments, process transactions, and control their stake.
 
