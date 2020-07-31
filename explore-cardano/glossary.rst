@@ -8,10 +8,12 @@ Cardano Glossary
       digital currency of the Cardano blockchain. One ada = 1,000,000 lovelaces.
     
     address
+      data-structure used in transaction outputs to convey various pieces of information. All addresses carry a network discriminant tag to distinguish them between different network (e.g. Mainnet or Testnet) and a proof of ownership (i.e. telling who owns the transaction output). Some addresses also carry delegation choices or script references.  
+      
       indicates a unique set of numbers and symbols identifying a particular wallet. The address allows users to receive payments, process transactions, and control their stake.
 
     Adrestia
-      name of the Haskell wallet backend.
+      Adrestia is a collection of products which makes it easier to integrate with Cardano. It is made of several Application Programming Interfaces (API), Command-line Interfaces (CLI) and Software Development Kits (SDK). Alternatively, Adrestia may also refer to the team working on the project itself.
       
     asset
       a digital item of property that holds value stored in the distributed ledger. An asset can represent security or utility tokens of fungible or non-fungible nature.
@@ -68,7 +70,7 @@ Cardano Glossary
       third phase of Cardano development in which smart contracts will be delivered.
       
     hard fork
-      a radical change of the network’s protocol changing the state of operational flow from one model to a completely different one. Cardano is currently undergoing the hard fork from a federated model to a decentralized one.
+      a radical change of the network’s protocol changing the state of operational flow from one model to a completely different one. Cardano has undergone a hard fork to transition from a federated model (Byron) to a decentralized one (Shelley).
       
     incentive
       a way to encourage participants of the system to engage in the network by rewarding them with a return that is proportional to their efforts. Incentives aim to ensure equality and fairness in a distributed network of participants by encouraging consistent, active, and strong participation. Cardano's incentives model uses game theory to calculate the incentives required.
@@ -143,7 +145,7 @@ Cardano Glossary
       second phase of Cardano development in which network decentralization will be delivered.
 
     slot
-      a fixed period of time within an epoch. Each epoch of time is divided into numbered slots. Slots that contain transactions are called blocks.
+      a fixed period of time within an epoch. Each epoch of time is divided into numbered slots. Slots that are inhabited by blocks are called active slots. 
 
     slot leader
       elected node that has been selected to create a block within the current slot. A random election process occurs based on the proportional stake.
