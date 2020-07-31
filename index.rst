@@ -25,6 +25,7 @@
    explore-cardano/cardano-monetary-policy
    explore-cardano/what-is-a-hard-fork-combinator
    explore-cardano/further-reading
+   explore-cardano/relevant-research-papers-and-specifications
    explore-cardano/glossary
    explore-cardano/release-notes
 
