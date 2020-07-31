@@ -13,7 +13,7 @@ Cardano Glossary
       indicates a unique set of numbers and symbols identifying a particular wallet. The address allows users to receive payments, process transactions, and control their stake.
 
     Adrestia
-      Adrestia is a collection of products which makes it easier to integrate with Cardano. It is made of several Application Programming Interfaces (API), Command-line Interfaces (CLI) and Software Development Kits (SDK). Alternatively, Adrestia may also refer to the team working on the project itself.
+      Adrestia is a collection of products which makes it easier to integrate with Cardano. It is made of several Application Programming Interfaces (APIs), Command-line Interfaces (CLIs) and Software Development Kits (SDKs). Alternatively, Adrestia may also refer to the team working on the project itself.
       
     asset
       a digital item of property that holds value stored in the distributed ledger. An asset can represent security or utility tokens of fungible or non-fungible nature.
