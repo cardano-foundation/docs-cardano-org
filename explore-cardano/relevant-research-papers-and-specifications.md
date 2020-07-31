@@ -76,5 +76,81 @@ The Goguen era will introduce smart-contract functionality to build decentralize
 
 **Relevant research papers:**
 
-[]()
+[An Ontology for Smart Contracts](https://cryptochainuni.com/wp-content/uploads/Darryl-McAdams-An-Ontology-for-Smart-Contracts.pdf)
+
+[Towards a Smart Contract-based, Decentralized, Public-Key Infrastructure](https://eprint.iacr.org/2018/853.pdf)
+
+[UTXOma: UTXO with Multi-Asset Support](https://iohk.io/en/research/library/papers/utxoma-utxo-with-multi-asset-support/)
+
+[Smart Contract Derivatives](https://eprint.iacr.org/2020/138.pdf)
+
+[Native Custom Tokens in the Extended UTXO Model](https://iohk.io/en/research/library/papers/native-custom-tokens-in-the-extended-utxo-model/)
+
+[The Extended UTXO Model](https://iohk.io/en/research/library/papers/the-extended-utxo-model/)
+
+[Functional Blockchain Contracts](https://iohk.io/en/research/library/papers/functional-blockchain-contracts/)
+
+[Scripting Smart Contracts for Distributed Ledger Technology](https://eprint.iacr.org/2016/1156.pdf)
+
+[Marlowe: financial contracts on blockchain](https://iohk.io/en/research/library/papers/marlowefinancial-contracts-on-blockchain/)
+
+[Marlowe: implementing and analysing financial contracts on blockchain](https://iohk.io/en/research/library/papers/marloweimplementing-and-analysing-financial-contracts-on-blockchain/)
+
+[Bypassing Non-Outsourceable Proof-of-Work Schemes Using Collateralized Smart Contracts](https://eprint.iacr.org/2020/044.pdf)
+
+[Unraveling recursion: compiling an IR with recursion to System F](https://iohk.io/en/research/library/papers/unraveling-recursioncompiling-an-ir-with-recursion-to-system-f/)
+
+[System F in Agda, for fun and profit](https://iohk.io/en/research/library/papers/system-f-in-agdafor-fun-and-profit/)
+
+[Kachina - Foundations of Private Smart Contracts](https://eprint.iacr.org/2020/543.pdf)
+
+[A Type and Scope Safe Universe of Syntaxes with Binding: Their Semantics and Proofs](https://iohk.io/en/research/library/papers/a-type-and-scope-safe-universe-of-syntaxes-with-bindingtheir-semantics-and-proofs/)
+
+[Cryptocurrency Egalitarianism: A Quantitative Approach](https://arxiv.org/pdf/1907.02434.pdf)
+
+[Self-Reproducing Coins as Universal Turing Machine](https://arxiv.org/pdf/1806.10116.pdf)
+
+### Basho
+
+An era of optimization, improving the scalability and interoperability of the network. Enhancing the network performance, Basho will introduce *sidechains*, new blockchains, interoperable with the main Cardano chain, with immense potential to extend the network’s capabilities.
+
+**Relevant research papers:**
+
+[Parallel Chains: Improving Throughput and Latency of Blockchain Protocols via Parallel Composition](https://eprint.iacr.org/2018/1119.pdf)
+
+[Zendoo: a zk-SNARK Verifiable Cross-Chain Transfer Protocol Enabling Decoupled and Decentralized Sidechains](https://eprint.iacr.org/2020/123.pdf)
+
+[Mining for Privacy: How to Bootstrap a Snarky Blockchain](https://eprint.iacr.org/2020/401.pdf)
+
+[Hydra: Fast Isomorphic State Channels](https://eprint.iacr.org/2020/299.pdf)
+
+[Non-Interactive Proofs of Proof-of-Work](https://eprint.iacr.org/2017/963.pdf)
+
+[Sonic: Zero-Knowledge SNARKs from Linear-Size Universal and Updatable Structured Reference Strings](https://eprint.iacr.org/2019/099.pdf)
+
+[Timed Signatures and Zero-Knowledge Proofs –Timestamping in the Blockchain Era–](https://eprint.iacr.org/2019/644.pdf)
+
+[Updatable Blockchains](https://eprint.iacr.org/2020/887.pdf)
+
+[Proof-of-Stake Sidechains](https://eprint.iacr.org/2018/1239.pdf)
+
+[Proof-of-Work Sidechains](https://eprint.iacr.org/2018/1048.pdf)
+
+[Number of Confirmation Blocks for Bitcoin and GHOST Consensus Protocols on Networks with Delayed Message Delivery: Extended Abstract](https://dl.acm.org/doi/10.1145/3211933.3211941)
+
+[Multi-mode Cryptocurrency Systems](https://eprint.iacr.org/2018/129.pdf)
+
+[SoK: Communication Across Distributed Ledgers](https://eprint.iacr.org/2019/1128.pdf)
+
+[SoK: A Taxonomy for Layer-2 Scalability Related Protocols for Cryptocurrencies](https://eprint.iacr.org/2019/352.pdf)
+
+### Voltaire
+
+A development era enabling the Cardano network to become a self-sustaining system. Voltaire will introduce a voting and treasury system that will enable network participants to use their stake and voting rights to influence the future development of the blockchain.
+
+**Relevant research papers:**
+
+[A Treasury System for Cryptocurrencies: Enabling Better Collaborative Intelligence](https://eprint.iacr.org/2018/435.pdf)
+
+[Ouroboros Crypsinous: Privacy-Preserving Proof-of-Stake](https://eprint.iacr.org/2018/1132.pdf)
 
