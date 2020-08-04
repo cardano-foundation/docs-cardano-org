@@ -12,11 +12,9 @@ A period dedicated to building a foundational federated network that enabled the
 
 **Relevant research papers:**
 
-[SCRAPE: Scalable Randomness Attested by Public Entities](https://eprint.iacr.org/2017/216.pdf)
-
 [Ouroboros: A Provably Secure Proof-of-Stake Blockchain Protocol](https://eprint.iacr.org/2016/889.pdf)
 
-[The Bitcoin Backbone Protocol with Chains of Variable Difficulty](https://eprint.iacr.org/2016/1048.pdf)
+[Ouroboros-BFT: A Simple Byzantine Fault Tolerant Consensus Protocol](https://eprint.iacr.org/2018/1049.pdf)
 
 **Relevant specifications:**
 
@@ -42,27 +40,13 @@ A period of growth and development for the network focused on ensuring greater d
 
 [Stake-Bleeding Attacks on Proof-of-Stake Blockchains](https://eprint.iacr.org/2018/248.pdf)
 
-[Secure Two-Party Computation over Unreliable Channels](https://eprint.iacr.org/2018/506.pdf)
-
 [Reward Sharing Schemes for Stake Pools](https://arxiv.org/ftp/arxiv/papers/1807/1807.11218.pdf)
-
-[Ouroboros-BFT: A Simple Byzantine Fault Tolerant Consensus Protocol](https://eprint.iacr.org/2018/1049.pdf)
-
-[Ouroboros Chronos: Permissionless Clock Synchronization via Proof-of-Stake](https://eprint.iacr.org/2019/838.pdf)
 
 [Account Management in Proof of Stake Ledgers](https://eprint.iacr.org/2020/525.pdf)
 
-[Stake Shift in Major Cryptocurrencies: An Empirical Study](https://arxiv.org/pdf/2001.04187.pdf)
+[Flexible Formality: Practical Experience with Agile Formal Methods](https://iohk.io/en/research/library/papers/flexible-formalitypractical-experience-with-agile-formal-methods/)
 
-[The combinatorics of the longest-chain rule: Linear consistency for proof-of-stake blockchains](https://eprint.iacr.org/2017/241.pdf)
-
-[Proof-of-Stake Blockchain Protocols with Near-Optimal Throughput](https://eprint.iacr.org/2020/037.pdf)
-
-[Consistency of Proof-of-Stake Blockchains with Concurrent Honest Slot Leaders](https://eprint.iacr.org/2020/041.pdf)
-
-[Ledger Combiners for Fast Settlement](https://eprint.iacr.org/2020/675.pdf)
-
-[Chimeric Ledgers: Translating and Unifying UTXO-based and Account-based Cryptocurrencies](https://eprint.iacr.org/2018/262.pdf)
+[Coalition-Safe Equilibria with Virtual Payoffs](https://arxiv.org/pdf/2001.00047.pdf)
 
 **Relevant specifications:**
 
@@ -76,17 +60,11 @@ The Goguen era will introduce smart-contract functionality to build decentralize
 
 **Relevant research papers:**
 
-[An Ontology for Smart Contracts](https://cryptochainuni.com/wp-content/uploads/Darryl-McAdams-An-Ontology-for-Smart-Contracts.pdf)
-
-[Towards a Smart Contract-based, Decentralized, Public-Key Infrastructure](https://eprint.iacr.org/2018/853.pdf)
+[The Extended UTXO Model](https://iohk.io/en/research/library/papers/the-extended-utxo-model/)
 
 [UTXOma: UTXO with Multi-Asset Support](https://iohk.io/en/research/library/papers/utxoma-utxo-with-multi-asset-support/)
 
-[Smart Contract Derivatives](https://eprint.iacr.org/2020/138.pdf)
-
 [Native Custom Tokens in the Extended UTXO Model](https://iohk.io/en/research/library/papers/native-custom-tokens-in-the-extended-utxo-model/)
-
-[The Extended UTXO Model](https://iohk.io/en/research/library/papers/the-extended-utxo-model/)
 
 [Functional Blockchain Contracts](https://iohk.io/en/research/library/papers/functional-blockchain-contracts/)
 
@@ -96,19 +74,9 @@ The Goguen era will introduce smart-contract functionality to build decentralize
 
 [Marlowe: implementing and analysing financial contracts on blockchain](https://iohk.io/en/research/library/papers/marloweimplementing-and-analysing-financial-contracts-on-blockchain/)
 
-[Bypassing Non-Outsourceable Proof-of-Work Schemes Using Collateralized Smart Contracts](https://eprint.iacr.org/2020/044.pdf)
-
 [Unraveling recursion: compiling an IR with recursion to System F](https://iohk.io/en/research/library/papers/unraveling-recursioncompiling-an-ir-with-recursion-to-system-f/)
 
 [System F in Agda, for fun and profit](https://iohk.io/en/research/library/papers/system-f-in-agdafor-fun-and-profit/)
-
-[Kachina - Foundations of Private Smart Contracts](https://eprint.iacr.org/2020/543.pdf)
-
-[A Type and Scope Safe Universe of Syntaxes with Binding: Their Semantics and Proofs](https://iohk.io/en/research/library/papers/a-type-and-scope-safe-universe-of-syntaxes-with-bindingtheir-semantics-and-proofs/)
-
-[Cryptocurrency Egalitarianism: A Quantitative Approach](https://arxiv.org/pdf/1907.02434.pdf)
-
-[Self-Reproducing Coins as Universal Turing Machine](https://arxiv.org/pdf/1806.10116.pdf)
 
 ### Basho
 
@@ -116,33 +84,15 @@ An era of optimization, improving the scalability and interoperability of the ne
 
 **Relevant research papers:**
 
-[Parallel Chains: Improving Throughput and Latency of Blockchain Protocols via Parallel Composition](https://eprint.iacr.org/2018/1119.pdf)
-
-[Zendoo: a zk-SNARK Verifiable Cross-Chain Transfer Protocol Enabling Decoupled and Decentralized Sidechains](https://eprint.iacr.org/2020/123.pdf)
-
-[Mining for Privacy: How to Bootstrap a Snarky Blockchain](https://eprint.iacr.org/2020/401.pdf)
-
 [Hydra: Fast Isomorphic State Channels](https://eprint.iacr.org/2020/299.pdf)
 
-[Non-Interactive Proofs of Proof-of-Work](https://eprint.iacr.org/2017/963.pdf)
+[Parallel Chains: Improving Throughput and Latency of Blockchain Protocols via Parallel Composition](https://eprint.iacr.org/2018/1119.pdf)
 
-[Sonic: Zero-Knowledge SNARKs from Linear-Size Universal and Updatable Structured Reference Strings](https://eprint.iacr.org/2019/099.pdf)
+[Proof-of-Stake Blockchain Protocols with Near-Optimal Throughput](https://eprint.iacr.org/2020/037.pdf)
 
-[Timed Signatures and Zero-Knowledge Proofs –Timestamping in the Blockchain Era–](https://eprint.iacr.org/2019/644.pdf)
-
-[Updatable Blockchains](https://eprint.iacr.org/2020/887.pdf)
+[Ledger Combiners for Fast Settlement](https://eprint.iacr.org/2020/675.pdf)
 
 [Proof-of-Stake Sidechains](https://eprint.iacr.org/2018/1239.pdf)
-
-[Proof-of-Work Sidechains](https://eprint.iacr.org/2018/1048.pdf)
-
-[Number of Confirmation Blocks for Bitcoin and GHOST Consensus Protocols on Networks with Delayed Message Delivery: Extended Abstract](https://dl.acm.org/doi/10.1145/3211933.3211941)
-
-[Multi-mode Cryptocurrency Systems](https://eprint.iacr.org/2018/129.pdf)
-
-[SoK: Communication Across Distributed Ledgers](https://eprint.iacr.org/2019/1128.pdf)
-
-[SoK: A Taxonomy for Layer-2 Scalability Related Protocols for Cryptocurrencies](https://eprint.iacr.org/2019/352.pdf)
 
 ### Voltaire
 
@@ -152,5 +102,5 @@ A development era enabling the Cardano network to become a self-sustaining syste
 
 [A Treasury System for Cryptocurrencies: Enabling Better Collaborative Intelligence](https://eprint.iacr.org/2018/435.pdf)
 
-[Ouroboros Crypsinous: Privacy-Preserving Proof-of-Stake](https://eprint.iacr.org/2018/1132.pdf)
+[Updatable Blockchains](https://eprint.iacr.org/2020/887.pdf)
 
