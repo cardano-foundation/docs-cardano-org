@@ -54,4 +54,4 @@ Calculating the 'reserve half life' (that is, the time that it takes for half of
 
 **Choosing τ**
 
-The right value for τ (the percentage of rewards automatically going to the Treasury every epoch) was equally challenging. Following discussions, deliberations, and projections, the value chosen was 5%, which means that, initially, 5% of the virtual pot will be directed to the Treasury every epoch. This means that at least 380,000,000 ada will be sent from the reserves to the Treasury over five years. In practice though, the real amount will be significantly higher because ada that is not being delegated will produce unclaimed awards, which will be routed to the Treasury. This will boost the amount to around 1,900,000,000 ada every epoch.
+Determining the right value for τ (the percentage of unclaimed rewards automatically going to the reserves every epoch) was equally challenging. Following discussions, deliberations, and projections, the value chosen was 20%, which means that, initially, 20% of the monetary expansion and the transaction fees are send to the treasury after each epoch.
