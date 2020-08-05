@@ -54,4 +54,4 @@ Calculating the 'reserve half life' (that is, the time that it takes for half of
 
 **Choosing τ**
 
-Determining the right value for τ (the percentage of unclaimed rewards automatically going to the reserves every epoch) was equally challenging. Following discussions, deliberations, and projections, the value chosen was 20%, which means that, initially, 20% of the monetary expansion and the transaction fees are send to the treasury after each epoch.
+Determining the right value for τ (the percentage of unclaimed rewards automatically going to the reserves every epoch) was equally challenging. Following discussions, deliberations, and projections, the value chosen was 20%, which means that, initially, 20% of the monetary expansion and the transaction fees are sent to the treasury after each epoch.
