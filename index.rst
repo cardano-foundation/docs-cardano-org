@@ -18,6 +18,7 @@
 
    explore-cardano/what-is-a-cardano-node
    explore-cardano/understanding-consensus
+   explore-cardano/how-are-new-blocks-produced
    explore-cardano/what-is-a-stakepool
    explore-cardano/understanding-the-delegation-mechanism
    explore-cardano/understanding-pledging-and-rewards
