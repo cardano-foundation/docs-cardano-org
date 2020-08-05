@@ -21,6 +21,7 @@
    explore-cardano/how-are-new-blocks-produced
    explore-cardano/what-is-a-stakepool
    explore-cardano/stake-pool-performance
+   explore-cardano/stake-pool-ranking
    explore-cardano/understanding-the-delegation-mechanism
    explore-cardano/understanding-pledging-and-rewards
    explore-cardano/design-rationale
