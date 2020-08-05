@@ -20,6 +20,7 @@
    explore-cardano/understanding-consensus
    explore-cardano/how-are-new-blocks-produced
    explore-cardano/what-is-a-stakepool
+   explore-cardano/stake-pool-performance
    explore-cardano/understanding-the-delegation-mechanism
    explore-cardano/understanding-pledging-and-rewards
    explore-cardano/design-rationale
