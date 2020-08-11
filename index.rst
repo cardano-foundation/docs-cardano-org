@@ -30,8 +30,6 @@
    explore-cardano/what-is-a-hard-fork-combinator
    explore-cardano/further-reading
    explore-cardano/relevant-research-papers-and-specifications
-   explore-cardano/glossary
-   explore-cardano/release-notes
 
 .. toctree::
    :caption: Cardano Components
@@ -49,7 +47,7 @@
    smash <https://docs.cardano.org/projects/smash/>
    ouroboros-network <https://docs.cardano.org/projects/ouroboros-network/>
    adrestia <https://docs.cardano.org/projects/adrestia>
-   
+
 .. toctree::
    :maxdepth: 3
    :caption: Cardano Community
@@ -67,3 +65,5 @@
    :hidden:
 
    Cardano Explorer <https://explorer.cardano.org/>
+   explore-cardano/release-notes
+   explore-cardano/glossary
