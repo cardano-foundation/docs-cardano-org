@@ -17,7 +17,7 @@ First, the share of all available rewards that a specific pool can receive is de
 These elements are defined as follows:
 * R - total available rewards for this epoch
 * a<sub>0</sub> - pledge influence factor (can be between 0 and infinity)
-* z<sub>0</sub> - relative pool saturation size, i.e. 0.5% for a number of desired pool k=200
+* z<sub>0</sub> - relative pool saturation size, i.e. 0.5% based on a number of desired pools (k=200)
 * σ - stake delegated to the pool (including stake pledged by the owners and stake delegated by others)
 * σ’ = min(σ, z<sub>0</sub>) - as σ, but capped at z<sub>0</sub>
 * s - stake pledged by the owners
@@ -37,12 +37,12 @@ If they collectively delegate less than the declared pledge, pool rewards for th
 The rewards that are produced by this formula are now adjusted by pool performance:
 We multiply by β/σ, where β is the fraction of all blocks produced by the pool during the epoch.
 
-For a perfectly performing pool, one that produces all blocks that it can produce, this factor will be one, on average. The actual value will fluctuate due to the stochastic nature, or random process. of the Ouroboros Praos consensus algorithm.
+For a perfectly performing pool, one that produces all blocks that it can produce, this factor will be one, on average. The actual value will fluctuate due to the stochastic nature, or random process of the Ouroboros Praos consensus algorithm.
 
 After pool rewards have been calculated and adjusted for pool performance, they are distributed amongst the pool operator and the pool members, or people who delegated part, or all of their stake, to the pool. This happens in several steps:
 
 * First, the declared costs are subtracted and given to the pool operator.
-* Next, the declared margin is subtracted and given to the pool operator..
+* Next, the declared margin is subtracted and given to the pool operator.
 * Finally the remainder is split fairly (proportional to delegated stake), amongst all people who delegated to the pool, including the pool owners.
 
 A pledging calculator is available to use for estimation purposes. The rewards predicted by this calculator *are only an estimate*. The actual amount of ada received in rewards may vary, and will depend on a number of factors including; the actual stake pool performance, that is, the number of blocks a stake pool is observed to produce in a given epoch, versus the number it was expected to produce. Changes to network parameters may also affect rewards.
