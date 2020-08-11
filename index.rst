@@ -40,6 +40,8 @@
 
    cardano-node <https://docs.cardano.org/projects/cardano-node/>
    cardano-shell <https://docs.cardano.org/projects/cardano-shell/>
+   cardano-transactions <https://docs.cardano.org/projects/cardano-transactions/>
+   cardano-graphql <https://docs.cardano.org/projects/cardano-graphql/>
    cardano-ledger-specs <https://docs.cardano.org/projects/cardano-ledger-specs/>
    cardano-db-sync <https://docs.cardano.org/projects/cardano-db-sync/>
    cardano-rest <https://docs.cardano.org/projects/cardano-rest/>
@@ -47,7 +49,7 @@
    smash <https://docs.cardano.org/projects/smash/>
    ouroboros-network <https://docs.cardano.org/projects/ouroboros-network/>
    adrestia <https://docs.cardano.org/projects/adrestia>
-
+   
 .. toctree::
    :maxdepth: 3
    :caption: Cardano Community
