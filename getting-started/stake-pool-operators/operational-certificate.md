@@ -1,6 +1,6 @@
 ## Operational certificates
 
-Stake pool operators must provide an operational certificate to verify that the pool has the authority to run. The certificate includes the operator's signature, and includes key information about the pool (addresses, keys, etc.)
+Stake pool operators must provide an operational certificate to verify that the pool has the authority to run. The certificate includes the operator's signature and important information about the pool (addresses, keys, etc.)
 
 Operational certificates represent the link between the operator's offline key and their operational key. A certificate's job is to check whether or not an operational key is valid, to prevent malicious interference. The certificate identifies the current operational key, and is signed by the offline key.
 
