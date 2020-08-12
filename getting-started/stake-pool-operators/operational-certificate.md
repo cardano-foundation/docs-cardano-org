@@ -8,4 +8,4 @@ Certificates are generated with an issue counter number and included in the head
 
 The counter becomes significant when an attacker has compromised the KES key, in which case the owner of the cold keys can create a new KES key and a new certificate with a higher issue number. If a node sees two blocks claiming to originate from the same cold key, but using different KES keys, the higher issue counter trumps the lower one.
 
-Certificates are generated on the offline machine using the offline/cold keys, before being copied over to the node to validate the KES keys used to sign the blocks. You can see how to generate certificates [here](https://docs.cardano.org/projects/cardano-node/en/latest/stake-pool-operations/register_stakepool.html).
+Certificates are generated on the offline machine using the offline/cold keys, before being copied over to the node to validate the KES keys used to sign the blocks. You can see an example of a transaction containing certificates [here](https://docs.cardano.org/projects/cardano-node/en/latest/stake-pool-operations/register_stakepool.html).
