@@ -43,6 +43,7 @@
    cardano-ledger-specs <https://docs.cardano.org/projects/cardano-ledger-specs/>
    cardano-db-sync <https://docs.cardano.org/projects/cardano-db-sync/>
    cardano-rest <https://docs.cardano.org/projects/cardano-rest/>
+   cardano-serialization-lib <https://docs.cardano.org/projects/cardano-serialization-lib/>
    cardano-wallet <https://docs.cardano.org/projects/cardano-wallet/>
    smash <https://docs.cardano.org/projects/smash/>
    ouroboros-network <https://docs.cardano.org/projects/ouroboros-network/>
