@@ -4,6 +4,8 @@
         :type: ref
         :text: What is Cardano?
         :classes: stretched-link
+        :badge: `core concepts,badge-primary badge-pill`
+        :card: + text-center
 
   
 .. toctree::
