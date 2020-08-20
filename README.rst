@@ -19,6 +19,16 @@ Cardano has been designed with security as one of its founding principles. It is
 
 Cardano is developing a smart contract platform which seeks to deliver more advanced features than any protocol previously developed and will serve as a stable and secure platform for the development of enterprise-level dApps. In the near future, Cardano will use a democratic governance system that allows the project to evolve over time, and fund itself in a sustainable way through a visionary treasury system. You can read more about Cardano on the `official Cardano website <http://cardano.org/>`_.
 
+.. panels::
+    :container: container-lg pb-3
+    :column: col-lg-4 col-md-4 col-sm-6 col-xs-12 p-2
 
+    panel1
+    ---
+    panel2
+    ---
+    panel3
+    ---
+    
 .. _Daedalus: https://daedaluswallet.io
 .. _Yoroi: https://yoroi-wallet.com
