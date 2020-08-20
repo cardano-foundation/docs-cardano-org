@@ -3,7 +3,7 @@
     .. link-button:: https://www.python.org
         :type: ref
         :text: What is Cardano?
-        :classes: btn-outline-primary stretched-link
+        :classes: stretched-link
 
   
 .. toctree::
