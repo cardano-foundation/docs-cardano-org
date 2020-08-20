@@ -6,7 +6,7 @@ Submitted valid transactions might be included in any new block. A block is cryp
 
 ### Slots and Epochs
 
-The Cardano blockchain uses the proprietary Ouroboros Praos protocol to facilitate consensus on the chain.
+The Cardano blockchain uses the Ouroboros Praos protocol to facilitate consensus on the chain.
 
 Ouroboros Praos divides time into epochs. Each Cardano epoch consists of a number of slots, where each slot lasts for one second. A Cardano epoch currently includes 432,000 slots (5 days). In any slot, zero or more block-producing nodes might be nominated to be the slot leader. On average, one node is expected to be nominated every 20 seconds, for a total of 21,600 nominations per epoch. If randomly elected slot leaders produce blocks, one of them will be added to the chain. Other candidate blocks will be discarded.
 
