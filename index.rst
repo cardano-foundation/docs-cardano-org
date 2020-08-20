@@ -1,11 +1,11 @@
 .. panels::
-
+    :card: + text-center
+    
     .. link-button:: https://www.python.org
         :type: ref
         :text: What is Cardano?
         :badge: `core concepts,badge-primary badge-pill`
-        :card: + text-center
-
+        :classes: font-weight-bold
   
 .. toctree::
    :maxdepth: 3
