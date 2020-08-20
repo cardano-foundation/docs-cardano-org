@@ -1,4 +1,13 @@
-.. include:: README.rst
+.. panels::
+    :container: container-lg pb-3
+    :column: col-lg-4 col-md-4 col-sm-6 col-xs-12 p-2
+
+    `What is Cardano? <www.python.org>`_
+    ---
+    `What is Cardano Node? <www.python.org>`_
+    ---
+    `Cardano Design Principles <www.python.org>`_
+    ---
   
 .. toctree::
    :maxdepth: 3
@@ -12,19 +21,27 @@
 
 .. toctree::
    :maxdepth: 3
+   :caption: Core Concepts
+   :titlesonly:
+   :hidden:
+
+   What is Cardano? <README>
+   explore-cardano/what-is-a-cardano-node
+   explore-cardano/design-rationale
+   explore-cardano/understanding-consensus
+   explore-cardano/what-is-a-stakepool
+
+.. toctree::
+   :maxdepth: 3
    :caption: Explore Cardano
    :titlesonly:
    :hidden:
 
-   explore-cardano/what-is-a-cardano-node
-   explore-cardano/understanding-consensus
    explore-cardano/how-are-new-blocks-produced
-   explore-cardano/what-is-a-stakepool
    explore-cardano/stake-pool-performance
    explore-cardano/stake-pool-ranking
    explore-cardano/understanding-the-delegation-mechanism
    explore-cardano/understanding-pledging-and-rewards
-   explore-cardano/design-rationale
    explore-cardano/cardano-monetary-policy
    explore-cardano/cardano-fee-structure
    explore-cardano/what-is-a-hard-fork-combinator
