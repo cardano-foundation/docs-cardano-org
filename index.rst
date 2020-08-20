@@ -1,11 +1,4 @@
-.. panels::
-    :card: + text-center
-    
-    .. link-button:: https://www.python.org
-        :type: ref
-        :text: What is Cardano?
-        :badge: `core concepts,badge-primary badge-pill`
-        :classes: font-weight-bold
+.. include:: README.rst
   
 .. toctree::
    :maxdepth: 3
@@ -36,8 +29,6 @@
    :hidden:
 
    explore-cardano/how-are-new-blocks-produced
-   explore-cardano/stake-pool-performance
-   explore-cardano/stake-pool-ranking
    explore-cardano/understanding-the-delegation-mechanism
    explore-cardano/understanding-pledging-and-rewards
    explore-cardano/cardano-monetary-policy
