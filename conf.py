@@ -44,6 +44,7 @@ extensions = [
     "sphinx.ext.autosummary",
     "sphinx.ext.intersphinx",
     "sphinx.ext.viewcode",
+    'sphinx_panels',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -83,7 +84,7 @@ html_theme_options = {
     'prev_next_buttons_location': 'bottom',
     'style_external_links': False,
     'vcs_pageview_mode': '',
-    'style_nav_header_background': '#fcfcfc',
+    'style_nav_header_background': '#0635a7',
     # Toc options
     'collapse_navigation': True,
     'sticky_navigation': True,
