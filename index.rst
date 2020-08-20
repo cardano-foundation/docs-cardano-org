@@ -1,8 +1,8 @@
 .. panels::
 
-    .. link-button:: panels/usage
+    .. link-button:: https://www.python.org
         :type: ref
-        :text: `What is Cardano? <www.python.org>`_
+        :text: What is Cardano?
         :classes: btn-outline-primary stretched-link
 
   
