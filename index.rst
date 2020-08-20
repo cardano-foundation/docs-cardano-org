@@ -1,14 +1,10 @@
 .. panels::
-    :classes: btn-link stretched-link font-weight-bold
-    :container: container-lg pb-3
-    :column: col-lg-4 col-md-4 col-sm-6 col-xs-12 p-2
 
-    `What is Cardano? <www.python.org>`_
-    ---
-    `What is Cardano Node? <www.python.org>`_
-    ---
-    `Cardano Design Principles <www.python.org>`_
-    ---
+    .. link-button:: panels/usage
+        :type: ref
+        :text: `What is Cardano? <www.python.org>`_
+        :classes: btn-outline-primary stretched-link
+
   
 .. toctree::
    :maxdepth: 3
