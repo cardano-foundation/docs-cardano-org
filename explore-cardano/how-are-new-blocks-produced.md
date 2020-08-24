@@ -1,4 +1,4 @@
-## Produced New Blocks
+## Producing New Blocks
 
 The goal of blockchain technology is the production of an independently-verifiable and cryptographically-linked chain of records (blocks). A network of block producers works to collectively advance the blockchain. A consensus protocol provides transparency and decides which candidate blocks should be used to extend the chain.
 
