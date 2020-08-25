@@ -14,6 +14,9 @@ Cardano Glossary
       
     asset
       a digital item of property that holds value stored in the distributed ledger. An asset can represent security or utility tokens of fungible or non-fungible nature.
+    
+    asset group
+      a collection of tokens/assets that share the same forging policy.
 
     balance wallet
       a wallet that stores your initial testnet ada balance, copied from the mainnet via the balance snapshot. The stake from this wallet cannot be delegated but can be transferred to and delegated from a Rewards wallet.
@@ -42,6 +45,9 @@ Cardano Glossary
     cost per epoch
       a fixed fee, in ada, which the stake pool operator takes every epoch from the pool rewards to cover the costs of running a stake pool. The cost per epoch is subtracted from the total ada that is rewarded to a pool, before the operator takes their profit margin. Whatever remains is shared proportionally among the delegators.
       
+    custom token
+    a token featuring custom, user-defined functionality.
+      
     Daedalus
       a secure wallet for the ada cryptocurrency that manages balances and provides the ability to send and receive payments. Daedalus is a full node wallet which means that it downloads a full copy of the Cardano blockchain and independently validates every transaction in its history. It has a friendly user interface and is recommended for new users to start with.
 
@@ -53,15 +59,27 @@ Cardano Glossary
 
     epoch
       a defined group of slots that constitute a period of time.
-
+      
+    ERC-20 token
+      a fungible token standard on the Ethereum platform, which is deployed using smart-contract functionality.
+      
+    ERC-721 token
+      a non-fungible token standard on the Ethereum platform, which is deployed using smart-contract functionality.
+      
     faucet
       a web-based service that provides free tokens to users of a testnet.
       
     fee
       amount of ada or other cryptocurrency charged for transaction processing.
       
-    fungible token
-      a digital asset representing value that can be divided into smaller fractions like one ada is divided into lovelaces or one bitcoin into satoshi.
+    forging 
+      the action of minting or burning tokens. A negative forging amount indicates burning tokens, and a positive amount indicates minting new tokens.
+      
+    forging transaction 
+      transactions with a field specifying token forging details. These transactions also carry the forging policies to be checked during validation.
+      
+    fungible token/asset
+      an asset that is interchangeable and indistinguishable with some other asset(s). The same denomination bills and coins are fungible assets, for example, like equal quantities of ada to lovelaces. 
 
     Goguen
       third phase of Cardano development in which smart contracts will be delivered.
