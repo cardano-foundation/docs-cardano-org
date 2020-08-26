@@ -15,9 +15,6 @@ Cardano Glossary
     asset
       a digital item of property that holds value stored in the distributed ledger. An asset can represent security or utility tokens of fungible or non-fungible nature.
     
-    asset group
-      a collection of tokens/assets that share the same forging policy.
-
     balance wallet
       a wallet that stores your initial testnet ada balance, copied from the mainnet via the balance snapshot. The stake from this wallet cannot be delegated but can be transferred to and delegated from a Rewards wallet.
 
@@ -44,10 +41,7 @@ Cardano Glossary
 
     cost per epoch
       a fixed fee, in ada, which the stake pool operator takes every epoch from the pool rewards to cover the costs of running a stake pool. The cost per epoch is subtracted from the total ada that is rewarded to a pool, before the operator takes their profit margin. Whatever remains is shared proportionally among the delegators.
-      
-    custom token
-      a token featuring custom, user-defined functionality.
-      
+            
     Daedalus
       a secure wallet for the ada cryptocurrency that manages balances and provides the ability to send and receive payments. Daedalus is a full node wallet which means that it downloads a full copy of the Cardano blockchain and independently validates every transaction in its history. It has a friendly user interface and is recommended for new users to start with.
 
@@ -65,13 +59,7 @@ Cardano Glossary
       
     fee
       amount of ada or other cryptocurrency charged for transaction processing.
-      
-    forging 
-      the action of minting or burning tokens. A negative forging amount indicates burning tokens, and a positive amount indicates minting new tokens.
-      
-    forging transaction 
-      transactions with a field specifying token forging details. These transactions also carry the forging policies to be checked during validation.
-      
+            
     fungible token/asset
       an asset that is interchangeable and indistinguishable with some other asset(s). Same denomination bills and coins are fungible assets, for example, like equal quantities of ada to lovelaces. 
 
@@ -104,16 +92,7 @@ Cardano Glossary
       
     metadata
       a set of additional data stating certain transaction conditions or owner details. In smart contracts, metadata represents conditions under which a deal should execute. In a non-fungible token, metadata can store owner ID, ownership status, or intellectual rights.
-      
-    multi-asset (MA)
-      ledgers that support accounting or transaction of more than one type of asset are considered to have 'multi-asset' functionality. These ledgers can include blockchains, wallets, cryptocurrencies, or banking platforms, for example. Multi-assets usually include a platform's primary currency and multiple, user-defined assets.
-      
-    multisig 
-      simple scripting language supported by Cardano Shelley. Multisig specifies a minimal set of signatures required to allow a transaction to perform certain actions, and can also be used to specify simple forging policies.
-      
-    native token
-      a token type natively supported by its underlying platform without a need for additional software.
-      
+             
     network
       a technical infrastructure combining Cardano-nodes and relative interactions in one unified system.
       
@@ -168,9 +147,6 @@ Cardano Glossary
     Shelley
       second phase of Cardano development in which network decentralization will be delivered.
       
-    single-issuer policy
-      a forging policy that allows only the entity holding a particular set of keys (specified in the policy) to forge tokens of the associated asset group.
-
     slot
       a fixed period of time within an epoch. Each epoch of time is divided into numbered slots. Slots that are inhabited by blocks are called active slots. 
 
@@ -185,10 +161,7 @@ Cardano Glossary
       
     token
       cryptographic token that represents a footprint of value defined by the community, market state, or self-governed entity. A token can be fungible or non-fungible, and act as a payment unit, reward, trading asset, or information holder. 
-      
-    token burning
-       the process of removing a token from circulation, (destroying the token).
-       
+             
     tokenization 
       the process of representing real-world assets with digital tokens.
       
