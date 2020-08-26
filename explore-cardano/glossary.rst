@@ -61,10 +61,10 @@ Cardano Glossary
       a defined group of slots that constitute a period of time.
       
     ERC-20 token
-      a fungible token standard on the Ethereum platform, which is deployed using smart-contract functionality.
+      a fungible token standard on the Ethereum platform, which is deployed using smart contract functionality.
       
     ERC-721 token
-      a non-fungible token standard on the Ethereum platform, which is deployed using smart-contract functionality.
+      a non-fungible token standard on the Ethereum platform, which is deployed using smart contract functionality.
       
     faucet
       a web-based service that provides free tokens to users of a testnet.
@@ -79,7 +79,7 @@ Cardano Glossary
       transactions with a field specifying token forging details. These transactions also carry the forging policies to be checked during validation.
       
     fungible token/asset
-      an asset that is interchangeable and indistinguishable with some other asset(s). The same denomination bills and coins are fungible assets, for example, like equal quantities of ada to lovelaces. 
+      an asset that is interchangeable and indistinguishable with some other asset(s). Same denomination bills and coins are fungible assets, for example, like equal quantities of ada to lovelaces. 
 
     Goguen
       third phase of Cardano development in which smart contracts will be delivered.
@@ -111,14 +111,26 @@ Cardano Glossary
     metadata
       a set of additional data stating certain transaction conditions or owner details. In smart contracts, metadata represents conditions under which a deal should execute. In a non-fungible token, metadata can store owner ID, ownership status, or intellectual rights.
       
+    multi-asset (MA)
+      ledgers that support accounting or transaction of more than one type of asset are considered to have 'multi-asset' functionality. These ledgers can include blockchains, wallets, cryptocurrencies, or banking platforms, for example. Multi-assets usually include a platform's primary currency and multiple, user-defined assets.
+      
+    multisig 
+      simple scripting language supported by Cardano Shelley. Multisig specifies a minimal set of signatures required to allow a transaction to perform certain actions, and can also be used to specify simple forging policies.
+      
+    native token
+      a token type natively supported by its underlying platform without a need for additional software.
+      
     network
       a technical infrastructure combining Cardano-nodes and relative interactions in one unified system.
       
     non-fungible token
-      a digital asset acting as an information holder. It can contain ownership rights or intellectual property rights. Non-fungible means that it cannot be divided into smaller fractions. Hence, it acts as one unit representing particular information.
+      a unique asset that is not interchangeable with any other asset(s). Non-fungible assets represent specific information (IP rights for example), and act as one unit that cannot be divided into smaller fractions.
       
     OBFT
       Ouroboros Byzantine Fault Tolerant protocol. See BFT.
+      
+    one-time forging policy
+      a type of forging policy where the complete set of tokens of a given asset group is forged by a single transaction. Same tokens cannot be forged again.
 
     Ouroboros
       the consensus protocol underlying Cardano. There are several different implementations including Classic, Praos, Genesis, and more recently Hydra for scalability.
@@ -134,6 +146,9 @@ Cardano Glossary
       
     Plutus
       a Turing-complete programming platform for writing functional smart contracts on the Cardano blockchain. Plutus is based on the Haskell programming language.
+      
+    principal currency
+      on a cryptocurrency platform, this refers to a type of a token/asset that is used for administrative purposes, such as paying fees, delegating to a stake pool, or being minted. Cardano’s primary currency is ada, Bitcoin’s is bitcoin.
 
     produced blocks
       the number of blocks that have been produced by a stake pool in the current epoch. Stake pools are rewarded in ada for each block that they produce.
@@ -155,9 +170,18 @@ Cardano Glossary
 
     saturation
       a term used to indicate that a particular stake pool has more stake delegated to it than is ideal for the network. Saturation is displayed as a percentage. Once a stake pool reaches 100% saturation, it will offer diminishing rewards.The saturation mechanism was designed to prevent centralization by encouraging delegators to delegate to different stake pools, and operators to set up alternative pools so that they can continue earning maximum rewards. Saturation, therefore, exists to preserve the interests of both ada holders delegating their stake and stake pool operators.
+      
+    securitization 
+      the process of creating liquid, asset-backed securities from pools of illiquid assets.
+      
+    security token
+      a digital asset that derives its value from an external asset that can be traded. Usually, it represents stocks, bonds, or revenue participation notes. Security tokens are subject to federal law governing regulations.
 
     Shelley
       second phase of Cardano development in which network decentralization will be delivered.
+      
+    single-issuer policy
+      a forging policy that allows only the entity holding a particular set of keys (specified in the policy) to forge tokens of the associated asset group.
 
     slot
       a fixed period of time within an epoch. Each epoch of time is divided into numbered slots. Slots that are inhabited by blocks are called active slots. 
@@ -172,7 +196,22 @@ Cardano Glossary
       a test network where users can experiment with new features and code and provide their feedback before a live mainnet launch. A testnet can be run locally or in some cases a public is used.
       
     token
-      a digital unit that represents a footprint of value defined by the community, market state, or self-governed entity. A token can act as a payment unit, reward, trading asset, or information holder.
+      cryptographic token that represents a footprint of value defined by the community, market state, or self-governed entity. A token can be fungible or non-fungible, and act as a payment unit, reward, trading asset, or information holder. 
+      
+    token builder
+      a piece of software that allows users to define tokens to be forged in a forging transaction.
+      
+    token bundle
+      a collection of mixed tokens belonging to one or more different asset groups, usually stored in a single output.
+      
+    token burning
+       the process of removing a token from circulation, (destroying the token).
+       
+    tokenization 
+      the process of representing real-world assets with digital tokens.
+      
+    token minting
+      the process of creating new tokens.
 
     tps
       transactions per second.
@@ -185,6 +224,9 @@ Cardano Glossary
       
     tx
       see transaction.
+      
+    utility token
+      a digital token that holds certain functionality in regards to a concrete project or environment. These tokens can be used as payment units, rewards, or grant access to a specific network.
 
     UTXO
       unspent transaction output.
