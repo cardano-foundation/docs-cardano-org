@@ -59,13 +59,7 @@ Cardano Glossary
 
     epoch
       a defined group of slots that constitute a period of time.
-      
-    ERC-20 token
-      a fungible token standard on the Ethereum platform, which is deployed using smart contract functionality.
-      
-    ERC-721 token
-      a non-fungible token standard on the Ethereum platform, which is deployed using smart contract functionality.
-      
+   
     faucet
       a web-based service that provides free tokens to users of a testnet.
       
@@ -128,10 +122,7 @@ Cardano Glossary
       
     OBFT
       Ouroboros Byzantine Fault Tolerant protocol. See BFT.
-      
-    one-time forging policy
-      a type of forging policy where the complete set of tokens of a given asset group is forged by a single transaction. Same tokens cannot be forged again.
-
+   
     Ouroboros
       the consensus protocol underlying Cardano. There are several different implementations including Classic, Praos, Genesis, and more recently Hydra for scalability.
       
@@ -146,10 +137,7 @@ Cardano Glossary
       
     Plutus
       a Turing-complete programming platform for writing functional smart contracts on the Cardano blockchain. Plutus is based on the Haskell programming language.
-      
-    principal currency
-      on a cryptocurrency platform, this refers to a type of a token/asset that is used for administrative purposes, such as paying fees, delegating to a stake pool, or being minted. Cardano’s primary currency is ada, Bitcoin’s is bitcoin.
-
+  
     produced blocks
       the number of blocks that have been produced by a stake pool in the current epoch. Stake pools are rewarded in ada for each block that they produce.
 
@@ -197,12 +185,6 @@ Cardano Glossary
       
     token
       cryptographic token that represents a footprint of value defined by the community, market state, or self-governed entity. A token can be fungible or non-fungible, and act as a payment unit, reward, trading asset, or information holder. 
-      
-    token builder
-      a piece of software that allows users to define tokens to be forged in a forging transaction.
-      
-    token bundle
-      a collection of mixed tokens belonging to one or more different asset groups, usually stored in a single output.
       
     token burning
        the process of removing a token from circulation, (destroying the token).
