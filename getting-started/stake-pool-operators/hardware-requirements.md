@@ -1,4 +1,4 @@
-## Minimum requirements for running a stake pool
+## ステークプールを運営するための最小要件
 
 In terms of hardware, you should have the following available:
 
