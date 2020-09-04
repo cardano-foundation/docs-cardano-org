@@ -85,7 +85,7 @@ Cardano Glossary
       the smallest unit of ada, equivalent to one millionth of one ada. A lovelace is to ada what a satoshi is to bitcoin.
       
     mainnet
-      a live blockchain that has been deployed and is in operation.
+      the live blockchain that has been deployed and is in operation. Assets held on the mainnet hold value as opposed to assets on a testnet that do not hold value. 
       
     Marlowe
       a domain-specific programming language (DSL) that is built on top of Plutus functionality. Marlowe can be used for financial purposes. There is a friendly Marlowe playground - an environment where non-technical users can easily execute smart contracts prewriting specific conditions.
