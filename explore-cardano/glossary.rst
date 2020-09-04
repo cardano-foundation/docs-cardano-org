@@ -94,7 +94,7 @@ Cardano Glossary
       a set of additional data stating certain transaction conditions or owner details. In smart contracts, metadata represents conditions under which a deal should execute. In a non-fungible token, metadata can store owner ID, ownership status, or intellectual rights.
              
     network
-      a technical infrastructure combining Cardano-nodes and relative interactions in one unified system.
+      the technical infrastructure combining Cardano nodes and their relative interactions in one unified system.
       
     non-fungible token
       a unique asset that is not interchangeable with any other asset(s). Non-fungible assets represent specific information (IP rights for example), and act as one unit that cannot be divided into smaller fractions.
