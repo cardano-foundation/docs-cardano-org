@@ -34,6 +34,7 @@
    explore-cardano/understanding-pledging-and-rewards
    explore-cardano/cardano-monetary-policy
    explore-cardano/cardano-fee-structure
+   explore-cardano/design-rationale
    explore-cardano/what-is-a-hard-fork-combinator
    explore-cardano/further-reading
    explore-cardano/relevant-research-papers-and-specifications
