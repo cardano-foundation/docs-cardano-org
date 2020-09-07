@@ -36,6 +36,6 @@
 
 **ステークプールを作成するには**
 
-ステークプールを作成するには、「ステークプールのセットアップ方法」を参照してください。
+ステークプールを作成するには、「Cardanoチュートリアル」を参照してください。
 
-.. _ステークプールのセットアップ方法: ../../cardano-tutorials/readme
+.. _Cardano Tutorials: ../../cardano-tutorials/readme
