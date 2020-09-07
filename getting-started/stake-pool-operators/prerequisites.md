@@ -1,9 +1,9 @@
-## Prerequisites for stake pool operators
+## ステークプールオペレーターの要件
 
-As a stake pool operator for Cardano, you will typically have the following abilities:
+Cardanoステークプールオペレーターには、一般に以下のスキルが必要です。
 
-* operational knowledge of how to set up, run and maintain a Cardano node continuously
-* a commitment to maintain your node 24/7/365
-* system operation skills
-* server administration skills (operational and maintenance).
-* experience of development and operations (DevOps) would be very useful
+* Cardanoノードをセットアップし、継続的に稼働させ維持するための運営知識
+* ノードを無休で維持するコミットメント
+* システム操作のスキル
+* サーバー管理のスキル（操作およびメンテナンス）
+* 開発運用（DevOps）の経験は非常に有益
