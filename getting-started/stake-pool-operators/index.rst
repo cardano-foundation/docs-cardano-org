@@ -1,11 +1,11 @@
-Getting Started with Stake Pool Operations
+ステークプールの運営を始める
 ==========================================
 
-Stake pools use the Cardano node to validate how the pool interacts with the network, sends transactions, creates blocks, and so on.
+ステークプールは、ネットワークとのやり取り、トランザクションの送信、ブロックの生成その他を検証するために、Cardanoノードを使用します。
 
-**Operating a stake pool**
+**ステークプールの運営**
 
-Stake pools are a key part of a decentralized Cardano, supporting the mechanisms that ensure the long-term health and liveness of the network. By running a stake pool, stake pool operators enable other users to participate in the protocol and gain rewards without needing to continuously run an online node.
+ステークプールは分散型Cardanoの根幹をなし、ネットワークの長期にわたる健全性と活性を確保するメカニズムを支えています。ステークプールオペレーターはステークプールの運営を通じて、他のユーザーが継続的にノードを稼働させる必要なくプロトコルに参加し、報酬を得ることを可能にします。
 
 .. toctree::
    :maxdepth: 1
@@ -19,23 +19,23 @@ Stake pools are a key part of a decentralized Cardano, supporting the mechanisms
    public-stakepools
    metadata-proxy-servers
 
-**Recommended setup**
+**推奨される設定**
 
-As stake pool operator, you will have two types of nodes, core nodes and relay nodes. Each core node must be accompanied by one or more relay nodes.
+ステークプールオペレーターは、コアノードとリレーノードの2種類のノードを使用します。各コアノードには、必ず1つ以上のリレーノードが付随します。
 
-To be clear: Both types of nodes run exactly the same program, cardano-node. The difference between the two types is that core nodes are responsible for producing blocks, while relays are responsible for communicating with other relays int the network and broadcasting blocks. This difference determines how they are configured and how they are connected to the network.
+両ノードとも、まったく同じプログラム、cardano-nodeを実行します。両ノードの違いは、コアノードがブロック生成を担うのに対し、リレーノードはネットワークにおける他のリレーとの通信およびブロックの送信を担います。この違いは、設定方法、およびネットワークへの接続方法により決定されます。
 
-* A core node is configured with various key-pairs and an operational certificate needed for block generation (cold keys, KES hot keys and VRF hot keys). It only connects to its relay nodes.
+* コアノードは複数の鍵ペア（コールドキー、KESホットキー、VRFホットキー）で設定され、ブロックを生成するための運営証明書を必要とします。対応するリレーノードにのみ接続されます。
 
-* A relay node doesn't need any keys and will therefore be unable to produce blocks. It is connected to its core node, other relays and external nodes.
+* リレーノードは鍵を必要とせず、ブロックを生成することはできません。コアノード、他のリレーノード、外部ノードに接続されます。
 
-Each node should run on a dedicated server, and the core node server's firewall should be configured to only allow incoming connections from its relays.
+各ノードは専用サーバーで実行し、コアノードサーバーのファイアウォールは対応するリレーノードからの受信接続のみ許可するように設定する必要があります。
 
 .. image:: network1.png
 
 
-**How to create a stake pool**
+**ステークプールを作成するには**
 
-To learn how to setup your own stake pool, please follow the `Cardano Tutorials`_
+ステークプールを作成するには、「ステークプールのセットアップ方法」を参照してください。
 
-.. _Cardano Tutorials: ../../cardano-tutorials/readme
+.. _ステークプールのセットアップ方法: ../../cardano-tutorials/readme
