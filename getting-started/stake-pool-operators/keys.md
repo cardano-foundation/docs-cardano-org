@@ -1,11 +1,11 @@
-## About the stake pool operator keys
+## ステークプールオペレーターの鍵について
 
-It is the responsibility of the operator to manage both the hot (online), and cold (offline) keys for the pool. Cold keys must be secure and should not reside on a device that has internet connectivity. It is recommended that you have multiple backups of your cold keys.
+プール用のホット（オンライン）キーおよびコールド（オフライン）キーの管理責任はオペレーターが負います。コールドキーは安全に保管し、インターネットに接続されるデバイスには保存しないでください。コールドキーは複数のバックアップを取ることが推奨されます。
 
-The keys that you need as a stake pool operator are:
+ステークプールオペレーターには以下の鍵が必要です。
 
-* stake pool cold key
-* stake pool hot key (KES key)
-* stake pool VRF key
+* ステークプールコールドキー
+* ステークプールホットキー（KESキー）
+* ステークプールVRFキー
 
-The KES key, or hot key as mentioned above, is a node operational key that authenticates who you are. You specify the validity of the KES key using the start time and key period parameters and this KES key needs to be updated every 90 days. The VRF key is a signing verification key and is stored within the operational certificate. You can read more information on these crypto scheme keys in the Shelley ledger specification
+上記のKESキー（またはホットキー）は、ノードを運営するためにオペレーター本人であることを認証する鍵です。オペレーターは、開始時間と鍵期間パラメーターを使用してKESキーの有効性を特定します。KESキーは90日ごとに更新する必要があります。VRFキーは署名を検証する鍵で、運営証明書に保管されています。暗号スキーム鍵についての詳細は、Shelley台帳仕様を参照してください。
