@@ -1,10 +1,10 @@
-## ステークプールを運営するための最小要件
+## ステークプール運営の最小要件
 
-In terms of hardware, you should have the following available:
+ハードウェア要件は以下の通りです。
 
-* 4 GB of RAM
-* 24 GB of hard disk space
-* a good network connection and about 1 GB of bandwidth per hour
-* a public IP4 address
+* RAM 4GB
+* ハードディスク空き容量24GB
+* 良好なネットワーク接続環境およびバンド幅1GB/時
+* パブリックIP4アドレス
 
-Note that processor speed is not a significant factor for running a stake pool.
+注意：ステークプール運営に関しプロセッサーの速度は重要ではありません。
