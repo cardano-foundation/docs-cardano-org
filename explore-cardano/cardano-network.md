@@ -1,20 +1,81 @@
-## Cardano Design Rationale
-Cardano has been built as a resilient and sustainable blockchain using the core principles of security, scalability, and interoperability. Fundamentally, it was designed as a proof of stake system which means it is undoubtedly more efficient, by orders of magnitude, than proof of work. Crucially, our ground-breaking proof-of-stake consensus protocol [Ouroboros](https://iohk.io/en/blog/posts/2020/06/23/the-ouroboros-path-to-decentralization/) is proven to have the same security guarantees that proof of work has. 
+## About the Cardano Network
+The Cardano network is a technical infrastructure combining Cardano nodes and their relative interactions in one unified system. It consists of a collection of nodes that communicate with each other to maintain the distributed ledger. These nodes are the actors on Cardano that validate blocks, add blocks to the chain, and distribute transactions. 
 
-Formal methods, such as mathematical specifications, property-based tests, and proofs, are the best way to deliver high assurance software systems and give confidence to users for the management of digital funds. Cardano has been built using formal methods to get strong guarantees on the functional correctness of core components of the system.
+The networking layer is the driving force for delivering information exchange requirements, which includes new blocks diffusion and transaction information for establishing a better data flow. Cardano nodes maintain connections with peers that have been chosen via a custom peer selection process.  
 
-Security is one of the founding principles of Cardano. It is written in Haskell, a secure functional programming language. A functional language like Haskell encourages building a system using pure functions, which leads to a design where components are conveniently testable in isolation. Furthermore, advanced features of Haskell enable us to employ a whole range of powerful methods for ensuring correctness of the code, such as basing the implementation on formal and executable specifications, extensive property-based testing, and running tests in simulation.
+### Data flow between and within nodes 
+To understand how nodes communicate with each other, let’s suppose that node *A* is connected to node *B*. Then, the Ouroboros protocol schedules a node *N* to generate a new block in a given time slot. Depending on the location of nodes *A*, *B*, and *N* in the network topology, and whether a new block arrives first at *A* or *B*, node *A* can be either upstream or downstream of node *B*. 
 
-For Cardano to deliver a resilient infrastructure on a global scale, it needs to be able to scale on par with legacy financial systems. Even though we have designed Cardano with resource efficiency in mind, scaling remains a fundamental problem for blockchain systems of all kinds. To get towards a solution of the scaling problem, our researchers have invented our scalability solution [Hydra](https://eprint.iacr.org/2020/299.pdf), a protocol that can be executed on top of Cardano, allowing transaction and smart contract processing off the main chain. This will multiply the capacity of the overall system by a multitude.
+A set of mini protocols is used to enable communication between different nodes. Each mini protocol implements a basic information exchange requirement, such as informing peers of the latest block, sharing blocks as needed, or sharing new transactions around the Cardano network. For connection purposes, mini protocols are determined by the version of the network protocol. For example, there are two protocol suites: node-to-node and node-to-client. The node-to-client protocol suite is used by wallets and chain consumers. Protocol suites use different sets of mini protocols and the version is negotiated when a new connection is established using a specific protocol (protocols are described in the following sections). 
 
-Performance engineering was used to assess whether design decisions helped us move closer to the resilience, performance and scalability targets. Distributed systems performance engineering was applied to anticipate and mitigate issues associated with long-term, continuous and scalable operations in a real-world open environment. 
+Clients can also choose which node-to-client mini-protocols to use, but it is important to note that the node needs to be able to reply to all of them to support different use cases. For example, to communicate, node A runs its client-side instance of the *chain-sync mini protocol* that talks with a server instance of the *chain-sync mini protocol* at node *B*. Such a situation is similar to the functionality of other mini protocols.  
 
-Another major aim in the design of Cardano is to reduce centralization while actively working against economic incentives that would drive the system towards centralization. As soon as you have stake pools, you have an economic incentive for these pools to grow, so it was important to make it less attractive for a stake pool to become too big. It is more cost-efficient to have a small number of large pools, than a large number of small pools. Cardano was designed to work against the economic incentive where large pools dominate the system, by making it less attractive for a pool to become too big. This was achieved by changing the reward formula. In a naive system, the total rewards for a pool would be proportional to its stake, so the bigger it gets, the better. In Cardano, if a pool attracts more stake than a certain threshold (1/k, where k is a configurable parameter), its reward will no longer increase. So, if everyone acts in their own self-interest to maximize their rewards, you expect k pools of roughly equal size. 
+The scheme below illustrates how data flows within a node. Circles represent protocol threads and internal threads that are responsible for running the client and server processes within the respective mini protocols. 
 
-The ability to interact with other systems, or interoperability, is a fundamental design feature of Cardano. One of the current design innovations in Cardano is the use of sidechains, which means that you can compartmentalize the system and enable interoperability within the blockchain platform. Data can be kept off the main chain in what is called a sidechain. Multiple sidechains can run concurrently, so if one part fails, the rest of the system does not fail, as it is maintained separately. This results in greater assurance and reliability within the blockchain. By using sidechains you can transfer assets between parallel blockchains that operate in different rules, mechanisms or languages and ways of utilizing the network. 
+![Data flow within nodes](Data flow within nodes.jpg)
 
-Governance is also central to the design of Cardano to ensure system sustainability and adaptability. A well-developed governance strategy will enable effective, democratic funding for Cardano’s long-term development. The Cardano treasury system is currently being designed as a sustainable funding mechanism to maintain Cardano. It will be controlled by the community and will enable a decentralized, collaborative decision-making process to sustain Cardano’s development and maintenance. Various potential funding sources will be used to refill the treasury on a constant basis, such as the aggregation of newly-minted coins, a percentage of stake pool rewards, transaction fees, and donations or charity. With funds being accumulated in an iterative process, it will be possible to fund the project development and pay for improvement proposals. In addition, Cardano Improvement Proposals (CIPs), will also be delivered to foster and formalize discussions around new features and their development within the community. 
+Two types of data flow exist:
+1. Mini protocols communicate with mini protocols of other nodes by sending and receiving messages across a public network (internet); 
+this flow is not covered within the scheme above but will be potentially designed for better understanding. 
+2. Within a node, mini-protocols communicate with each other by reading from, and writing to, a shared mutable variable, which is represented by boxes in the scheme. Arrows indicate whether a thread has *read* or *write* access to the shared state.
 
-Central to the treasury is a democratized voting mechanism where ada holders will themselves decide how funds are allocated by voting on funding proposals. This will ensure that decisions are made by a democratic vote rather than by just a handful of stakeholders. This voting system will influence decisions such as funding initiatives, authorizing updates to the protocol, and rolling out any constitutional updates such as changes to the decision-making process, or the minting of new tokens.
+### Addressing Network Complexities and Constraints
+To design an efficient and robust networking architecture, a number of potential issues regarding complexity and constraints have been evaluated. 
 
+**Congestion control** is one such feature and is used to deal with system overload. Congestion control is vital to ensure that the system is robust enough while operating high workloads. Within the networking design, it is common that the number of transactions that occur can be higher than the number that can be actually processed for inclusion in the blockchain. Therefore, it is important to ensure that the increasing rate of transaction submission into a block does not decrease the performance of blockchain. 
+
+The actual node has a limit to the amount of data it can process. In particular, a node might have to share its processing power with other processes that run on the same machine or operating system instance. This means that a node can slow down and result in the system not being able to process all the available data from the network.
+
+To address these issues, the congestion control feature has been designed to operate appropriately in such a situation and recover from transient conditions. In any case, a node must not exceed its memory limits so there must be defined memory limits, breaches of which are treated as protocol violations. These factors mean that the system will be able to meet performance goals. 
+
+**Real-time constraints** and **coordinated universal time** are other aspects that have been considered while designing the networking architecture. In Cardano, [Ouroboros consensus protocols](https://docs.cardano.org/en/latest/explore-cardano/understanding-consensus.html) model the passage of physical time as an infinite sequence of time slots, assigning slot leaders to [create a new block](https://docs.cardano.org/en/latest/explore-cardano/how-are-new-blocks-produced.html) in those time slots. Choosing a slot time, however, might cause certain complexities in terms of the slot length, as it should be long enough for a new block to have a good chance to reach the next slot leader in time. Therefore, a chosen value for the slot length was initially set to 20 seconds in the Byron era. With [Ouroboros Praos](https://eprint.iacr.org/2017/573.pdf) now implemented in the Shelley era, a slot length of 1 second is chosen but, on average, only 0.05 of slots will produce a block (and thus on average, there will be 20-second intervals between blocks). It is assumed that the clock skews between local clocks of the nodes is small with respect to the slot length. Possible clock inaccuracies should still be taken into consideration, especially when dealing with time-stamped incoming blocks. It is important to differentiate whether there is a time difference or whether the node considers an adversarial behavior of another node.
+
+### Utilizing mini-protocols 
+Mini protocols are used to communicate between multiple nodes while implementing information exchange requirements. A mini protocol is a defined modular building block of the network protocol. Structuring the network protocol around mini protocols helps to manage the overall complexity of the design while ensuring useful flexibility. 
+
+Mini protocols describe both the *initiator* and the *responder* within the communication stream. The initiator is the dual element of the responder and vice versa. A node typically runs many instances of mini protocols, which includes many instances of the same mini protocol. Each mini protocol instance of the node then communicates with the dual instance of the exact peer. All mini protocols that communicate with the same peer share a single communication channel (pipe or socket). A multiplexer or de-multiplexer is used to multiplex respective protocols over that channel. 
+
+The set of mini protocols that is used for connection between two participants of the system depends on the role of these participants, for instance, whether the node acts as a full node or a blockchain consumer (for example, a wallet).
+
+It is also worth noting that the implementation of mini protocols uses a generic framework for **state machines**. This framework uses *correct-by-construction* techniques to guarantee the implementation of several properties of the protocol. In particular, this technique assures that no deadlocks occur and communication is cancelled in the following scenarios:
+
+- when one side is expected to transmit the next message, and the other side is awaiting the message, and both sides agree that the protocol has been terminated
+- when either side receives a message that is not expected according to the protocol
+
+All mini protocols based on this framework include the following information in their description:
+- an informal description of the protocol
+- state machine states
+- exchanged messages
+- a transition graph of the state machine global view
+- the client’s implementation of the protocol
+- the server implementation of the protocol
+
+#### Mini protocols example
+This section outlines some examples of mini protocols. 
+
+##### Ping Pong Protocol
+This is a simple protocol for testing that a client can use to check that the server is responsive. The Ping-Pong protocol is very simple because the messages do not carry any data and the Ping-Pong client, as well as the Ping-Pong server, do not access the internal state of the node.
+
+##### Request Response Protocol
+The request response protocol is polymorphic in the request and response data that is being transmitted. This means that there are different possible applications of this protocol and the application of the protocol determines the types of requests sent and responses received.
+
+##### Chain Synchronisation Protocol
+The chain synchronization protocol is used by a blockchain consumer to replicate the producer’s blockchain locally. A node communicates with several upstream and downstream nodes and runs an independent client instance and an independent server instance for each node with which it communicates. 
+
+The chain synchronization protocol is polymorphic. The node-to-client protocol uses an instance of the chain synchronization protocol that transfers full blocks, while the node-to-node instance only transfers block headers. In the node-to-node scenario, the block fetch protocol is used to transfer full blocks.
+
+##### Block Fetch Protocol
+The block-fetching protocol enables a node to download a range of blocks.
+
+##### Local Transaction Submission Mini Protocol
+The local transaction submission mini protocol is used by local clients, for example, wallets or CLI tools, to submit transactions to a local node. The protocol is not used to forward transactions from one core node to another. 
+The protocol follows a simple request-response pattern:
+1. the client sends a request with a single transaction.
+2. the server either accepts the transaction (returning a confirmation), or rejects it (returning the reason).
+
+##### Node-to-Node Transaction Submission Protocol
+The node-to-node transaction submission protocol is used to transfer transactions between full nodes. The protocol follows a pull-based strategy where the initiator asks for new transactions and the responder replies with transactions. It is suitable for a trustless setting where both sides need to guard against resource consumption attacks from the other side. The implementation of the node-to-node transaction mini protocol is based on a generic mini protocol framework (the same as for all other mini protocols). For technical reasons, the roles of the initiator and the responder are reversed in this case compared to the way other mini protocols are implemented in the framework. In other words, the server is the initiator who requests new transactions, and the client is the responder who replies with transactions. 
+
+##### Handshake Mini Protocol
+The handshake mini protocol is used to negotiate the protocol version and the protocol parameters that are used by the client and the server. It is used first when a new connection is initialized and consists of a single request from the client and a single reply from the server. The handshake mini protocol is a generic protocol that can negotiate any kind of protocol parameters. It assumes that protocol parameters can be encoded to, and decoded from Concise Binary Object Representation (CBOR) terms. A node that runs the handshake protocol must instantiate it with the set of supported protocol versions and callback functions for handling the protocol parameters. These callback functions are specific for the supported protocol versions.
 
