@@ -1,17 +1,17 @@
-## Public stake pools
+## パブリックステークプール
 
-If the registration certificate that is sent by a stake pool operator contains metadata, the stake pool is considered to be public.
+ステークプールオペレーターが送信した登録証明書にメタデータが含まれている場合、ステークプールはパブリックであるとみなされます。
 
-Referring to, or pointing to metadata, in the stake pool certificate is optional. The certificate might contain a URL of up to 64 bytes in length that points to a JSON object with the following content:
+ステークプール証明書には、オプションでメタデータを参照または示すことができます。証明書には、以下を含むJSONオブジェクトを示す長さ64バイトまでのURLを含むことができます。
 
-* a ticker of 3-5 characters, for a compact display of stake pools in a wallet.
-* title/name of up to 50 characters.
-* short textual description
-* URL to a homepage with additional information about the pool (optional).
+* 3～5文字のティッカー - ウォレット内におけるステークプールの簡易表示
+* 最大50文字のタイトル/名称
+* 文字による短い説明
+* プールに関する追加情報が掲載されたホームページへのURL（オプション）
 
-These are important considerations to note about the metadata:
+以下はメタデータに関する重要ポイントです。
 
-* metadata information is encoded in UTF-8, and will never exceed 512 bytes
-* the content hash of the JSON object referenced in the URL (if present), should match the content hash in the registration certificate. If there is a mismatch, the pool will not be displayed in a wallet.
-* for the wallet to display the pool, the following conditions must be met - the registration certificate must refer to the metadata, the metadata must be valid and have the correct content hash, and be available at the URL. It must be possible to get the metadata and validate it. If this process fails, the wallet will not display the pool.
-* if a stake pool operator changes the metadata, they must post a new stake pool registration certificate with the new content hash.
+* メタデータ情報はUTF-8エンコード使用、最大512バイト
+* URLで参照されるJSONオブジェクトのcontent-hashは（適用する場合）、登録証明書のcontent-hashと一致すること。一致しない場合、プールはウォレットに表示されない
+* ウォレットにプールを表示するには、以下の条件が必要 - 登録証明書がメタデータを参照しており、メタデータには有効かつ正しいcontent-hashがあり、URLで参照されていること。メタデータの取得およびその検証が可能であること。このプロセスに失敗すると、ウォレットはプールを表示しない
+* ステークプールオペレーターは、メタデータを変更した場合、新しいcontent-hashを付した新しいステークプール登録証明書を投稿する
