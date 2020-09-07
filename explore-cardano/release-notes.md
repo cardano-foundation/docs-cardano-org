@@ -6,7 +6,7 @@ The release notes for Cardano releases can be found in the [Updates](https://ioh
 
 Name | Version | Release Date
 -|-|-
-[Cardano Node](https://github.com/input-output-hk/cardano-node) | [1.19.0](https://github.com/input-output-hk/cardano-node/releases/tag/1.19.0) | 20 August 2020
+[Cardano Node](https://github.com/input-output-hk/cardano-node) | [1.19.1](https://github.com/input-output-hk/cardano-node/releases/tag/1.19.1) | 4 September 2020
 [Cardano DB Sync](https://github.com/input-output-hk/cardano-db-sync/releases) | [4.0.0](https://github.com/input-output-hk/cardano-db-sync/releases/tag/4.0.0) | 18 August 2020
 [Smash](https://github.com/input-output-hk/smash) | [1.0.1](https://github.com/input-output-hk/smash/releases/tag/1.0.1) | 13 August 2020
 [Cardano Rest](https://github.com/input-output-hk/cardano-rest) | [2.1.3](https://github.com/input-output-hk/cardano-rest/releases/tag/2.1.3) | 5 August 2020
