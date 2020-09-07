@@ -1,7 +1,7 @@
-## Metadata proxy servers
+## メタデータプロキシサーバー
 
-Wallets do not retrieve metadata from each stake pool at every individual URL, as this could lead to malicious exploitation. For instance, third parties could slow down wallet communication by intentionally delaying the server's response time. To avoid this scenario, metadata uses proxy servers that query the URL included in the registration certificate, and cache the metadata using the pool's sks as key. Wallets will simply query these proxy servers to retrieve the metadata for the pools it needs to display, instead of sending a request to each of the pool’s metadata URLs. If the content hash listed on the certificate does not match the content hash of the cached metadata, the cache will be invalidated.
+ウォレットが各ステークプールから個別URLごとにメタデータを取得することはありません。これは悪質な詐欺につながる恐れがあるためです。例えば、第三者がサーバーの応答時間を故意に遅らせてウォレットの通信を遅延させることができます。このシナリオを避けるために、メタデータは登録証明書に含まれるURLに問い合わせるプロキシサーバーと、プールの秘密鍵を使用したメタデータのキャッシュを使用します。ウォレットは、各プールのメタデータURLにリクエストを送信する代わりに、こうしたプロキシサーバーに問い合わせ、表示する必要のあるプールのメタデータを取得します。証明書に記載されたcontent_hashがキャッシュのメタデータのcontent_hashと一致しない場合、キャッシュは無効と見なされます。
 
-Proxy servers provide an additional level of security by filtering malicious entries. For example, it is possible to embed malicious content in the metadata, typically in the link to the stake pool’s homepage. If a pool hosts dangerous or illegal content, maintainers of a metadata proxy server can filter that entry and not provide it to wallets. This is a clear advantage over writing the metadata directly to the chain, where there would be no way to protect wallet users from visiting malicious sites directly from their wallet.
+プロキシサーバーは悪質なエントリーをフィルタリングすることにより、さらにレベルの高いセキュリティを提供します。例えば、メタデータには悪質なコンテンツを埋め込むことも可能です。ステークプールのホームページへのリンクが一般的ですが、プールが危険または違法なコンテンツをホストしている場合、メタデータプロキシサーバーの管理者はそのエントリーをフィルターにかけ、ウォレットに提供しないようにすることができます。これは明らかに、チェーンに直接メタデータを書くことに比べて優れた点です。そうでなければ、ユーザーがウォレットから直接悪質なサイトを閲覧することを防ぎようがないからです。
 
-While proxy servers do offer effective protection against malicious interference, they could become a point of centralisation. To avoid this, we will provide third parties (stake pools, community members, etc.) with code and binaries so they can run their own proxy servers and prevent centralization.
+プロキシサーバーは悪質な妨害行為に対する防波堤となる一方で、中央集権の拠り所ともなりかねません。この回避策として、第三者（ステークプール、コミュニティメンバーなど）が自身のプロキシサーバーを実行して中央集権化を避けることができるよう、コードとバイナリを提供します。
