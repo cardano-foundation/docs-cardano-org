@@ -1,11 +1,11 @@
-## Operational certificates
+## 運営証明書
 
-Stake pool operators must provide an operational certificate to verify that the pool has the authority to run. The certificate includes the operator's signature, and includes key information about the pool (addresses, keys, etc.)
+ステークプールオペレーターは、プールの運営が認証されていることを証明するために運営証明書を提供する必要があります。証明書にはオペレーターの署名およびプールに関する重要な情報（アドレス、鍵など）が含まれます。
 
-Operational certificates represent the link between the operator's offline key and their operational key. A certificate's job is to check whether or not an operational key is valid, to prevent malicious interference. The certificate identifies the current operational key, and is signed by the offline key.
+運営証明書はオペレーターのオフラインキーと運営鍵とのリンクを示します。証明書の役割は、悪質な妨害行為を防ぐために、運営鍵が有効であるかどうかを確認することです。証明書は現行の運営鍵を特定し、オフラインキーにより署名されます。
 
-Certificates are generated with an issue counter number and included in the header of each block the node generates. This mechanism enables nodes to verify whether a certificate is current, or has already been superseded by a newer one. Certificates include a kes-period (start date), which indicates the time span within which the certificate is valid, before you need to create another one. See an example of an operational certificate generation here.
+証明書は発行番号付きで生成され、そのノードが生成する各ブロックのヘッダーに含まれます。このメカニズムにより、ノードは証明書が現行のものか、最新版により無効になっているかを確認することができます。証明書にはkes-period（開始日）が含まれます。これは新たな証明書の作成が必要になるまでの、証明書の有効期間を示します。運営証明書の作成例はこちら
 
-The counter becomes significant when an attacker has compromised the KES key, in which case the owner of the cold keys can create a new KES key and a new certificate with a higher issue number. If a node sees two blocks claiming to originate from the same cold key, but using different KES keys, the higher issue counter trumps the lower one.
+ノードが同じコールドキーに起因し、異なるKESキーを使用している2つのブロックを検知した場合、番号の大きなものが小さなものに優先されます。
 
-Certificates are generated on the offline machine using the offline/cold keys, before being copied over to the node to validate the KES keys used to sign the blocks. You can see an example of a transaction containing certificates [here](https://github.com/input-output-hk/cardano-tutorials/blob/master/node-setup/node-op-cert.md).
+証明書は、オフラインキー、またはコールドキーを使用してオフラインのデバイスで生成されます。それから、ブロックに署名するために使用されたKESキーを確認するためにノードにコピーされます。証明書を含むトランザクション例は[こちら](https://github.com/input-output-hk/cardano-tutorials/blob/master/node-setup/node-op-cert.md)
