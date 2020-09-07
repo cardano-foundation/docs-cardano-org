@@ -12,7 +12,7 @@ Clients can also choose which node-to-client mini-protocols to use, but it is im
 
 The scheme below illustrates how data flows within a node. Circles represent protocol threads and internal threads that are responsible for running the client and server processes within the respective mini protocols. 
 
-! [Data flow within nodes](Data flow within nodes.jpg)
+![Data flow within nodes](Data flow within nodes.jpg)
 
 Two types of data flow exist:
 1. Mini protocols communicate with mini protocols of other nodes by sending and receiving messages across a public network (internet); 
