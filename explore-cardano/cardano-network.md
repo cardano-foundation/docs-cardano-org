@@ -50,7 +50,7 @@ All mini protocols based on this framework include the following information in 
 - the client’s implementation of the protocol
 - the server implementation of the protocol
 
-#### Mini protocols example
+#### Example mini protocols
 This section outlines some examples of mini protocols. 
 
 ##### Ping Pong Protocol
