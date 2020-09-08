@@ -7,8 +7,8 @@
    :hidden:
 
    cardano-nodeクイックスタート <https://cardano.readthedocs.io/projects/cardano-node/en/latest/tutorials/install.html>
-   Stake Pool Operators <getting-started/stake-pool-operators/index>
-   3rd-party Integration <getting-started/3rd-party-integration/index>
+   ステークプールオペレーター <getting-started/stake-pool-operators/index>
+   サードパーティ統合 <getting-started/3rd-party-integration/index>
 
 .. toctree::
    :maxdepth: 3
