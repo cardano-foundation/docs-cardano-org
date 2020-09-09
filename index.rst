@@ -1,5 +1,5 @@
 .. include:: README.rst
-  
+
 .. toctree::
    :maxdepth: 3
    :caption: Getting Started
@@ -9,6 +9,7 @@
    Installing and Running a Node <https://docs.cardano.org/projects/cardano-node/en/latest/getting-started/install.html>
    Stake Pool Operators <getting-started/stake-pool-operators/index>
    Third-party Integration <getting-started/3rd-party-integration/index>
+   Exchange Integration Guide <getting-started/exchanges/index>
 
 .. toctree::
    :maxdepth: 3
