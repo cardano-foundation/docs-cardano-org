@@ -1,12 +1,12 @@
-# A guide to exchange staking, delegation, and integration with Cardano post-Shelley
+# A guide for exchanges on stake pools, delegation, and integration with Cardano post-Shelley
 
-As staking and delegation become possible through the Shelley hard fork, many exchanges are eager to participate in either running a stake pool or delegating their stake to existing pools.
+As stake pools and delegation become available through the Shelley hard fork, many exchanges are eager to participate in either running a stake pool or delegating their stake to existing pools.
 
 This article will attempt to answer some of the most frequently asked questions exchange operators and developers may have regarding this process, including current limitations and how to get started.
 
 This document is for exchanges and exchange developers who have already successfully migrated from the Byron pre-hard fork era to the Shelley post-hard fork era.
 
-Exchanges will need to use Shelley mainnet as a production environment to get the latest features of the Cardano blockchain. This integration is made possible by using [cardano-wallet](https://github.com/input-output-hk/cardano-wallet), [cardano-rest](https://github.com/input-output-hk/cardano-rest), [cardano-node](https://github.com/input-output-hk/cardano-node/releases/tag/1.9.3), and [cardano-cli](https://github.com/input-output-hk/cardano-cli/releases), which provide the communication point for exchanges. As an exchange, you will need to [start your Cardano node](https://docs.cardano.org/projects/cardano-node/en/latest/stake-pool-operations/start_your_nodes.html), have a Shelley wallet with funds, and select a stake pool before you start the process of stake delegation.
+Exchanges will need to use the Shelley mainnet as a production environment to get the latest features of the Cardano blockchain. This integration is made possible by using [cardano-wallet](https://github.com/input-output-hk/cardano-wallet), [cardano-rest](https://github.com/input-output-hk/cardano-rest), [cardano-node](https://github.com/input-output-hk/cardano-node/releases/tag/1.9.3), and [cardano-cli](https://github.com/input-output-hk/cardano-cli/releases), which provide the communication point for exchanges. As an exchange, you will need to [start your Cardano node](https://docs.cardano.org/projects/cardano-node/en/latest/stake-pool-operations/start_your_nodes.html), have a Shelley wallet with funds, and select a stake pool before you start the process of stake delegation.
 
 **Note:** [cardano-sl](https://github.com/input-output-hk/cardano-sl/tree/3.0.3) is deprecated and will not function after the Shelley hard fork. Exchanges or third-party wallets using cardano-sl should move to a Shelley-supported version of Cardano, such as the recently released cardano-node.
 
@@ -50,12 +50,12 @@ To participate in stake delegation, every exchange must have the following types
 
 The main steps for delegating stake are:
 
-* Create stake keys,
-* Create payment keys,
-* Register stake address on the blockchain,
-* Create and submit the stake delegation certificate.
+* Create stake keys
+* Create payment keys
+* Register stake address on the blockchain
+* Create and submit the stake delegation certificate
 
-We will go through these steps in detail below.
+We will go through these steps in detail in the following sections.
 
 ### 1. Create stake keys
 
