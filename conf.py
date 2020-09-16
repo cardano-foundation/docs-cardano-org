@@ -76,15 +76,17 @@ exclude_patterns = []
 # a list of builtin themes.
 #
 html_theme = "sphinx_rtd_theme"
-#html_style = '.sphinx/css/modified-theme.css'
 
-html_theme_options = {
+html_js_files = [
+    'js/hotjar.js',
+]
+
+tml_theme_options = {
     'logo_only': False,
     'display_version': False,
     'prev_next_buttons_location': 'bottom',
     'style_external_links': False,
-    'vcs_pageview_mode': '',
-    'style_nav_header_background': '#0635a7',
+    'style_nav_header_background': '#f8f8f5',
     # Toc options
     'collapse_navigation': True,
     'sticky_navigation': True,
@@ -98,6 +100,11 @@ html_theme_options = {
 # so a file named "default.css" will overwrite the builtin "default.css".
 
 html_logo = ".sphinx/cardano-logo.png"
+
+html_css_files = [
+    'https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;700&display=swap',
+    'css/custom.css',
+]
 
 html_context = {
   "display_github": True, # Add 'Edit on Github' link instead of 'View page source'
