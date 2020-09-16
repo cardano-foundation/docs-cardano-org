@@ -81,7 +81,7 @@ html_js_files = [
     'js/hotjar.js',
 ]
 
-tml_theme_options = {
+html_theme_options = {
     'logo_only': False,
     'display_version': False,
     'prev_next_buttons_location': 'bottom',
