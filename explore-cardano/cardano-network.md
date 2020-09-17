@@ -3,6 +3,11 @@ The Cardano network is a technical infrastructure combining Cardano nodes and th
 
 The networking layer is the driving force for delivering information exchange requirements, which includes new blocks diffusion and transaction information for establishing a better data flow. Cardano nodes maintain connections with peers that have been chosen via a custom peer selection process.  
 
+Follow these links to find detailed specifications of:
+
++ [The Shelley networking protocol](https://hydra.iohk.io/build/4110312/download/2/network-spec.pdf) 
++ [An introduction to the design of data diffusion and networking for Cardano Shelley.](https://hydra.iohk.io/build/4110312/download/1/network-design.pdf)  
+
 ### Data flow between and within nodes 
 To understand how nodes communicate with each other, let’s suppose that node *A* is connected to node *B*. Then, the Ouroboros protocol schedules a node *N* to generate a new block in a given time slot. Depending on the location of nodes *A*, *B*, and *N* in the network topology, and whether a new block arrives first at *A* or *B*, node *A* can be either upstream or downstream of node *B*. 
 
