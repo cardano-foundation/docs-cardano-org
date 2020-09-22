@@ -30,6 +30,7 @@
    :hidden:
 
    explore-cardano/cardano-network
+   explore-cardano/keys
    explore-cardano/how-are-new-blocks-produced
    explore-cardano/understanding-the-delegation-mechanism
    explore-cardano/understanding-pledging-and-rewards
