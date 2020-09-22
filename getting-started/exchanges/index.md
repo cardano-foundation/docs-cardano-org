@@ -117,7 +117,7 @@ cardano-cli shelley transaction build-raw \
 	--tx-in "$INPUT" \
 	--tx-out "${FROM}+${CHANGE}" \
 	--tx-out "${TO}+${AMOUNT}" \
-	--ttl $(expr $(CARDANO_NODE_SOCKET_PATH=cardano.socket ./cardano-cli shelley query tip --mainnet | jq ".slotNo" --raw-output) + 20000) \ --fee "$FEE" \
+	--ttl $(expr $(CARDANO_NODE_SOCKET_PATH=/opt/cardano/fnf/sockets/node0.socket ./cardano-cli shelley query tip --mainnet | jq ".slotNo" --raw-output) + 20000) \ --fee "$FEE" \
 	--tx-body-file stake-cert-tx
 # Sign
 cardano-cli shelley transaction sign \
