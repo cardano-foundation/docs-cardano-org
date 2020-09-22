@@ -29,6 +29,7 @@
    :titlesonly:
    :hidden:
 
+   explore-cardano/addresses
    explore-cardano/cardano-network
    explore-cardano/how-are-new-blocks-produced
    explore-cardano/understanding-the-delegation-mechanism
