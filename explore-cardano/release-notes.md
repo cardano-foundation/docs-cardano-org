@@ -6,8 +6,8 @@ The release notes for Cardano releases can be found in the [Updates](https://ioh
 
 Name | Version | Release Date
 -|-|-
-[Cardano Node](https://github.com/input-output-hk/cardano-node) | [1.19.1](https://github.com/input-output-hk/cardano-node/releases/tag/1.19.1) | 4 September 2020
-[Cardano DB Sync](https://github.com/input-output-hk/cardano-db-sync/releases) | [5.0.0](https://github.com/input-output-hk/cardano-db-sync/releases/tag/5.0.0) | 16 September 2020
+[Cardano Node](https://github.com/input-output-hk/cardano-node) | [1.20.0](https://github.com/input-output-hk/cardano-node/releases/tag/1.20.0) | 23 September 2020
+[Cardano DB Sync](https://github.com/input-output-hk/cardano-db-sync/releases) | [5.0.1](https://github.com/input-output-hk/cardano-db-sync/releases/tag/5.0.1) | 23 September 2020
 [Smash](https://github.com/input-output-hk/smash) | [1.1.0](https://github.com/input-output-hk/smash/releases/tag/1.1.0) | 10 September 2020
 [Cardano Rest](https://github.com/input-output-hk/cardano-rest) | [2.1.3](https://github.com/input-output-hk/cardano-rest/releases/tag/2.1.3) | 5 August 2020
 [Cardano GraphQL](https://github.com/input-output-hk/cardano-graphql) | [2.1.0](https://github.com/input-output-hk/cardano-graphql/releases/tag/2.1.0) | 17 September 2020
