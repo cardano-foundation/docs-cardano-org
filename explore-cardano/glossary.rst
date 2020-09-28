@@ -8,12 +8,12 @@ Cardano Glossary
       digital currency of the Cardano blockchain. One ada = 1,000,000 lovelaces.
     
     address
-      a data-structure used in transaction outputs to convey various pieces of information. All addresses carry a network discriminant tag to distinguish between different networks (e.g. Mainnet or Testnet) and a proof of ownership (i.e. a proof of who owns the transaction output). Some addresses also carry delegation choices or script references.  
+      a data structure used in transaction outputs to convey various pieces of information. All addresses carry a network discriminant tag to distinguish between different networks, for instance mainnet or testnet, and a proof of ownership of who owns the transaction output. Some addresses also carry delegation choices or script references.  
     Adrestia
-      Adrestia is a collection of products which makes it easier to integrate with Cardano. It is made of several Application Programming Interfaces (APIs), Command-line Interfaces (CLIs) and Software Development Kits (SDKs). Alternatively, Adrestia may also refer to the team working on the project itself.
+      Adrestia is a collection of products which makes it easier to integrate with Cardano. It is made of several application programming interfaces (APIs), command-line interfaces (CLIs), and software development kits (SDKs). Alternatively, Adrestia may also refer to the team working on the project itself.
       
     asset
-      a digital item of property that holds value stored in the distributed ledger. An asset can represent security or utility tokens of fungible or non-fungible nature.
+      a digital item of property that holds value stored in the distributed ledger. An asset can represent security, or utility tokens of a fungible or non-fungible nature.
     
     balance wallet
       a wallet that stores your initial testnet ada balance, copied from the mainnet via the balance snapshot. The stake from this wallet cannot be delegated but can be transferred to and delegated from a Rewards wallet.
