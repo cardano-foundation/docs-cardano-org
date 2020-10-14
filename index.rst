@@ -63,8 +63,8 @@
    :titlesonly:
    :hidden:
 
-   release-notes <https://docs.cardano.org/blob/main/release-notes>
-   compatibility-matrix <https://docs.cardano.org/blob/main/compatibility-matrix>
+   Releas Notes <https://docs.cardano.org/blob/main/release-notes>
+   Compatibility Matrix <https://docs.cardano.org/blob/main/compatibility-matrix>
    
    
 .. toctree::
