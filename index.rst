@@ -63,8 +63,8 @@
    :titlesonly:
    :hidden:
 
-   Release Notes <release information/release-notes>
-   Compatibility Matrix <release information/compatibility-matrix>
+   Release Notes <release-information/release-notes>
+   Compatibility Matrix <release-information/compatibility-matrix>
    
    
 .. toctree::
