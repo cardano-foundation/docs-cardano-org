@@ -16,4 +16,4 @@ Name | Version | Release Date
 [Cardano Addresses](https://github.com/input-output-hk/cardano-addresses) | [2.1.0](https://github.com/input-output-hk/cardano-addresses/releases/tag/2.1.0) | 29 September 2020
 [Cardano Coin Selection](https://github.com/input-output-hk/cardano-coin-selection) | [1.0.1](https://github.com/input-output-hk/cardano-coin-selection/releases/tag/v1.0.1) | 13 May 2020
 [Bech32](https://github.com/input-output-hk/bech32) | [1.1.0](https://github.com/input-output-hk/bech32/releases/tag/v1.1.0) | 8 July 2020
-[Cardano Wallet](https://github.com/input-output-hk/cardano-wallet) | [2020.9.30](https://github.com/input-output-hk/cardano-wallet/releases/tag/v2020-09-30) | 1 October 2020
+[Cardano Wallet](https://github.com/input-output-hk/cardano-wallet) | [2020.10.13](https://github.com/input-output-hk/cardano-wallet/releases/tag/v2020-10-13) | 14 October 2020
