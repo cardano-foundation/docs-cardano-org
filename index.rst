@@ -59,6 +59,16 @@
 
 .. toctree::
    :maxdepth: 3
+   :caption: Release Information
+   :titlesonly:
+   :hidden:
+
+   Release Notes
+   Compatibility Matrix
+   
+   
+.. toctree::
+   :maxdepth: 3
    :caption: Cardano Community
    :titlesonly:
    :hidden:
