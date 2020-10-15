@@ -13,15 +13,17 @@
 
 .. toctree::
    :maxdepth: 3
-   :caption: Core Concepts
+   :caption: Learn
    :titlesonly:
    :hidden:
 
    What is Cardano? <README>
    explore-cardano/what-is-a-cardano-node
-   explore-cardano/design-rationale
-   explore-cardano/understanding-consensus
    explore-cardano/what-is-a-stakepool
+   explore-cardano/understanding-the-delegation-mechanism
+   explore-cardano/understanding-consensus
+   explore-cardano/understanding-pledging-and-rewards
+   explore-cardano/what-is-a-hard-fork-combinator
 
 .. toctree::
    :maxdepth: 3
@@ -29,13 +31,11 @@
    :titlesonly:
    :hidden:
 
+   explore-cardano/design-rationale
    explore-cardano/cardano-network
    explore-cardano/how-are-new-blocks-produced
-   explore-cardano/understanding-the-delegation-mechanism
-   explore-cardano/understanding-pledging-and-rewards
    explore-cardano/cardano-monetary-policy
    explore-cardano/cardano-fee-structure
-      explore-cardano/what-is-a-hard-fork-combinator
    explore-cardano/further-reading
    explore-cardano/relevant-research-papers-and-specifications
 
@@ -86,7 +86,6 @@
    :hidden:
 
    Cardano Explorer <https://explorer.cardano.org/>
-   explore-cardano/glossary
    
 .. toctree::
    :caption: Glossary
