@@ -1,4 +1,4 @@
-## Real Time View (RTV)
+## Using Real Time View (RTV)
 [RTView](https://github.com/input-output-hk/cardano-rt-view) is a real time monitoring program that provides visibility on the state of running [Cardano nodes](https://github.com/input-output-hk/cardano-node/). It supports multiple node monitoring, even if the nodes work on different machines. 
 
 RTView enables developers, testers, and general users who are running nodes that are connected to the real cluster to see what is going on and how the nodes are performing. It gives visibility on: how much memory and CPU is being used, the state of the blockchain, how many blocks have been forged by a particular node, how many transactions have been processed, and so on.
@@ -10,5 +10,5 @@ The main benefit of RTView is simplicity. It is simple to install, technically t
 
 RTView replaces the LiveView-mode feature in Cardano node and solves all of the previous LiveView limitations. Following the next release, LiveView will be removed from the node which will make the node much simpler and lighter, in terms of dependencies. 
 
-###How to set up RTView
+### How to set up RTView
 To set up RTView follow the [installation steps](https://github.com/input-output-hk/cardano-rt-view/blob/master/doc/getting-started/install.md) to download, unpack, and run the tool. After you have completed these steps RTView will be launched and ready to use.
