@@ -87,3 +87,12 @@
 
    Cardano Explorer <https://explorer.cardano.org/>
    explore-cardano/glossary
+   
+.. toctree::
+   :caption: Glossary
+   :titlesonly:
+   :hidden:
+
+   explore-cardano/glossary
+   
+   
