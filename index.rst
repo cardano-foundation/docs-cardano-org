@@ -56,6 +56,7 @@
    smash <https://docs.cardano.org/projects/smash/>
    ouroboros-network <https://docs.cardano.org/projects/ouroboros-network/>
    adrestia <https://docs.cardano.org/projects/adrestia>
+   rt-view/rt-view
 
 .. toctree::
    :maxdepth: 3
