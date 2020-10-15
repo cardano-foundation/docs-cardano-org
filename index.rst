@@ -65,7 +65,8 @@
    :hidden:
 
    Release Notes <release-information/release-notes>
-   Compatibility Matrix <release-information/compatibility-matrix>
+   Compatibility Matrix <compatibility-matrix>
+   
    
    
 .. toctree::
@@ -85,5 +86,4 @@
    :hidden:
 
    Cardano Explorer <https://explorer.cardano.org/>
-   explore-cardano/release-notes
    explore-cardano/glossary
