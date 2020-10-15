@@ -1,4 +1,4 @@
-## Understanding Hard Forks
+## About Hard Forks
 
 The term hard fork is used to describe a radical change in the blockchain, for example, a change from one protocol to another. In most blockchains, a hard fork indicates block changes or a change to their interpretation. Traditionally, when conducting a hard fork, the current protocol would stop operating, new rules and changes would be implemented, and the chain would restart. It is important to note that a hard-forked chain *will be different* from the previous version and that the history of the pre-forked blockchain will no longer be available.
 
