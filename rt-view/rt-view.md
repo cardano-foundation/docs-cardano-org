@@ -1,5 +1,5 @@
 ## RTView
-RTView is a real time monitoring program that provides visibility on the state of running [Cardano nodes](https://github.com/input-output-hk/cardano-node/). It supports multiple node monitoring, even if the nodes work on different machines. 
+[RTView](https://github.com/input-output-hk/cardano-rt-view) is a real time monitoring program that provides visibility on the state of running [Cardano nodes](https://github.com/input-output-hk/cardano-node/). It supports multiple node monitoring, even if the nodes work on different machines. 
 
 RTView enables developers, testers, and general users who are running nodes that are connected to the real cluster to see what is going on and how the nodes are performing. It gives visibility on: how much memory and CPU is being used, the state of the blockchain, how many blocks have been forged by a particular node, how many transactions have been processed, and so on.
 
