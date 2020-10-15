@@ -1,7 +1,7 @@
 # Release Notes
 
 Here is the latest release information for the Cardano components.
-Component dependencies and compatibility information can be found in the [compatibility matrix](https://github.com/cardano-foundation/docs-cardano-org/blob/main/release-information/compatability-matrix.md).
+Component dependencies and compatibility information can be found in the [compatibility matrix](https://github.com/cardano-foundation/docs-cardano-org/blob/main/release-information/comp-matrix.md).
 
 ## Latest Cardano component releases
 
