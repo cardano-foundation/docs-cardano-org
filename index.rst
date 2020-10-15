@@ -65,7 +65,7 @@
    :hidden:
 
    Release Notes <release-information/release-notes>
-   Compatibility Matrix <comp-matrix>
+   Compatibility Matrix <release-information/comp-matrix>
    
    
    
