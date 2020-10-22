@@ -3,8 +3,7 @@
 
 RTView enables developers, testers, and general users who are running nodes that are connected to the real cluster to see what is going on and how the nodes are performing. It gives visibility on: how much memory and CPU is being used, the state of the blockchain, how many blocks have been forged by a particular node, how many transactions have been processed, and so on.
 
-It is a cross-platform tool compatible with Windows, Linux, and macOS, and 
-has a web-based user interface so you can use any browser that you want.
+It is a cross-platform tool compatible with Windows, Linux, and macOS, and has a web-based user interface so you can use any browser that you want.
 
 The main benefit of RTView is simplicity. It is simple to install, technically there is no installation, you just unpack an archive and run an executable. It is also simple to configure as it provides an interactive dialog for its configuration and shows particular changes the user should make in the node configuration files. It is also simple to view with any browser.
 
