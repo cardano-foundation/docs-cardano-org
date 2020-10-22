@@ -7,7 +7,7 @@ It is a cross-platform tool compatible with Windows, Linux, and macOS, and has a
 
 The main benefit of RTView is simplicity. It is simple to install, technically there is no installation, you just unpack an archive and run an executable. It is also simple to configure as it provides an interactive dialog for its configuration and shows particular changes the user should make in the node configuration files. It is also simple to view with any browser.
 
-RTView replaces the LiveView-mode feature in Cardano node and solves any previous LiveView limitations. Following the next release, LiveView will be removed from the node which will make the node much simpler and lighter, in terms of dependencies. 
+RTView replaces the LiveView-mode feature in Cardano node and solves any previous LiveView limitations. Following the next release, LiveView will be removed from the node which will make the node much simpler and lighter, in terms of dependencies.
 
 ### How to set up RTView
 To set up RTView follow the [installation steps](https://github.com/input-output-hk/cardano-rt-view/blob/master/doc/getting-started/install.md) to download, unpack, and run the tool. After you have completed these steps, RTView will be launched and ready to use.
