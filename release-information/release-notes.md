@@ -13,7 +13,7 @@ Name | Version | Release Date
 [Cardano DB Sync](https://github.com/input-output-hk/cardano-db-sync/releases) | [5.0.3](https://github.com/input-output-hk/cardano-db-sync/releases/tag/5.0.3) | 22 October 2020
 [Smash](https://github.com/input-output-hk/smash) | [1.1.0](https://github.com/input-output-hk/smash/releases/tag/1.1.0) | 10 September 2020
 [Cardano Rest](https://github.com/input-output-hk/cardano-rest) | [2.1.3](https://github.com/input-output-hk/cardano-rest/releases/tag/2.1.3) | 5 August 2020
-[Cardano GraphQL](https://github.com/input-output-hk/cardano-graphql) | [2.2.0](https://github.com/input-output-hk/cardano-graphql/releases/tag/2.2.0) | 24 September 2020
+[Cardano GraphQL](https://github.com/input-output-hk/cardano-graphql) | [2.2.1](https://github.com/input-output-hk/cardano-graphql/releases/tag/2.2.1) | 23 October 2020
 [Cardano Explorer](https://github.com/input-output-hk/cardano-explorer-app) | [1.2.0](https://github.com/input-output-hk/cardano-explorer-app/releases/tag/1.2.0) | 30 September 2020
 [Cardano Transactions](https://github.com/input-output-hk/cardano-transactions) | [1.0.0](https://github.com/input-output-hk/cardano-transactions/releases/tag/1.0.0) | 21 April 2020
 [Cardano Addresses](https://github.com/input-output-hk/cardano-addresses) | [2.1.0](https://github.com/input-output-hk/cardano-addresses/releases/tag/2.1.0) | 29 September 2020
