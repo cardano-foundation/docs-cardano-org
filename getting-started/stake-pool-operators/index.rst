@@ -3,6 +3,23 @@ Getting Started with Stake Pool Operations
 
 Stake pools use the Cardano node to validate how the pool interacts with the network, sends transactions, creates blocks, and so on.
 
+**About Stake Pool Operators and Owners**
+
+Successfully operating a stake pool includes the roles of a stake pool operator and a stake pool owner(s). It is important to note that there is a conceptual difference between these two roles:
+
++ **A stake pool operator** is a person who is assigned responsibility for setting up and keeping the stake pool running, which means that they own or rent a server, hold the key of the stake pool, and hold responsibility for running and monitoring the node. With their key, a stake pool operator can sign blocks, register, re-register, or retire a stake pool, and post updated certificates.
++ **A stake pool owner** is a person who pledges their stake to the pool to increase the pool’s reward earning capacity and desirability. The ability of the owner to [pledge stake](https://docs.cardano.org/en/latest/explore-cardano/understanding-pledging-and-rewards.html) provides protection against Sybil attacks.
+
+Usually, the stake pool operator and the owner is the same person, however, a stake pool can also have multiple owners, who pledge their stake to form one larger pool to ensure it is competitive. Even in this case, there is still only one stake pool operator who is responsible for stake pool processes.
+
+It is essential that stake pool owners trust a stake pool operator. All operators’ and owners’ rewards are paid out into a single shared reward account associated with the reward address of the pool, and are distributed by the protocol amongst the owner accounts. The reason for this is that otherwise, everyone could choose to become a co-owner of a stake pool instead of delegating, which would render the mechanism of pledging stake ineffective.
+
+This makes it clear to all parties that an agreement is needed to define when and how the accumulated rewards in a shared account should be split. For example, they can agree to have the operator control the shared account, or they could choose to use a multisig account.
+
+To run a pool effectively, a bi-directional relationship and trust are crucial. If this trust is broken, other parties can lose in regards to accumulated or potential rewards, or reputation for the operator.
+
+*To eliminate such a case, it is beneficial for owners and operators to consider entering into contractual arrangements.* 
+
 **Operating a stake pool**
 
 Stake pools are a key part of a decentralized Cardano, supporting the mechanisms that ensure the long-term health and liveness of the network. By running a stake pool, stake pool operators enable other users to participate in the protocol and gain rewards without needing to continuously run an online node.
@@ -41,5 +58,15 @@ Each node should run on a dedicated server, and the core node server's firewall 
 
 .. image:: network1.png
 
+**Establishing connectivity between the nodes**
 
+All nodes are connected to each other within the Cardano networking layer. This connection is essential for information exchange about transactions and new block creation.
+
+With Byron, federated nodes were wholly responsible for managing block production and network connections. The Byron network consisted of a set of federated core nodes, static nodes that produced blocks, and maintained the Cardano network. With the launch of Shelley, the peer-to-peer components initially continue running in a federated mode, but as the network transitions into full decentralization, this connection is gradually switched to use continuous automatic discovery and selection of peers. 
+
+During this transition phase, nodes connect to other nodes by means of a static configuration, defined in a topology file. To avoid a situation when relay nodes go offline, which causes the core node to fail, it is crucial to connect to reliable relay nodes. Currently, IOG offers all stake pool operators (SPOs) reliable nodes to which they can connect. It is also recommended that SPOs use the community lists and tools to generate a configuration that uses 20 or more other SPOs as peers. In practice, many SPOs can use more than 20 peers for connection purposes. The community tools help to select peers that are both nearby and far away so that there is strong inter-region connectivity.
+
+Before the network is moved from federated to fully decentralized, the node’s network layer will be switched to use continuous automatic discovery and peer selection. This is achieved through network stack improvements, which means that the situation where the network is fully decentralized, but peer selection still uses static configuration, is impossible. Peer to peer (P2P) communication is being gradually enhanced thus ensuring the flow of information between individual nodes, which will make the network less reliant on IO-run relays. To achieve the desired network resilience, the IOG networking team is enhancing the relevant network stack components - mini-protocols for communication purposes, Transmission Control Protocol (TCP) connection channel, and the P2P governor, which enable the automatic selection of reliable peers.
+
+Please follow this link to read more about the [Cardano network](https://docs.cardano.org/en/latest/explore-cardano/cardano-network.html), communication between the nodes, and mini-protocols that enable this functionality.
 
