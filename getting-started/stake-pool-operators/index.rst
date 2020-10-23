@@ -8,7 +8,9 @@ Stake pools use the Cardano node to validate how the pool interacts with the net
 Successfully operating a stake pool includes the roles of a stake pool operator and a stake pool owner(s). It is important to note that there is a conceptual difference between these two roles:
 
 + **A stake pool operator** is a person who is assigned responsibility for setting up and keeping the stake pool running, which means that they own or rent a server, hold the key of the stake pool, and hold responsibility for running and monitoring the node. With their key, a stake pool operator can sign blocks, register, re-register, or retire a stake pool, and post updated certificates.
-+ **A stake pool owner** is a person who pledges their stake to the pool to increase the pool’s reward earning capacity and desirability. The ability of the owner to [pledge stake](https://docs.cardano.org/en/latest/explore-cardano/understanding-pledging-and-rewards.html) provides protection against Sybil attacks.
++ **A stake pool owner** is a person who pledges their stake to the pool to increase the pool’s reward earning capacity and desirability. The ability of the owner to `pledge stake`_ provides protection against Sybil attacks.
+
+.. _pledge stake: https://docs.cardano.org/en/latest/explore-cardano/understanding-pledging-and-rewards.html 
 
 Usually, the stake pool operator and the owner is the same person, however, a stake pool can also have multiple owners, who pledge their stake to form one larger pool to ensure it is competitive. Even in this case, there is still only one stake pool operator who is responsible for stake pool processes.
 
@@ -68,5 +70,7 @@ During this transition phase, nodes connect to other nodes by means of a static 
 
 Before the network is moved from federated to fully decentralized, the node’s network layer will be switched to use continuous automatic discovery and peer selection. This is achieved through network stack improvements, which means that the situation where the network is fully decentralized, but peer selection still uses static configuration, is impossible. Peer to peer (P2P) communication is being gradually enhanced thus ensuring the flow of information between individual nodes, which will make the network less reliant on IO-run relays. To achieve the desired network resilience, the IOG networking team is enhancing the relevant network stack components - mini-protocols for communication purposes, Transmission Control Protocol (TCP) connection channel, and the P2P governor, which enable the automatic selection of reliable peers.
 
-Please follow this link to read more about the [Cardano network](https://docs.cardano.org/en/latest/explore-cardano/cardano-network.html), communication between the nodes, and mini-protocols that enable this functionality.
+Please follow this link to read more about the `Cardano network`_, communication between the nodes, and mini-protocols that enable this functionality.
+
+.. _Cardano network: https://docs.cardano.org/en/latest/explore-cardano/cardano-network.html
 
