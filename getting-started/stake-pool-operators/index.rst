@@ -62,7 +62,7 @@ Each node should run on a dedicated server, and the core node server's firewall 
 
 **Establishing connectivity between the nodes**
 
-All nodes are connected to each other within the Cardano networking layer. This connection is essential for information exchange about transactions and new block creation.
+Nodes connect to each other within the Cardano networking layer, and this connection is essential for information exchange about transactions and new block creation.
 
 With Byron, federated nodes were wholly responsible for managing block production and network connections. The Byron network consisted of a set of federated core nodes - static nodes that produced blocks, and maintained the Cardano network. With the launch of Shelley, the network runs in a hybrid mode with federated nodes operated by IOG and manually configured connections between different stake pool operators (SPOs), and between SPOs and the IOG nodes. Over the lifetime of the Shelley system, the network will transition into full decentralization using continuous automatic discovery and selection of peers.  
 
