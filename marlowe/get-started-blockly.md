@@ -4,10 +4,13 @@ You can write Marlowe code directly as Marlowe text, or alternatively use the Bl
 To use Blockly follow these steps:
 1. Open the [Marlowe Playground](https://alpha.marlowe.iohkdev.io/#/).
 
+    You will see a window like this:
+
 ![landing page](landing-page.png)
 
 2. Click the **Start coding!** button on the bottom left and then select **Blockly** from the menu.
-You will see a window like this:
+
+    You will see a window like this:
 
 ![Blockly](blockly.png)
 
@@ -17,9 +20,13 @@ You will see a window like this:
 
 4. Click **Contracts** and select a block. 
 5. Drag it into the building pane and then fit it into the top-level slot. 
- The following example shows how to construct a contract starting with `When` as its main construct.
+
+    The following example shows how to construct a contract starting with `When` as its main construct.
+![Blockly](blockly-four.png)
+    
 6. Continue building the contract. To build a contract with `When`, it needs to include one or more actions that trigger the contract. These can be chosen from the **Actions** menu item.
-The following example shows how to construct a *Deposit* action and fit it into the first gap in the contract that you are building. 
+ 
+    The following example shows how to construct a *Deposit* action and fit it into the first gap in the contract that you are building. 
 7. Next, insert the following information:
  
    - who is making the deposit (a party)
