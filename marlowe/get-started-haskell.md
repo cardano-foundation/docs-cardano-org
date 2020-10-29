@@ -4,12 +4,16 @@ As an experienced Haskell developer you can use the Haskell editor to render Mar
 To use the Haskell editor follow these steps:
 1. Open the [Marlowe Playground](https://alpha.marlowe.iohkdev.io/#/).
 2. Click **Start coding!** 
-3. Select the Haskell version from the menu. You will see a window like this:
+3. Select the Haskell version from the menu. 
+
+    You will see a window like this:
 ![Haskell](haskell-first-window.jpg)
 4. Now you can start coding in Haskell. 
   
     Alternatively, you can use some example contracts to work with. 
-5. Describe a contract in the editor. For this, define a top-level value contract of type `Contract`, add conditions, and close the contract. The following window will open for an Escrow contract. 
+5. Describe a contract in the editor. For this, define a top-level value contract of type `Contract`, add conditions, and close the contract. 
+
+    The following window will open for an Escrow contract. 
 ![Escrow](haskell-escrow-editor.png)
 6. Click **Compile** to convert this value from Haskell into Marlowe.
 7. Then, click **Send to Simulator**. 
