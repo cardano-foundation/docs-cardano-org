@@ -21,10 +21,11 @@ You will see a window like this:
 6. Continue building the contract. To build a contract with ‘When’, it needs to include one or more actions that trigger the contract. These can be chosen from the **Actions** menu item.
 The following example shows how to construct a *Deposit* action and fit it into the first gap in the contract that you are building. 
 7. Next, insert the following information:
-  - who is making the deposit (a party)
-  - the value and currency (token) of the deposit
-  - whose account it should be deposited to (a recipient).
+ 
+   - who is making the deposit (a party)
+   - the value and currency (token) of the deposit
+   - whose account it should be deposited to (a recipient).
 
-You can add other actions. For this, choose actions, add them, and fill out information. Respective action will require different types of information.  Add the ‘close’ tab after ‘continue as’ so that the contract closes after making the deposit. 
+  You can add other actions. For this, choose actions, add them, and fill out information. Respective action will require different types of information.  Add the ‘close’ tab after ‘continue as’ so that the contract closes after making the deposit. 
 
 8. Finally, when all actions are inserted and conditions are added, you can complete your contract by adding a *Close* tab to the main contract. This shows how the contract should behave in case the deposit is not made before the specified timeout. 
