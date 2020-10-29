@@ -14,7 +14,7 @@ Cardano Glossary
     address
       a data structure used in transaction outputs to convey various pieces of information. All addresses carry a network discriminant tag to distinguish between different networks, for instance mainnet or testnet, and a proof of ownership of who owns the transaction output. Some addresses also carry delegation choices or script references.  
    
-   Adrestia
+    Adrestia
       Adrestia is a collection of products which makes it easier to integrate with Cardano. It is made of several application programming interfaces (APIs), command-line interfaces (CLIs), and software development kits (SDKs). Alternatively, Adrestia may also refer to the team working on the project itself.
       
     asset
