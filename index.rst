@@ -57,6 +57,19 @@
    ouroboros-network <https://docs.cardano.org/projects/ouroboros-network/>
    adrestia <https://docs.cardano.org/projects/adrestia>
    rt-view/rt-view
+   
+.. toctree::
+   :maxdepth: 4
+   :caption: Marlowe
+   :titlesonly:
+   :hidden:
+
+   About Marlowe <marlowe/marlowe-explainer.md>
+   What is the Marlowe Playground <marlowe/marlowe-playground.md> 
+   Getting Started with the Marlowe Playground <marlowe/marlowe-playground.md>
+   Writing Marlowe with Blockly <marlowe/get-started-blockly.md>
+   Using the Haskell Editor <marlowe/get-started-haskell.md>
+   Using the JavaScript Editor <marlowe/get-started-js.md>
 
 .. toctree::
    :maxdepth: 3
