@@ -16,7 +16,7 @@ To use Blockly follow these steps:
    You will see a list of options for forming a contract by clicking **Contracts** in the menu. 
 ![Blockly](blockly-contracts.png)
 4. Click **Contracts** and select a block.
-5.  Drag it into the building pane and then fit it into the top-level slot. 
+5. Drag it into the building pane and then fit it into the top-level slot. 
 
    The following example shows how to construct a contract starting with `When` as its main construct.
 ![Blockly](blockly-four.png)
