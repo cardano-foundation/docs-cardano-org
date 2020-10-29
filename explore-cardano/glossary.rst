@@ -104,7 +104,7 @@ Cardano Glossary
       the domain-specific language (DSL) for writing and executing financial contracts on blockchain. 
       
     Marlowe Playground
-      the browser -based sandbox environment for end-to-end financial smart contract development. Its purpose is to encourage all types of developers, even if you don’t have prior Haskell or Javascript experience, to build financial products on Cardano. A set of tutorials is available that outlines example contracts and overview information on Marlowe and how contracts should be modelled. 
+      the browser-based sandbox environment for end-to-end financial smart contract development. Its purpose is to encourage all types of developers, even if you don’t have prior Haskell or Javascript experience, to build financial products on Cardano. A set of tutorials is available that outlines example contracts and overview information on Marlowe and how contracts should be modelled. 
 
       
     metadata
