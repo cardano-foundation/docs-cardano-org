@@ -5,7 +5,7 @@ Cardano Glossary
 
 .. glossary::
     
-    ACTUS
+    [ACTUS](https://www.actusfrf.org/)
        Algorithmic Contract Types Unified Standards. A taxonomy and standard for financial contracts. 
     
     ada
