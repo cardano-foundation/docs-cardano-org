@@ -9,12 +9,14 @@ To use Blockly follow these steps:
 ![landing page](landing-page.png)
 2. Click the **Start coding!** button on the bottom left and then select **Blockly** from the menu.
 
-    You will see a window like this:
+   You will see a window like this:
 ![Blockly](blockly.png)
-3. You can build contracts by adding components to the *Contract* block. You will see a list of options for forming a contract by clicking **Contracts** in the menu. 
+3. You can build contracts by adding components to the *Contract* block. 
+
+   You will see a list of options for forming a contract by clicking **Contracts** in the menu. 
 ![Blockly](blockly-contracts.png)
-4. Click **Contracts** and select a block. 
-5. Drag it into the building pane and then fit it into the top-level slot. 
+4. Click **Contracts** and select a block.
+5.  Drag it into the building pane and then fit it into the top-level slot. 
 
    The following example shows how to construct a contract starting with `When` as its main construct.
 ![Blockly](blockly-four.png)
