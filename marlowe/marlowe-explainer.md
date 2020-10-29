@@ -1,5 +1,6 @@
 ## About Marlowe
 Marlowe offers financial contracts that everyone can code. It is a domain-specific language (DSL) for writing and executing financial contracts on blockchain. With Marlowe you can learn how to model financial products using this easy-to-learn language. It is a platform for decentralized finance (DeFi) that supports direct, peer-to-peer lending, contracts for difference (CFD), and other similar instruments. 
+
 As it is a special-purpose language, it is easier to read, write and understand Marlowe contracts. It is also safer: some sorts of errors are impossible to write, and we can completely analyse contract behaviour without having to run a contract.
 
 ### Who can use Marlowe? 
@@ -7,7 +8,7 @@ Marlowe has been designed so that it can be used by someone who is an expert in 
 
 The Marlowe language itself is now embedded in both [JavaScript](https://www.javascript.com/) and [Haskell](https://www.haskell.org/) offering you a choice of editors depending on your preference and skillset. Javascript offers flexibility and speed of use with a thriving ecosystem, while Haskell is a functional programming language with its own established ecosystem and solid testing framework. 
 
-Marlowe can interact with real-world data – such as oracles – and the participants in the contract make choices within the contract flow to determine what happens on the chain and off the chain, such as in a wall    et. Marlowe is blockchain-agnostic: it enables the expression of smart contacts on top of an account-based model, such as Ethereum, as well as on the extended unspent transaction output (EUTXO) model of Cardano.
+Marlowe can interact with real-world data – such as oracles – and the participants in the contract make choices within the contract flow to determine what happens on the chain and off the chain, such as in a wallet. Marlowe is blockchain-agnostic: it enables the expression of smart contacts on top of an account-based model, such as Ethereum, as well as on the extended unspent transaction output (EUTXO) model of Cardano.
 
 Marlowe has been designed as an industry-scale solution and embodies examples from the [ACTUS](https://www.actusfrf.org/) taxonomy and standard for financial contracts. Contracts written in Marlowe can be integrated on Cardano or an alternative blockchain. 
 
