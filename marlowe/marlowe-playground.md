@@ -1,4 +1,4 @@
-## What is the Marlowe Playground
+## What is the Marlowe Playground?
 Marlowe is a domain-specific language that allows users to apply their domain expertise to create and manage financial contracts conveniently, without the steep learning curve associated with software development, blockchain, or smart contracts. Marlowe contracts are straightforward as they are optimized for financial transactions, development platforms, and ensure a fast track for financial service providers to build expertise in smart contracts and blockchain technology.
 
 The [Marlowe Playground](https://alpha.marlowe.iohkdev.io/) is the medium for end-to-end financial smart contract development. It provides a means for developers to not only write smart contract code, but to also perform preliminary iterative design using simulations, ability to formally verify, and ability to test smart contracts. These capabilities, paired with a purpose-built DSL for finance ensures that the contracts are easy and straightforward to build, secure, verifiable, and rigorously tested. 
