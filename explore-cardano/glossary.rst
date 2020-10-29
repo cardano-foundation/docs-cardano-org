@@ -4,12 +4,16 @@ Cardano Glossary
 ################
 
 .. glossary::
+    ACTUS
+       Algorithmic Contract Types Unified Standards. A taxonomy and standard for financial contracts. 
+    
     ada
       digital currency of the Cardano blockchain. One ada = 1,000,000 lovelaces.
     
     address
       a data structure used in transaction outputs to convey various pieces of information. All addresses carry a network discriminant tag to distinguish between different networks, for instance mainnet or testnet, and a proof of ownership of who owns the transaction output. Some addresses also carry delegation choices or script references.  
-    Adrestia
+   
+   Adrestia
       Adrestia is a collection of products which makes it easier to integrate with Cardano. It is made of several application programming interfaces (APIs), command-line interfaces (CLIs), and software development kits (SDKs). Alternatively, Adrestia may also refer to the team working on the project itself.
       
     asset
@@ -30,14 +34,14 @@ Cardano Glossary
     Byron
       first 'boot strap' phase of Cardano development.
       
+    CFD
+      contract for difference. Part of a wider group of trading products known as derivatives, they are a popular method of trading stocks, bonds, and commodities that allow you to speculate on the price. 
+      
     chain
       a set of blocks that have been produced and are connected to another in consecutive order.
 
     consensus
       the process by which a majority opinion is reached by everyone who is involved in running the blockchain. Agreement must be made on which blocks to produce, which chain to adopt, and to determine the single state of the network.
-
-    controlled stake
-      the total amount of stake that a stake pool controls. It combines the stake that is owned by the pool operator with any stake that has been delegated to the pool by other ada holders. It can be measured as a total ada amount (e.g. 3M ada), or as a percentage of the total supply of ada within the network (e.g. 5%).
 
     cost per epoch
       a fixed fee, in ada, which the stake pool operator takes every epoch from the pool rewards to cover the costs of running a stake pool. The cost per epoch is subtracted from the total ada that is rewarded to a pool, before the operator takes their profit margin. Whatever remains is shared proportionally among the delegators.
@@ -47,12 +51,18 @@ Cardano Glossary
 
     DApp
       decentralized application.
+      
+    DeFi
+      decentralized finance which refers to financial instruments and mechanisms built on the blockchain using smart contracts. Examples include atomic loans, swaps, bonding curves, and escrow.
 
     delegation
       the process by which ada owners can participate in the network and earn rewards by delegating the stake associated with their ada holdings to a stake pool.
 
     epoch
       a defined group of slots that constitute a period of time.
+      
+    EUTXO
+      extended unspent transaction output model of Cardano.
    
     faucet
       a web-based service that provides free tokens to users of a testnet.
@@ -80,6 +90,9 @@ Cardano Glossary
       
     ledger
       a distributed database that is operated in a decentralized manner by multiple nodes across numerous locations.
+      
+    live stake
+      the total amount of stake that a stake pool controls. It combines the stake that is owned by the pool operator with any stake that has been delegated to the pool by other ada holders. It can be measured as a total ada amount (e.g. 3M ada), or as a percentage of the total supply of ada within the network (e.g. 5%).
 
     lovelace
       the smallest unit of ada, equivalent to one millionth of one ada. A lovelace is to ada what a satoshi is to bitcoin.
@@ -88,7 +101,11 @@ Cardano Glossary
       the live blockchain that has been deployed and is in operation. Assets held on the mainnet hold value as opposed to assets on a testnet that do not hold value. 
       
     Marlowe
-      a domain-specific programming language (DSL) that is built on top of Plutus functionality. Marlowe can be used for financial purposes. There is a friendly Marlowe playground - an environment where non-technical users can easily execute smart contracts prewriting specific conditions.
+      the domain-specific language (DSL) for writing and executing financial contracts on blockchain. 
+      
+    Marlowe Playground
+      the browser -based sandbox environment for end-to-end financial smart contract development. Its purpose is to encourage all types of developers, even if you don’t have prior Haskell or Javascript experience, to build financial products on Cardano. A set of tutorials is available that outlines example contracts and overview information on Marlowe and how contracts should be modelled. 
+
       
     metadata
       a set of additional data stating certain transaction conditions or owner details. In smart contracts, metadata represents conditions under which a deal should execute. In a non-fungible token, metadata can store owner ID, ownership status, or intellectual rights.
