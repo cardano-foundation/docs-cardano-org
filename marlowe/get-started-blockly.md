@@ -17,11 +17,10 @@ To use Blockly follow these steps:
 3. You can build contracts by adding components to the *Contract* block. You will see a list of options for forming a contract by clicking **Contracts** in the menu. 
 
 ![Blockly](blockly-contracts.png)
-
 4. Click **Contracts** and select a block. 
 5. Drag it into the building pane and then fit it into the top-level slot. 
 
-    The following example shows how to construct a contract starting with `When` as its main construct.
+   The following example shows how to construct a contract starting with `When` as its main construct.
 ![Blockly](blockly-four.png)
     
 6. Continue building the contract. To build a contract with `When`, it needs to include one or more actions that trigger the contract. These can be chosen from the **Actions** menu item.
