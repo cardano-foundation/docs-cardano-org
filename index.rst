@@ -66,7 +66,7 @@
 
    About Marlowe <marlowe/marlowe-explainer.md>
    What is the Marlowe Playground <marlowe/marlowe-playground.md> 
-   Getting Started with the Marlowe Playground <marlowe/marlowe-playground.md>
+   Getting Started with the Marlowe Playground <marlowe/marlowe-get-started.md>
    Writing Marlowe with Blockly <marlowe/get-started-blockly.md>
    Using the Haskell Editor <marlowe/get-started-haskell.md>
    Using the JavaScript Editor <marlowe/get-started-js.md>
