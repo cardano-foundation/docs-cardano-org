@@ -4,6 +4,7 @@ Cardano Glossary
 ################
 
 .. glossary::
+    
     ACTUS
        Algorithmic Contract Types Unified Standards. A taxonomy and standard for financial contracts. 
     
