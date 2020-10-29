@@ -5,7 +5,6 @@ To use Blockly follow these steps:
 1. Open the [Marlowe Playground](https://alpha.marlowe.iohkdev.io/#/).
 
     You will see a window like this:
-
 ![landing page](landing-page.png)
 2. Click the **Start coding!** button on the bottom left and then select **Blockly** from the menu.
 
@@ -31,6 +30,7 @@ To use Blockly follow these steps:
    - whose account it should be deposited to (the recipient).
    
 ![Blockly](blockly-seven.png)
-8. You can add other actions. For this, choose actions, add them, and fill out information. Respective action will require different types of information.  Add the *Close* tab after *Continue as* so that the contract closes after making the deposit. 
+8. You can add other actions. For this, choose actions, add them, and fill out information. Respective action will require different types of information.  Add the *Close* tab after *Continue as* so that the contract closes after making the deposit.
+
 9. Finally, when all actions are inserted and conditions are added, you can complete your contract by adding a *Close* tab to the main contract. This shows how the contract should behave in case the deposit is not made before the specified timeout. 
 ![Blockly](blockly-eight.png)
