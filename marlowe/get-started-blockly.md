@@ -25,14 +25,19 @@ To use Blockly follow these steps:
 ![Blockly](blockly-four.png)
     
 6. Continue building the contract. To build a contract with `When`, it needs to include one or more actions that trigger the contract. These can be chosen from the **Actions** menu item.
+![Blockly](blockly-five.png)
  
-    The following example shows how to construct a *Deposit* action and fit it into the first gap in the contract that you are building. 
+   The following example shows how to construct a *Deposit* action and fit it into the first gap in the contract that you are building.
+![Blockly](blockly-six.png)
 7. Next, insert the following information:
  
-   - who is making the deposit (a party)
+   - who is making the deposit (the party)
    - the value and currency (token) of the deposit
-   - whose account it should be deposited to (a recipient).
+   - whose account it should be deposited to (the recipient).
+   
+![Blockly](blockly-seven.png)
 
 8. You can add other actions. For this, choose actions, add them, and fill out information. Respective action will require different types of information.  Add the *Close* tab after *Continue as* so that the contract closes after making the deposit. 
 
 9. Finally, when all actions are inserted and conditions are added, you can complete your contract by adding a *Close* tab to the main contract. This shows how the contract should behave in case the deposit is not made before the specified timeout. 
+![Blockly](blockly-eight.png)
