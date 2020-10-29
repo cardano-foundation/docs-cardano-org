@@ -10,26 +10,30 @@ You can write Marlowe code directly as Marlowe text, or alternatively use the Bl
 To use Blockly follow these steps:
 1. Open the [Marlowe Playground](https://alpha.marlowe.iohkdev.io/#/).
 
+![landing page](landing-page.png)
 
-2. Click Start coding and select Blockly from the menu.
+2. Click the **Start coding!** button on the bottom left and then select **Blockly** from the menu.
 You will see a window like this:
 
-You can build contracts by adding components to the ‘contract’ block. You will see a list of options for forming a contract by clicking ‘contracts’ in the menu. 
+![Blockly](blockly.png)
 
-Click Contracts and select a block. Drag it into the building pane and then fit it into the top-level slot. 
-For example, this allows constructing a contract starting with `When` as its main construct.
+3. You can build contracts by adding components to the *Contract* block. You will see a list of options for forming a contract by clicking **Contracts** in the menu. 
 
-Continue building a contract. To build a contract with ‘When’, it needs to include one or more actions that trigger the contract. These can be chosen from the "Actions" menu item.
+![Blockly](blockly-contracts.png)
 
-For example, select a ‘deposit’ action and fit it into the first gap in the contract that you are building. 
-
-Next, you will need to insert information about:
- - who is making the deposit (a party)
- - the value and currency (token) of the deposit
- - whose account it should be deposited to (a recipient).
+4. Click **Contracts** and select a block. 
+5. Drag it into the building pane and then fit it into the top-level slot. 
+ The following example shows how to construct a contract starting with  `When` as its main construct.
+6. Continue building the contract. To build a contract with ‘When’, it needs to include one or more actions that trigger the contract. These can be chosen from the **Actions** menu item.
+The following example shows how to construct a *Deposit* action and fit it into the first gap in the contract that you are building. 
+7. Next, insert the following information:
+  - who is making the deposit (a party)
+  - the value and currency (token) of the deposit
+  - whose account it should be deposited to (a recipient).
 
 You can add other actions. For this, choose actions, add them, and fill out information. Respective action will require different types of information.  Add the ‘close’ tab after ‘continue as’ so that the contract closes after making the deposit. 
-Finally, when all actions are inserted and conditions are added, you can complete your contract by adding a ‘close’ tab to the main contract. This shows how the contract should behave in case the deposit is not made before the specified timeout. 
+
+8. Finally, when all actions are inserted and conditions are added, you can complete your contract by adding a *Close* tab to the main contract. This shows how the contract should behave in case the deposit is not made before the specified timeout. 
 
 
 
