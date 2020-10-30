@@ -86,6 +86,9 @@ Cardano Glossary
     interoperability
       one of the significant features within Cardano development that aims to enable interconnection between numerous blockchains and legitimate recognition of activities by central authorities. Enabled cross-chain transfers and the establishment of the internet of blockchains will grant enhanced user experience and functionality.
       
+    IOG
+      Input Output Global, also reffered to as Input Output Hong Kong (IOHK), is a technology company committed to using peer-to-peer innovations to provide financial services to the community. In particular, IOG is working on the technology development for Cardano.  
+      
     key pair
       a set of two keys: public verification key and private signing key. These keys are used to process and approve transactions within the blockchain.
       
