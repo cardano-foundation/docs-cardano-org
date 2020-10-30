@@ -24,3 +24,6 @@ IOHK’s researchers and engineers often post on [our blog](https://iohk.io/blog
 * _[Ouroboros explained](https://iohk.io/en/blog/posts/2020/03/23/from-classic-to-hydra-the-implementations-of-ouroboros-explained/)_ - By Kieran Costello, technical writer at IOHK
 * _[Stake pools in Cardano](https://iohk.io/blog/stake-pools-in-cardano/)_ - By Professor Aggelos Kiayias, chief scientist at IOHK
 * _[How Cardano's transaction fees work](https://iohk.io/blog/how-cardanos-transaction-fees-work/)_ - By Lars Brünjes, director of education at IOHK
+
+related links
+- - [Relevant Research Papers and Specifications](relevant-research-papers-and-specifications.md)
