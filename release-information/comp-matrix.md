@@ -12,7 +12,7 @@ Cardano components compatibility matrix shows run-time Cardano component depende
 
 
 ## Cardano Component Dependencies
-![component dependencies](comp_dependencies.jpg)
+![component dependencies](comp-dependencies-new.png)
 
 
 
