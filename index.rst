@@ -34,6 +34,7 @@
    explore-cardano/cardano-architecture-overview
    explore-cardano/design-rationale
    explore-cardano/cardano-network
+   explore-cardano/cardano-improvement-proposals
    explore-cardano/how-are-new-blocks-produced
    explore-cardano/cardano-monetary-policy
    explore-cardano/cardano-fee-structure
