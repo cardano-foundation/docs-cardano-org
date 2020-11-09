@@ -31,6 +31,7 @@
    :titlesonly:
    :hidden:
 
+   explore-cardano/cardano-architecture-overview
    explore-cardano/design-rationale
    explore-cardano/cardano-network
    explore-cardano/how-are-new-blocks-produced
