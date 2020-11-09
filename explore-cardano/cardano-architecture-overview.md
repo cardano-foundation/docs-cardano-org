@@ -1,28 +1,11 @@
 # Cardano Architecture Overview
 
-This section describes the high-level architecture of the Cardano blockchain. It explains the various eras and implementations, and provides details on the core components and their interactions.
+This section describes the high-level architecture of the Cardano blockchain. It provides details on the core components and their interactions, and briefly discusses Cardano's eras and implementations.
 
-## About the Eras and Implementations of Cardano
+## Cardano blockchain - High Level Architecture
 
-Cardano is a third-generation distributed ledger. It is based on Ouroboros, a peer-reviewed proof-of-stake (PoS) blockchain consensus algorithm that first appeared in the top research conference in cryptology world-wide (the International Association for Cryptologic Research 37th International Cryptology CXonference - Crypto 2017).
-
-The name Cardano is the general name given to the platform, which has gone through multiple *eras* and *implementations*. These concepts need further explanation.
-
-### Eras
-
-There are several eras within the evolution of Cardano. Each era (Byron, Shelley, Goguen, Basho, and Voltaire) refers to the rules of the ledger. For example, what transaction types and what data is stored in the ledger, or the validity and meaning of the transactions. 
-
-The evolution of the Cardano mainnet began with the Byron ledger rules (Byron era). The  mainnet underwent a hard fork in late July 2020 to switch from the Byron rules to the Shelley ledger rules. Hence, this hard fork marked the beginning of the Shelley era.
-
-### Implementations
-
-Cardano’s first implementation was introduced at the start of the Cardano mainnet, back in September 2017. This implementation supported the Byron ledger rules exclusively. 
-
-We then undertook a full reimplementation of Cardano, which enabled two fundamental changes: the support for multiple sets of ledger rules, and the management of the hard fork process of switching from one set of rules to the next. In other words, the new implementation can support *both* the Byron rules and the Shelley rules, which meant that, when it was deployed to the mainnet in early 2020, the implementation was also fully compatible with the Byron rules. This allowed for a smooth transition from the old to the new implementation. Once all Cardano users had upgraded their nodes to the new implementation, it became possible to invoke the hard fork and switch to the Shelley rules. 
-
-A third Cardano implementation was used on the Shelley Incentivized Testnet (ITN). This system supported a significant subset of the Shelley rules, and we used it to test the economic and social dynamics of the Shelley delegation system.
-
-This Cardano Architecture overview reflects the *current* Cardano implementation deployed on the mainnet, *not* the original or ITN implementations.
+The following diagram outlines the interaction between the system components:
+![Cardano Components](cardano_components_version_main@2x.png)
 
 ## System Components
 
@@ -36,8 +19,7 @@ The *current* implementation of Cardano is highly modular. It includes the follo
 * REST API components
 * SMASH server 
 
-The following diagram outlines the interaction between the system components:
-![Cardano Components](cardano_components_version_main@2x.png)
+
 
 ### Nodes and Remote Nodes
 
@@ -142,6 +124,28 @@ The metadata is hosted off-chain and referred to from the on-chain pool registra
 The SMASH server also addresses the desire to moderate the content of stake pool metadata without a centralized censoring entity. For example, most wallet users and stake pool operators would like to have the ability to treat stake pool ticker names as if they were unique trademarks. It would be too complex to have a fair, on-chain system to resolve ticker name disputes. Instead of enforcing uniqueness on chain, this can optionally be enforced by filtering as part of metadata aggregation. Multiple aggregation services can be run by different organizations following different policies on filtering stake pool metadata. This enables wallet users and other consumers of stake pool metadata to choose which policy to follow, if any.
 
 SMASH can be configured with policies to filter out metadata based on block lists or reserved ticker names. Daedalus can be configured to use any SMASH server.
+
+## About the Eras and Implementations of Cardano
+
+Cardano is a third-generation distributed ledger. It is based on Ouroboros, a peer-reviewed proof-of-stake (PoS) blockchain consensus algorithm that first appeared in the top research conference in cryptology world-wide (the International Association for Cryptologic Research 37th International Cryptology CXonference - Crypto 2017).
+
+The name Cardano is the general name given to the platform, which has gone through multiple *eras* and *implementations*. These concepts need further explanation.
+
+### Eras
+
+There are several eras within the evolution of Cardano. Each era (Byron, Shelley, Goguen, Basho, and Voltaire) refers to the rules of the ledger. For example, what transaction types and what data is stored in the ledger, or the validity and meaning of the transactions. 
+
+The evolution of the Cardano mainnet began with the Byron ledger rules (Byron era). The  mainnet underwent a hard fork in late July 2020 to switch from the Byron rules to the Shelley ledger rules. Hence, this hard fork marked the beginning of the Shelley era.
+
+### Implementations
+
+Cardano’s first implementation was introduced at the start of the Cardano mainnet, back in September 2017. This implementation supported the Byron ledger rules exclusively. 
+
+We then undertook a full reimplementation of Cardano, which enabled two fundamental changes: the support for multiple sets of ledger rules, and the management of the hard fork process of switching from one set of rules to the next. In other words, the new implementation can support *both* the Byron rules and the Shelley rules, which meant that, when it was deployed to the mainnet in early 2020, the implementation was also fully compatible with the Byron rules. This allowed for a smooth transition from the old to the new implementation. Once all Cardano users had upgraded their nodes to the new implementation, it became possible to invoke the hard fork and switch to the Shelley rules. 
+
+A third Cardano implementation was used on the Shelley Incentivized Testnet (ITN). This system supported a significant subset of the Shelley rules, and we used it to test the economic and social dynamics of the Shelley delegation system.
+
+This Cardano Architecture overview reflects the *current* Cardano implementation deployed on the mainnet, *not* the original or ITN implementations.
 
 
 
