@@ -37,6 +37,7 @@ The *current* implementation of Cardano is highly modular. It includes the follo
 * SMASH server 
 
 The following diagram outlines the interaction between the system components:
+![Cardano Components](cardano_components_version_main@2x.png)
 
 ### Nodes and Remote Nodes
 
