@@ -1,6 +1,6 @@
 # Cardano Architecture Overview
 
-This section describes the high-level architecture of the Cardano blockchain. It provides details on the core components and their interactions, and briefly discusses Cardano's eras and implementations.
+This section describes the high-level architecture of the [Cardano blockchain](https://docs.cardano.org/en/latest/README.html). It provides details on the core components and their interactions, and briefly discusses Cardano's eras and implementations.
 
 ## Cardano blockchain - High Level Architecture
 
@@ -11,12 +11,12 @@ The following diagram outlines the interaction between the system components:
 
 The *current* implementation of Cardano is highly modular. It includes the following components (different deployment use cases will use different combinations of components):
 
-* Node
-* Command line interface (CLI)
-* Daedalus wallet
-* Cardano db-sync
-* GraphQL API server (Apollo)
-* REST API components
+* [Node](https://docs.cardano.org/projects/cardano-node/en/latest/)
+* [Command line interface (CLI)](https://docs.cardano.org/projects/cardano-node/en/latest/reference/cardano-node-cli-reference.html)
+* [Daedalus wallet](https://docs.cardano.org/projects/cardano-wallet/en/latest/)
+* [Cardano db-sync](https://docs.cardano.org/projects/cardano-db-sync/en/latest/)
+* [GraphQL](https://docs.cardano.org/projects/cardano-graphql/en/latest/) API server (Apollo)
+* [REST API components](https://docs.cardano.org/projects/cardano-rest/en/latest/)
 * SMASH server 
 
 
@@ -27,7 +27,7 @@ A blockchain system consists of a set of nodes distributed across a network that
 
 Nodes are responsible for: 
 
-* Executing the Ouroboros protocol
+* Executing the [Ouroboros](https://docs.cardano.org/projects/ouroboros-network/en/latest/) protocol
 * Validating and relaying blocks
 * Producing blocks (some nodes)
 * Providing information about the state of the blockchain to other local clients
@@ -36,7 +36,7 @@ You can only trust nodes run by you or your organization. This is why Daedalus r
 
 ### Node Process
 
-The cardano-node is the top level for the node and consists of the other subsystems, of which the most significant are consensus, ledger and networking with ancillary configuration, CLI, logging, and monitoring.
+The cardano-node is the top level for the node and consists of the other subsystems, of which the most significant are consensus, [ledger](https://cardano-ledger.readthedocs.io/en/latest/) and networking with ancillary configuration, CLI, logging, and monitoring.
 
 ### Node-to-Node IPC Protocol
 
@@ -64,7 +64,7 @@ The node-to-client protocol consists of three mini-protocols:
 
 * **chain-sync**: Used for following the chain and getting blocks
 * **local-tx-submission**: Used for submitting transactions
-* local-state-query**: Used for querying the ledger state
+* **local-state-query**: Used for querying the ledger state
 
 The node-to-client version of chain sync uses *full* blocks, rather than just block headers. This is why no separate block-fetch protocol is needed. The local-tx-submission protocol is like the node-to-node tx-submission protocol but simpler, and it returns the details of transaction validation failures. The local state query protocol provides query access to the current ledger state, which contains a lot of interesting data that is *not* directly reflected on the chain itself.
 
