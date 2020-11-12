@@ -6,7 +6,9 @@ Each stake pool that participates in the network includes metadata that helps us
 
 A SMASH server can aggregate stake pool metadata, fetch it, and store it in a semi-centralized environment. The server is typically owned by a specific operator, who is then responsible for its maintenance, and can curate and review stake pool metadata. Importantly, it makes it possible to resolve disputes over offending or duplicated stake pool ticker names and delist operators if they are proven to be bad actors.
 
-The SMASH server code is open source and anyone can deploy it and become an operator. In the due course, Daedalus will allow users to configure any server of their choice and browse custom stake pool lists. If you want to install and run the SMASH server, you can use [these instructions](https://docs.cardano.org/projects/smash/en/latest/getting-started/how-to-install-smash.html).
+The SMASH server code is open source and anyone can deploy it and become an operator. In the due course, Daedalus will allow users to configure any server of their choice and browse custom stake pool lists. 
+
+> If you want to install and run the SMASH server, you can use [these instructions](https://docs.cardano.org/projects/smash/en/latest/getting-started/how-to-install-smash.html).
 
 ### How does the IOHK SMASH server work?
 
