@@ -1,43 +1,43 @@
-## Stake pool metadata
+## ステークプールメタデータ
 
-In addition to posting a registration certificate to the blockchain, setting up a stake pool for delegation also involves the provision of metadata, (additional information about the pool).
+登録証明書をブロックチェーンに送信することに加えて、委任のためにステークプールを設定するにはメタデータ（プールに関する追加情報）の準備が必要となります。
 
-The registration certificate contains all the necessary information for the execution of the protocol (public key hashes, cost, margin, relays, and pledge), and also contains a hash of the metadata.
+登録証明書にはプロトコルを実行するための必要なすべての情報（公開鍵のハッシュ値、コスト、マージン、リレー、出資）とともに、メタデータのハッシュ値も含まれています。
 
-If metadata is provided, the end users' wallet will display the stake pool. If metadata is not supplied, the stake pool is considered private, and will not be displayed in a user's wallet.
+エンドユーザーのウォレットには、メタデータを提供したステークプールが表示されます。メタデータが提供されない場合、そのステークプールはプライベートと見なされ、ユーザーのウォレットには表示されません。
 
-### Public stake pools
+### パブリックステークプール
 
-If the registration certificate sent by stake pool operators contains metadata, the stake pool is considered to be public. 
+ステークプールオペレーターが送信した登録証明書にメタデータが含まれている場合、ステークプールはパブリックであるとみなされます。
 
-Referring to, or pointing to metadata in the stake pool certificate is optional. The certificate might contain a URL of up to 64 bytes in length that points to a JSON object with the following content:
+ステークプール証明書は、オプションでメタデータを参照または示すことができます。証明書には、以下を含むJSONオブジェクトを示す長さ64バイトまでのURLを含むことができます。
 
-- A ticker of 3-5 characters, for a compact display of stake pools in a wallet.
-- Title/name of up to 50 characters.
-- Short textual description
-- URL to a homepage with additional information about the pool (optional).
+- 3～5文字のティッカー（ウォレット用のステークプールの簡易表示）
+- 最大50文字のタイトルまたは名称
+- 簡単な説明文
+- プールに関する追加情報が掲載されたホームページへのURL（オプション）
 
-These are important considerations to note about the metadata:
+以下はメタデータに関する重要ポイントです。
 
-- Metadata information is encoded in UTF-8, and will never exceed 512 bytes 
-- The content hash of the JSON object referenced in the URL (if present), should match the content hash in the registration certificate. If there is a mismatch, the pool will not be displayed in a wallet.
-- For the wallet to display the pool, the following conditions must be met: the registration certificate must refer to the metadata, the metadata must be valid and have the - correct content hash, and be available at the URL. It must be possible to get the metadata and validate it. If this process fails, the wallet will not show the pool.
+- メタデータ情報はUTF-8エンコード使用、最大512バイト
+- URLで参照されるJSONオブジェクトのcontent-hashは（適用する場合）、登録証明書のcontent-hashと一致すること。一致しない場合、プールはウォレットに表示されない
+- ウォレットにプールを表示するには、以下の条件が必要 - 登録証明書がメタデータを参照しており、メタデータは有効かつ正しいcontent-hashがあり、URLで参照されていること。メタデータの取得およびその検証が可能であること。このプロセスに失敗すると、プールはウォレットに表示されない
 
-If a stake pool operator changes the metadata, they must post a new stake pool registration certificate with the new content hash.
+メタデータを変更した場合、ステークプールオペレーターは新しいcontent-hashを付した新しいステークプール登録証明書を送信する必要があります。
 
-### Metadata proxy servers
+### メタデータプロキシサーバー
 
-Wallets do not retrieve metadata from each stake pool at every individual URL, as this could lead to malicious exploitation. For instance, third parties could slow down wallet communication by intentionally delaying the server's response time. To avoid this scenario, metadata uses proxy servers that query the URL included in the registration certificate, and cache the metadata using the pool's sks as key. Wallets will simply query these proxy servers to retrieve the metadata for the pools it needs to display, instead of sending a request to each of the pool's metadata URLs. If the content hash listed on the certificate does not match the content hash of the cached metadata, the cache will be invalidated.
+ウォレットが各ステークプールから個別URLごとにメタデータを取得することはありません。これは悪質な詐欺につながる恐れがあるためです。例えば、第三者がサーバーの応答時間を故意に遅らせてウォレットの通信を遅延させることができます。このシナリオを避けるために、メタデータは登録証明書に含まれるURLに問い合わせるプロキシサーバーと'プールの秘密鍵を使用したメタデータのSKSを使用します。ウォレットは、各プールのメタデータURLにリクエストを送信する代わりに、ただこうしたプロキシサーバーに問い合わせ、表示する必要のあるプールのメタデータを取得します。証明書に記載されたcontent\_hashがキャッシュのメタデータのcontent\_hashと一致しない場合、キャッシュは無効と見なされます。
 
-Proxy servers provide an additional level of security by filtering malicious entries. For example, it is possible to embed malicious content in the metadata, typically in the link to the stake pool's homepage. If a pool hosts dangerous or illegal content, maintainers of a metadata proxy server can filter that entry and not provide it to wallets. This is a clear advantage over writing the metadata directly to the chain, where there would be no way to protect wallet users from visiting malicious sites directly from their wallet.
+プロキシサーバーは悪質なエントリーをフィルタリングすることにより、さらにレベルの高いセキュリティを提供します。例えば、メタデータには悪質なコンテンツを埋め込むことも可能です。ステークプールのホームページへのリンクが一般的ですが、プールが危険または違法なコンテンツをホストしている場合、メタデータプロキシサーバーの管理者はそのエントリーをフィルターにかけ、ウォレットに提供しないようにすることができます。これは明らかに、チェーンに直接メタデータを書くことに比べて優れた点です。そうでなければ、ユーザーがウォレットから直接悪質なサイトを閲覧することを防ぎようがないからです。
 
-While proxy servers do offer effective protection against malicious interference, they could become a point of centralisation. To avoid this, we will provide third parties (stake pools, community members, etc.) with code and binaries so they can run their own proxy servers and prevent centralization.
+プロキシサーバーは悪質な妨害行為に対する防波堤となる一方で、中央集権の拠り所ともなりかねません。この回避策として、第三者（ステークプール、コミュニティメンバーなど）が自身のプロキシサーバーを実行して中央集権化を避けることができるよう、コードとバイナリを提供します。
 
-### Interacting with stake pool metadata
+### ステークプールメタデータとの相互作用
 
-Stake pool operators should follow these steps to register their stake pool's metadata:
+ステークプールオペレーターは以下の手順に従ってステークプールのメタデータを登録してください。
 
-1. Build a JSON file for the stake pool metadata:
+1. ステークプールメタデータのJSONファイルを構築する
 
 ```
         {
@@ -50,39 +50,44 @@ Stake pool operators should follow these steps to register their stake pool's me
         }
 ```
 
-Note: The metadata must be hosted in a URL that is maintained by the stake pool operator. This could be their own personal website, a GitHub raw gist file, etc. The URL cannot be longer than 64 bytes long.
+注：メタデータはステークプールオペレーターが管理しているURLがホストします。これはオペレーター自身の個人的なウェブサイトやGitHubのraw gistファイルなどです。URLの長さは最大64バイトです。
 
-2. Use the node CLI to register or re-register the stake pool on the blockchain.
+2. ノードのCLIを使用してステークプールをブロックチェーンに登録または再登録する
 
-The registration information **must** include:
+登録情報には以下が**必要**です
 
-- Relay information
-- Metadata URL
-- Metadata hash
-- Cost parameters
+- リレー情報
 
+- メタデータのURL
+
+- メタデータのハッシュ値
+
+- コストのパラメーター
+  
       cardano-cli shelley stake-pool registration-certificate
        --metadata-url  https://mystakepool.com/mypool.json  \  
        --metadata-hash \ 
       f97a632341f642f5ac1e15bd182d0c9599c3767230aa9bfb48b120f1c30538eb \  
       --pool-relay-port 3001 --pool-relay-ipv4 76.54.23.45 \
        ...
-       
- 3. Obtain the stake pool ID
-  
- Use this code to obtain the stake pool id and obtain all the information required to register the pool in the SMASH database:
-  
+
+3. ステークプールからIDを取得する
+
+このコードを使用してステークプールIDとプールをSMASHデータベースに登録するために必要なすべての情報を取得します
+
         cardano-cli shelley stake-pool id --verification-key-file pool.vkey
         > <poolid>
         
-**Note**: You can check if the on-chain registration was succeeded by using this code:
+
+注：このコードを使用して、オンチェーンの登録が成功したかを確認できます
 
       cardano-cli shelley query ledger-state --testnet-magic 42 
       | jq '._delegationState._pstate._pParams.<poolid>'
       
-4. Submit a PR [here](https://github.com/input-output-hk/cardano-ops/blob/master/topologies/ff-peers.nix) to add your pool's data.
 
-Note that you will need to provide your IP address or host name, and port.
+4. [ここ](https://github.com/input-output-hk/cardano-ops/blob/master/topologies/ff-peers.nix)からPRを送信してプールのデータを追加する
+
+IPアドレスまたはホスト名、ポートを提供する必要があります。
 
 ```
       {
@@ -95,4 +100,4 @@ Note that you will need to provide your IP address or host name, and port.
       }
 ```
 
-**Important**: Registering your IP address with IOHK will make it "public", so please follow good security practices by running firewalls and other online security methods.
+重要：IPアドレスをIOHKに登録すると「公開」されます。ファイアウォールやその他のオンラインセキュリティを実行して安全性を確保してください。
