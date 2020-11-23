@@ -1,11 +1,4 @@
----
-title: What is a CIP (Cardano Improvement Proposal)? 
-description: About
-parent: 2020-05-04_05-00-00_about-en.md
-order: 2
-last_updated: "2020-11-09T09:00:00+01:00"
----
-## The Cardano Improvement Proposals (CIPs)
+# The Cardano Improvement Proposals (CIPs)
 
 Individuals with improvement proposals for Cardano can structure those thoughts into CIPs (Cardano Improvement Proposals).  
 
