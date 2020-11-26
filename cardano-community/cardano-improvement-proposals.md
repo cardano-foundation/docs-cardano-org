@@ -11,7 +11,7 @@ CIPs themselves go through semi-formal processing: CIP Editors (IOHK/CF/EM/Commu
 Keep in mind: A CIP merged into the repository does not constitute any kind of endorsement beyond structural and apparent well-meaning.  
 
 ## In Summary
-The CIP process exist to enable, promote and facilitate structured public discussions for  **Process**, **Standard** or **Informational** Cardano proposals in a source-controlled, Foundation-managed, GitHub repository. By creating an open-source collection of CIPs with and for the community, we work to empower current and upcoming implementations, and the overall Cardano ecosystem.  
-For more details, please refer to [CIP1](https://github.com/cardano-foundation/CIPs/blob/master/CIP1/CIP1.md).  
+The CIP process exist to enable, promote and facilitate structured public discussions for **Process**, **Standard** or **Informational** Cardano proposals in a source-controlled, Foundation-managed, GitHub repository. By creating an open-source collection of CIPs with and for the community, we work to empower current and upcoming implementations, and the overall Cardano ecosystem.  
+For more details, please refer to [CIP1](https://github.com/cardano-foundation/CIPs/blob/master/CIP-0001/CIP-0001.md).  
 
 
