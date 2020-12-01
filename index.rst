@@ -88,7 +88,7 @@
    :caption: Cardano Community
    :titlesonly:
    :hidden:
-
+   cardano-community/cardano-improvement-proposals
    cardano-community/providing-feedback
    cardano-community/ambassadors-program
    cardano-community/community-generated-content
