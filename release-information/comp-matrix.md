@@ -1,5 +1,5 @@
 ## Component Compatibility with Cardano Node
-Cardano components compatibility matrix shows runtime Cardano component dependencies on a particular version of [cardano-node](https://github.com/input-output-hk/cardano-node/releases). (It does not reflect any stacks.) The compatibility matrix should be read in conjunction with [Cardano component dependencies definition](https://docs.cardano.org/en/latest/release-information/comp-matrix.html#cardano-component-dependencies).
+This Cardano components compatibility matrix shows the runtime Cardano component dependencies on a particular version of [cardano-node](https://github.com/input-output-hk/cardano-node/releases). (It does not reflect any stacks.) The compatibility matrix should be read in conjunction with [Cardano component dependencies definition](https://docs.cardano.org/en/latest/release-information/comp-matrix.html#cardano-component-dependencies).
 
 Please note that [node version 1.24.2](https://github.com/input-output-hk/cardano-node/releases/tag/1.24.2) is the only node version that will work following the token locking Cardano update.
 
