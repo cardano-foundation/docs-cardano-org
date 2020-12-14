@@ -14,9 +14,9 @@ Please note that [node version 1.24.2](https://github.com/input-output-hk/cardan
 | __[1.18.0](https://github.com/input-output-hk/cardano-node/releases/tag/1.18.0)__ |  [3.1.0](https://github.com/input-output-hk/cardano-db-sync/releases/tag/3.1.0) |[1.0.1](https://github.com/input-output-hk/smash/releases/tag/1.0.1)  | [2.1.3](https://github.com/input-output-hk/cardano-rest/releases/tag/2.1.3)  | [2.0.0](https://github.com/input-output-hk/cardano-graphql/releases/tag/2.0.0)  |  [1.0.1](https://github.com/input-output-hk/cardano-explorer-app/releases/tag/1.0.1)  | [2020.8.3](https://github.com/input-output-hk/cardano-wallet/releases/tag/v2020-08-03) |
 
 
-#### related topics:
+The following diagram outlines the various component dependencies:
 
-[component dependencies](https://docs.cardano.org/en/latest/release-information/comp-matrix.html#cardano-component-dependencies)
+![component dependencies](comp-dependencies-new.png)
 
 
 
