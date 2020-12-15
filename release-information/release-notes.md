@@ -1,7 +1,7 @@
 # Release Notes
 
 Here is the latest release information for the Cardano components.
-Component dependencies and compatibility information can be found in the [compatibility matrix](https://github.com/cardano-foundation/docs-cardano-org/blob/main/release-information/comp-matrix.md).
+Component dependencies and compatibility information can be found in the [compatibility matrix](https://docs.cardano.org/en/latest/release-information/comp-matrix.html).
 Release notes for Cardano can be found in the [Cardano platform > Updates](https://iohk.zendesk.com/hc/en-us/sections/360002160134-Updates) section of the IOHK support desk.
 
 ## Latest Cardano component releases
