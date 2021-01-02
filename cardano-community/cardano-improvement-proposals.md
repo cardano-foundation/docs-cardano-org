@@ -3,7 +3,7 @@
 Individuals with improvement proposals for Cardano can structure those thoughts into CIPs (Cardano Improvement Proposals).  
 
 A **CIP** has an expected format: the proposals structure is templated so as to facilitate discussion and reviewing. This makes it so that other community members can jump in and discuss specific improvement proposals or points in a proposal. The proposals and their history are also publicly available and maintained on the Cardano Foundation [CIPs' Github repository](https://github.com/cardano-foundation/CIPs).  
-For the non-GitHub crowd: an auto-generated companion site *is being worked on* at [cips.cardano.org](cips.cardano.org) 
+For the non-GitHub crowd: an auto-generated companion site *is being worked on* at [cips.cardano.org](https://cips.cardano.org) 
 
 CIPs themselves go through semi-formal processing: CIP Editors (IOHK/CF/EM/Community) hold regular meetings to discuss and review proposals. The meeting notes are [public](https://github.com/cardano-foundation/CIPs/tree/master/BiweeklyMeetings), meetings biweekly. Authors are invited to participate and provide feedback while conversations often happen asynchronously in the Cardano forum [CIPs section](https://forum.cardano.org/c/english/cips/122) and/or in the Github pull requests themselves.  
 
