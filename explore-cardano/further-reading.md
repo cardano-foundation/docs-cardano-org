@@ -5,7 +5,6 @@ You may find these web materials and videos useful:
 * [What is delegation?](https://youtu.be/BapcrB8xSeI)
 * [What is Ouroboros?](https://www.cardano.org/en/ouroboros/)
 * [Delegation defined](https://www.youtube.com/watch?v=BapcrB8xSeI&feature=youtu.be)
-* [What is Ouroboros?](https://www.cardano.org/en/ouroboros/)
 * [About Ouroboros and stake pools](https://www.youtube.com/watch?v=ur1lttBXAGM)
 * [Proof of stake delegation](https://www.youtube.com/watch?v=Um9RaJVxl6o)
 * [Incentives in Cardano Presentation](https://static.iohk.io/docs/extra/Incentives-in-Cardano-Presentation.pdf)
