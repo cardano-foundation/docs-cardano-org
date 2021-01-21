@@ -173,6 +173,9 @@ Cardano Glossary
 
     slot leader
       elected node that has been selected to create a block within the current slot. A random election process occurs based on the proportional stake.
+      
+    smart contract
+      an automated agreement, written in code, that tracks, verifies, and executes the binding transactions of a contract between various parties. The transactions of the  contract are automatically executed by the smart contract code when predetermined conditions are met. Smart contracts are self executing and reliable and do not require the actions or presence of third parties. The smart contract code is stored on, and distributed across, a decentralised blockchain network, making it transparent and irreversible. 
 
     stake pool
       a reliable block-producing server node that holds the combined stake of various stakeholders in a single entity, or pool.
