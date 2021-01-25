@@ -19,6 +19,9 @@ The `db-sync node` is written in a highly modular fashion to allow it to be as f
 
 [PostgreSQL](https://www.postgresql.org/) is a generic relational database used for the mapping of on-chain information to a relational model. It addresses specific user needs and requirements using the normalization technique to store relational data without duplication. 
 
+The following diagram outlines the interaction between the system components:
+![db-sync-architecture](postgreSQL.png)
+
 GraphQL and REST API export an interface to the data stored in the database to be accessed from spreadsheets, for example. [Frontend explorer](https://explorer.cardano.org/en) is the most user-oriented tool; it fetches data from the main database and reflects it in a straightforward and convenient web interface, which grants useful navigation options. Another component, the [SMASH](https://docs.cardano.org/en/latest/getting-started/stake-pool-operators/SMASH-metadata-management.html) server, aggregates stake pool metadata and provides pool operators and delegators with a list of valid stake pools with verified metadata.
 
 ### GraphQL API Server (Apollo)
