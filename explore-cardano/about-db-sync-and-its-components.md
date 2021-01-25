@@ -1,4 +1,4 @@
-# What is DB Sync?
+# About DB Sync and its components
 
 [DB Sync](https://docs.cardano.org/projects/cardano-db-sync/en/latest/) is one of the core components of the Cardano architecture, as it provides a convenient way to find and query historical information from the Cardano blockchain through the use of a Structured Query Language (SQL) relational database. Db Sync connects to the local node as a client and synchronizes with the on-chain activity. The PostgreSQL database then maps the on-chain information to the relational model.
 
@@ -18,7 +18,7 @@ The two versions `cardano-db-sync` and `cardano-db-sync-extended` are fully comp
 
 The `db-sync-node` is written in a highly modular fashion to allow it to be as flexible as possible. It connects to a locally running cardano-node (i.e. the one connected to other nodes in the Cardano network over the internet with TCP/IP) using a Unix domain socket. Db-sync-node retrieves blocks, updates its internal ledger state, and stores parts of each block in a local PostgreSQL database. 
 
-### About PostgreSQL database
+### PostgreSQL
 
 [PostgreSQL](https://www.postgresql.org/) is a generic relational database used for the mapping of on-chain information to a relational model. It addresses specific user needs and requirements using the normalization technique to store relational data without duplication. 
 
