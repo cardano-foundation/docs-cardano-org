@@ -1,8 +1,8 @@
 # What is DB Sync?
 
-[DB Sync](https://docs.cardano.org/projects/cardano-db-sync/en/latest/) is one of the core architecture components of Cardano, as it provides a convenient way to find and query historical information from the Cardano blockchain. This service is enabled through the use of a Structured Query Language (SQL) relational database. Db-sync connects as a client to the local Cardano node and synchronizes with the on-chain activity. The PostgreSQL database then serves as a mapping of the on-chain information to the relational model.
+[DB Sync](https://docs.cardano.org/projects/cardano-db-sync/en/latest/) is one of the core components of the Cardano architecture, as it provides a convenient way to find and query historical information from the Cardano blockchain through the use of a Structured Query Language (SQL) relational database. Db Sync connects to the local node as a client and synchronizes with the on-chain activity. The PostgreSQL database then maps the on-chain information to the relational model.
 
-DB Sync can be used by Cardano users and developers who wish to find out specific details in regards to block production and recent transactions. These details do not include cryptographic signatures, however, they do include block information that allows users to follow the chain and explore transactions within blocks.
+DB Sync can be used by Cardano users and developers who wish to find out specific details in regards to block production and recent transactions. These details include block information that enables users to follow the chain and explore transactions within blocks, but exclude cryptographic signatures.
 
 ## Architecture
 
@@ -12,17 +12,20 @@ Cardano-db-sync consists of a set of components:
 -   `cardano-db-tool` – a tool used to manage cardano-db-sync databases (create, run, validate and analyze migrations).
 -   `cardano-db-sync` – acts as a Cardano node, following the chain and inserting data from the chain into a PostgreSQL database.
 -   `cardano-db-sync-extended` – a relatively simple extension to cardano-db-sync, which maintains an extra table containing epoch data.
+-   `db-sync-node` – designed to work with a locally running Cardano Node to store data in the PostgreSQL database. 
 
-The two versions `cardano-db-sync` and `cardano-db-sync-extended` are fully compatible and use identical database schema. The only difference is that the extended version maintains an `Epoch` table. The non-extended version will still create this table but will not maintain it.
+The two versions `cardano-db-sync` and `cardano-db-sync-extended` are fully compatible and use identical database schemas. The only difference is that the extended version maintains an `Epoch` table,  which the non-extended version will also create but *not* maintain.
 
-The `db-sync node` is written in a highly modular fashion to allow it to be as flexible as possible. It connects to a locally running cardano-node (i.e. the one connected to other nodes in the Cardano network over the internet with TCP/IP) using a Unix domain socket, retrieves blocks, updates its internal ledger state and stores parts of each block in a local PostgreSQL database. 
+The `db-sync-node` is written in a highly modular fashion to allow it to be as flexible as possible. It connects to a locally running cardano-node (i.e. the one connected to other nodes in the Cardano network over the internet with TCP/IP) using a Unix domain socket. Db-sync-node retrieves blocks, updates its internal ledger state, and stores parts of each block in a local PostgreSQL database. 
+
+### About PostgreSQL database
 
 [PostgreSQL](https://www.postgresql.org/) is a generic relational database used for the mapping of on-chain information to a relational model. It addresses specific user needs and requirements using the normalization technique to store relational data without duplication. 
 
 The following diagram outlines the interaction between the system components:
 ![db-sync-architecture](postgreSQL.png)
 
-GraphQL and REST API export an interface to the data stored in the database to be accessed from spreadsheets, for example. [Frontend explorer](https://explorer.cardano.org/en) is the most user-oriented tool; it fetches data from the main database and reflects it in a straightforward and convenient web interface, which grants useful navigation options. Another component, the [SMASH](https://docs.cardano.org/en/latest/getting-started/stake-pool-operators/SMASH-metadata-management.html) server, aggregates stake pool metadata and provides pool operators and delegators with a list of valid stake pools with verified metadata.
+GraphQL and REST API export an interface to the data stored in the database to be accessed from spreadsheets, for example. [Frontend explorer](https://explorer.cardano.org/en) is the most user-oriented tool; it fetches data from the main database and reflects it in a straightforward and convenient web interface. Another component, the [SMASH](https://docs.cardano.org/en/latest/getting-started/stake-pool-operators/SMASH-metadata-management.html) server, aggregates stake pool metadata and provides pool operators and delegators with a list of valid stake pools with verified metadata.
 
 ### GraphQL API Server (Apollo)
 
