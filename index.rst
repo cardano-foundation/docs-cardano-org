@@ -17,7 +17,7 @@
    :titlesonly:
    :hidden:
 
-   What is Cardano? <README>
+   What is Cardano?/learn-cardano
    explore-cardano/what-is-a-cardano-node
    explore-cardano/what-is-a-stakepool
    explore-cardano/understanding-the-delegation-mechanism
