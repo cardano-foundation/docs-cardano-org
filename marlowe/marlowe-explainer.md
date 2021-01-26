@@ -30,3 +30,6 @@ The Marlowe Playground is the medium for end-to-end financial smart contract dev
 As a part of the Goguen rollout, we will be completing the implementation of Marlowe on Cardano, giving users and organizations the opportunity to execute DeFi contracts they have written themselves or downloaded from a contract repository, transferring crypto assets according to the contract terms. Marlowe will run first of all on the Cardano blockchain, but it is not tied to Cardano, and could run on other blockchains in the future.
 
 Smart contracts running on Cardano will be able to access external data values, such as the exchange rate between ada and bitcoin, through oracles. In some ways, an oracle is just like a participant that makes a choice, and we plan to support oracle values as part of the implementation, allowing contracts to access values directly from a stock market ‘ticker’ or a popular data feed such as Coinbase.
+
+### related links
+- [What is the Marlowe Playground?](<marlowe-playground.md>)
