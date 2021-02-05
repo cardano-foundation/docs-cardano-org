@@ -1,13 +1,12 @@
-# Further Reading
+# Resources
 
 You may find these web materials and videos useful:
 * [Learn about stake pools and delegating stake](https://staking.cardano.org/)
 * [What is delegation?](https://youtu.be/BapcrB8xSeI)
-* [What is Ouroboros?](https://www.cardano.org/en/ouroboros/)
+* [Proof of stake delegation](https://www.youtube.com/watch?v=Um9RaJVxl6o)
 * [Delegation defined](https://www.youtube.com/watch?v=BapcrB8xSeI&feature=youtu.be)
 * [What is Ouroboros?](https://www.cardano.org/en/ouroboros/)
 * [About Ouroboros and stake pools](https://www.youtube.com/watch?v=ur1lttBXAGM)
-* [Proof of stake delegation](https://www.youtube.com/watch?v=Um9RaJVxl6o)
 * [Incentives in Cardano Presentation](https://static.iohk.io/docs/extra/Incentives-in-Cardano-Presentation.pdf)
 * [Understanding Incentives](https://youtu.be/C6DlCL6p_UE)
 * [Shelley testnet tutorials](https://github.com/input-output-hk/cardano-tutorials)
@@ -24,3 +23,6 @@ IOHK’s researchers and engineers often post on [our blog](https://iohk.io/blog
 * _[Ouroboros explained](https://iohk.io/en/blog/posts/2020/03/23/from-classic-to-hydra-the-implementations-of-ouroboros-explained/)_ - By Kieran Costello, technical writer at IOHK
 * _[Stake pools in Cardano](https://iohk.io/blog/stake-pools-in-cardano/)_ - By Professor Aggelos Kiayias, chief scientist at IOHK
 * _[How Cardano's transaction fees work](https://iohk.io/blog/how-cardanos-transaction-fees-work/)_ - By Lars Brünjes, director of education at IOHK
+
+related links
+- - [Relevant Research Papers and Specifications](relevant-research-papers-and-specifications.md)

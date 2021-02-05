@@ -1,6 +1,6 @@
 # Understanding the Delegation Mechanism
 
-The stake delegation is a mechanism added to the Cardano proof of stake (PoS) protocol that allows the protocol to scale even in a setting where the set of stakeholders is highly fragmented.
+As Cardano is a proof-of-stake system, owning ada not only allows you to buy goods or services, but also confers upon you the right and obligation to participate in the protocol and create blocks. The stake delegation is a mechanism added to the Cardano proof of stake (PoS) protocol that allows the protocol to scale even in a setting where the set of stakeholders is highly fragmented.
 
 Anyone who owns ada can participate in the stake delegation process while retaining their spending power. Note that you can spend your ada normally at any time, regardless of how you delegated it. This mechanism will enable stakeholders to participate in the slot leader election process in each epoch.
 
