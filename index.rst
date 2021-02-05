@@ -35,6 +35,7 @@
    explore-cardano/design-rationale
    explore-cardano/cardano-network
    explore-cardano/how-are-new-blocks-produced
+   explore-cardano/addresses
    explore-cardano/cardano-monetary-policy
    explore-cardano/cardano-fee-structure
    explore-cardano/further-reading
