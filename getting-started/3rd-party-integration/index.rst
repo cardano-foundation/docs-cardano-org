@@ -1,16 +1,13 @@
-Getting Started with Third-party Integration
+Integrating with Third Parties
 ==========================================
 
-.. note::
-   Exchanges interested in or currently listing ada should move to a Shelley-supported version of Cardano.
+**Note:** Exchanges that are interested in, or currently listing ada, must support a Shelley-supported version of Cardano.
 
 
-.. warning::
-   Old components like **cardano-sl:node**, **cardano-sl:explorer**, **cardano-sl:wallet** will not be supported after the Shelley Hard-fork.
+**Warning:** Old components like **cardano-sl:node**, **cardano-sl:explorer**, or **cardano-sl:wallet** are no longer supported.
 
-Only the following components are Shelley compliant and will be
-supported during and after the Shelley hard-fork and support both Byron
-and Shelley eras.
+Only the following components are Shelley compliant and support both the Byron
+and Shelley eras:
 
 -  `cardano-node`_ - the latest cardano-node, which supports Ouroboros
    Praos.
@@ -20,7 +17,7 @@ and Shelley eras.
    data fetched from cardano-node in an intermediate database to enable
    higher-level interfaces for blockchain exploration.
 
--  `cardano-wallet`_ - This API is recommended for 3rd party wallets and
+-  `cardano-wallet`_ - this API is recommended for 3rd party wallets and
    exchanges who do not want to manage UTxOs for transactions
    themselves. Use it to send and receive payments from hierarchical
    deterministic wallets on the Cardano blockchain via HTTP REST or a
@@ -35,10 +32,10 @@ and Shelley eras.
    integrated clients. New integration should, however, look into
    cardano-graphql.
 
--  `cardano-graphql`_ - HTTP GraphQL API for Cardano. A more flexible
+-  `cardano-graphql`_ - the HTTP GraphQL API for Cardano. A more flexible
    alternative for blockchain exploration than cardano-rest.
 
--  `Adrestia libraries`_ - Recommended for larger exchanges who wish to
+-  `Adrestia libraries`_ - is recommended for larger exchanges who wish to
    construct their own wallet scheme and manage UTXOs themselves. This
    consists of the following:
 
@@ -51,8 +48,7 @@ and Shelley eras.
 The only currently available language target is Haskell, although
 support for JavaScript is being worked on and should be available soon.
 
-.. warning::
-   Adrestia’s components and their respective repositories are also listed on `Github`_.
+**Warning:**  Adrestia’s components and their respective repositories are also listed on `Github`_.
 
 .. _cardano-node: https://github.com/input-output-hk/cardano-node
 .. _cardano-db-sync: https://github.com/input-output-hk/cardano-db-sync
