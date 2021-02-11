@@ -27,12 +27,12 @@ A contract is built in Marlowe by combining a small number of *building* blocks 
 
 Marlowe itself is embedded in Haskell and is modelled as a collection of algebraic data types in Haskell, with contracts defined by the *Contract* type:
 
-data Contract = Close
+`data Contract = Close
               | Pay Party Payee Token Value Contract
               | If Observation Contract Contract
               | When [Case] Timeout Contract
               | Let ValueId Value Contract
-              | Assert Observation Contract
+              | Assert Observation Contract`
 
 Marlowe has *five* ways of building contracts. Four of these methods – `Pay`, `Let`, `If` and `When` – build a complex contract from simpler contracts, and the fifth method, `Close`, is a simple contract. At each step of execution, as well as returning a new state and continuation contract, it is possible that effects – payments – and warnings can also be generated.
 
@@ -70,11 +70,11 @@ As well as allowing us to use abbreviations, this mechanism also means that we c
 ## Sample Escrow Contract
 Suppose that `alice` wants to buy a cat from `bob`, but neither of them trusts the other. Fortunately, they have a mutual friend `carol` whom they both trust to be neutral (but not enough to give her the money and act as an intermediary). They therefore agree on the following contract, written using simple functional pseudocode. This kind of contract is a simple example of *escrow*:
 
-```When aliceChoice
+`When aliceChoice
      (When bobChoice
            (If (aliceChosen `ValueEQ` bobChosen)
                agreement
-               arbitrate))```
+               arbitrate))`
 
 The contract is described using the *constructors* of a Haskell data type. The outermost constructor `When` has two arguments: the first is an observation and the second is another contract. The intended meaning of this is that when the action happens, the second contract is activated.
 
@@ -82,7 +82,7 @@ The second contract is itself another `When` – asking for a decision from bob 
 
 In general, `When` offers a list of cases, each with an action and a corresponding contract that is triggered when that action happens. Using this we can allow for the option of `bob` making the first choice, rather than `alice`, like this:
 
-```When [ Case aliceChoice
+`When [ Case aliceChoice
               (When [ Case bobChoice
                           (If (aliceChosen `ValueEQ` bobChosen)
                              agreement
@@ -92,7 +92,7 @@ In general, `When` offers a list of cases, each with an action and a correspondi
                           (If (aliceChosen `ValueEQ` bobChosen)
                               agreement
                               arbitrate) ]
-       ]```
+       ]`
 
 In this contract, either Alice or Bob can make the first choice; the other thens makes a choice. If they agree, then that is done; if not, Carol arbitrates. 
 
@@ -104,7 +104,7 @@ Marlowe contracts incorporate extra constructs to ensure that they progress prop
 ### Using Timeouts
 Timeouts are used where the condition of the `When` never becomes true. So, timeout and continuation values are added to each `When` occurring in the contract:
 
- ```​When [ Case aliceChoice
+ `​When [ Case aliceChoice
              ​(When [ Case bobChoice
                          ​(If (aliceChosen `ValueEQ` bobChosen)
                             ​agreement
@@ -113,12 +113,12 @@ Timeouts are used where the condition of the `When` never becomes true. So, time
                    ​arbitrate)   -- ADDED
        ​]
        ​40          -- ADDED
-       ​Close       -- ADDE```
+       ​Close       -- ADDE`
 
 The outermost `When` calls for the first choice to be made by Alice: if Alice has not made a choice by slot 40, the contract is closed and all the funds in the contract are refunded.
 
 ### Marlowe Accounts and Token Usage
 A Marlowe Account holds amounts of multiple currencies and/or fungible and non-fungible tokens. A concrete amount is indexed by a `Token`, which is a pair of `CurrencySymbol` and `TokenName`. You can think of an Account as a Map Token Integer, where:
-```data Token = Token CurrencySymbol TokenName```
+`data Token = Token CurrencySymbol TokenName`
 
 The ada token of Cardano is represented as `Token adaSymbol adaToken`, however, you can create your own currencies and tokens. 
