@@ -62,7 +62,7 @@
    rt-view/rt-view
    
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 3
    :caption: Marlowe
    :titlesonly:
    :hidden:
