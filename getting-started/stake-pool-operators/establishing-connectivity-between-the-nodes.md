@@ -26,7 +26,7 @@ A core node is configured with various key-pairs and an operational certificate 
 >-   [Creating an operational certificate with key evolving signature (KES)](https://docs.cardano.org/projects/cardano-node/en/latest/stake-pool-operations/KES_period.html)
 
 >Further reading:
->-   Creating keys and operational certificates
+>-   [Creating keys and operational certificates](https://docs.cardano.org/en/latest/getting-started/stake-pool-operators/creating-keys-and-operational-certificates.html)
 
 A relay node doesn’t need any keys and will therefore be unable to produce blocks. It is connected to its core node, other relays, and external nodes.
 
