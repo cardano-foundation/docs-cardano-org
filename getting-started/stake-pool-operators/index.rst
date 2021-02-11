@@ -36,10 +36,9 @@ Stake pools are a key part of a decentralized Cardano, supporting the mechanisms
 
    creating-a-stake-pool
    establishing-connectivity-between-the-nodes
+   creating-keys-and-operational-certificates
    stake-pool-performance
    stake-pool-ranking
-   keys
-   operational-certificate
    metadada
    public-stakepools
    metadata-proxy-servers
