@@ -7,7 +7,7 @@
    :hidden:
 
    Installing and Running a Node <https://docs.cardano.org/projects/cardano-node/en/latest/getting-started/install.html>
-   Stake Pool Operators <getting-started/stake-pool-operators/index>
+   Operating a Stake Pool <getting-started/stake-pool-operators/index>
    Third-party Integration <getting-started/3rd-party-integration/index>
    Exchange Integration <getting-started/exchanges/index>
 
