@@ -23,18 +23,18 @@ Note that processor speed is not a significant factor for running a stake pool.
 
 ### Stake pool installation instructions
 
-To learn how to set up your own stake pool, follow [installing the node from source instructions](https://github.com/input-output-hk/cardano-node/blob/master/doc/getting-started/install.md).
+To learn how to set up your own stake pool, follow [installing the node from source instructions](https://docs.cardano.org/projects/cardano-node/en/latest/getting-started/install.html).
 
 You can then proceed with stake pool operations:
 
--   [Getting configuration files](https://github.com/input-output-hk/cardano-node/blob/master/doc/stake-pool-operations/getConfigFiles_AND_Connect.md)
--   [Creating keys and addresses](https://github.com/input-output-hk/cardano-node/blob/master/doc/stake-pool-operations/keys_and_addresses.md)
--   [Creating a simple transaction](https://github.com/input-output-hk/cardano-node/blob/master/doc/stake-pool-operations/simple_transaction.md)
--   [Registering stake address on the blockchain](https://github.com/input-output-hk/cardano-node/blob/master/doc/stake-pool-operations/register_key.md)
--   [Generating stake pool keys](https://github.com/input-output-hk/cardano-node/blob/master/doc/stake-pool-operations/node_keys.md)
--   [Creating an operational certificate with key evolving signature (KES)](https://github.com/input-output-hk/cardano-node/blob/master/doc/stake-pool-operations/KES_period.md)
--   [Configuring topology files for block-producing and relay nodes](https://github.com/input-output-hk/cardano-node/blob/master/doc/stake-pool-operations/core_relay.md)
--   [Registering a stake pool with metadata](https://github.com/input-output-hk/cardano-node/blob/master/doc/stake-pool-operations/register_stakepool.md)
--   [Starting a node](https://github.com/input-output-hk/cardano-node/blob/master/doc/stake-pool-operations/start_your_nodes.md)
--   [Withdrawing rewards](https://github.com/input-output-hk/cardano-node/blob/master/doc/stake-pool-operations/withdraw-rewards.md)
--   [Retiring a stake pool](https://github.com/input-output-hk/cardano-node/blob/master/doc/stake-pool-operations/retire_stakepool.md)
+-   [Getting configuration files](https://docs.cardano.org/projects/cardano-node/en/latest/stake-pool-operations/getConfigFiles_AND_Connect.html)
+-   [Creating keys and addresses](https://docs.cardano.org/projects/cardano-node/en/latest/stake-pool-operations/keys_and_addresses.html)
+-   [Creating a simple transaction](https://docs.cardano.org/projects/cardano-node/en/latest/stake-pool-operations/simple_transaction.html)
+-   [Registering stake address on the blockchain](https://docs.cardano.org/projects/cardano-node/en/latest/stake-pool-operations/register_key.html)
+-   [Generating stake pool keys](https://docs.cardano.org/projects/cardano-node/en/latest/stake-pool-operations/node_keys.html)
+-   [Creating an operational certificate with key evolving signature (KES)](https://docs.cardano.org/projects/cardano-node/en/latest/stake-pool-operations/KES_period.html)
+-   [Configuring topology files for block-producing and relay nodes](https://docs.cardano.org/projects/cardano-node/en/latest/stake-pool-operations/core_relay.html)
+-   [Registering a stake pool with metadata](https://docs.cardano.org/projects/cardano-node/en/latest/stake-pool-operations/register_stakepool.html)
+-   [Starting a node](https://docs.cardano.org/projects/cardano-node/en/latest/stake-pool-operations/start_your_nodes.html)
+-   [Withdrawing rewards](https://docs.cardano.org/projects/cardano-node/en/latest/stake-pool-operations/withdraw-rewards.html)
+-   [Retiring a stake pool](https://docs.cardano.org/projects/cardano-node/en/latest/stake-pool-operations/retire_stakepool.html)
