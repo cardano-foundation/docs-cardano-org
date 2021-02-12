@@ -23,7 +23,8 @@
    explore-cardano/understanding-the-delegation-mechanism
    explore-cardano/understanding-consensus
    explore-cardano/understanding-pledging-and-rewards
-   How Keys are used in Cardano/Cardano-keys
+   How Keys are used in Cardano <learn/Cardano-keys.md>
+   Types of Addresses <learn/types-addresses.md>
    explore-cardano/what-is-a-hard-fork-combinator
 
 .. toctree::
