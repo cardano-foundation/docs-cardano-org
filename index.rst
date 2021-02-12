@@ -23,7 +23,7 @@
    explore-cardano/understanding-the-delegation-mechanism
    explore-cardano/understanding-consensus
    explore-cardano/understanding-pledging-and-rewards
-   explore-cardano/addresses
+   Types of addresses/types-addresses
    How Keys are used in Cardano/Cardano-keys
    explore-cardano/what-is-a-hard-fork-combinator
 
