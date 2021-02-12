@@ -23,6 +23,8 @@
    explore-cardano/understanding-the-delegation-mechanism
    explore-cardano/understanding-consensus
    explore-cardano/understanding-pledging-and-rewards
+   explore-cardano/addresses
+   explore-cardano/keys
    explore-cardano/what-is-a-hard-fork-combinator
 
 .. toctree::
