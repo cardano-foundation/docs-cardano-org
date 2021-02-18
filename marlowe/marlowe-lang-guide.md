@@ -28,6 +28,7 @@ A contract is built in Marlowe by combining a small number of *building* blocks 
 Marlowe itself is embedded in Haskell and is modelled as a collection of algebraic data types in Haskell, with contracts defined by the *Contract* type:
 
 ```data Contract = Close
+data Contract = Close
               | Pay Party Payee Token Value Contract
               | If Observation Contract Contract
               | When [Case] Timeout Contract
