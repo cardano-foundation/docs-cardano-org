@@ -27,13 +27,13 @@ A contract is built in Marlowe by combining a small number of *building* blocks 
 
 Marlowe itself is embedded in Haskell and is modelled as a collection of algebraic data types in Haskell, with contracts defined by the *Contract* type:
 
-`data Contract = Close
+```data Contract = Close
               | Pay Party Payee Token Value Contract
               | If Observation Contract Contract
               | When [Case] Timeout Contract
               | Let ValueId Value Contract
-              | Assert Observation Contract`
-
+              | Assert Observation Contract
+```
 Marlowe has *five* ways of building contracts. Four of these methods – `Pay`, `Let`, `If` and `When` – build a complex contract from simpler contracts, and the fifth method, `Close`, is a simple contract. At each step of execution, as well as returning a new state and continuation contract, it is possible that effects – payments – and warnings can also be generated.
 
 #### Pay
