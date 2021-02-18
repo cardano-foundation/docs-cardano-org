@@ -1,6 +1,3 @@
-
-
-
 ## Marlowe Language Guide
 Marlowe is designed to create the building blocks of financial contracts: payments to and deposits from participants, choices by participants, and real world information. 
 
@@ -35,7 +32,7 @@ data Contract = Close
               | Let ValueId Value Contract
               | Assert Observation Contract
 ```
-Marlowe has *five* ways of building contracts. Four of these methods – `Pay`, `Let`, `If` and `When` – build a complex contract from simpler contracts, and the fifth method, `Close`, is a simple contract. At each step of execution, as well as returning a new state and continuation contract, it is possible that effects – payments – and warnings can also be generated.
+Marlowe has *six* ways of building contracts. Five of these methods – `Pay`, `Let`, `If`, `When` and `Assert` – build a complex contract from simpler contracts, and the fifth method, `Close`, is a simple contract. At each step of execution, as well as returning a new state and continuation contract, it is possible that effects – payments – and warnings can also be generated.
 
 #### Pay
 A payment contract `Pay a p t v cont` will make a payment of value `v` of token `t` from the account `a` to a payee `p`, which will be one of the contract participants or another account in the contract. Warnings will be generated if the value v is not positive, or if there is not enough in the account to make the payment in full (even if there are positive balances of other tokens in the account). In the latter case, a partial payment (of all the money available) is made. The continuation contract is the one given in the contract: `cont`.
@@ -68,12 +65,15 @@ A let contract `Let id val cont` allows a contract to *record* a value, in a par
 
 As well as allowing us to use abbreviations, this mechanism also means that we can capture and save volatile values that might be changing with time, e.g. the current price of oil, or the current slot number, at a particular point in the execution of the contract, to be used later on in contract execution.
 
+#### Assert
+An assert contract `Assert obs cont` does not have any effect on the state of the contract, it immediately continues as `cont`, but it issues a warning when the Observation `obs` is false. It can be used to ensure that a property holds in any given point of the contract, since static analysis will fail if any execution causes an assert to be false.
+
 ### Sample Escrow Contract
 Suppose that `alice` wants to buy a cat from `bob`, but neither of them trusts the other. Fortunately, they have a mutual friend `carol` whom they both trust to be neutral (but not enough to give her the money and act as an intermediary). They therefore agree on the following contract, written using simple functional pseudocode. This kind of contract is a simple example of *escrow*:
 
 `When aliceChoice
-     (When bobChoice
-           (If (aliceChosen `ValueEQ` bobChosen)
+        (When bobChoice
+          (If (aliceChosen 'ValueEQ' bobChosen)
                agreement
                arbitrate))`
 
@@ -85,12 +85,12 @@ In general, `When` offers a list of cases, each with an action and a correspondi
 
 `When [ Case aliceChoice
               (When [ Case bobChoice
-                          (If (aliceChosen `ValueEQ` bobChosen)
+                          (If (aliceChosen 'ValueEQ' bobChosen)
                              agreement
                              arbitrate) ],
         Case bobChoice
               (When [ Case aliceChoice
-                          (If (aliceChosen `ValueEQ` bobChosen)
+                          (If (aliceChosen 'ValueEQ' bobChosen)
                               agreement
                               arbitrate) ]
        ]`
