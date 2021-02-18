@@ -107,7 +107,7 @@ Timeouts are used where the condition of the `When` never becomes true. So, time
 
  `​When [ Case aliceChoice
              ​(When [ Case bobChoice
-                         ​(If (aliceChosen `ValueEQ` bobChosen)
+                         ​(If (aliceChosen 'ValueEQ' bobChosen)
                             ​agreement
                             ​arbitrate) ]
                    ​60           -- ADDED
