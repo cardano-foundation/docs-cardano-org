@@ -92,11 +92,13 @@ To ensure overall network resilience and robustness, large SPOs must take specia
 
 There is no standard system configuration as every stake pool has different operational requirements and preferences. It is the choice of an SPO on how to configure the topology. 
 
-However, taking into account the earlier advice, it is recommended that an SPO maintains at least two and an additional relay node(s) per a stake pool. In the case of running multiple stake pools, it is best that SPOs use geographically diverse peers, spread relay nodes across the world, and reach out to other SPOs (particularly other large ones) making agreements to add each other's relays. The more SPOs they have peer sharing agreements with, the more likely their blocks will propagate and get included in the chain. 
+However, taking into account the earlier advice, it is recommended that an SPO maintains at least two and an additional relay node(s) per a stake pool. In the case of running multiple stake pools, it is best that SPOs use geographically diverse peers, spread relay nodes across the world, and reach out to other SPOs (particularly other large ones) making agreements to add each other's relay nodes. The more SPOs they have peer-sharing agreements with, the more likely their blocks will propagate and get included in the chain. 
 
 Monitoring is important for all SPOs, and it is essentially a responsibility of an operator to ensure the quality of their pools’ functionality. As an example of a monitoring process that reflects Prometheus rules alerting on thresholds, one can take a look at the [cardano-ops repository here](https://github.com/input-output-hk/cardano-ops/blob/master/modules/monitoring-cardano.nix#L13).
 
 **Example relay topology**
+
+*Please note that IOHK relay nodes are outlined as examples.* 
 
 ```
 {
@@ -128,7 +130,7 @@ The `MaxConcurrencyDeadline` configuration option controls how many attempts the
 
 **Delegation**
 
-Stake delegation is the process of allocating individual stakeholders’ funds to collective stake pools. Delegation is performed for block production purposes to ensure that the block creation complies with the “proof-of-stake” consensus. By delegating, stakeholders do not transfer stake ownership, voting or other rights. 
+Stake delegation is the process of allocating individual stakeholders’ funds to collective stake pools. Delegation is performed for block production purposes to ensure that the block creation complies with the *proof-of-stake* consensus. By delegating, stakeholders do not transfer stake ownership, voting or other rights. 
 
 Large SPOs will generally control a significant amount of third-party stake to maintain trust in the blockchain, thus being responsible for:
 
