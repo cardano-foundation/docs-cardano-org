@@ -20,7 +20,7 @@ In addition to writing contracts in the textual version of Marlowe, you can also
 3. [Using Haskell](https://docs.cardano.org/en/latest/marlowe/get-started-js.html)
 
 ### What does a Marlowe contract look like?
-A contract is built in Marlowe by combining a small number of *building* blocks to describe many different kinds of financial contracts, like making a payment, making an observation of something in the “real world”, waiting until a certain condition becomes true, and so on. The contract is then run on a blockchain, like Cardano, and interacts with the outside world. 
+A contract is built in Marlowe by combining a small number of *building* blocks to describe many different kinds of financial contracts, like making a payment, making an observation, waiting until a certain condition becomes true, and so on. The contract is then run on a blockchain, like Cardano, and interacts with the outside world. 
 
 Marlowe itself is embedded in Haskell and is modelled as a collection of algebraic data types in Haskell, with contracts defined by the *Contract* type:
 
@@ -72,8 +72,8 @@ An assert contract `Assert obs cont` does not have any effect on the state of th
 Suppose that `alice` wants to buy a cat from `bob`, but neither of them trusts the other. Fortunately, they have a mutual friend `carol` whom they both trust to be neutral (but not enough to give her the money and act as an intermediary). They therefore agree on the following contract, written using simple functional pseudocode. This kind of contract is a simple example of *escrow*:
               
      When aliceChoice
-              (When bobChoice
-                    (If (aliceChosen 'ValueEQ' bobChosen)
+          (When bobChoice
+                (If (aliceChosen 'ValueEQ' bobChosen)
                     agreement
                     arbitrate))
 
@@ -84,16 +84,16 @@ The second contract is itself another `When` – asking for a decision from bob 
 In general, `When` offers a list of cases, each with an action and a corresponding contract that is triggered when that action happens. Using this we can allow for the option of `bob` making the first choice, rather than `alice`, like this:     
                      
      When [ Case aliceChoice
-              (When [ Case bobChoice
-                    (If (aliceChosen 'ValueEQ' bobChosen)
-                        agreement
-                        arbitrate) ],
+                  (When [ Case bobChoice
+                              (If (aliceChosen 'ValueEQ' bobChosen)
+                                 agreement
+                                 arbitrate) ],
                     
             Case bobChoice
-              (When [ Case aliceChoice
-                           (If (aliceChosen 'ValueEQ' bobChosen)
-                           agreement
-                           arbitrate) ],
+                  (When [ Case aliceChoice
+                               (If (aliceChosen 'ValueEQ' bobChosen)
+                                  agreement
+                                  arbitrate) ],
            ]
 
 In this contract, either Alice or Bob can make the first choice; the other thens makes a choice. If they agree, then that is done; if not, Carol arbitrates. 
@@ -107,12 +107,12 @@ Marlowe contracts incorporate extra constructs to ensure that they progress prop
 Timeouts are used where the condition of the `When` never becomes true. So, timeout and continuation values are added to each `When` occurring in the contract:
                             
      When [ Case aliceChoice
-              (When [ Case bobChoice
-                    (If (aliceChosen 'ValueEQ' bobChosen)
-                        agreement
-                        arbitrate) ],
-              60              -- ADDED
-              arbitrate       -- ADDED
+                  (When [ Case bobChoice
+                              (If (aliceChosen 'ValueEQ' bobChosen)
+                                 agreement
+                                 arbitrate) ],
+                        60              -- ADDED
+                        arbitrate       -- ADDED
             ]
             40          -- ADDED
             Close       -- ADDED
