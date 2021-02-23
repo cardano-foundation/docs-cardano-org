@@ -70,13 +70,7 @@ An assert contract `Assert obs cont` does not have any effect on the state of th
 
 ### Sample Escrow Contract
 Suppose that `alice` wants to buy a cat from `bob`, but neither of them trusts the other. Fortunately, they have a mutual friend `carol` whom they both trust to be neutral (but not enough to give her the money and act as an intermediary). They therefore agree on the following contract, written using simple functional pseudocode. This kind of contract is a simple example of *escrow*:
-
-`When aliceChoice
-         (When bobChoice
-               (If (aliceChosen 'ValueEQ' bobChosen)
-               agreement
-               arbitrate))`
-               
+              
      When aliceChoice
               (When bobChoice
                     (If (aliceChosen 'ValueEQ' bobChosen)
@@ -87,19 +81,20 @@ The contract is described using the *constructors* of a Haskell data type. The o
 
 The second contract is itself another `When` – asking for a decision from bob – but inside that, there is a choice: If `alice` and `bob` agree on what to do, it is done; if not, `carol` is asked to arbitrate and make a decision.
 
-In general, `When` offers a list of cases, each with an action and a corresponding contract that is triggered when that action happens. Using this we can allow for the option of `bob` making the first choice, rather than `alice`, like this:
-
-`When [ Case aliceChoice
+In general, `When` offers a list of cases, each with an action and a corresponding contract that is triggered when that action happens. Using this we can allow for the option of `bob` making the first choice, rather than `alice`, like this:     
+                     
+     When [ Case aliceChoice
               (When [ Case bobChoice
-                          (If (aliceChosen 'ValueEQ' bobChosen)
-                             agreement
-                             arbitrate) ],
-        Case bobChoice
+                    (If (aliceChosen 'ValueEQ' bobChosen)
+                        agreement
+                        arbitrate) ],
+                    
+            Case bobChoice
               (When [ Case aliceChoice
-                          (If (aliceChosen 'ValueEQ' bobChosen)
-                              agreement
-                              arbitrate) ]
-       ]`
+                           (If (aliceChosen 'ValueEQ' bobChosen)
+                           agreement
+                           arbitrate) ],
+           ]
 
 In this contract, either Alice or Bob can make the first choice; the other thens makes a choice. If they agree, then that is done; if not, Carol arbitrates. 
 
@@ -110,18 +105,18 @@ Marlowe contracts incorporate extra constructs to ensure that they progress prop
 
 #### Using Timeouts
 Timeouts are used where the condition of the `When` never becomes true. So, timeout and continuation values are added to each `When` occurring in the contract:
-
- `​When [ Case aliceChoice
-             ​(When [ Case bobChoice
-                         ​(If (aliceChosen 'ValueEQ' bobChosen)
-                            ​agreement
-                            ​arbitrate) ]
-                   ​60           -- ADDED
-                   ​arbitrate)   -- ADDED
-       ​]
-       ​40          -- ADDED
-       ​Close       -- ADDE`
-
+                            
+     When [ Case aliceChoice
+              (When [ Case bobChoice
+                    (If (aliceChosen 'ValueEQ' bobChosen)
+                        agreement
+                        arbitrate) ],
+              60              -- ADDED
+              arbitrate       -- ADDED
+            ]
+            40          -- ADDED
+            Close       -- ADDED
+                    
 The outermost `When` calls for the first choice to be made by Alice: if Alice has not made a choice by slot 40, the contract is closed and all the funds in the contract are refunded.
 
 #### Marlowe Accounts and Token Usage
