@@ -76,6 +76,12 @@ Suppose that `alice` wants to buy a cat from `bob`, but neither of them trusts t
                (If (aliceChosen 'ValueEQ' bobChosen)
                agreement
                arbitrate))`
+               
+     When aliceChoice
+              (When bobChoice
+                    (If (aliceChosen 'ValueEQ' bobChosen)
+                    agreement
+                    arbitrate))
 
 The contract is described using the *constructors* of a Haskell data type. The outermost constructor `When` has two arguments: the first is an observation and the second is another contract. The intended meaning of this is that when the action happens, the second contract is activated.
 
