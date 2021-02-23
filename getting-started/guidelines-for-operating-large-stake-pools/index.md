@@ -5,30 +5,30 @@ This document provides guidelines for operators of large stake pools on how to m
 ## Main recommendations
 
 1. **Consider reliability and robustness**. Stake pools require high-reliability servers with:
-  + Resilient compute capability.
-  + Robust networking capability.
+    + Resilient compute capability.
+    + Robust networking capability.
 2. **Consider networking requirements** carefully:
-  + High bandwidth connections are essential to run a relay node (e.g., 5 Mbit/s + 0.1 Mbit/s per downstream peer as a capacity planning number).
+    + High bandwidth connections are essential to run a relay node (e.g., 5 Mbit/s + 0.1 Mbit/s per downstream peer as a capacity planning number).
 3. **Operate sufficient relay nodes** as well as stake pools:
-  + Relay nodes are necessary for the maintenance of the network.
-  + Provision two relay nodes for each active stake pool.
+    + Relay nodes are necessary for the maintenance of the network.
+    + Provision two relay nodes for each active stake pool.
 4. **Be aware of system and network performance**, especially if using virtualized or shared servers:
-  + Each stake pool may need its own dedicated hardware resources (compute, memory, and network).
-  + It is recommended to use different servers for stake pools and relay nodes.
-  + Virtualization may complicate the process of determining whether stake pools have adequate resources.
+    + Each stake pool may need its own dedicated hardware resources (compute, memory, and network).
+    + It is recommended to use different servers for stake pools and relay nodes.
+    + Virtualization may complicate the process of determining whether stake pools have adequate resources.
 5. **Do not replicate stake pools** on the network:
-  + Stake pool replication is adversarial behavior, which may lead to blocks being rejected.
-  + Use high-reliability techniques to switch between duplicate or back-up servers without exposing both simultaneously to the network.
+    + Stake pool replication is adversarial behavior, which may lead to blocks being rejected.
+    + Use high-reliability techniques to switch between duplicate or back-up servers without exposing both simultaneously to the network.
 6. **Stake pools should have limited network connections**:
-  + This reduces stake pool exposure to denial-of-service (DOS) attacks and improves performance.
-  + Relay nodes should handle the larger portion of network traffic.
-  + Stake pools should only be connected to trusted nodes (relay and/or stake generating).
-  + Stake pools and relay nodes should restrict the services that are exposed (e.g., using a firewall).
+    + This reduces stake pool exposure to denial-of-service (DOS) attacks and improves performance.
+    + Relay nodes should handle the larger portion of network traffic.
+    + Stake pools should only be connected to trusted nodes (relay and/or stake generating).
+    + Stake pools and relay nodes should restrict the services that are exposed (e.g., using a firewall).
 7. **Security is paramount**:
-  + Use *airgapping* when signing transactions – do not store cold keys on an online server (including the one that is running a stake pool or a relay node).
-  + Use hardware wallets for high-value private keys, where possible.
-  + Where private keys cannot be stored in hardware wallets (e.g., cold keys), store them offline.
-  + Be aware of and plan for enforced key rotations using the key evolving signature (KES) scheme. 
+    + Use *airgapping* when signing transactions – do not store cold keys on an online server (including the one that is running a stake pool or a relay node).
+    + Use hardware wallets for high-value private keys, where possible.
+    + Where private keys cannot be stored in hardware wallets (e.g., cold keys), store them offline.
+    + Be aware of and plan for enforced key rotations using the key evolving signature (KES) scheme. 
 
 ## Managing risks and complexity in stake pool operations
 
@@ -81,8 +81,8 @@ To ensure overall network resilience and robustness, large SPOs must take specia
 3. Carefully consider containerization and virtualization performance to eliminate excessive contention for common resources (e.g., CPU cores).
 4. Submit stake pool certificates that include both the IP address and DNS names.
 5. Ensure that suitable monitoring is in place:
-  + Receiving the vast majority of (>90%) blocks within 4,000ms of their associated slot time.
-  + Track block production times to ensure that allocated resources remain sufficient (this will increase as transaction rates and block sizes increase).
+    + Receiving the vast majority of (>90%) blocks within 4,000ms of their associated slot time.
+    + Track block production times to ensure that allocated resources remain sufficient (this will increase as transaction rates and block sizes increase).
 6. Plan the expansion of relay nodes (potentially at a different location) that are associated with your stake registration (DDoS mitigation / rapid increases in load due to increase of delegation to SPO’s stake pools, etc.).
 7. Plan for regular maintenance events (to minimize stake pool downtime and/or to perform maintenance when the leadership schedule indicates a good interval).
 8. Plan and exercise disaster recovery every 3 to 6 months.
