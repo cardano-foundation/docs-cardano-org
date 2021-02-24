@@ -1,12 +1,12 @@
 Cardano Architecture Overview
 *****************************
 
-This section describes the high-level architecture of the `Cardano blockchain <https://docs.cardano.org/en/latest/README.html>`_. It provides details on the core components and their interactions, and briefly discusses Cardano's eras and implementations.
+This section describes the high-level architecture of `Cardano <https://docs.cardano.org/en/latest/README.html>`_. It provides details on the core components and their interactions, and briefly discusses Cardano's eras and implementations.
 
-Cardano blockchain - High Level Architecture
+High Level Architecture of Cardano
 ============================================
 
-The following diagram outlines the interaction between the system components:
+The following diagram outlines the interaction between the system components of Cardano:
 
 .. image:: cardano_components_version_main@2x.png
 
