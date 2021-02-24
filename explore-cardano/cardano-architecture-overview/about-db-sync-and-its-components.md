@@ -1,10 +1,10 @@
-# About DB Sync and its components
+# About Cardano DB Sync and its components
 
-[DB Sync](https://docs.cardano.org/projects/cardano-db-sync/en/latest/) is one of the core components of the Cardano architecture, as it provides a convenient way to find and query historical information from the Cardano blockchain through the use of a Structured Query Language (SQL) relational database. Db Sync connects to the local node as a client and synchronizes with the on-chain activity. The PostgreSQL database then maps the on-chain information to the relational model.
+[Cardano DB Sync](https://docs.cardano.org/projects/cardano-db-sync/en/latest/) is one of the core components of the Cardano architecture, as it provides a convenient way to find and query historical information from the Cardano blockchain through the use of a Structured Query Language (SQL) relational database. Db Sync connects to the local node as a client and synchronizes with the on-chain activity. The PostgreSQL database then maps the on-chain information to the relational model.
 
 DB Sync can be used by Cardano users and developers who wish to find out specific details in regards to block production and recent transactions. These details include block information that enables users to follow the chain and explore transactions within blocks, but exclude cryptographic signatures.
 
-## Architecture
+## Architecture of Cardano DB Sync
 
 Cardano-db-sync consists of a set of components:
 
