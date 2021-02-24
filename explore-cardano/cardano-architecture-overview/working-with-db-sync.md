@@ -1,4 +1,4 @@
-# Working with DB Sync
+# Working with Cardano DB Sync
 
 The purpose of this document is to explain how Cardano users can retrieve blockchain data from the database. Here, we look into the ways of working with the PostgreSQL database and explore its various queries.
 
