@@ -102,8 +102,9 @@ The cardano node stores only the blockchain itself and associated information ne
    :titlesonly:
 
    about-db-sync-and-its-components
+   cardano-db-sync-best-practices
    working-with-db-sync
-
+   
 About the Eras and Implementations of Cardano
 =============================================
 
