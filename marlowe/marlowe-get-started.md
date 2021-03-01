@@ -4,6 +4,7 @@ There are three options that you can choose from when using the Marlowe Playgrou
 Or you can choose to use either the embedded Haskell or Javascript editors to help you describe Marlowe contracts more readably and succinctly if you prefer. Once a contract is written, you can analyse its behaviour, such as checking whether any payments made by the contract could conceivably fail. You can also step through how a contract will behave, simulating the actions of the participants.
 
 ### Related Topics
+- [What is the Marlowe Playground?](<marlowe-playground.md>)
 - [Writing Marlowe with Blockly](get-started-blockly.md)
 - [Using the Haskell Editor](get-started-haskell.md)
 - [Using the Java Script Editor](get-started-js.md)
