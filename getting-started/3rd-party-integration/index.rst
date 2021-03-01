@@ -1,7 +1,7 @@
 Integrating with Third Parties
 ==========================================
 
-**Note:** Exchanges that are interested in, or currently listing ada, must support a Shelley-supported version of Cardano.
+**Note:** Exchanges that are currently listing, or interesting in listing ada, must support a Shelley-supported version of Cardano.
 
 
 **Warning:** Old components like **cardano-sl:node**, **cardano-sl:explorer**, or **cardano-sl:wallet** are no longer supported.
