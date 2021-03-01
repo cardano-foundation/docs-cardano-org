@@ -24,7 +24,7 @@ Download the binaries for the [cardano-node](https://hydra.iohk.io/jobset/Cardan
 * Hydra [macOS](https://hydra.iohk.io/job/Cardano/cardano-node/cardano-node-macos)
 * Hydra [Windows](https://hydra.iohk.io/job/Cardano/cardano-node/cardano-node-win64)
 
-## Build your node
+## Building a node
 
 As an exchange, you have several options to build a node:
 
@@ -37,25 +37,25 @@ In addition, you need to [understand the configuration files](https://docs.carda
 
 **Note:** Please check the [latest node release 1.19.0](https://github.com/input-output-hk/cardano-node/releases).
 
-## Stake delegation
+## Delegating Stake
 
-Before delegating, you will need to use a Shelley era wallet and set up your own iteration of the Cardano wallet by using [docker](https://hub.docker.com/r/inputoutput/cardano-wallet), [docker-compose](https://github.com/input-output-hk/cardano-wallet/wiki/Docker#docker-compose), build from source or download release binaries.
+Before delegating, you will need to use a Shelley era wallet and set up your own iteration of the Cardano wallet by either using [docker](https://hub.docker.com/r/inputoutput/cardano-wallet), [docker-compose](https://github.com/input-output-hk/cardano-wallet/wiki/Docker#docker-compose), building from source, or downloading release binaries.
 
-To participate in stake delegation, every exchange must have the following types of address keys:
+To participate in delegation of stake, every exchange must have the following types of address keys:
 
 * **Payment key** -  a single address key pair for generating UtxO addresses.
 * **Staking key** - a stake/reward address key pair for generating account/reward addresses to participate in the process of stake delegation.
 
 The main steps for delegating stake are:
 
-* Create stake keys
-* Create payment keys
-* Register stake address on the blockchain
+* Create the stake keys
+* Create the payment keys
+* Register the stake address on the blockchain
 * Create and submit the stake delegation certificate
 
-We will go through these steps in detail in the following sections.
+These steps are outlined in detail in the following sections.
 
-### 1. Create stake keys
+### 1. Creating stake keys
 
 The exchange needs to create stake keys to generate the delegate's reward addresses for collecting stake rewards.
 
@@ -72,7 +72,7 @@ cardano-cli shelley stake-address build \
     --mainnet
 ```
 
-### 2. Create payment keys
+### 2. Creating payment keys
 
 To generate a delegate's payment addresses you need to create payment keys. This is required for payments that are used to participate in stake delegation, and also for depositing funds:
 
@@ -92,7 +92,7 @@ cardano-cli shelley address build \
     --mainnet
 ```
 
-### 3. Register stake address on the blockchain
+### 3. Registering the stake address on the blockchain
 
 Next, register the stake address on the blockchain with a key deposit, which is required for participation in stake delegation. First, you will need to generate the stake address registration certificate using the stake verification key:
 
@@ -143,7 +143,7 @@ cardano-cli shelley query ledger-state  --mainnet 42 | grep "$STAKE_ADDR"
 # Ready to delegate now.
 ```
 
-### 4. Create and submit the stake delegation certificate
+### 4. Creating and submitting the stake delegation certificate
 
 Create and submit the stake delegation certificate per address for the selected pool. Note that 100% of the address’s ada will be delegated to the pool that you select):
 
@@ -179,7 +179,7 @@ cardano-cli shelley transaction submit \
 ```
 
 ## Current limitations
-You can not perform stake delegation from multiple addresses in the Cardano wallet. Once you decide to perform stake delegation, you agree to delegate 100% of your current stake in that wallet.
+You can not perform delegation from multiple addresses in the Cardano wallet. Once you decide to perform delegation, you agree to delegate 100% of your current stake in that wallet.
 
 To split your stake delegation, you will need to split ada holdings through submitting different transactions to different wallet addresses, and then delegating these addresses individually. The other option is to apply the concept of staking as a service where you move all the funds to one or multiple hot wallets and then perform the stake delegation.
 
@@ -198,7 +198,7 @@ You may also want to establish your own stake pool, or multiple stake pools, and
 5. Generate the operational certificate.
 6. Start the nodes.
 
-### Setup block-producing and relay nodes
+### Setting up block-producing and relay nodes
 
 As stake pool operator, you will have to run two types of nodes, with each node on a separate server:
 
@@ -207,17 +207,17 @@ As stake pool operator, you will have to run two types of nodes, with each node 
 
 The stake pool must have at least one block-producing node connected to at least one relay node that is controlled by the stake pool operator. In addition, your stake pool should respect the [minimum requirements](https://docs.cardano.org/en/latest/getting-started/stake-pool-operators/hardware-requirements.html).
 
-#### Setup the configuration files
+#### Setting up the configuration files
 
 * Use the same [mainnet-shelley-genesis.json](https://hydra.iohk.io/build/3670619/download/1/mainnet-shelley-genesis.json) files for both nodes.
 * Use even the same [mainnet-config.json](https://hydra.iohk.io/build/3670619/download/1/mainnet-config.json) files for both nodes or change it as you need.
 * Use different [mainnet-topology.json](https://hydra.iohk.io/build/3670619/download/1/mainnet-topology.json) files for each node.
 
-#### Create folders
+#### Creating folders
 
 Create two separate folders—“block-producing” and “relay”—for each node and copy the configuration files to their directories as explained above.
 
-#### Modify the topology configuration file
+#### Modifying the topology configuration file
 
 Modify the block-producer's mainnet-topology.json file to talk only to the relay node:
 
@@ -252,7 +252,7 @@ Modify the relay's mainnet-topology.json file to talk to the block-producer and 
  }
  ```
 
-### Configure the firewall
+### Configuring the firewall
 
 Configure the firewall for your nodes:
 
@@ -261,7 +261,7 @@ Configure the firewall for your nodes:
 * Allow connections only from your relay nodes by adding their IP addresses.
 * Open only the necessary ports for the relay nodes.
 
-### Create keys
+### Creating keys
 
 On the cardano-node directory:
 
@@ -292,7 +292,7 @@ cardano-cli shelley node key-gen \
 coldcounter
 ```
 
-### Generate the operational certificate
+### Generating the operational certificate
 
 This certificate is needed for operating a node as a stake pool. First, you need to get the slots per KES period from the genesis file:
 
@@ -324,7 +324,7 @@ cardano-cli shelley stake-address delegation-certificate \
     --out-file owner-delegation.cert
 ```
 
-### Start both nodes
+### Starting both nodes
 
 Start block-producing node and relay node on any port but be aware that both nodes must run on different ports, the port 3000 and 3001 are used in the following example:
 
