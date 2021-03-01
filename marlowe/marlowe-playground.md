@@ -5,4 +5,4 @@ The playground is available to use so that you can develop, simulate, and test t
 
 ### *related topics*
 - [Learn About Marlowe](marlowe-explainer.md)
-- [Getting Started witht the Marlowe Playground](marlowe-get-started.md)
+- [Getting Started with the Marlowe Playground](marlowe-get-started.md)
