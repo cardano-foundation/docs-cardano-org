@@ -1,4 +1,4 @@
-# The Cardano Improvement Proposals (CIPs)
+# Cardano Improvement Proposals (CIPs)
 
 Individuals with improvement proposals for Cardano can structure those thoughts into CIPs (Cardano Improvement Proposals).  
 
