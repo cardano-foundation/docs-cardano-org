@@ -1,4 +1,4 @@
-## Understanding Consensus
+## Creating Consensus
 
 Consensus is the process by which a majority opinion is reached by everyone who is involved in running the blockchain. Agreement must be made on which blocks to produce, which chain to adopt, and to determine the single state of the network. The consensus protocol determines how individual nodes assess the current state of the ledger system and reach a consensus. It has three main responsibilities; to perform a leader check and decide if a block should be produced, to handle chain selection, and to verify blocks that are produced.
 
