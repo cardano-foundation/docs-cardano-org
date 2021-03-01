@@ -9,8 +9,8 @@
    Installing and Running a Node <https://docs.cardano.org/projects/cardano-node/en/latest/getting-started/install.html>
    Operating a Stake Pool <getting-started/stake-pool-operators/index>
    Guidelines for Operating Large Stake Pools <getting-started/guidelines-for-operating-large-stake-pools/index>
-   Third-party Integration <getting-started/3rd-party-integration/index>
-   Exchange Integration <getting-started/exchanges/index>
+   Integrating with Third Parties <getting-started/3rd-party-integration/index>
+   Running Stake Pools and Delegating for Exchanges <getting-started/exchanges/index>
  
 .. toctree::
    :maxdepth: 3
