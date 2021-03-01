@@ -1,8 +1,8 @@
-# Integration information for exchanges on stake pools and delegation
+# Running Stake Pools and Delegating as an Exchange
 
-As stake pools and delegation become available through the Shelley hard fork, many exchanges are eager to participate in either running a stake pool or delegating their stake to existing pools.
+Many exchanges are eager to participate in either running a stake pool or delegating their stake to existing pools.
 
-This article is intended for exchanges and exchange developers who have already successfully migrated from the Byron pre-hard fork era to the Shelley post-hard fork era and answers some of the most frequently asked questions regarding this process, including current limitations and how to get started.
+This infrmation is intended for exchanges and exchange developers who have already successfully migrated from the Byron pre-hard fork era to the Shelley post-hard fork era and answers some of the most frequently asked questions regarding this process, including how to get started, and current limitations.
 
 Exchanges will need to use the Shelley mainnet as a production environment to get the latest features of the Cardano blockchain. This integration is made possible by using [cardano-wallet](https://github.com/input-output-hk/cardano-wallet), [cardano-rest](https://github.com/input-output-hk/cardano-rest), [cardano-node](https://github.com/input-output-hk/cardano-node/releases/tag/1.9.3), and [cardano-cli](https://github.com/input-output-hk/cardano-cli/releases), which provide the communication point for exchanges. As an exchange, you will need to [start your Cardano node](https://docs.cardano.org/projects/cardano-node/en/latest/stake-pool-operations/start_your_nodes.html), have a Shelley wallet with funds, and select a stake pool before you start the process of stake delegation.
 
