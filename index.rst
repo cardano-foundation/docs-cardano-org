@@ -10,7 +10,7 @@
    Operating a Stake Pool <getting-started/stake-pool-operators/index>
    Guidelines for Operating Large Stake Pools <getting-started/guidelines-for-operating-large-stake-pools/index>
    Integrating with Third Parties <getting-started/3rd-party-integration/index>
-   Running Stake Pools and Delegating for Exchanges <getting-started/exchanges/index>
+   Running Stake Pools and Delegating as an Exchange <getting-started/exchanges/index>
  
 .. toctree::
    :maxdepth: 3
