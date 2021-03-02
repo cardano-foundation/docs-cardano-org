@@ -18,7 +18,7 @@ NtN follows a pull-based strategy, where the initiator node queries for new tran
 
 A brief explanation of the NtN mini-protocols:
 
-* chain-sync: a protocol that allows a node to reconstruct a chain of an upstream node
-* block-fetch: a protocol that allows a node to download block bodies from various peers
-* tx-submission: a protocol that allows submission of transactions.The implementation of this protocol is based on a generic mini protocol framework, with one peculiarity: the roles of the initiator and the responder are reversed. The *Server* is the initiator that asks for new transactions, and the *Client* is the responder that replies with the transactions. This role reversal was designed thus for technical reasons.
+* **chain-sync**: a protocol that allows a node to reconstruct a chain of an upstream node
+* **block-fetch**: a protocol that allows a node to download block bodies from various peers
+* **tx-submission**: a protocol that allows submission of transactions.The implementation of this protocol is based on a generic mini protocol framework, with one peculiarity: the roles of the initiator and the responder are reversed. The *Server* is the initiator that asks for new transactions, and the *Client* is the responder that replies with the transactions. This role reversal was designed thus for technical reasons.
 
