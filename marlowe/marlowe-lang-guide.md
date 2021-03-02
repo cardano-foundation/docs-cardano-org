@@ -99,9 +99,9 @@ In general, `When` offers a list of cases, each with an action and a correspondi
 In this contract, either Alice or Bob can make the first choice; the other thens makes a choice. If they agree, then that is done; if not, Carol arbitrates. 
 
 #### Escrow in Marlowe
-Marlowe contracts incorporate extra constructs to ensure that they progress properly. Each time we see a When, we need to provide two additional things:
+Marlowe contracts incorporate extra constructs to ensure that they progress properly. Each time we see a `When`, we need to provide two additional things:
 - a *timeout* after which the contract will progress, and
-- the *continuation* contract to which it progresses.
+- the *continuation* contract to which it progresses
 
 #### Using Timeouts
 Timeouts are used where the condition of the `When` never becomes true. So, timeout and continuation values are added to each `When` occurring in the contract:
