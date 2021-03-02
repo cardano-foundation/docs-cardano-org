@@ -24,5 +24,6 @@ The NtC version of chain sync uses *full* blocks, rather than just block headers
 
 In NtC, the node runs **the producer side** of the Chain-Sync protocol *only*, and the **client** runs the consumer side *only*.
 
-This table shows which mini-protocols are enabled for NtC communication. 
+This table shows which mini-protocols are enabled for NtC communication.
+
 ![Node-to-Client](node-to-client-ipc.png)
