@@ -8,7 +8,7 @@ Cardano Documentation
      <a href='https://docs.cardano.org/en/latest/?badge=latest'><img src='https://readthedocs.com/projects/cardano-foundation-cardano/badge/?version=latest&style=for-the-badge' alt='Documentation Status' /></a>
    </p>
 
-Welcome to the central hub for documentation that describes and supports Cardano mainnet components and features. If you would like to start developing on Cardano, experiment with the Cardano testnet, or other test development environments, check out the `Cardano Developers website <https://developers.cardano.org/>`_.    
+Welcome to the central hub for documentation that describes and supports Cardano mainnet components and features. If you are interested in developing on Cardano, experimenting with the Cardano testnet, or other test development environments, check out the `Cardano Developers website <https://developers.cardano.org/>`_.    
 
 Cardano is a decentralized third-generation proof-of-stake blockchain platform and home to the ada cryptocurrency. It is the first blockchain platform to evolve out of a scientific philosophy and a research-first driven approach.
 
@@ -18,7 +18,7 @@ Cardano has been designed with security as one of its founding principles. It is
 
 Cardano is developing a smart contract platform which seeks to deliver more advanced features than any protocol previously developed and will serve as a stable and secure platform for the development of enterprise-level dApps. In the near future, Cardano will use a democratic governance system that allows the project to evolve over time, and fund itself in a sustainable way through a visionary treasury system. 
 
-You can read more about Cardano on the `official Cardano website <http://cardano.org/>`_ and watch a summary of the mission of Cardano in this `explainer video <https://www.youtube.com/watch?v=l_Nv0-PVrnM/>`_. If you are looking for a user-friendly wallet for Cardano, please take a look at `Daedalus`_ or `Yoroi`_.
+You can read more about Cardano on the `official Cardano website <http://cardano.org/>`_ and watch a summary of the mission of Cardano in this `explainer video <https://www.youtube.com/watch?v=l_Nv0-PVrnM/>`_. If you are looking for a user-friendly wallet for Cardano, please take a look at `Daedalus`_ for a desktop wallet or `Yoroi`_ for a mobile wallet.
 
 .. note:: 
    
