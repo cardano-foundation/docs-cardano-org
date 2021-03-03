@@ -8,7 +8,7 @@ Cardano Documentation
      <a href='https://docs.cardano.org/en/latest/?badge=latest'><img src='https://readthedocs.com/projects/cardano-foundation-cardano/badge/?version=latest&style=for-the-badge' alt='Documentation Status' /></a>
    </p>
 
-Welcome to the central hub for documentation that describes and supports Cardano mainnet components and features. If you are interested in developing on Cardano, experimenting with the Cardano testnet, or other test development environments, check out the `Cardano Developers website <https://developers.cardano.org/>`_.
+Welcome to the central hub for Cardano documentation, here you will find content that describes and supports the components and features that are live on Cardano mainnet. If you are interested in developing on Cardano, experimenting with the Cardano testnet, or other test development environments, check out the `Cardano Developers website <https://developers.cardano.org/>`_.
 
 **An Overview of Cardano**
 
