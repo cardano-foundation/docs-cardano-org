@@ -11,7 +11,7 @@
    Guidelines for Operating Large Stake Pools <getting-started/guidelines-for-operating-large-stake-pools/index>
    Integrating with Third Parties <getting-started/3rd-party-integration/index>
    Running Stake Pools and Delegating as an Exchange <getting-started/exchanges/index>
- 
+
 .. toctree::
    :maxdepth: 3
    :caption: Learn
@@ -61,7 +61,7 @@
    ouroboros-network <https://docs.cardano.org/projects/ouroboros-network/>
    adrestia <https://docs.cardano.org/projects/adrestia>
    rt-view/rt-view
-   
+
 .. toctree::
    :maxdepth: 3
    :caption: Marlowe
@@ -69,12 +69,20 @@
    :hidden:
 
    Learn About Marlowe <marlowe/marlowe-explainer.md>
-   What is the Marlowe Playground? <marlowe/marlowe-playground.md> 
+   What is the Marlowe Playground? <marlowe/marlowe-playground.md>
    Getting Started with the Marlowe Playground <marlowe/marlowe-get-started.md>
    Marlowe Language Guide <marlowe/marlowe-lang-guide.md>
    Writing Marlowe with Blockly <marlowe/get-started-blockly.md>
    Using the Haskell Editor <marlowe/get-started-haskell.md>
    Using the JavaScript Editor <marlowe/get-started-js.md>
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Cardano Token Registry
+   :titlesonly:
+   :hidden:
+
+   How to Submit Mapping or Entry <explore-cardano/submit-entry-to-cardano-token-registry.md>
 
 .. toctree::
    :maxdepth: 3
@@ -84,9 +92,9 @@
 
    Release Notes <release-information/release-notes>
    Compatibility Matrix <release-information/comp-matrix>
-   
-   
-   
+
+
+
 .. toctree::
    :maxdepth: 3
    :caption: Cardano Community
@@ -105,12 +113,10 @@
    :hidden:
 
    Cardano Explorer <https://explorer.cardano.org/>
-   
+
 .. toctree::
    :caption: Glossary
    :titlesonly:
    :hidden:
 
    explore-cardano/glossary
-   
-   
