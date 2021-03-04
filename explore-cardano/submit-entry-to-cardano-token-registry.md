@@ -16,8 +16,7 @@ The PolicyID is a unique identifier, a sequence of letters and numbers, that is 
 
 The AssetName is an immutable property to distinguish different assets within the same policy. It describes the token in a human-readable name up to 32 bytes.
 
-.. note::
-Note that different policies can use the same asset names for different tokens. Tokens that have the same asset ID have the property of being fungible with each other, and are not fungible with tokens that have a different asset ID.
+> **_NOTE:_** different policies can use the same asset names for different tokens. Tokens that have the same asset ID have the property of being fungible with each other, and are not fungible with tokens that have a different asset ID.
 
 ### Mapping Definition
 
@@ -34,8 +33,7 @@ This guide will take you through 3 main steps:
 
 The main idea of this step is to create policy key, policy script, generate policyid, choose asset name and convert to hex.
 
-.. note::
-Note that this article assumes that you already have created a token with associated policy script, policyID, singing key, etc. If you need to create a token, please follow the steps of [Minting A New Native Asset](https://developers.cardano.org/en/development-environments/native-tokens/working-with-multi-asset-tokens/) example.
+> **_NOTE:_** this article assumes that you already have created a token with associated policy script, policyID, singing key, etc. If you need to create a token, please follow the steps of [Minting A New Native Asset](https://developers.cardano.org/en/development-environments/native-tokens/working-with-multi-asset-tokens/) example.
 
 ### Prepare JSON Mapping File for Submission
 
@@ -80,8 +78,8 @@ The last step is to submit the metadata via sending a PR to the master repositor
 
 In general, you will submit the mapping file via Pull Requests to the [Mainnet](https://github.com/cardano-foundation/cardano-token-registry) or [Testnet](https://github.com/input-output-hk/metadata-registry-testnet) Github repository. Check [Wiki](https://github.com/cardano-foundation/goguen-metadata-registry/wiki) documentation for more information.
 
-.. note::
-Note that the validation process requires that all registry entries are well-formed and cryptographically linked to token creation (it validates that a registry entry is signed by the same keys used for generating the policyID). The merged changes can take up to 4 hours to have an effect on the metadata server.
+
+> **_NOTE:_** the validation process requires that all registry entries are well-formed and cryptographically linked to token creation (it validates that a registry entry is signed by the same keys used for generating the policyID). The merged changes can take up to 4 hours to have an effect on the metadata server.**
 
 #### Clone and Fork
 
