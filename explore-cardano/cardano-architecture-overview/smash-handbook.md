@@ -1,4 +1,4 @@
-# SMASH HANDBOOK
+# SMASH Handbook
 
 ## PREFACE
 
