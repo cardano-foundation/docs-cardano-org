@@ -69,7 +69,7 @@ cardano-metadata-submitter baa836fef09cb35e180fce4b55ded152907af1e2c840ed5218776
 --policy policy.json
 ```
 
-If desired add ptional fields
+If desired add optional fields
 
 ```
 cardano-metadata-submitter baa836fef09cb35e180fce4b55ded152907af1e2c840ed5218776f2f6d7961737365746e616d65 \
@@ -93,6 +93,7 @@ cardano-metadata-submitter baa836fef09cb35e180fce4b55ded152907af1e2c840ed5218776
 
 
 You’re now ready to submit your mapping file -  you’ve linked your token to some extra data that can be included in a registry, and signed it to confirm you’re allowed to.
+
 
 ### Pull Request and Validation Process
 
