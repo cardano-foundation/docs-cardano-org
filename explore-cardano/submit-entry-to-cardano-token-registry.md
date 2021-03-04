@@ -1,5 +1,4 @@
 # How to Submit Mapping or Entry to Cardano Registry
-
 Before explaining the main steps to submit a mapping or an entry to the Cardano Registry, you need to understand the main concepts.
 
 ## Main Concepts
@@ -9,8 +8,8 @@ The main concepts of Cardano token registry are asset and mapping.
 ### Native Asset Identification
 
 An asset is uniquely identified by an asset ID. The asset ID is a pair of the following:
-Policy ID
-Asset name.
+* Policy ID
+* Asset name.
 
 The PolicyID is a unique identifier, a sequence of letters and numbers, that is associated with a minting policy. It is computed by applying a hash function to the policy itself (either a monetary script or a Plutus script).
 
