@@ -48,29 +48,45 @@ We already have the following native asset:
 baa836fef09cb35e180fce4b55ded152907af1e2c840ed5218776f2f.myassetname
 ```
 
-1. Through a terminal, we extract the subject (to be used a key in the mapping)
+#### 1. Through a terminal, we extract the subject (to be used a key in the mapping)
+
 ```
 $ echo -n "myassetname" | od -A n -t x1 | sed 's/ *//g'
 6d7961737365746e616d65
 ```
 
-2. From here we Initiate a draft file: it will be slowly amended with the content we add
+#### 2. From here we Initiate a draft file: it will be slowly amended with the content we add
+
 ```
 cardano-metadata-submitter --init baa836fef09cb35e180fce4b55ded152907af1e2c840ed5218776f2f6d7961737365746e616d65
 ```
-3. We add the required fields
+
+#### 3. We add the required fields
 ```
 cardano-metadata-submitter baa836fef09cb35e180fce4b55ded152907af1e2c840ed5218776f2f6d7961737365746e616d65 \
 --name "My Gaming Token" \
 --description "A currency for the Metaverse." \
 --policy policy.json
 ```
-4. Sign the file!
+
+If desired add ptional fields
+
+```
+cardano-metadata-submitter baa836fef09cb35e180fce4b55ded152907af1e2c840ed5218776f2f6d7961737365746e616d65 \
+  --ticker "TKN" \
+  --url "https://finalfantasy.fandom.com/wiki/Gil" \
+  --unit "2,cents" \
+  --logo "icon.png"
+```
+
+#### 4. Sign the file!
+
 This is important as the signature will be used and compared with the signature from the asset policy forging script. This step validates the original monetary script and generates a signed JSON file (not a draft anymore):
 ```
 This is important as the signature will be used and compared with the signature from the asset policy forging script. This step validates the original monetary script and generates a signed JSON file (not a draft anymore):
 ```
-5. Finalize your Submission
+#### 5. Finalize your Submission
+
 ```
 cardano-metadata-submitter baa836fef09cb35e180fce4b55ded152907af1e2c840ed5218776f2f6d7961737365746e616d65 --finalize
 ```
