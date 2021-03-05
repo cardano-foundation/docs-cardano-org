@@ -76,13 +76,6 @@
    Using the Haskell Editor <marlowe/get-started-haskell.md>
    Using the JavaScript Editor <marlowe/get-started-js.md>
 
-.. toctree::
-   :maxdepth: 3
-   :caption: Cardano Token Registry
-   :titlesonly:
-   :hidden:
-
-   How to Submit Mapping or Entry <explore-cardano/submit-entry-to-cardano-token-registry.md>
 
 .. toctree::
    :maxdepth: 3

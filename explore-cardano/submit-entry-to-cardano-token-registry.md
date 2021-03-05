@@ -110,7 +110,7 @@ $ git remote add submission git@github.com:<your-github-username>/cardano-token-
 
 #### 2. Add the mapping to /mapping Folder
 ```
-$ cp /path-to-your-file/baa83...d65.json registry/
+$ cp /path-to-your-file/baa83...d65.json mapping/
 ```
 
 #### 3. Commit to the repo
