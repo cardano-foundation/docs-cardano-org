@@ -83,7 +83,7 @@ cardano-metadata-submitter baa836fef09cb35e180fce4b55ded152907af1e2c840ed5218776
 
 This is important as the signature will be used and compared with the signature from the asset policy forging script. This step validates the original monetary script and generates a signed JSON file (not a draft anymore):
 ```
-This is important as the signature will be used and compared with the signature from the asset policy forging script. This step validates the original monetary script and generates a signed JSON file (not a draft anymore):
+cardano-metadata-submitter baa836fef09cb35e180fce4b55ded152907af1e2c840ed5218776f2f6d7961737365746e616d65 -a policy.skey
 ```
 #### 5. Finalize your Submission
 
