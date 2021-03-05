@@ -101,19 +101,19 @@ The last step is to actually submit the mapping to the registry.  This is done b
 
 Please see below for general steps, check the [Wiki](https://github.com/cardano-foundation/goguen-metadata-registry/wiki) for FAQs or more information.
 
-1. Clone and Fork the repo
+#### 1. Clone and Fork the repo
 ```
 $ git clone git@github.com:cardano-foundation/cardano-token-registry.git
 $ cd cardano-token-registry
 $ git remote add submission git@github.com:<your-github-username>/cardano-token-registry
 ```
 
-2. Add the mapping to /mapping Folder
+#### 2. Add the mapping to /mapping Folder
 ```
 $ cp /path-to-your-file/baa83...d65.json registry/
 ```
 
-3. Commit to the repo
+#### 3. Commit to the repo
 ```
 $ git add registry/baa83...d65.json
 $ git commit -m "Your Token Name"
