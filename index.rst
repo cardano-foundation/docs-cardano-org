@@ -22,8 +22,9 @@
    explore-cardano/what-is-a-cardano-node
    explore-cardano/what-is-a-stakepool
    explore-cardano/understanding-the-delegation-mechanism
-   explore-cardano/understanding-consensus
    explore-cardano/understanding-pledging-and-rewards
+   Pledging and Delegating Options <learn/pledging-and-delegating-options.md>
+   explore-cardano/understanding-consensus
    How Keys are used in Cardano <learn/Cardano-keys.md>
    Types of Addresses <learn/types-addresses.md>
    explore-cardano/what-is-a-hard-fork-combinator
