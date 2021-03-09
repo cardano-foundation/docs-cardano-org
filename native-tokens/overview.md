@@ -12,3 +12,15 @@ Collecting Test Tokens
 To get ada for testing in the pre-production environment, you will need to submit a request by filling out [this form](https://input-output.typeform.com/c/KmeBcnDa).
 
 This method will be available for a limited time until a regular faucet is released.
+
+.. toctree::
+   :maxdepth: 1
+   :titlesonly:
+   :hidden:
+
+  learn-about-native-tokens
+  getting-started-with-native-tokens
+  using-the-token-registry
+  exercises
+  faqs
+  resources
