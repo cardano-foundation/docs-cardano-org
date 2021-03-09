@@ -1,11 +1,3 @@
----
-title: Exercises
-description: Native tokens in Cardano
-parent: native-tokens
-order: 5
-last_updated: "2020-12-10T08:38:00+01:00"
----
-
 ## Multi-Asset Tokens Exercises
 
 ### Prerequisites
