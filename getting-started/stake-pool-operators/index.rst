@@ -42,7 +42,7 @@ Stake pools are a key part of a decentralized Cardano, supporting the mechanisms
    stake-pool-performance
    stake-pool-ranking
    
-   
+You can also find out more about `pledging and delegating stake options here. <https://docs.cardano.org/en/latest/learn/pledging-and-delegating-options.html>`_
    
    
 
