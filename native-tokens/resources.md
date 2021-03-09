@@ -1,10 +1,3 @@
----
-title: Resources
-description: Native tokens in Cardano
-parent: native-tokens
-order: 8
-last_updated: "2020-12-10T09:00:00+01:00"
----
 ## Resources
 
 Thank you for your interest in building native tokens on Cardano. Your testing and feedback is important for us to improve Cardano and the Native Token pre-production environment.
