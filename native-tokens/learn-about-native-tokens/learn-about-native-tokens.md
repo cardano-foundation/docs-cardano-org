@@ -2,7 +2,7 @@
 title: Learn About Native Tokens
 description: Native tokens in Cardano
 parent: native-tokens
-order: 2
+order: 1
 last_updated: "2020-12-10T09:00:00+01:00"
 ---
 
