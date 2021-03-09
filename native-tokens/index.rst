@@ -1,4 +1,5 @@
-## Overview
+Overview
+==========
 
 Native Tokens is the name of Cardano's Multi-Asset (MA) support feature, which enables users to transact with ada, and an unlimited number of user-defined (custom) tokens natively.
 
@@ -9,7 +10,7 @@ The Native Tokens feature extends the existing accounting infrastructure defined
 We’ll be expanding these pages over the weeks and months ahead; take our short survey to be kept informed of the latest updates.
 
 Collecting Test Tokens
-To get ada for testing in the pre-production environment, you will need to submit a request by filling out [this form](https://input-output.typeform.com/c/KmeBcnDa).
+To get ada for testing in the pre-production environment, you will need to submit a request by filling out `this form. <https://input-output.typeform.com/c/KmeBcnDa>`_
 
 This method will be available for a limited time until a regular faucet is released.
 
