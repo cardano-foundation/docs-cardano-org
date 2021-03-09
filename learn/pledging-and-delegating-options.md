@@ -43,7 +43,7 @@ Delegators earn rewards for participating in staking (either pledging or delegat
 > -   [Withdrawing rewards](https://docs.cardano.org/projects/cardano-node/en/latest/stake-pool-operations/withdraw-rewards.html) 
 > -   [Understanding pledging and rewards](https://docs.cardano.org/en/latest/explore-cardano/understanding-pledging-and-rewards.html)
 
-## FAQs
+### FAQs
 
 1. **Q: How do I create and register a stake pool?**
 
