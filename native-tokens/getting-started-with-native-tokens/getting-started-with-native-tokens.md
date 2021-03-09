@@ -1,11 +1,3 @@
----
-title: How to Use Multi-Asset Tokens in the Cardano Node
-description: Native tokens in Cardano
-parent: native-tokens
-order: 3
-last_updated: "2020-12-10T12:31:00+01:00"
----
-
 ## Getting Started With Native Tokens
 
 ### Prerequisites
@@ -130,7 +122,6 @@ The syntax for TxOut values has been extended to include multi-asset tokens. The
 
 To receive tokens, you just need to specify any address. It is not necessary to use special addresses to hold multi-asset tokens.
 
-
 To inspect the values in an address, you need to view a UTxO value using:
 
 ```
@@ -144,8 +135,6 @@ cardano-cli shelley query utxo --address "$ADDRESS" --mary-era
 ```
 
 ### Token Minting Policies
-
-### Token minting policies
 
 In Mary, token minting policies are written using multi-signature scripts. This allows the asset controller to express conditions such as the need for specific token issuers to agree to mint new tokens, or to forbid minting tokens after a certain slot (if [token locking](https://docs.cardano.org/en/latest/explore-cardano/what-is-a-hard-fork-combinator.html#token-locking-shelley-protocol-update) is also used).
 
@@ -169,7 +158,7 @@ used throughout pertains to the *Mary* Testnet. For the mainnet, replace `--netw
  
 #### Pre-requisites 
 
-1. Download the node and config files for the Mary testnet (Launchpad) using this code
+1. Download the node and config files for the Mary testnet (Launchpad) using this code:
 
 ```bash
 wget https://hydra.iohk.io/build/5266641/download/1/cardano-node-1.24.2-linux.tar.gz
@@ -182,7 +171,7 @@ wget https://hydra.iohk.io/build/5102327/download/1/launchpad-topology.json
 cd ..
 ```
 
-2. Run cardano-node
+2. Run the cardano-node:
 
 ```bash
 ./cardano-node run --topology ./lpconfig/launchpad-topology.json --database-path ./state-lp --port 3001
@@ -190,7 +179,7 @@ cd ..
 
 export CARDANO_NODE_SOCKET_PATH=~/cardano-lp.socket
 ```
-3. Generate a verification key and a signing key
+3. Generate a verification key and a signing key:
 
 ```bash
 cardano-cli address key-gen \
@@ -216,7 +205,7 @@ $ cat pay.vkey
 
 ```
 
-4. Generate the payment address
+4. Generate the payment address:
 
 ```bash
 ./cardano-cli address build \
@@ -232,18 +221,20 @@ $ cat pay.addr
 addr_test1vqvlku0ytscqg32rpv660uu4sgxlje25s5xrpz7zjqsva3c8pfckz
 ```
 
-5. Check the balance of the payment address
+5. Check the balance of the payment address:
 
 ```bash
 ./cardano-cli query utxo --address addr_test1vqvlku0ytscqg32rpv660uu4sgxlje25s5xrpz7zjqsva3c8pfckz --testnet-magic 3 --mary-era
 ```
+
 The response should show no funds:
+
 ```bash
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
 ```
 
-6. Fund the address and check again
+6. Fund the address and check again:
 
 ```bash
 ./cardano-cli query utxo --address addr_test1vqvlku0ytscqg32rpv660uu4sgxlje25s5xrpz7zjqsva3c8pfckz --testnet-magic 3 --mary-era
@@ -254,7 +245,7 @@ b1ddb0347fed2aecc7f00caabaaf2634f8e2d17541f6237bbed78e2092e1c414     0        10
 
 ```
 
-7. Export the protocol parameters to a file for later use
+7. Export the protocol parameters to a file for later use:
 
 ```bash
 cardano-cli  query protocol-parameters \
@@ -265,7 +256,7 @@ cardano-cli  query protocol-parameters \
 
 #### Start the minting process
 
-1. Create a policy
+1. Create a policy:
 
 ```bash
 
@@ -292,7 +283,7 @@ cat ./policy/policy.script
 
 ```
 
-2. Mint the new asset
+2. Mint the new asset:
 
 ```bash 
 
@@ -303,7 +294,7 @@ $ ./cardano-cli transaction policyid --script-file ./policy/policy.script
 
 #### Build the raw transaction
 
-1. Use this code to build the raw transaction
+1. Use this code to build the raw transaction:
 
 ```
 
@@ -323,11 +314,10 @@ $ cat matx.raw
     ca00a1581c328a60495759e0d8e244eca5b85b2467d142c8a755d6cd0592dff47ba1476d656c636f696e1a3b9aca00020009a1581c328a60495759e0d8e244eca5b85b2467d142c8a755d6cd0592dff47ba1476d656c636f696e1a3b9aca00f6"
 }
 ```
-
-
 #### Calculate the minimum fee
 
-Use this code to calculate the minimum fee required for the transaction.
+Use this code to calculate the minimum fee required for the transaction:
+
 ```
 ./cardano-cli transaction calculate-min-fee \
 --tx-body-file matx.raw \
@@ -343,7 +333,7 @@ Use this code to calculate the minimum fee required for the transaction.
 
 #### Build the transaction again
 
-The transaction will now include the fee.
+The transaction will now include the fee:
 
 ```
 
@@ -365,7 +355,7 @@ $ cat matx.raw
 
 ```
 
-#### Sign the transaction
+#### Sign the transaction:
 
 ```
 ./cardano-cli transaction sign \
@@ -382,11 +372,9 @@ $ cat matx.signed
     "description": "",
     "cborHex": "83a40081825820b1ddb0347fed2aecc7f00caabaaf2634f8e2d17541f6237bbed78e2092e1c41400018182581d6019fb71e45c300445430b35a7f395820df96554850c308bc29020cec7821a3b980a73a1581c328a60495759e0d8e244eca5b85b2467d142c8a755d6cd0592dff47ba1476d656c636f696e1a3b9aca00021a0002bf8d09a1581c328a60495759e0d8e244eca5b85b2467d142c8a755d6cd0592dff47ba1476d656c636f696e1a3b9aca00a2008282582031752dd50ffe7ed90ba136ea775dacd5113ff67d13001a25aac953f719aa1f9258406c8639a645fabe8f040e1bc4d9aff6db25ad98aead2f5558f322087430ce3896e44fadb18d2d0fec9302c8a36a8a66653df6c181700dbdf5c2df2f1af4c4ab048258206829bde3df4b212def84a4d8c14aa5232356aa53395cbdc575fa01fac167439a58407d3171701eabd7e118e45beb9f23ac95b5a73ec3de0449917a27e18106e554473247978a8b02f9edbe489940047ce41f1922f93042d3157b4a5146692e848c0701818200581c5805823e303fb28231a736a3eb4420261bb42019dc3605dd83cccd04f6"
 }
-
-
 ```
 
-#### Submit the transaction
+#### Submit the transaction:
 
 ```bash
 ./cardano-cli transaction submit --tx-file  matx.signed --testnet-magic 3
@@ -413,16 +401,16 @@ First, we need to generate an address to send the newly minted asset to.
 mkdir recipient
 ```
 
-2. Generate the key pair
+2. Generate the key pair:
 
 ```
 cardano-cli address key-gen \
     --verification-key-file recipient/recipientpay.vkey \
     --signing-key-file recipient/recipientpay.skey
 ```    
-    
 
-2. Derive the payment address
+3. Derive the payment address:
+
 ```
 ./cardano-cli address build \
 --payment-verification-key-file recipient/recipientpay.vkey \
@@ -433,7 +421,7 @@ $ cat recipient/recipientpay.addr
 addr_test1vp8s8zu6mr73nvlsjf935k0a38n8xvp3fptkyz2vl8pserqkcx5yz
 
 ```
-3. Send 1 melcoin to the recipient address
+4. Send 1 melcoin to the recipient address:
 
 ```bash
 ./cardano-cli transaction build-raw \
@@ -445,9 +433,9 @@ addr_test1vp8s8zu6mr73nvlsjf935k0a38n8xvp3fptkyz2vl8pserqkcx5yz
              --out-file rec_matx.raw
 ```
 
-4. Calculate the min fee
+5. Calculate the minimum fee.
 
-Use this code to calculate the minimum fee for the transaction.
+Use this code to calculate the minimum fee for the transaction:
 
 ```
 ./cardano-cli transaction calculate-min-fee \
@@ -471,7 +459,7 @@ Use this code to calculate the minimum fee for the transaction.
 
 #### Sign the transaction
 
-Sign the transaction using the keys generated earlier.
+Sign the transaction using the keys generated earlier:
 ```
 ./cardano-cli transaction sign \
 	     --signing-key-file pay.skey \
@@ -482,11 +470,13 @@ Sign the transaction using the keys generated earlier.
 
 #### Submit the transaction
 
-Submit the transaction to the chain.
+Submit the transaction to the chain:
+
 ```
 ./cardano-cli transaction submit --tx-file  rec_matx.signed --testnet-magic 3
 
 ```
+
 Note that we must send more than 1000000 Lovelace in the transaction. This minimum value is specified in the config file:
 
 ```bash
@@ -495,7 +485,7 @@ $ cat lpconfig/launchpad-shelley-genesis.json | grep minUTxOValue
 
 ```
 
-#### Check the UTXO for address addr_test1vp8s8zu6mr73nvlsjf935k0a38n8xvp3fptkyz2vl8pserqkcx5yz
+#### Check the UTXO for address addr_test1vp8s8zu6mr73nvlsjf935k0a38n8xvp3fptkyz2vl8pserqkcx5yz:
 
 ```bash
 ./cardano-cli query utxo --address addr_test1vp8s8zu6mr73nvlsjf935k0a38n8xvp3fptkyz2vl8pserqkcx5yz --testnet-magic 3 --mary-era
@@ -508,7 +498,7 @@ f90b8457a2cf6a1aba9c0001ae2c7084f653083c6108826115a0a64e862333a3     0        10
 The recipient address we created now has 10000000 Lovelace and 1 melcoin.
 
 
-#### Check the UTXO for address addr_test1vqvlku0ytscqg32rpv660uu4sgxlje25s5xrpz7zjqsva3c8pfckz
+#### Check the UTXO for address addr_test1vqvlku0ytscqg32rpv660uu4sgxlje25s5xrpz7zjqsva3c8pfckz:
 
 ```bash
 
@@ -519,7 +509,6 @@ f90b8457a2cf6a1aba9c0001ae2c7084f653083c6108826115a0a64e862333a3     1        98
 ```
 The sender address now has 989643522 Lovelace and 999999999 melcoin.
 
----
 ### Submitting a Transaction
 
 Before submitting the transaction to the network, it needs to be signed. We need witnesses from two keys - one to spend the input `$UTXO`, and one to satisfy the minting policy script:
