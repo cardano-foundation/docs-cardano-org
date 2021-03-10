@@ -78,7 +78,7 @@
    Using the JavaScript Editor <marlowe/get-started-js.md>
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 5
    :caption: Native Tokens
    :titlesonly:
    :hidden:
