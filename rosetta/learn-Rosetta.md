@@ -1,6 +1,5 @@
 ## Learn about Rosetta ##
 
-### Learn about Rosetta ###
 Rosetta is an open source specification and set of tools that help you to integrate with blockchains. Serving as a general-purpose integration framework, Rosetta provides a high-level interface that can be customized to work with any chain. The goal of Rosetta is to make the integration process easier, faster, and more reliable so that you can build once and integrate your blockchain everywhere.
 
 We have created our unique cardano-rosetta implementation to simplify the process of integration with Cardano. To put this into context and illustrate the different implementations of Rosetta, bitcoin-rosetta and ethereum-rosetta also exist. The commonality between all implementations is that they all share the same interface.
