@@ -1,4 +1,4 @@
-## Multi-Asset Tokens Exercises
+## Native Tokens Exercises
 
 ### Prerequisites
 
