@@ -79,6 +79,19 @@
 
 .. toctree::
    :maxdepth: 3
+   :caption: Native Tokens
+   :titlesonly:
+   :hidden:
+
+   Learn About Native Tokens <native-tokens/learn-about-native-tokens.md>
+   Getting Started with Native Tokens <native-tokens/getting-started-with-native-tokens.md>
+   Using the Token Registry <native-tokens/using-the-token-registry.md>
+   Exercises <native-tokens/exercises.md>
+   FAQs <native-tokens/faqs.md>
+   Resources <native-tokens/resources.md>
+   
+.. toctree::
+   :maxdepth: 3
    :caption: Rosetta
    :titlesonly:
    :hidden:
