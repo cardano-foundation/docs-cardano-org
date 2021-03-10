@@ -77,6 +77,14 @@
    Using the Haskell Editor <marlowe/get-started-haskell.md>
    Using the JavaScript Editor <marlowe/get-started-js.md>
 
+.. toctree::
+   :maxdepth: 3
+   :caption: Rosetta
+   :titlesonly:
+   :hidden:
+
+   Learn About Rosetta <rosetta/learn-Rosetta.md>
+  
 
 .. toctree::
    :maxdepth: 3
