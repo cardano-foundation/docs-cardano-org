@@ -11,9 +11,9 @@
 
 This set of exercises is aimed to ensure that you can:
 
-1. Manage existing multi-asset tokens;
-2. Create new multi-asset tokens;
-3. Submit transactions that include multi-asset tokens on the Cardano blockchain.
+1. Manage existing native tokens;
+2. Create new native tokens;
+3. Submit transactions that include native tokens on the Cardano blockchain.
 
 Please report any bugs or improvements through the `cardano-node` github repository.
 
