@@ -84,6 +84,7 @@
    :hidden:
 
    Learn About Rosetta <rosetta/learn-Rosetta.md>
+   Getting Started with Rosetta <get-started-rosetta.md>
   
 
 .. toctree::
