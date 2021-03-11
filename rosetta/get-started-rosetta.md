@@ -43,3 +43,129 @@ This section provides some endpoint examples of how exchanges can use Rosetta fo
     "addr_test1vzx9ztw59gzp7txrhs4z03u2sfzx8y49vxn3vchzasplx3cwph08p"
 }
 ```
+#### To determine transaction_size ####
+/construction/preprocess
+
+**Request:**
+
+```
+{
+    "network_identifier": {
+        "blockchain": "cardano",
+        "network": "testnet"
+    },
+    "operations": [
+        {
+            "operation_identifier": {
+                "index": 0
+            },
+            "type": "input",
+            "status": "",
+            "account": {
+                "address": "addr_test1vzx9ztw59gzp7txrhs4z03u2sfzx8y49vxn3vchzasplx3cwph08p"
+            },
+            "amount": {
+                "value": "-999968487129",
+                "currency": {
+                    "symbol": "ADA",
+                    "decimals": 6
+                }
+            },
+            "coin_change": {
+                "coin_identifier": {
+                    "identifier": "8f0e1bb31ff09a8dcc8a1b13d6ccb8f873f8d94b17bb7236c62e2d9d63d5426b:0"
+                },
+                "coin_action": "coin_spent"
+            },
+            "metadata": {
+                "tokenBundle": [
+                    {
+                        "policyId": "2bbd69730ab71f9c3825aef68d01400fc7c7f8270ed34082528b17a6",
+                        "tokens": [
+                            {
+                                "value": "1",
+                                "currency": {
+                                    "symbol": "31",
+                                    "decimals": 0,
+                                    "metadata": {
+                                        "policyId": "2bbd69730ab71f9c3825aef68d01400fc7c7f8270ed34082528b17a6"
+                                    }
+                                }
+                            },
+                            {
+                                "value": "1",
+                                "currency": {
+                                    "symbol": "32",
+                                    "decimals": 0,
+                                    "metadata": {
+                                        "policyId": "2bbd69730ab71f9c3825aef68d01400fc7c7f8270ed34082528b17a6"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "operation_identifier": {
+                "index": 1
+            },
+            "type": "output",
+            "status": "",
+            "account": {
+                "address": "addr_test1vrpxrjmr5rk43ace43g2hnmxzguegns3vpqc8phx7tcu8wsgmynq6"
+            },
+            "amount": {
+                "value": "999968106116",
+                "currency": {
+                    "symbol": "ADA",
+                    "decimals": 6
+                }
+            },
+            "metadata": {
+                "tokenBundle": [
+                    {
+                        "policyId": "2bbd69730ab71f9c3825aef68d01400fc7c7f8270ed34082528b17a6",
+                        "tokens": [
+                            {
+                                "value": "1",
+                                "currency": {
+                                    "symbol": "31",
+                                    "decimals": 0,
+                                    "metadata": {
+                                        "policyId": "2bbd69730ab71f9c3825aef68d01400fc7c7f8270ed34082528b17a6"
+                                    }
+                                }
+                            },
+                            {
+                                "value": "1",
+                                "currency": {
+                                    "symbol": "32",
+                                    "decimals": 0,
+                                    "metadata": {
+                                        "policyId": "2bbd69730ab71f9c3825aef68d01400fc7c7f8270ed34082528b17a6"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
+
+}
+```
+
+**Response:**
+
+```
+{
+   "options": {
+        "relative_ttl": 1000,
+        "transaction_size": 235
+    }
+}
+```
