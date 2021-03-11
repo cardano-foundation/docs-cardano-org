@@ -20,6 +20,7 @@ This section provides some endpoint examples of how exchanges can use Rosetta fo
 
 **Request:**
 
+```
 {
     "network_identifier": {
         "blockchain": "cardano",
@@ -31,9 +32,14 @@ This section provides some endpoint examples of how exchanges can use Rosetta fo
     },
     "metadata": {}
 }
+```
+
 
 **Response:**
 
+```
 {
-    "address": "addr_test1vzx9ztw59gzp7txrhs4z03u2sfzx8y49vxn3vchzasplx3cwph08p"
+    "address": 
+    "addr_test1vzx9ztw59gzp7txrhs4z03u2sfzx8y49vxn3vchzasplx3cwph08p"
 }
+```
