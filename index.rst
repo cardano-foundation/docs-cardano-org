@@ -100,6 +100,7 @@
 
    Learn About Rosetta <rosetta/learn-Rosetta.md>
    Getting Started with Rosetta <rosetta/get-started-rosetta.md>
+   Contribute to Rosetta <rosetta/contribute-rosetta.md>
   
 
 .. toctree::
