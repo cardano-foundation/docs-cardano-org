@@ -65,20 +65,6 @@
 
 .. toctree::
    :maxdepth: 3
-   :caption: Marlowe
-   :titlesonly:
-   :hidden:
-
-   Learn About Marlowe <marlowe/marlowe-explainer.md>
-   What is the Marlowe Playground? <marlowe/marlowe-playground.md>
-   Getting Started with the Marlowe Playground <marlowe/marlowe-get-started.md>
-   Marlowe Language Guide <marlowe/marlowe-lang-guide.md>
-   Writing Marlowe with Blockly <marlowe/get-started-blockly.md>
-   Using the Haskell Editor <marlowe/get-started-haskell.md>
-   Using the JavaScript Editor <marlowe/get-started-js.md>
-
-.. toctree::
-   :maxdepth: 3
    :caption: Native Tokens
    :titlesonly:
    :hidden:
@@ -92,6 +78,22 @@
    FAQs <native-tokens/faqs.md>
    Resources <native-tokens/resources.md>
    
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Marlowe
+   :titlesonly:
+   :hidden:
+
+   Learn About Marlowe <marlowe/marlowe-explainer.md>
+   What is the Marlowe Playground? <marlowe/marlowe-playground.md>
+   Getting Started with the Marlowe Playground <marlowe/marlowe-get-started.md>
+   Marlowe Language Guide <marlowe/marlowe-lang-guide.md>
+   Writing Marlowe with Blockly <marlowe/get-started-blockly.md>
+   Using the Haskell Editor <marlowe/get-started-haskell.md>
+   Using the JavaScript Editor <marlowe/get-started-js.md>
+
+  
 .. toctree::
    :maxdepth: 3
    :caption: Rosetta
