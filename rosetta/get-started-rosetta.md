@@ -13,7 +13,9 @@ Sample code for the typical Rosetta use cases:
 - [Sending transactions with single multi assets](https://github.com/input-output-hk/cardano-rosetta/tree/master/examples#sending-transactions-with-single-multi-assets)
 
 ### Exchange Examples ###
-This section provides some endpoint examples of how exchanges can use Rosetta for their integration needs.
+This section provides some endpoint examples of how exchanges can use Rosetta for their integration needs:
+- [To get address from public key](https://docs.cardano.org/en/latest/rosetta/get-started-rosetta.html#to-get-address-from-public-key)
+- [To determine transaction size](https://docs.cardano.org/en/latest/rosetta/get-started-rosetta.html#to-determine-transaction-size)
 
 #### To get address from public key ####
 /construction/derive
@@ -43,7 +45,7 @@ This section provides some endpoint examples of how exchanges can use Rosetta fo
     "addr_test1vzx9ztw59gzp7txrhs4z03u2sfzx8y49vxn3vchzasplx3cwph08p"
 }
 ```
-#### To determine transaction_size ####
+#### To determine transaction size ####
 /construction/preprocess
 
 **Request:**
@@ -168,4 +170,47 @@ This section provides some endpoint examples of how exchanges can use Rosetta fo
         "transaction_size": 235
     }
 }
+```
+#### Get any information required to construct a transaction for a specific network ####
+/construction/metadata
+
+**Request:**
+
+```
+{
+    "network_identifier": {
+        "blockchain": "cardano",
+        "network": "testnet"
+    },
+    "options": {
+        "relative_ttl": 1000,
+        "transaction_size": 235
+    },
+    "public_keys": [
+        {
+            "hex_bytes": "22ae46272bffe077cecc46e1494d790d4ad453ae1c4228aa0c2e9671dcb16344",
+            "curve_type": "edwards25519"
+        }
+    ]
+}
+
+```
+**Response:**
+
+```
+{
+    "metadata": {
+        "ttl": "20416653"
+    },
+    "suggested_fee": [
+        {
+            "value": "165897",
+            "currency": {
+                "symbol": "ADA",
+                "decimals": 6
+            }
+        }
+    ]
+}
+
 ```
