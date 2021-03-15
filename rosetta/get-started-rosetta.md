@@ -16,9 +16,10 @@ Sample code for the typical Rosetta use cases:
 This section provides some endpoint examples of how exchanges can use Rosetta for their integration needs:
 - [Get address from public key](https://docs.cardano.org/en/latest/rosetta/get-started-rosetta.html#get-address-from-public-key)
 - [Determine transaction size](https://docs.cardano.org/en/latest/rosetta/get-started-rosetta.html#determine-transaction-size)
-- [Create unsigned transaction](https://docs.cardano.org/en/latest/rosetta/get-started-rosetta.html#create-unsigned-transaction)
 - [Get any information required to construct a transaction for a specific network](https://docs.cardano.org/en/latest/rosetta/get-started-rosetta.html#get-any-information-required-to-construct-a-transaction-for-a-specific-network)
+- [Create unsigned transaction](https://docs.cardano.org/en/latest/rosetta/get-started-rosetta.html#create-unsigned-transaction)
 - [Confirm correctness of unsigned tx body](https://docs.cardano.org/en/latest/rosetta/get-started-rosetta.html#confirm-correctness-of-unsigned-tx-body)
+- [Create the signed transaction](https://docs.cardano.org/en/latest/rosetta/get-started-rosetta.html#to-create-the-signed-transaction)
 
 #### Get address from public key ####
 /construction/derive
@@ -382,7 +383,7 @@ This section provides some endpoint examples of how exchanges can use Rosetta fo
 
 Locally sign payloads[0].hex_bytes from previous/payloads response to use in next request.
 
-#### To create the signed transaction ####
+#### Create the signed transaction ####
 /construction/combine
 
 **Request:**
