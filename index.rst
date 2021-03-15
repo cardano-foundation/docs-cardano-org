@@ -69,10 +69,10 @@
    :titlesonly:
    :hidden:
 
-   Learn About Native Tokens <native-tokens/learn-about-native-tokens.md>
-   What is a Native Token and how it Compares to ada and ERC20 <native-tokens/what-is-a-native-token-and-how-it-compares-to-ada-and-erc20.md>
+   Learn about Native Tokens <native-tokens/learn-about-native-tokens.md>
+   What is a Native Token and how it compares to ada and ERC20 <native-tokens/what-is-a-native-token-and-how-it-compares-to-ada-and-erc20.md>
    Minimum ada Value Requirement <native-tokens/minimum-ada-value-requirement.md>
-   Getting Started with Native Tokens <native-tokens/getting-started-with-native-tokens.md>
+   Getting started with Native Tokens <native-tokens/getting-started-with-native-tokens.md>
    Using the Token Registry <native-tokens/using-the-token-registry.md>
    Exercises <native-tokens/exercises.md>
    FAQs <native-tokens/faqs.md>
@@ -100,8 +100,8 @@
    :titlesonly:
    :hidden:
 
-   Learn About Rosetta <rosetta/learn-Rosetta.md>
-   Getting Started with Rosetta <rosetta/get-started-rosetta.md>
+   Learn about Rosetta <rosetta/learn-Rosetta.md>
+   Getting started with Rosetta <rosetta/get-started-rosetta.md>
    Contribute to Rosetta <rosetta/contribute-rosetta.md>
   
 
@@ -111,8 +111,8 @@
    :titlesonly:
    :hidden:
 
-   Release Notes <release-information/release-notes>
-   Compatibility Matrix <release-information/comp-matrix>
+   Release notes <release-information/release-notes>
+   Compatibility matrix <release-information/comp-matrix>
 
 
 
