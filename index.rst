@@ -27,7 +27,7 @@
    explore-cardano/understanding-consensus
    How keys are used in Cardano <learn/Cardano-keys.md>
    Types of addresses <learn/types-addresses.md>
-   explore-cardano/what-is-a-hard-fork-combinator
+   About hard forks <learn/what-is-a-hard-fork-combinator.md>
 
 .. toctree::
    :maxdepth: 3
