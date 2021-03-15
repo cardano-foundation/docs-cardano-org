@@ -35,7 +35,7 @@
    :titlesonly:
    :hidden:
 
-   Cardano Architecture Overview <explore-cardano/cardano-architecture-overview/index>
+   Cardano architecture overview <explore-cardano/cardano-architecture-overview/index>
    explore-cardano/design-rationale
    explore-cardano/cardano-network
    explore-cardano/how-are-new-blocks-produced
