@@ -1,4 +1,4 @@
-## Cardano Fee Structure
+## Cardano transaction fee structure
 
 Cardano uses a transaction fee system that covers the processing and long term storage cost of transactions.
 
