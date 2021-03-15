@@ -24,7 +24,7 @@
    explore-cardano/understanding-the-delegation-mechanism
    explore-cardano/understanding-pledging-and-rewards
    Pledging and delegation options <learn/pledging-and-delegating-options.md>
-   Understanding consensus <explore-cardano/understanding-consensus.md>
+   Consensus explained <explore-cardano/understanding-consensus.md>
    How keys are used in Cardano <learn/Cardano-keys.md>
    Types of addresses <learn/types-addresses.md>
    About hard forks <explore-cardano/what-is-a-hard-fork-combinator.md>
