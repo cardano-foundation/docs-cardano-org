@@ -461,4 +461,15 @@ You can use `/construction/parse` again to confirm the correctness of signed tra
 }
 ```
 
+### API Calls ###
+This section outlines the available Rosetta API calls:
+
+**Get brief information about transactions**
+```
+$ curl -X POST '$BASEURL/block' \
+  -H "Content-Type: application/json" \
+  -d '{ "network_identifier": {"blockchain": "cardano", "network": "mainnet" }, "metadata": {}, "block_identifier": {"index": "5264122" }}'
+```
+
+
 
