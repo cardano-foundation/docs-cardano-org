@@ -36,7 +36,7 @@
    :hidden:
 
    Cardano architecture overview <explore-cardano/cardano-architecture-overview/index>
-   explore-cardano/design-rationale
+   Cardano design rationale <explore-cardano/design-rationale.md>
    explore-cardano/cardano-network
    explore-cardano/how-are-new-blocks-produced
    explore-cardano/cardano-monetary-policy
