@@ -20,6 +20,7 @@ This section provides some endpoint examples of how exchanges can use Rosetta fo
 - [Create unsigned transaction](https://docs.cardano.org/en/latest/rosetta/get-started-rosetta.html#create-unsigned-transaction)
 - [Confirm correctness of unsigned tx body](https://docs.cardano.org/en/latest/rosetta/get-started-rosetta.html#confirm-correctness-of-unsigned-tx-body)
 - [Create the signed transaction](https://docs.cardano.org/en/latest/rosetta/get-started-rosetta.html#create-the-signed-transaction)
+- [Generate the transaction hash](https://docs.cardano.org/en/latest/rosetta/get-started-rosetta.html#generate-the-tx-hash)
 
 ### Get address from public key ###
 `/construction/derive`
