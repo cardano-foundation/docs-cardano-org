@@ -1,4 +1,4 @@
-# Types of Addresses
+# Types of addresses
 
 The addresses are a blake2b-256 hash of the relevant verifying/public keys concatenated with some metadata that can be stored on the Cardano blockchain. Shelley introduces four different types of addresses:
 
