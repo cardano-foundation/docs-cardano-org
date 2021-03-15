@@ -6,11 +6,11 @@
    :titlesonly:
    :hidden:
 
-   Installing and Running a Node <https://docs.cardano.org/projects/cardano-node/en/latest/getting-started/install.html>
-   Operating a Stake Pool <getting-started/stake-pool-operators/index>
-   Guidelines for Operating Large Stake Pools <getting-started/guidelines-for-operating-large-stake-pools/index>
-   Integrating with Third Parties <getting-started/3rd-party-integration/index>
-   Running Stake Pools and Delegating as an Exchange <getting-started/exchanges/index>
+   Installing and running a node <https://docs.cardano.org/projects/cardano-node/en/latest/getting-started/install.html>
+   Operating a stake pool <getting-started/stake-pool-operators/index>
+   Guidelines for operating large stake pools <getting-started/guidelines-for-operating-large-stake-pools/index>
+   Integrating with third parties <getting-started/3rd-party-integration/index>
+   Running stake pools and delegating as an Exchange <getting-started/exchanges/index>
 
 .. toctree::
    :maxdepth: 3
@@ -23,10 +23,10 @@
    explore-cardano/what-is-a-stakepool
    explore-cardano/understanding-the-delegation-mechanism
    explore-cardano/understanding-pledging-and-rewards
-   Pledging and Delegating Options <learn/pledging-and-delegating-options.md>
+   Pledging and delegation options <learn/pledging-and-delegating-options.md>
    explore-cardano/understanding-consensus
-   How Keys are used in Cardano <learn/Cardano-keys.md>
-   Types of Addresses <learn/types-addresses.md>
+   How keys are used in Cardano <learn/Cardano-keys.md>
+   Types of addresses <learn/types-addresses.md>
    explore-cardano/what-is-a-hard-fork-combinator
 
 .. toctree::
@@ -87,11 +87,11 @@
 
    Learn About Marlowe <marlowe/marlowe-explainer.md>
    What is the Marlowe Playground? <marlowe/marlowe-playground.md>
-   Getting Started with the Marlowe Playground <marlowe/marlowe-get-started.md>
-   Marlowe Language Guide <marlowe/marlowe-lang-guide.md>
+   Getting started with the Marlowe Playground <marlowe/marlowe-get-started.md>
+   Marlowe language guide <marlowe/marlowe-lang-guide.md>
    Writing Marlowe with Blockly <marlowe/get-started-blockly.md>
-   Using the Haskell Editor <marlowe/get-started-haskell.md>
-   Using the JavaScript Editor <marlowe/get-started-js.md>
+   Using the Haskell editor <marlowe/get-started-haskell.md>
+   Using the JavaScript editor <marlowe/get-started-js.md>
 
   
 .. toctree::
