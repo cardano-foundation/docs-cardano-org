@@ -1,4 +1,4 @@
-## Cardano Monetary Policy
+## Cardano monetary policy
 
 Cardano aims to achieve true decentralization with the introduction of the Voltaire era later in 2020. Voltaire will include decentralized voting and treasury systems to empower the community to influence Cardano's evolution, and provide a funding mechanism to transform Cardano into a self-funded, self-sustainable environment.
 
