@@ -3,7 +3,7 @@ The Rosetta API is made up of two core components; the [Data API](https://www.ro
 
 For full details, read the [Rosetta API specification](https://www.rosetta-api.org/docs/1.4.4/welcome.html). For an overview of the interactions, view the [Flow of Operations](https://www.rosetta-api.org/docs/1.4.4/construction_api_introduction.html#flow-of-operations).
 
-Here you will find developer examples, exchange examples, and the [API calls](https://github.com/cardano-foundation/docs-cardano-org/blob/main/rosetta/get-started-rosetta.md#api-calls). 
+Here you will find developer examples, exchange examples, and the Rosetta [API calls](https://github.com/cardano-foundation/docs-cardano-org/blob/main/rosetta/get-started-rosetta.md#api-calls). 
 
 ## Developer Examples ##
 This section outlines some examples that you can test out as a developer who wants to use Rosetta. However, we advise that you should exercise caution if testing these on mainnet.
