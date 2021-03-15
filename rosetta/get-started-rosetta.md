@@ -21,6 +21,8 @@ This section provides some endpoint examples of how exchanges can use Rosetta fo
 - [Confirm correctness of unsigned tx body](https://docs.cardano.org/en/latest/rosetta/get-started-rosetta.html#confirm-correctness-of-unsigned-tx-body)
 - [Create the signed transaction](https://docs.cardano.org/en/latest/rosetta/get-started-rosetta.html#create-the-signed-transaction)
 - [Generate the transaction hash](https://docs.cardano.org/en/latest/rosetta/get-started-rosetta.html#generate-the-tx-hash)
+- [Submit signed transaction to the blockchain](https://docs.cardano.org/en/latest/rosetta/get-started-rosetta.html#submit-signed-transaction-to-the-blockchain)
+- []()
 
 ### Get address from public key ###
 `/construction/derive`
@@ -460,51 +462,6 @@ You can use `/construction/parse` again to confirm the correctness of signed tra
     },
     "signed_transaction": "827901de3833613430303831383235383230386630653162623331666630396138646363386131623133643663636238663837336638643934623137626237323336633632653264396436336435343236623030303138313832353831643630633236316362363361306564353866373139616335306162636636363132333939343465313136303431383338366536663266316333626138323162303030303030653864326265363638346131353831633262626436393733306162373166396333383235616566363864303134303066633763376638323730656433343038323532386231376136613234313331303134313332303130323161303030356430353530333161303133373838386461313030383138323538323032326165343632373262666665303737636563633436653134393464373930643461643435336165316334323238616130633265393637316463623136333431353834306337626136396363353061626365383633633439303065353532383965613237663437333037336235386662643434613331303134306633666232303439343031396636373435383861326466396438623664343534633535363433613936653236646565333332656630363065353936303335376636353638376464653032663681a7746f7065726174696f6e5f6964656e746966696572a165696e64657800647479706565696e7075746673746174757360676163636f756e74a16761646472657373783f616464725f7465737431767a78397a74773539677a70377478726873347a3033753273667a783879343976786e337663687a6173706c78336377706830387066616d6f756e74a26576616c75656d2d3939393936383438373132396863757272656e6379a26673796d626f6c6341444168646563696d616c73066b636f696e5f6368616e6765a26f636f696e5f6964656e746966696572a16a6964656e7469666965727842386630653162623331666630396138646363386131623133643663636238663837336638643934623137626237323336633632653264396436336435343236623a306b636f696e5f616374696f6e6a636f696e5f7370656e74686d65746164617461a16b746f6b656e42756e646c6581a268706f6c69637949647838326262643639373330616237316639633338323561656636386430313430306663376337663832373065643334303832353238623137613666746f6b656e7382a26576616c756561316863757272656e6379a36673796d626f6c62333168646563696d616c7300686d65746164617461a168706f6c696379496478383262626436393733306162373166396333383235616566363864303134303066633763376638323730656433343038323532386231376136a26576616c756561316863757272656e6379a36673796d626f6c62333268646563696d616c7300686d65746164617461a168706f6c696379496478383262626436393733306162373166396333383235616566363864303134303066633763376638323730656433343038323532386231376136"
 }
-```
-
-### API Calls ###
-This section outlines the available Rosetta API calls:
-
-**Get brief information about transactions**
-```
-$ curl -X POST '$BASEURL/block' \
-  -H "Content-Type: application/json" \
-  -d '{ "network_identifier": {"blockchain": "cardano", "network": "mainnet" }, "metadata": {}, "block_identifier": {"index": "5264122" }}'
-```
-**Get block’s summary information**
-```
-$ curl -X POST '$BASEURL/block' \
-  -H "Content-Type: application/json" \
-  -d '{ "network_identifier": {"blockchain": "cardano", "network": "mainnet" }, "metadata": {}, "block_identifier": {"index": "5264122" }}'
-```
-
-**Get information about the N latest transactions**
-```
-# Get the current block identifier
-$ curl -X POST '$BASEURL/network/status' \
-  -H "Content-Type: application/json" \
-  -d '{ "network_identifier": { "blockchain": "cardano", "network": "mainnet" }, "metadata": {} }' | jq .current_block_identifier.index 
-5264122
-
-# Fetch information from it
-$ curl -X POST '$BASEURL/block' \
-  -H "Content-Type: application/json" \
-  -d '{ "network_identifier": {"blockchain": "cardano", "network": "mainnet" }, "metadata": {}, "block_identifier": {"index": "5264122" }}'
-```
-**Get summary information about a transaction**
-```
-$ curl $BASEURL/api/txs/summary/382a5274ebf102910c6c923a8b11f108e79ecedb5d7433cd0dd15a8a443f0fa5
-Get summary information about an address
-$ curl -X POST '$BASEURL/account/balance' \
-  -H "Content-Type: application/json" \
-  -d '{ "network_identifier": { "blockchain": "cardano", "network": "mainnet" }, "metadata": {}, "account_identifier": { "address": "DdzFFzCqrhsqKd92VGNM9Ts1Ms62J2FaSRmf8t1bQa1VugDmcUJzeU8TRFnGDDUR6f1m9VaJJG1GfnzxVjKGBbBAVGT9sPBseREYzP3E" }, "metadata": {}}' 
-```
-
-**Get address information specific to a block**
-```
-$ curl -X POST '$BASEURL/account/balance' \
-  -H "Content-Type: application/json" \
-  -d '{ "network_identifier": { "blockchain": "cardano", "network": "mainnet" }, "metadata": {}, "account_identifier": { "address": "DdzFFzCqrhsqKd92VGNM9Ts1Ms62J2FaSRmf8t1bQa1VugDmcUJzeU8TRFnGDDUR6f1m9VaJJG1GfnzxVjKGBbBAVGT9sPBseREYzP3E" }, "metadata": {}, "block_identifier": {"index": "5264122","hash": "b5426334221805b3c161ec07b02722728ced7b5c38a9cc60962e819620ecbf9a" },"currencies": {"symbol": "ada", "decimals": 8 }}'
 ```
 
 
