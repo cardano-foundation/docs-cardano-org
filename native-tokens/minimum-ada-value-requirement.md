@@ -81,5 +81,4 @@ E.g., `(CryptoDoggiesPolicy, poodle, 1)` contained in O can be consolidated with
 
 - Splitting custom tokens into more outputs than they were contained in before the transaction getting processed requires using, in total, more ada to cover the min-ada-value, as ada is needed in the additional outputs.
 
-#### Example min-ada-values and Calculations
 ![Minimum ada value](min-ada.png)
