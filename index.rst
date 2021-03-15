@@ -2,7 +2,7 @@
 
 .. toctree::
    :maxdepth: 3
-   :caption: Getting Started
+   :caption: Get started
    :titlesonly:
    :hidden:
 
@@ -45,7 +45,7 @@
    explore-cardano/relevant-research-papers-and-specifications
 
 .. toctree::
-   :caption: Cardano Components
+   :caption: Cardano components
    :titlesonly:
    :hidden:
 
@@ -107,7 +107,7 @@
 
 .. toctree::
    :maxdepth: 3
-   :caption: Release Information
+   :caption: Release information
    :titlesonly:
    :hidden:
 
@@ -118,7 +118,7 @@
 
 .. toctree::
    :maxdepth: 3
-   :caption: Cardano Community
+   :caption: Cardano community
    :titlesonly:
    :hidden:
 
