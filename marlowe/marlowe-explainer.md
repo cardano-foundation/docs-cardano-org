@@ -1,4 +1,4 @@
-## Learn About Marlowe
+## Learn about Marlowe
 Marlowe offers financial contracts for blockchain that everyone can code. It is a domain-specific language (DSL) for writing and executing financial contracts that allows users to apply their domain expertise to write and manage contracts conveniently, without the steep learning curve associated with software development, blockchain, or smart contracts. With Marlowe you can learn how to model financial products using this easy-to-learn language. It is a platform for decentralized finance (DeFi) that supports direct, peer-to-peer lending, contracts for difference (CFD), and other similar instruments. Marlowe contracts are straightforward as they are optimized for financial transactions, development platforms, and ensure a fast track for financial service providers to build expertise in smart contracts and blockchain technology.
 
 As it is a special-purpose language, it is easier to read, write and understand Marlowe contracts. It is also safer: some sorts of errors are impossible to write, and we can completely analyse contract behaviour without having to run a contract.
