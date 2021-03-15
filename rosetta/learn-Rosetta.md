@@ -6,7 +6,7 @@ We have created our unique `cardano-rosetta` implementation to simplify the proc
 
 The rationale for integrating with Rosetta is that a single interface can interact seamlessly with all the blockchains that have implemented that interface. This is particularly useful for exchanges, for instance, since they can interact with the Cardano chain using the same interface that they might already be using to interact with other chains (Bitcoin, for example.) [Blockchain-specific operations](https://www.rosetta-api.org/docs/1.4.4/models/Operation.html) are interpreted to support the various chain implementations. 
 
-You can read more about Rosetta on the [official Rosetta website](https://www.rosetta-api.org/).
+You can read more on the [official Rosetta website](https://www.rosetta-api.org/).
 
 ### Rosetta Use Cases ###
 Typical use cases for using Rosetta include:
