@@ -14,7 +14,7 @@ Sample code for the typical Rosetta use cases:
 
 ### Exchange Examples ###
 This section provides some endpoint examples of how exchanges can use Rosetta for their integration needs:
-- [Get address from public key](https://docs.cardano.org/en/latest/rosetta/get-started-rosetta.html#to-get-address-from-public-key)
+- [Get address from public key](https://docs.cardano.org/en/latest/rosetta/get-started-rosetta.html#get-address-from-public-key)
 - [Determine transaction size](https://docs.cardano.org/en/latest/rosetta/get-started-rosetta.html#to-determine-transaction-size)
 - [Get any information required to construct a transaction for a specific network](https://docs.cardano.org/en/latest/rosetta/get-started-rosetta.html#get-any-information-required-to-construct-a-transaction-for-a-specific-network)
 - [Create unsigned transaction](https://docs.cardano.org/en/latest/rosetta/get-started-rosetta.html#confirm-correctness-of-unsigned-tx-body)
