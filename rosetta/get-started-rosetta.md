@@ -3,6 +3,8 @@ The Rosetta API is made up of two core components; the [Data API](https://www.ro
 
 For full details, read the [Rosetta API specification](https://www.rosetta-api.org/docs/1.4.4/welcome.html). For an overview of the interactions, view the [Flow of Operations](https://www.rosetta-api.org/docs/1.4.4/construction_api_introduction.html#flow-of-operations).
 
+Here you will find developer examples, exchange examples, and the API calls. 
+
 ## Developer Examples ##
 This section outlines some examples that you can test out as a developer who wants to use Rosetta. However, we advise that you should exercise caution if testing these on mainnet.
 
@@ -22,7 +24,6 @@ This section provides some endpoint examples of how exchanges can use Rosetta fo
 - [Create the signed transaction](https://docs.cardano.org/en/latest/rosetta/get-started-rosetta.html#create-the-signed-transaction)
 - [Generate the transaction hash](https://docs.cardano.org/en/latest/rosetta/get-started-rosetta.html#generate-the-tx-hash)
 - [Submit signed transaction to the blockchain](https://docs.cardano.org/en/latest/rosetta/get-started-rosetta.html#submit-signed-transaction-to-the-blockchain)
-- []()
 
 ### Get address from public key ###
 `/construction/derive`
@@ -464,6 +465,50 @@ You can use `/construction/parse` again to confirm the correctness of signed tra
 }
 ```
 
+### API Calls ###
+This section outlines the available Rosetta API calls:
+
+**Get brief information about transactions**
+```
+$ curl -X POST '$BASEURL/block' \
+  -H "Content-Type: application/json" \
+  -d '{ "network_identifier": {"blockchain": "cardano", "network": "mainnet" }, "metadata": {}, "block_identifier": {"index": "5264122" }}'
+```
+**Get block’s summary information**
+```
+$ curl -X POST '$BASEURL/block' \
+  -H "Content-Type: application/json" \
+  -d '{ "network_identifier": {"blockchain": "cardano", "network": "mainnet" }, "metadata": {}, "block_identifier": {"index": "5264122" }}'
+```
+
+**Get information about the N latest transactions**
+```
+# Get the current block identifier
+$ curl -X POST '$BASEURL/network/status' \
+  -H "Content-Type: application/json" \
+  -d '{ "network_identifier": { "blockchain": "cardano", "network": "mainnet" }, "metadata": {} }' | jq .current_block_identifier.index 
+5264122
+
+# Fetch information from it
+$ curl -X POST '$BASEURL/block' \
+  -H "Content-Type: application/json" \
+  -d '{ "network_identifier": {"blockchain": "cardano", "network": "mainnet" }, "metadata": {}, "block_identifier": {"index": "5264122" }}'
+```
+**Get summary information about a transaction**
+```
+$ curl $BASEURL/api/txs/summary/382a5274ebf102910c6c923a8b11f108e79ecedb5d7433cd0dd15a8a443f0fa5
+Get summary information about an address
+$ curl -X POST '$BASEURL/account/balance' \
+  -H "Content-Type: application/json" \
+  -d '{ "network_identifier": { "blockchain": "cardano", "network": "mainnet" }, "metadata": {}, "account_identifier": { "address": "DdzFFzCqrhsqKd92VGNM9Ts1Ms62J2FaSRmf8t1bQa1VugDmcUJzeU8TRFnGDDUR6f1m9VaJJG1GfnzxVjKGBbBAVGT9sPBseREYzP3E" }, "metadata": {}}' 
+```
+
+**Get address information specific to a block**
+```
+$ curl -X POST '$BASEURL/account/balance' \
+  -H "Content-Type: application/json" \
+  -d '{ "network_identifier": { "blockchain": "cardano", "network": "mainnet" }, "metadata": {}, "account_identifier": { "address": "DdzFFzCqrhsqKd92VGNM9Ts1Ms62J2FaSRmf8t1bQa1VugDmcUJzeU8TRFnGDDUR6f1m9VaJJG1GfnzxVjKGBbBAVGT9sPBseREYzP3E" }, "metadata": {}, "block_identifier": {"index": "5264122","hash": "b5426334221805b3c161ec07b02722728ced7b5c38a9cc60962e819620ecbf9a" },"currencies": {"symbol": "ada", "decimals": 8 }}'
+```
 
 
 
