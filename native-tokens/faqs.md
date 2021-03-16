@@ -237,7 +237,7 @@ lengths of their names).
 **Min-ada-value explanation:**
 
 Remember that outputs may contain a heterogeneous collection of tokens,
-including ad Ada is a limited resource in the Cardano system. Requiring
+including ada is a limited resource in the Cardano system. Requiring
 some amount of ada be included in every output on the ledger (where that
 amount is based on the size of the output, in bytes) protects the size
 of the Cardano ledger from growing intractably.
