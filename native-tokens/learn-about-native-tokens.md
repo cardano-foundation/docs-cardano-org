@@ -9,7 +9,7 @@ Cryptocurrency ledgers that track exactly one type of asset are called single-as
 
 A blockchain, ledger, or cryptocurrency is said to have multi-asset (MA) support when the network or ledger supports tracking transfer and ownership of different types of assets on its ledger. In the Cardano environment, this functionality is provided by the native tokens feature.
 
-This feature extends the existing accounting infrastructure defined in the ledger model, which is designed for processing ada-only transactions, to accommodate transactions that simultaneously use a range of assets. These assets include ada and a variety of user-define custom token types.
+This feature extends the existing accounting infrastructure defined in the ledger model, which is designed for processing ada-only transactions, to accommodate transactions that simultaneously use a range of assets. These assets include ada and a variety of user-defined custom token types.
 
 ### Native vs Non-native MA Support
 
