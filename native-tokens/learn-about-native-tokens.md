@@ -1,5 +1,6 @@
 
 ## Learn About Native Tokens
+Native tokens is a new feature that enables the transacting of multi-assets on Cardano.
 
 ### Single Asset Ledger
 
