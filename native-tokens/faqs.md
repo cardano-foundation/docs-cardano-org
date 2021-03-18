@@ -1,4 +1,4 @@
-## FAQs: Native Tokens (Cardano’s Multi-Asset Support Feature)
+## FAQs: Native Tokens
 
 ### On-chain assets
 
