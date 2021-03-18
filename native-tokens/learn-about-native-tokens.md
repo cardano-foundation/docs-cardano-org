@@ -1,8 +1,10 @@
 
 ## Learn About Native Tokens
-Native tokens is a new feature that enables the transacting of multi-assets on Cardano.
+Native tokens is a new feature that enables the transacting of multi-assets on Cardano. Users can transact with ada, and an unlimited number of user-defined (custom) tokens natively.
 
-### Single Asset Ledger
+Read more about [native tokens and how they compare to ada and ERC20](https://github.com/input-output-hk/cardano-ledger-specs/blob/master/doc/explanations/features.rst).
+
+### Single Asset Ledgers
 
 Cryptocurrency ledgers that track exactly one type of asset are called single-asset ledgers.
 
@@ -12,7 +14,7 @@ A blockchain, ledger, or cryptocurrency is said to have multi-asset (MA) support
 
 This feature extends the existing accounting infrastructure defined in the ledger model, which is designed for processing ada-only transactions, to accommodate transactions that simultaneously use a range of assets. These assets include ada and a variety of user-define custom token types.
 
-### Native vs Non-native MA Support
+### Native versus Non-native MA Support
 
 Some cryptocurrency ledgers have built-in support to track ownership and transfer of more than one type of asset. This type of MA support is called native. Cardano's MA functionality is native.
 
