@@ -70,7 +70,6 @@
    :hidden:
 
    Learn about Native Tokens <native-tokens/learn-about-native-tokens.md>
-   What is a Native Token and how it compares to ada and ERC20 <native-tokens/what-is-a-native-token-and-how-it-compares-to-ada-and-erc20.md>
    Minimum ada Value Requirement <native-tokens/minimum-ada-value-requirement.md>
    Getting started with Native Tokens <native-tokens/getting-started-with-native-tokens.md>
    Using the Token Registry <native-tokens/using-the-token-registry.md>
