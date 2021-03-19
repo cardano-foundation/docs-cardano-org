@@ -69,10 +69,10 @@
    :titlesonly:
    :hidden:
 
-   Learn about Native Tokens <native-tokens/learn-about-native-tokens.md>
-   Minimum ada Value Requirement <native-tokens/minimum-ada-value-requirement.md>
-   Getting started with Native Tokens <native-tokens/getting-started-with-native-tokens.md>
-   Using the Token Registry <native-tokens/using-the-token-registry.md>
+   Learn about native tokens <native-tokens/learn-about-native-tokens.md>
+   Minimum ada value requirement <native-tokens/minimum-ada-value-requirement.md>
+   Getting started with native tokens <native-tokens/getting-started-with-native-tokens.md>
+   Using the token registry <native-tokens/using-the-token-registry.md>
    Exercises <native-tokens/exercises.md>
    FAQs <native-tokens/faqs.md>
    Resources <native-tokens/resources.md>
@@ -84,7 +84,7 @@
    :titlesonly:
    :hidden:
 
-   Learn About Marlowe <marlowe/marlowe-explainer.md>
+   Learn about Marlowe <marlowe/marlowe-explainer.md>
    What is the Marlowe Playground? <marlowe/marlowe-playground.md>
    Getting started with the Marlowe Playground <marlowe/marlowe-get-started.md>
    Marlowe language guide <marlowe/marlowe-lang-guide.md>
