@@ -56,9 +56,9 @@ System maintenance and upgrades should be always taken into consideration. Altho
 
 Virtualized systems are often concentrated into a few large data centers. This creates potential points of common network failures, including reliance on specific portions of national infrastructures (internet backbones, power grids, etc). Large SPOs should aim to disperse their operations across multiple regions, and very large operators should aim for a global presence.
 
-## Provisioning a large stake pool operation
+## Provisioning
 
-To ensure overall network resilience and robustness, large SPOs must take special care of:
+To ensure overall network resilience and robustness, SPOs that operate large stake pools must take special care of:
 
 **Stake pool configuration**
 
@@ -74,7 +74,7 @@ To ensure overall network resilience and robustness, large SPOs must take specia
 3. Hardware wallets or other secure means should be used to protect cold keys. One hardware wallet may be needed per set of keys (e.g., per stake pool), and these may need to be physically secured.
 4. Back-up keys should be also securely maintained for each stake pool.
 
-**When operating a large stake pool, take into account the following advice**:
+**General advice**:
 
 1. Consider hardware performance, including memory, storage, and networking capabilities.
 2. Perform failure-mode-effects analysis to ensure that single failures of a delivery component are suitably constrained.
