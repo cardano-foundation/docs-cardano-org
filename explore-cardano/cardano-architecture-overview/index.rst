@@ -1,16 +1,16 @@
-Cardano Architecture Overview
+Cardano architecture overview
 *****************************
 
 This section describes the high-level architecture of `Cardano <https://docs.cardano.org/en/latest/README.html>`_. It provides details on the core components and their interactions, and briefly discusses Cardano's eras and implementations.
 
-High Level Architecture of Cardano
+High level architecture of Cardano
 ============================================
 
 The following diagram outlines the interaction between the system components of Cardano:
 
 .. image:: cardano_components_version_main@2x.png
 
-System Components
+System components
 =================
 
 The *current* implementation of Cardano is highly modular. It includes the following components (different deployment use cases will use different combinations of components):
@@ -23,7 +23,7 @@ The *current* implementation of Cardano is highly modular. It includes the follo
 * `REST API components <https://docs.cardano.org/projects/cardano-rest/en/latest/>`_
 * SMASH server 
 
-Nodes and Remote Nodes
+Nodes and remote nodes
 ----------------------
 
 A blockchain system consists of a set of nodes distributed across a network that communicate with each other to achieve consensus about the system’s state.
@@ -37,11 +37,11 @@ Nodes are responsible for:
 
 You can only trust nodes run by you or your organization. This is why Daedalus runs a node in the background.
 
-Node Process
+Node process
 ------------
 The cardano-node is the top level for the node and consists of the other subsystems, of which the most significant are consensus, `ledger <https://cardano-ledger.readthedocs.io/en/latest/>`_ and networking with ancillary configuration, CLI, logging, and monitoring.
 
-Node-to-Node IPC Protocol
+Node-to-Node IPC protocol
 -------------------------
 
 The purpose of the node-to-node Inter-Process Communication (IPC) protocol is to allow for the exchange of blocks and transactions between nodes as part of the Ouroboros consensus algorithm.
@@ -77,7 +77,7 @@ The node-to-client version of chain sync uses *full* blocks, rather than just bl
 
 `Read more about the node-to-client IPC protocol. <https://docs.cardano.org/en/latest/explore-cardano/cardano-architecture-overview/node-to-client-ipc-overview.html>`_
 
-Command Line Interface (CLI)
+Command line interface (CLI)
 ----------------------------
 
 The node’s CLI tool is the “swiss army knife” of the system. It can do almost everything, but it is quite low level and not very convenient because it’s text-based and lacks a graphical user interface (GUI).
@@ -89,7 +89,7 @@ The CLI tool can:
 * Build and sign transactions
 * Manage cryptographic keys
 
-Daedalus Wallet
+Daedalus wallet
 ---------------
 
 Daedalus is a full node wallet that helps users to manage their ada, and can send and receive payments on the Cardano blockchain. Daedalus consists of a wallet frontend and a backend. The frontend is the graphical application that users see and interact with. The backend is a service process that monitors the state of the user’s wallet and does all the 'heavy lifting', such as coin selection, transaction construction, and submission. The backend interacts with a local node via the node-to-client IPC protocol, and interacts with the frontend via a HTTP API. The backend also provides a CLI that enables interaction with the wallet. The wallet backend can also be used on its own -without Daedalus- via its API. This is a convenient way for software developers to integrate Cardano with other applications and systems.
@@ -108,7 +108,7 @@ Read more about:
 + `Working with DB Sync <https://docs.cardano.org/en/latest/explore-cardano/cardano-architecture-overview/working-with-db-sync.html>`_
 + `SMASH Handbook <https://docs.cardano.org/en/latest/explore-cardano/cardano-architecture-overview/smash-handbook.html>`_
    
-About the Eras and Implementations of Cardano
+About the eras and implementations of Cardano
 =============================================
 
 Cardano is a third-generation distributed ledger. It is based on Ouroboros, a peer-reviewed proof-of-stake (PoS) blockchain consensus algorithm that first appeared in the top research conference in cryptology world-wide (the International Association for Cryptologic Research 37th International Cryptology CXonference - Crypto 2017).
@@ -131,7 +131,7 @@ We then undertook a full reimplementation of Cardano, which enabled two fundamen
 
 A third Cardano implementation was used on the Shelley Incentivized Testnet (ITN). This system supported a significant subset of the Shelley rules, and we used it to test the economic and social dynamics of the Shelley delegation system.
 
-This Cardano Architecture overview reflects the *current* Cardano implementation deployed on the mainnet, *not* the original or ITN implementations.
+This Cardano architecture overview reflects the *current* Cardano implementation deployed on the mainnet, *not* the original or ITN implementations.
 
 
 .. toctree::
