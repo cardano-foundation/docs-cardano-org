@@ -1,5 +1,5 @@
 
-## How Keys are used in Cardano
+## How keys are used in Cardano
 
 Keys are asymmetric cryptography key pairs that are used for:
 
