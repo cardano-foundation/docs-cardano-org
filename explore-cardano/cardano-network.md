@@ -1,4 +1,4 @@
-## About the Cardano Network
+## About the Cardano network
 The Cardano network is a technical infrastructure combining Cardano nodes and their relative interactions in one unified system. It consists of a collection of nodes that communicate with each other to maintain the distributed ledger. These nodes are the actors on Cardano that validate blocks, add blocks to the chain, and distribute transactions. 
 
 The networking layer is the driving force for delivering information exchange requirements, which includes new blocks diffusion and transaction information for establishing a better data flow. Cardano nodes maintain connections with peers that have been chosen via a custom peer selection process.  
@@ -24,7 +24,7 @@ Two types of data flow exist:
 this flow is not covered within the scheme above but will be potentially designed for better understanding. 
 2. Within a node, mini-protocols communicate with each other by reading from, and writing to, a shared mutable variable, which is represented by boxes in the scheme. Arrows indicate whether a thread has *read* or *write* access to the shared state.
 
-### Addressing Network Complexities and Constraints
+### Addressing network complexities and constraints
 To design an efficient and robust networking architecture, a number of potential issues regarding complexity and constraints have been evaluated. 
 
 **Congestion control** is one such feature and is used to deal with system overload. Congestion control is vital to ensure that the system is robust enough while operating high workloads. Within the networking design, it is common that the number of transactions that occur can be higher than the number that can be actually processed for inclusion in the blockchain. Therefore, it is important to ensure that the increasing rate of transaction submission into a block does not decrease the performance of blockchain. 
@@ -58,29 +58,29 @@ All mini protocols based on this framework include the following information in 
 #### Example mini protocols
 This section outlines some examples of mini protocols. 
 
-##### Ping Pong Protocol
+##### Ping pong protocol
 This is a simple protocol for testing that a client can use to check that the server is responsive. The Ping-Pong protocol is very simple because the messages do not carry any data and the Ping-Pong client, as well as the Ping-Pong server, do not access the internal state of the node.
 
-##### Request Response Protocol
+##### Request response protocol
 The request response protocol is polymorphic in the request and response data that is being transmitted. This means that there are different possible applications of this protocol and the application of the protocol determines the types of requests sent and responses received.
 
-##### Chain Synchronisation Protocol
+##### Chain synchronisation protocol
 The chain synchronization protocol is used by a blockchain consumer to replicate the producer’s blockchain locally. A node communicates with several upstream and downstream nodes and runs an independent client instance and an independent server instance for each node with which it communicates. 
 
 The chain synchronization protocol is polymorphic. The node-to-client protocol uses an instance of the chain synchronization protocol that transfers full blocks, while the node-to-node instance only transfers block headers. In the node-to-node scenario, the block fetch protocol is used to transfer full blocks.
 
-##### Block Fetch Protocol
+##### Block fetch protocol
 The block-fetching protocol enables a node to download a range of blocks.
 
-##### Local Transaction Submission Mini Protocol
+##### Local transaction submission mini protocol
 The local transaction submission mini protocol is used by local clients, for example, wallets or CLI tools, to submit transactions to a local node. The protocol is not used to forward transactions from one core node to another. 
 The protocol follows a simple request-response pattern:
 1. the client sends a request with a single transaction.
 2. the server either accepts the transaction (returning a confirmation), or rejects it (returning the reason).
 
-##### Node-to-Node Transaction Submission Protocol
+##### Node-to-Node transaction submission protocol
 The node-to-node transaction submission protocol is used to transfer transactions between full nodes. The protocol follows a pull-based strategy where the initiator asks for new transactions and the responder replies with transactions. It is suitable for a trustless setting where both sides need to guard against resource consumption attacks from the other side. The implementation of the node-to-node transaction mini protocol is based on a generic mini protocol framework (the same as for all other mini protocols). For technical reasons, the roles of the initiator and the responder are reversed in this case compared to the way other mini protocols are implemented in the framework. In other words, the server is the initiator who requests new transactions, and the client is the responder who replies with transactions. 
 
-##### Handshake Mini Protocol
+##### Handshake mini protocol
 The handshake mini protocol is used to negotiate the protocol version and the protocol parameters that are used by the client and the server. It is used first when a new connection is initialized and consists of a single request from the client and a single reply from the server. The handshake mini protocol is a generic protocol that can negotiate any kind of protocol parameters. It assumes that protocol parameters can be encoded to, and decoded from Concise Binary Object Representation (CBOR) terms. A node that runs the handshake protocol must instantiate it with the set of supported protocol versions and callback functions for handling the protocol parameters. These callback functions are specific for the supported protocol versions.
 
