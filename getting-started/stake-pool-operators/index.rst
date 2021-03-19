@@ -1,4 +1,4 @@
-Getting Started with Stake Pool Operations
+Operating a stake pool
 ------------------------------------------
 
 This section includes an overview of stake pool operations and explains the ways of creating and managing your own stake pool.
