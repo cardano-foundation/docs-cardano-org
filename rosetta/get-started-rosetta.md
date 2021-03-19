@@ -1,5 +1,5 @@
 # Getting started with Rosetta #
-The Rosetta API is made up of two core components; the [Data API](https://www.rosetta-api.org/docs/data_api_introduction.html) and the [Construction API](https://www.rosetta-api.org/docs/construction_api_introduction.html). Together, these APIs allow you to read and write to blockchains in a standard format over a standard communication protocol. The specifications for these APIs can be found in the [rosetta-specifications repository](https://github.com/coinbase/rosetta-specifications).
+The Rosetta API is made up of two core components; the [Data API](https://www.rosetta-api.org/docs/data_api_introduction.html) and the [Construction API](https://www.rosetta-api.org/docs/construction_api_introduction.html). Together, these APIs allow you to read and write to blockchains in a common format over a standard communication protocol. The specifications for these APIs can be found in the [rosetta-specifications repository](https://github.com/coinbase/rosetta-specifications).
 
 For full details, read the [Rosetta API specification](https://www.rosetta-api.org/docs/1.4.4/welcome.html). For an overview of the interactions, view the [Flow of Operations](https://www.rosetta-api.org/docs/1.4.4/construction_api_introduction.html#flow-of-operations).
 
