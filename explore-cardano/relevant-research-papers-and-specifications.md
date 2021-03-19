@@ -1,4 +1,4 @@
-## Relevant Research Papers and Specifications
+## Relevant research papers and specifications
 
 Cardano is a third-generation blockchain platform that aims to provide the community with more advanced features than any protocol yet developed. As a proof-of-stake blockchain, it is built with the rigor of high-assurance formal development methods and aims to achieve the scalability, interoperability, and sustainability needed for real-world applications. Cardano is the first platform to evolve out of scientific philosophy based on discovery, peer review, and cryptographic research. 
 
