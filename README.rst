@@ -10,7 +10,7 @@ Cardano Documentation
 
 Welcome to the central hub for Cardano documentation, here you will find content that describes and supports the components and features that are live on Cardano mainnet. If you are interested in developing on Cardano, experimenting with the Cardano testnet, or other test development environments, check out the `Cardano Developers website <https://developers.cardano.org/>`_.
 
-**An Overview of Cardano**
+**Cardano explained**
 
 Cardano is a decentralized third-generation proof-of-stake blockchain platform and home to the ada cryptocurrency. It is the first blockchain platform to evolve out of a scientific philosophy and a research-first driven approach.
 
