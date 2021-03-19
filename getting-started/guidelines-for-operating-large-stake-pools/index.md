@@ -30,7 +30,7 @@ This section provides guidelines for operators of large stake pools, specificall
     + Where private keys cannot be stored in hardware wallets (e.g., cold keys), store them offline.
     + Be aware of and plan for enforced key rotations using the key evolving signature (KES) scheme. 
 
-## Managing risks and complexity when operating stake pools
+## Managing risks and complexity
 
 Operating stake pools effectively is crucial to ensure the long-term health and liveliness of decentralization on Cardano. When a stake pool operator (SPO) operates multiple stake pools (or has a single pool that directly controls a significant percentage of the total staked ada), they may have a significant effect on the overall system throughput as a consequence of the “proof-of-stake” principle. 
 
