@@ -1,4 +1,4 @@
-## Minimum ada Value Requirement
+## Minimum ada value requirement
 
 #### Min-ada-value Explanation
 
