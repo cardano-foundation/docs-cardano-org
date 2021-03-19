@@ -1,4 +1,4 @@
-# Guidelines for Operating Large Stake Pools
+# Guidelines for operating large stake pools
 
 This section provides guidelines for operators of large stake pools, specifically how to manage the risks and complexity of maintaining significant stake or multiple pools. Operators of smaller stake pools may also find much of this advice useful to them.
 
