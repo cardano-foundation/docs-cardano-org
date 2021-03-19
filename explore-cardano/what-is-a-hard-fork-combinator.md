@@ -1,10 +1,10 @@
-## About Hard Forks
+## About hard forks
 
 The term hard fork is used to describe a radical change in the blockchain, for example, a change from one protocol to another. In most blockchains, a hard fork indicates block changes or a change to their interpretation. Traditionally, when conducting a hard fork, the current protocol would stop operating, new rules and changes would be implemented, and the chain would restart. It is important to note that a hard-forked chain *will be different* from the previous version and that the history of the pre-forked blockchain will no longer be available.
 
 The Cardano blockchain has recently hard forked from a Byron federated model to a Shelley decentralized one. However, this hard fork was unique. Instead of implementing radical changes, we ensured a smooth transition to a new protocol while saving the history of the previous blocks. This means that the chain did not change radically, instead, it contains Byron blocks, and after a transition period, adds Shelley blocks. There was no fundamental restart point that erased the history of previous activities.
 
-### What Is a Hard Fork Combinator?
+### What is a hard fork combinator?
 
 A combinator is a technical term used to indicate the combination of certain processes or things. In the case of Cardano, a hard fork combinator combines protocols, thereby enabling the Byron-to-Shelley transition without system interruption or restart. It ensures that Byron and Shelley ledgers appear as one ledger. Shifting from BFT to Ouroboros Praos does not require all nodes to update simultaneously. Instead, nodes can update gradually, in fact, some can run Byron blocks, others - Shelley blocks.
 
@@ -18,7 +18,7 @@ To enable orderly transitions in Cardano without any diversions in the system, i
 
 A shift from Ouroboros Classic to BFT (that happened on February 20, 2020)  is the only traditional hard fork within the Cardano blockchain. This forking event restarted the Byron mainnet to run the BFT protocol and enable a smoother transition to Ouroboros Praos without any further chain interruptions. The BFT protocol was carefully designed so that blockchain history would remain unchanged, and the blockchain would appear as a single entity. 
 
-### Token Locking: Shelley Protocol Update
+### Token locking: Shelley protocol update
 
 *Token locking* is a new feature that is being added to the Shelley protocol to enable various kinds of smart contract use cases, including creating and transacting with multi-asset tokens, as well as establishing support for the Voltaire voting mechanism. Token locking is the process of ‘reserving’ a certain amount of assets and committing not to dispose of them for a specified period of time. This feature is enabled in the *Allegra* (token locking) upgrade and will allow recording of that a specific token is being used for a certain purpose during the *Mary* (multi-asset support) upgrade. The *token* can represent an item that is accounted for by the blockchain ledger, including ada, but soon will include other custom token types.
 
