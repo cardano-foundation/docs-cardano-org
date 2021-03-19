@@ -1,4 +1,4 @@
-## Pledging and Delegating Stake Options
+## Pledging and delegation options
 
 Ada that is held on the Cardano network represents a user’s stake in the protocol, the size of which is proportional to the amount of ada held. Users who hold a stake in Cardano can earn passive rewards for validating blocks. The amount of rewards they can earn is proportional to the amount of ada they pledge or delegate to a stake pool.
 
