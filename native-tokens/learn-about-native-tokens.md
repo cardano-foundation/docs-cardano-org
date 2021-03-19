@@ -1,5 +1,5 @@
 
-## Learn About Native Tokens
+## Learn About native tokens
 Native tokens is a new feature that enables the transacting of multi-assets on Cardano. Users can transact with ada, and an unlimited number of user-defined (custom) tokens natively.
 
 Native support offers distinct advantages for developers: there is no need to create smart contracts to handle custom tokens, for example, which removes a layer of added complexity and potential for manual errors since the ledger handles all token-related functionality.
@@ -8,23 +8,23 @@ The native tokens feature extends the existing accounting infrastructure defined
 
 Read more about [native tokens and how they compare to ada and ERC20](https://github.com/input-output-hk/cardano-ledger-specs/blob/master/doc/explanations/features.rst).
 
-### Single Asset Ledgers
+### Single asset ledgers
 
 Cryptocurrency ledgers that track exactly one type of asset are called single-asset ledgers.
 
-### Multi-Asset (MA) Support
+### Multi-Asset (MA) support
 
 A blockchain, ledger, or cryptocurrency is said to have multi-asset (MA) support when the network or ledger supports tracking transfer and ownership of different types of assets on its ledger. In the Cardano environment, this functionality is provided by the native tokens feature.
 
 This feature extends the existing accounting infrastructure defined in the ledger model, which is designed for processing ada-only transactions, to accommodate transactions that simultaneously use a range of assets. These assets include ada and a variety of user-define custom token types.
 
-### Native versus Non-native MA Support
+### Native versus non-native MA support
 
 Some cryptocurrency ledgers have built-in support to track ownership and transfer of more than one type of asset. This type of MA support is called native. Cardano's MA functionality is native.
 
 If a cryptocurrency platform has sufficiently powerful smart contract functionality, it is possible to track assets for which there is no ledger accounting support. This is done with a layer-2 solution built using smart contracts. This type of MA support is non-native.
 
-### Assets and Tokens
+### Assets and tokens
 
 **Assets**
 
@@ -70,7 +70,7 @@ Native tokens represent some value and act as an accounting unit, which can be u
 
 While both ada and native tokens hold value and act as a payment and transaction unit, only ada is used for fees and rewards, while only native tokens can be customly created. 
 
-### Using ada for Administrative Operations
+### Using ada for administrative operations
 
 Ada is Cardano’s principal currency. It is essential to hold ada (besides other currencies) to transfer multi-asset tokens between addresses, since each address must hold a minimum ada value (`min-ada-value`, currently set at 1 ada). 
 
@@ -90,7 +90,7 @@ As a consequence of this design, the following apply:
 
 5. Splitting custom tokens into more outputs than they were contained in before the transaction was processed requires more total ada to cover the `min-ada-value`, since some ada must be supplied in each output.
 
-### Token Bundles
+### Token bundles
 
 A token bundle is a heterogeneous (‘mixed’) collection of tokens. Any tokens can be bundled together. Token bundles are the standard - and only - way to represent and store assets on the Cardano blockchain.
 
@@ -100,7 +100,7 @@ In previous versions of the Cardano ledger, ada amounts were specified in transa
 
 Token bundles are contained in outputs and mint fields of transactions, and the outputs in the UTxO set tracked by the ledger. Note that certain fields of a transaction must still explicitly specify ada amounts, such as the fee field.
 
-**Token Bundle Example**
+**Token bundle example**
 
 Here is an example of a token bundle, let’s call it **TB_Example**:
 
@@ -116,7 +116,7 @@ RushConcertPolicyID {(Tickets, 500),
 }
 ```
 
-**How and Where are Token Bundles Stored?**
+**How and where are token bundles stored?**
 
 Token bundles can be found: 
 
@@ -124,7 +124,7 @@ Token bundles can be found:
 2. In an output of a transaction or an output in the current UTXO tracked by the ledger, alongside the address of the output, e.g.
 `Multi { MyAddress, value: TB_Example }`
 
-**Splitting and Combining Token Bundles**
+**Splitting and combining token bundles**
 
 Transactions can arbitrarily split and combine token bundles into different bundles. For example, we can split the bundle `TB_Example` into two:
 
@@ -148,7 +148,7 @@ RushConcertPolicyID {(Tickets, 300),
                      (VIPTickets, 30)}
 ```
 
-### Comparison With ERC20 Tokens
+### Comparison with ERC20 tokens
 
 ERC20 is an Ethereum token standard, widely used for the purpose of token issuance on various platforms today. The peculiarity of this token type lies in the fact that it can represent value and serve for such purposes as payments, value transfer, exchange, rewards or incentives, access to services and products, represent voting rights, etc. Also, these tokens can hold both utility and security features, which opens a range of possible use cases for businesses, applications, and enterprises. 
 
@@ -158,7 +158,7 @@ Unlike ERC20 tokens, the tracking and accounting of native tokens is supported b
 
 Another advantage of native tokens over ERC20 is security. ERC20 tokens have proven vulnerable to a wide range of [security issues](https://peckshield.medium.com/alert-new-batchoverflow-bug-in-multiple-erc20-smart-contracts-cve-2018-10299-511067db6536). This is conditioned by the fact that ERC20 token creation requires manual modification of the contract standard, which can result in errors and possible bugs. Creating and transacting tokens natively removes the possibility of human error, since the ledger itself handles the token logic. Additionally, over- and under-flow vulnerabilities that are present for ERC20 are eliminated for native tokens, as Cardano’s scripting language does not have fixed-size integers and the ledger itself (rather than the ERC20 user code) tracks tokens movement.
 
-### Minting Policy
+### Minting policy
 
 **Overview**
 
@@ -175,7 +175,7 @@ With a Plutus Core script.
 
 Adherence to minting policies is checked by the node at the time a transaction is processed, by running the code or checking the relevant signatures. Transactions must adhere to all the minting policies of all assets that the transaction is attempting to mint.
 
-### Important Points About Minting Policies and Assets Scoped Under Them
+### Important points about minting policies and assets
 
 * All assets necessarily have a minting policy. For example, the minting policy of ada is "new ada can never be minted".
 * A token is associated with (e.g., scoped under) exactly one minting policy.
@@ -185,7 +185,7 @@ Adherence to minting policies is checked by the node at the time a transaction i
 * Unless tokens of a given policy are being minted in a transaction, the actual policy is irrelevant. It is just used as an identifier of the asset.
 * Assets associated with different minting policies are never fungible with one another. They can be traded in the same way one may use USD to buy CAD: the amount of CAD you can buy with a fixed amount of USD depends on the exchange rate of the place where you do the trade.
 
-### Association Between an Asset and its Minting Policy
+### Association between an asset and its minting policy
 
 The association between an asset and its minting policy is permanent for safety reasons: this feature protects the users and the system from illegitimately minted tokens.
 
@@ -194,7 +194,7 @@ these allows us to guarantee that every token was minted in accordance with its 
 
 Note that this is not as restrictive as it sounds. In a loose parallel with US monetary policy, we can say that the policy is "government and laws set the policy", and this is a policy which requires looking up the current laws (which themselves could change), and only minting money in adherence to them.
 
-### Minting Policy Examples
+### Minting policy examples
 
 - Single-issuer policy
 - Time-locked mint policy
@@ -202,14 +202,14 @@ Note that this is not as restrictive as it sounds. In a loose parallel with US m
 
 Note: There are many other types of minting policies.
 
-**Single-issuer Policy**
+**Single-issuer policy**
 
 A single-issuer minting policy specifies that only the entity holding a particular set of keys is allowed to mint tokens of the particular asset group. For example, the set of keys specified in the minting policy must have signed the minting transaction.
 
 An example of an asset group that would use a single-issuer policy would be tokens representing baseball cards. The company manufacturing legitimate collectors' cards would publish the keys required by the minting script to mint new baseball cards. This would mean that no new baseball card tokens can be minted without the company's signatures.
 This type of policy can be implemented without Plutus smart contracts.
 
-**Time-locked Mint Policy (token-locking)**
+**Time-locked minting policy (token-locking)**
 
 This type of policy can be used to specify when tokens can be spent from an address. In particular,
 
@@ -220,13 +220,13 @@ This type of policy is usually not used by itself. Usually, it is in conjunction
 
 This type of policy can be implemented without Plutus smart contracts.
 
-**One-time Mint Policy**
+**One-time minting policy**
 
 In a one-time mint policy, the complete set of tokens of a given asset group is minted by one specific transaction. This means that no more tokens in that particular asset group will ever be minted. This type of policy needs Plutus smart contracts to be implemented.
 
 One-type mint policies would be useful for generating concert ticket tokens for a specific concert, for example. The venue capacity is known ahead of time, so there'll be no need to ever allow more tickets to be minted.
 
-**Minting Transactions**
+**Minting transactions**
 
 To introduce new quantities of new tokens on the ledger (minting) or to remove existing tokens (burning), each transaction features a mint field.The transactions where the mint field is not empty are known as minting transactions. The use of this field needs to be tightly controlled to ensure that the minting and burning of tokens occurs
 according to the token's minting policy
@@ -237,7 +237,7 @@ The outcome of processing a minting transaction is that the ledger will contain 
 
 It is important to highlight that a single transaction might mint tokens associated with multiple and distinct minting policies. For example, `(Policy1, SomeTokens)` or `(Policy2, SomeOtherTokens)`. Also, a transaction might simultaneously mint some tokens and burn others.
 
-### The Native Token Lifecycle
+### The native token lifecycle
 
 The native token lifecycle consists of five main phases:
 
