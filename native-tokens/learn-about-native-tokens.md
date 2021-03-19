@@ -1,5 +1,5 @@
 
-## Learn About native tokens
+## Learn about native tokens
 Native tokens is a new feature that enables the transacting of multi-assets on Cardano. Users can transact with ada, and an unlimited number of user-defined (custom) tokens natively.
 
 Native support offers distinct advantages for developers: there is no need to create smart contracts to handle custom tokens, for example, which removes a layer of added complexity and potential for manual errors since the ledger handles all token-related functionality.
