@@ -1,4 +1,4 @@
-## Cardano Design Rationale
+## Cardano design rationale
 Cardano has been built as a resilient and sustainable blockchain using the core principles of security, scalability, and interoperability. Fundamentally, it was designed as a proof of stake system which means it is undoubtedly more efficient, by orders of magnitude, than proof of work. Crucially, our ground-breaking proof-of-stake consensus protocol [Ouroboros](https://iohk.io/en/blog/posts/2020/06/23/the-ouroboros-path-to-decentralization/) is proven to have the same security guarantees that proof of work has. 
 
 Formal methods, such as mathematical specifications, property-based tests, and proofs, are the best way to deliver high assurance software systems and give confidence to users for the management of digital funds. Cardano has been built using formal methods to get strong guarantees on the functional correctness of core components of the system.
