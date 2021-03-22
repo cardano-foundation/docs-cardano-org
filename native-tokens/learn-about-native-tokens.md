@@ -6,7 +6,7 @@ Native support offers distinct advantages for developers: there is no need to cr
 
 The native tokens feature extends the existing accounting infrastructure defined in the ledger model (originally designed for processing ada-only transactions) to accommodate transactions using a range of assets. These assets include ada and a variety of user-defined custom token types.
 
-Read more about [native tokens and how they compare to ada and ERC20](https://github.com/input-output-hk/cardano-ledger-specs/blob/master/doc/explanations/features.rst), or watch our [native tokens explainer video](https://www.youtube.com/watch?v=PVqsCXh-V5Y). 
+Read more about [native tokens and how they compare to ada and ERC20](https://github.com/input-output-hk/cardano-ledger-specs/blob/master/doc/explanations/features.rst), and watch our [native tokens explainer video](https://www.youtube.com/watch?v=PVqsCXh-V5Y). 
 
 ### Single asset ledgers
 
