@@ -16,9 +16,12 @@ The Explorer shows the latest epoch details. You can click the latest epoch and 
 -   number of processed transactions
 -   total output in ada
     
+![epoch_summary](latest_epoch_summary.png)
 Figure 1. Latest epoch summary
 
 By choosing a specific block, you can explore it in more detail to see its ID, size, epoch and block details, number of included transactions and confirmations:
+
+![block_summary](block_summary.png)
 
 Figure 2. Block summary
 
