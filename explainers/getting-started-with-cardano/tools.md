@@ -1,4 +1,4 @@
-## Tools to track blockchain activities
+## Cardano tracking tools
 
 Since Cardano is a public blockchain ledger, it is possible to easily track all recent transactions, block details, and epoch data using different tools.
 
