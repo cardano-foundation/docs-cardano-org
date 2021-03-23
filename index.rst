@@ -18,11 +18,15 @@
    :titlesonly:
    :hidden:
 
-   What is a blockchain? <explainers/cardano-explainers/what-is-a-blockchain.md>
+   Blockchain explained <explainers/cardano-explainers/what-is-a-blockchain.md>
    What is a cryptocurrency? <explainers/cardano-explainers/what-is-a-cryptocurrency.md>
    Why use Cardano? <explainers/cardano-explainers/why-use-cardano.md>
    Types of wallets <explainers/cardano-explainers/types-of-wallets.md>
    What is a smart contract? <explainers/cardano-explainers/smart-contract-exp.md>
+   Cardano nodes <explainers/getting-started-with-cardano/cardano-nodes.md>
+   Cardano tracking tools <explainers/getting-started-with-cardano/tools.md>
+   How to purchase ada? <explainers/getting-started-with-cardano/how-to-purchase-ada.md>
+   How to delegate <explainers/getting-started-with-cardano/how-to-delegate.md>
     
 .. toctree::
    :maxdepth: 3
