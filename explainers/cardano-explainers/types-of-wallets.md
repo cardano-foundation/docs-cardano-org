@@ -68,7 +68,7 @@ To install Yoroi on your mobile:
 2.  Search for Yoroi - the Cardano wallet.
 3.  Click ‘download’.
 
-Note that you can [integrate your Yoroi wallet with Daedalus](https://iohk.zendesk.com/hc/en-us/articles/360011705393-Daedalus-Yoroi-Integration), see [how to restore a Yoroi wallet into Daedalus here.](https://iohk.zendesk.com/hc/en-us/articles/900003878006-Restore-a-Yoroi-wallet-into-Daedalus)
+Note that you can [integrate your Yoroi wallet with Daedalus](https://iohk.zendesk.com/hc/en-us/articles/360011705393-Daedalus-Yoroi-Integration), read [how to restore a Yoroi wallet into Daedalus.](https://iohk.zendesk.com/hc/en-us/articles/900003878006-Restore-a-Yoroi-wallet-into-Daedalus)
 
 **AdaLite**
 
