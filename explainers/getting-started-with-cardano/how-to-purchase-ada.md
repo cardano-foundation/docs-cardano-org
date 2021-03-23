@@ -8,7 +8,7 @@ We do not recommend any particular exchange, as there are many great options. Ho
 
 ### Step 1: Download a wallet
 
-1.  First, you need to download and install a cryptocurrency wallet that supports ada.
+1.  First, you need to download and install a [cryptocurrency wallet](https://docs.cardano.org/en/latest/explainers/cardano-explainers/types-of-wallets.html#where-to-store-ada) that supports ada.
 2.  Create a new wallet and name it.
 3.  Then, activate your new wallet and ensure to write down your new passwords. Note that your passwords are the only way you can access your wallet; keep them in a safe place and don’t lose them. You will have a spending password (which is the one used for transacting), and a 12- or 24-word passphrase depending on the wallet you chose.
 4.  Recreate your passphrase and accept the terms and conditions. The wallet should be now all set.
@@ -34,6 +34,6 @@ We recommend setting up 2FA verification for enhanced security and funds safety.
 4.  Indicate the amount of ada you would like to purchase and select a payment method (whether it is a wire transfer, credit or debit card). Each exchange will offer you available options, please read them carefully and follow the outlined steps.
 5.  Confirm your purchase. You will typically have to confirm it via email and enter the 2FA code (in case you have set it up). You will then receive your ada on the exchange account.
 6.  Withdraw ada to your personal wallet. If this is the first time you are making a withdrawal, try smaller amounts to verify that everything works. Note that it is highly **not recommended** to store ada (or any other cryptocurrency) on the exchange account. To transfer your ada, choose the ‘Withdraw’ option, paste your wallet address (the one you copied earlier from your wallet) and submit your transfer.
-7.  Check you have received your funds. Go to your wallet and check the balance. You can also track recent transactions using the explorer tools.
+7.  Check you have received your funds. Go to your wallet and check the balance. You can also track recent transactions using different [explorer tools](https://docs.cardano.org/en/latest/explainers/getting-started-with-cardano/tools.html).
 
 You can now store ada in your personal wallet, transact between different addresses, receive more ada as payment for services (for example), or delegate it to earn rewards.
