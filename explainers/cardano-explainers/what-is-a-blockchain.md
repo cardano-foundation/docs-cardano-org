@@ -10,7 +10,7 @@ Let’s take a closer look at existing solutions to understand the difference be
 + **Decentralized systems**: generally rely on multiple server nodes, each of which serves a subset of the total end clients.
 + **Distributed systems**: all data and records of transactions are encrypted and stored not in one server, but in a system of interconnected, independent nodes and terminals. This ensures independence from centralized entities, transparency, and security. 
 
-Blockchain can be compared to a book of permanent records, where every page acts as an information holder. Blockchain keeps data records in blocks, and just like book pages, these blocks are linked in a chronological order. No block can be erased or forged, as this will break the chain of records.
+Blockchain can be compared to a book of permanent records, where every page acts as an information holder. Blockchain keeps data records in blocks, and just like book pages, these blocks are linked in chronological order. No block can be erased or forged, as this will break the chain of records.
 
 ### Types of blockchains
 
