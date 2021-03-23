@@ -24,7 +24,6 @@
    Types of wallets <types-of-wallets.md>
    What is a smart contract? <smart-contract-exp.md>
     
-
 .. toctree::
    :maxdepth: 3
    :caption: Learn
