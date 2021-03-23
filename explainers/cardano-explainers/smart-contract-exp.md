@@ -11,5 +11,5 @@ Cardano is introducing smart contract support in 2021. As a multi-functional env
 - **Marlowe** — a domain-specific language (DSL) for writing and executing financial contracts  that allows building contracts visually as well as in more traditional code. Financial institutions can use it to develop and deploy custom instruments for their customers and clients, for example. The Marlowe language itself is now embedded in both JavaScript and Haskell offering a choice of editors depending on developers’ preference and skillset.
 - **Glow** — a new domain specific language (DSL) for developing decentralized applications (DApps) on blockchain. With [Glow](https://glow-lang.org/), users can write secure DApps ensuring that smart contracts run safely in an adversarial environment.
 
-### *Related Topics*
+#### *Related Topics*
 - [Marlowe explainer](https://docs.cardano.org/en/latest/marlowe/marlowe-explainer.html)
