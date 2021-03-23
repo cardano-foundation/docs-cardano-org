@@ -14,7 +14,7 @@ Lovelace is the smallest denomination of ada. One ada = 1,000,000 lovelaces. Ada
 
 ### Native tokens ###
 
-Cardano also supports the creation of native tokens ‒ digital assets that are created for specific purposes. This means that users, developers, and businesses can use the Cardano blockchain to create tokens that represent a footprint of value (whether defined by the community, market state, or self-governed entity). A token can be fungible or non-fungible, and act as a payment unit, reward, trading asset, or information holder.
+Cardano also supports the creation of native tokens ‒ digital assets that are created for specific purposes. This means that users, developers, and businesses can use the Cardano blockchain to create tokens that represent a footprint of value (whether defined by the community, market state, or self-governed entity). A token can be fungible (replaced) or non-fungible (unique), and act as a payment unit, reward, trading asset, or information holder.
 
 #### *Related Topics*
 - [Cardano monetary policy](https://docs.cardano.org/en/latest/explore-cardano/cardano-monetary-policy.html) 
