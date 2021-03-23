@@ -17,7 +17,7 @@ Let’s take a closer look at the pros and cons of different wallet types:
 -   **Online wallets**: these wallets can be commonly set up using a browser. They work through the internet and store cryptocurrency in a certain application or software. This is convenient as users can send, receive, and use crypto as in any other bank account or payment system. However, online wallets are more open to security issues and can be compromised or attacked.
  *Search online for the most secure and suitable wallet; always keep your keys offline and use 2FA verification where possible (giving preference to security keys over SMS verification).*
 -   **Desktop wallets**: these wallets can be downloaded on a personal computer. They are secure and convenient in use. Before choosing the best-matching solution, it is important to ensure that your computer meets software requirements and that the wallet supports the cryptocurrency you would like to work with. Desktop wallets are easy to use, but are not as flexible or portable.
--   **Mobile  wallets**: these are wallet applications that can be installed directly on a smartphone device. Such wallets are simple to install and use and is a good additional option for cryptocurrency storage.
+-   **Mobile  wallets**: these are wallet applications that can be installed directly on a smartphone. Such wallets are simple to install and use and is a good additional option for cryptocurrency storage.
 
 ### Where to store ada?
 
