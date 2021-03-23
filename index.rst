@@ -18,11 +18,11 @@
    :titlesonly:
    :hidden:
 
-   Blockchain explained <what-is-a-blockchain.md>
-   Why use Cardano? <why-use-cardano.md>
-   What is a cryptocurrency? <what-is-a-cryptocurrency.md>
-   Types of wallets <types-of-wallets.md>
-   What is a smart contract? <smart-contract-exp.md>
+   Blockchain explained <explainers/cardano-explainers/what-is-a-blockchain.md>
+   Why use Cardano? <explainers/cardano-explainers/why-use-cardano.md>
+   What is a cryptocurrency? <explainers/cardano-explainers/what-is-a-cryptocurrency.md>
+   Types of wallets <explainers/cardano-explainers/types-of-wallets.md>
+   What is a smart contract? <explainers/cardano-explainers/smart-contract-exp.md>
     
 .. toctree::
    :maxdepth: 3
