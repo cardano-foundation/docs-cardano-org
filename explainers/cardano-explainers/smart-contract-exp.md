@@ -4,3 +4,9 @@ A smart contract is an automated digital agreement, written in code, that tracks
 Smart contracts are self executing and reliable and do not require the actions or presence of third parties. The smart contract code is stored on, and distributed across, a decentralised blockchain network, making it transparent and irreversible. 
 
 In summary, smart contracts are immutable as a contract cannot be changed, they are distributable and tamper-proof, fast and cost effective, as there is no middle man which saves money and time, and is safe due to encryption.
+
+Cardano is introducing smart contract support in 2021. As a multi-functional environment, Cardano will support the development and deployment of smart contracts using such programming languages as:
+
+- **Plutus** — a purpose-built smart contract development and execution platform. Plutus contracts consist of parts that run on the blockchain (on-chain code) and parts that run on a user’s machine (off-chain or client code). Plutus draws from modern language research to provide a safe, full-stack programming environment based on Haskell, the leading functional programming language. 
+- **Marlowe** — a domain-specific language (DSL) for writing and executing financial contracts  that allows building contracts visually as well as in more traditional code. Financial institutions can use it to develop and deploy custom instruments for their customers and clients, for example. The Marlowe language itself is now embedded in both JavaScript and Haskell offering a choice of editors depending on developers’ preference and skillset.
+- **Glow** — a new domain specific language (DSL) for developing decentralized applications (DApps) on blockchain. With [Glow](https://glow-lang.org/), users can write secure DApps ensuring that smart contracts run safely in an adversarial environment.
