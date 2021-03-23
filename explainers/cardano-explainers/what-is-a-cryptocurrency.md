@@ -1,6 +1,6 @@
 ## What is a cryptocurrency?
 
-*Cryptocurrency* is a digital asset, which is cryptographically designed to serve as a medium of exchange for goods or services. Cryptocurrencies do not typically exist in a physical form and are not issued by a single centralized authority.
+A *cryptocurrency* is a digital asset, which is cryptographically designed to serve as a medium of exchange for goods or services. Cryptocurrencies do not typically exist in a physical form and are not issued by a single centralized authority.
 
 Blockchain ledgers serve as an underlying technology for cryptocurrency creation in a decentralized environment. Blockchain protocols use rigorous cryptography techniques to enable the minting (creation) of cryptocurrency and to secure and verify crypto ownership and fund movement records. The price of cryptocurrency is not controlled by the government or centralized financial institutions. It is defined by its value, correlation to real-world figures, and is driven by market supply and demand.
 
