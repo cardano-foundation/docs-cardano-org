@@ -12,12 +12,12 @@ The difference between the wallet types lies in their security and supported fun
 
 Let’s take a closer look at the pros and cons of different wallet types:
 
--   **Paper wallets**: these are paper documents that contain public and private keys details. Such documents can be stored in a safe place and are highly secure as they can’t be compromised via online attacks. Paper wallets are best to use for long-term savings. On the other hand, the funds linked to paper wallets are not possible to operate online (for purchases, for example), as they will have to be moved to other wallets first.
--   **Hardware wallets**: these are devices that store cryptocurrencies offline and can be connected to a computer to access the funds. Hardware wallets are secure and their benefit lies in the balance of offline security and convenience as they can be carried around and used when needed. The disadvantage of the hardware wallet is the risk of device loss or damage.
--   **Online wallets**: these wallets can be commonly set up using a browser. They work through the internet and store cryptocurrency in a certain application or software. This is convenient as users can send, receive, and use crypto as in any other bank account or payment system. However, online wallets are more open to security issues and can be compromised or attacked.
+-   **Paper wallets** — these are paper documents that contain public and private keys details. Such documents can be stored in a safe place and are highly secure as they can’t be compromised via online attacks. Paper wallets are best to use for long-term savings. On the other hand, the funds linked to paper wallets are not possible to operate online (for purchases, for example), as they will have to be moved to other wallets first.
+-   **Hardware wallets** — these are devices that store cryptocurrencies offline and can be connected to a computer to access the funds. Hardware wallets are secure and their benefit lies in the balance of offline security and convenience as they can be carried around and used when needed. The disadvantage of the hardware wallet is the risk of device loss or damage.
+-   **Online wallets** — these wallets can be commonly set up using a browser. They work through the internet and store cryptocurrency in a certain application or software. This is convenient as users can send, receive, and use crypto as in any other bank account or payment system. However, online wallets are more open to security issues and can be compromised or attacked.
  *Search online for the most secure and suitable wallet; always keep your keys offline and use 2FA verification where possible (giving preference to security keys over SMS verification).*
--   **Desktop wallets**: these wallets can be downloaded on a personal computer. They are secure and convenient in use. Before choosing the best-matching solution, it is important to ensure that your computer meets software requirements and that the wallet supports the cryptocurrency you would like to work with. Desktop wallets are easy to use, but are not as flexible or portable.
--   **Mobile  wallets**: these are wallet applications that can be installed directly on a smartphone. Such wallets are simple to install and use and is a good additional option for cryptocurrency storage.
+-   **Desktop wallets** — these wallets can be downloaded on a personal computer. They are secure and convenient in use. Before choosing the best-matching solution, it is important to ensure that your computer meets software requirements and that the wallet supports the cryptocurrency you would like to work with. Desktop wallets are easy to use, but are not as flexible or portable.
+-   **Mobile  wallets** — these are wallet applications that can be installed directly on a smartphone. Such wallets are simple to install and use and is a good additional option for cryptocurrency storage.
 
 ### Where to store ada?
 
@@ -40,8 +40,8 @@ Daedalus is a full node, desktop wallet. Daedalus downloads a full copy of the C
 To install Daedalus, follow these steps:
 
 1.  First, read [system requirements](https://iohk.zendesk.com/hc/en-us/articles/360010496553). Please note that Daedalus is a resource-intensive application. If you want to manage ada quickly and easily you can try Yoroi or AdaLite wallets.
-2.  Go to the official [Daedalus website.](https://daedaluswallet.io/)
-3.  Follow these [installation instructions.](https://iohk.zendesk.com/hc/en-us/articles/360011602173-Quick-start-guide#:~:text=Go%20to%20https%3A%2F%2Fdaedaluswallet,Daedalus%20wallet%20on%20your%20Machine.)
+2.  Visit the official [Daedalus website.](https://daedaluswallet.io/)
+3.  Follow [these installation instructions.](https://iohk.zendesk.com/hc/en-us/articles/360011602173-Quick-start-guide#:~:text=Go%20to%20https%3A%2F%2Fdaedaluswallet,Daedalus%20wallet%20on%20your%20Machine.)
     
 **Yoroi**
 
@@ -59,13 +59,13 @@ Yoroi provides ada holders with the following features:
 
 To install Yoroi, follow these steps:
 
-1.  Go to the official [Yoroi website.](https://yoroi-wallet.com/#/)
+1.  Visit the official [Yoroi website.](https://yoroi-wallet.com/#/)
 2.  Click ‘download’ and choose the browser extension you prefer.
 
 To install Yoroi on your mobile:
 
-1.  Go to GooglePlay or Appstore.
-2.  Search Yoroi - the Cardano wallet.
+1.  Visit either GooglePlay or Appstore, depending on your mobile platform.
+2.  Search for Yoroi - the Cardano wallet.
 3.  Click ‘download’.
 
 Note that you can [integrate your Yoroi wallet with Daedalus](https://iohk.zendesk.com/hc/en-us/articles/360011705393-Daedalus-Yoroi-Integration), see [how to restore a Yoroi wallet into Daedalus here.](https://iohk.zendesk.com/hc/en-us/articles/900003878006-Restore-a-Yoroi-wallet-into-Daedalus)
@@ -78,7 +78,7 @@ AdaLite allows you to access your funds using a hardware wallet. It currently su
 
 To install AdaLite:
 
-1.  Go to the [official AdaLite website.](https://adalite.io/)
+1.  Visit the [official AdaLite website.](https://adalite.io/)
 2.  Read about the wallet and its features (note that this is a browser extension and special care must be taken of your mnemonic keys).
 3.  Click ‘Create New Wallet’ and follow the instructions.
 
