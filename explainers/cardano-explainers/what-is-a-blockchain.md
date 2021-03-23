@@ -10,8 +10,8 @@ Blockchain can be compared to a book of permanent records, where every page acts
 
 Let’s take a closer look at existing data storage solutions to understand the difference between these systems:
 
-+ **Centralized systems**: all data entries and activities are usually managed using one central server. This increases the risk of a single point of failure, and also means that the controlling entity (such as banks or government institutions, for example) act as decision-makers.
-+ **Decentralized systems**: generally rely on multiple server nodes, each of which serves a subset of the total end clients.
-+ **Distributed systems**: all data and records of transactions are encrypted and stored not in one server, but in a system of interconnected, independent nodes and terminals. This ensures independence from centralized entities, transparency, and security. 
++ **Centralized systems** — all data entries and activities are usually managed using one central server. This increases the risk of a single point of failure, and also means that the controlling entity (such as banks or government institutions, for example) act as decision-makers.
++ **Decentralized systems** — generally rely on multiple server nodes, each of which serves a subset of the total end clients.
++ **Distributed systems** — all data and records of transactions are encrypted and stored not in one server, but in a system of interconnected, independent nodes and terminals. This ensures independence from centralized entities, transparency, and security. 
 
 Finally, blockchains not only provide an immutable and secure database but also act as a functional environment to transact funds, create digital currencies, and process complex deals using digital agreements ([smart contracts](https://docs.cardano.org/en/latest/explainers/cardano-explainers/smart-contract-exp.html)).
