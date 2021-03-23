@@ -1,6 +1,6 @@
 ## Cardano nodes 
 
-The *Cardano node* is the top level component within the network. Network nodes connect to each other within the networking layer, which is the driving force for delivering information exchange requirements. This includes new blocks diffusion and transaction information for establishing a better data flow. Cardano nodes maintain connections with peers that have been chosen via a custom peer selection process. By running a Cardano node, you are participating in and contributing to the network.
+The *Cardano node* is the top-level component within the network. Network nodes connect to each other within the networking layer, which is the driving force for delivering information exchange requirements. This includes new block diffusion and transaction information for establishing a better data flow. Cardano nodes maintain connections with peers that have been chosen via a custom peer selection process. By running a Cardano node, you are participating in and contributing to the network.
 
 ### How does it work?
 
