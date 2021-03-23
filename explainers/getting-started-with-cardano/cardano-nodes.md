@@ -1,4 +1,4 @@
-## Cardano nodes in the blockchain network
+## Cardano nodes 
 
 The *Cardano node* is the top level component within the network. Network nodes connect to each other within the networking layer, which is the driving force for delivering information exchange requirements. This includes new blocks diffusion and transaction information for establishing a better data flow. Cardano nodes maintain connections with peers that have been chosen via a custom peer selection process. By running a Cardano node, you are participating in and contributing to the network.
 
@@ -26,7 +26,8 @@ The Cardano network consists of a number of stake pools that control the aggrega
 
 When validating a transaction, a slot leader needs to ensure that the sender has included enough funds to pay for that transaction and must also ensure that the transaction’s parameters are met. Assuming that the transaction meets all these requirements, the slot leader will record it as a part of a new block, which will then be connected to other blocks in the chain.
 
-> **Further reading**:
-> -   [Cardano node](https://docs.cardano.org/en/latest/explore-cardano/what-is-a-cardano-node.html)
-> -   [About the Cardano network](https://docs.cardano.org/en/latest/explore-cardano/cardano-network.html)
-> -   [Operating a stake pool](https://docs.cardano.org/en/latest/getting-started/stake-pool-operators/index.html)
+#### *Related topics*:
+
+-   [Cardano node](https://docs.cardano.org/en/latest/explore-cardano/what-is-a-cardano-node.html)
+-   [About the Cardano network](https://docs.cardano.org/en/latest/explore-cardano/cardano-network.html)
+-   [Operating a stake pool](https://docs.cardano.org/en/latest/getting-started/stake-pool-operators/index.html)
