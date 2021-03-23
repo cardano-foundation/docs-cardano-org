@@ -54,7 +54,7 @@ Basho will focus on Cardano’s optimization in terms of improving the scalabili
 
 Decentralized governance and decision making lie at the heart of Voltaire granting the Cardano community an ability to vote on network development updates, technical improvements, and project funding. For the Cardano network to become truly decentralized, it requires not only the distributed infrastructure introduced during Shelley but also the capacity to be maintained and improved over time in a decentralized way.
 
-> **Further reading**:
+> **Related topics**:
 > -   [Understanding Cardano](https://www.youtube.com/watch?v=Ja9D0kpksxw) (Cardano whiteboard by Charles Hoskinson)
 > -   [Cardano design rationale](https://docs.cardano.org/en/latest/explore-cardano/design-rationale.html)
 > -   [Detailed Cardano roadmap](https://roadmap.cardano.org/en/)
