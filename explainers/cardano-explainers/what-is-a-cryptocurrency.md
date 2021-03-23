@@ -1,18 +1,15 @@
 ## What is a cryptocurrency?
 
-A *cryptocurrency* is a digital asset, which is cryptographically designed to serve as a medium of exchange for goods or services. Cryptocurrencies do not typically exist in a physical form and are not issued by a single centralized authority.
+A *cryptocurrency* is a digital asset, which is stored on the ledger and is designed to serve as a medium of exchange for goods or services. It is otherwise called *crypto*. 
 
-Blockchain ledgers serve as an underlying technology for cryptocurrency creation in a decentralized environment. Blockchain protocols use rigorous cryptography techniques to enable the minting (creation) of cryptocurrency and to secure and verify crypto ownership and fund movement records. The price of cryptocurrency is not controlled by the government or centralized financial institutions. It is defined by its value, correlation to real-world figures, and is driven by market supply and demand.
+Blockchain ledgers serve as the underlying technology for cryptocurrency creation in a decentralized environment. Blockchain protocols use rigorous cryptography techniques to enable the minting (creation) of cryptocurrency and to secure and verify crypto ownership and fund movement records. The price of cryptocurrency is not controlled by a government or centralized financial institution. It is defined by its value, correlation to real-world figures, and is driven by market supply and demand.
 
-There exist many different blockchain ledgers, such as Cardano, Bitcoin, Ethereum, Hyperledger, Tron, and many more. You can investigate different cryptocurrencies and learn about their ledgers using such sources as [CoinMarketCap](https://coinmarketcap.com/), [Gemini](https://www.gemini.com/prices), [Coinbase](https://www.coinbase.com/) or [CoinDesk](https://www.coindesk.com/coindesk20) to name a few.
 
-### Ada and lovelace units
+### Ada - the native currency of Cardano
 
-Each blockchain ledger has its underlying cryptocurrency - the ledger’s native currency.
+Each blockchain ledger has its underlying cryptocurrency or native currency. Ada is the native, or principal currency on Cardano. This means that ada is the main payment unit on Cardano; it is accepted as fee-payment, to make deposits, and is also the only currency in which rewards are distributed.
 
-Ada is Cardano’s native currency - the principal currency. This means that ada is the main payment unit on Cardano; it is accepted as fee-payment, to make deposits, and is also the only currency in which rewards are distributed.
-
-Lovelace is the smallest denomination of ada. One ada = 1,000,000 lovelaces. Ada has 6 decimal places, which makes it easily divisible into smaller fractions.
+Lovelace is the smallest denomination of ada. One ada = 1,000,000 lovelaces. Ada has six decimal places, which makes it easily divisible into smaller fractions.
 
 ### Native tokens ###
 
