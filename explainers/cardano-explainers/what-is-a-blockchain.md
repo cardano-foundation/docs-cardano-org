@@ -1,6 +1,6 @@
 ## What is a blockchain?
 
-A blockchain is a type of database or ledger that is duplicated and distributed to all participants within the blockchain network. It stores data or items of value in blocks. These blocks are verified by transactions and linked to each other in chronological order in a chain. Details of these transactions are permanently inscribed in the block and cannot be altered. 
+A blockchain is a type of database or ledger that is duplicated and distributed to all participants within the blockchain network. It is made up of a set of interconnected nodes that store data or items of value in blocks. These blocks are verified by transactions and linked to each other in chronological order in a chain. Details of these transactions are permanently inscribed in the block and cannot be altered. 
 
 Blockchain technology, otherwise known as distributed ledger technology (DLT), provides a decentralized and accessible data structure for various records. Such records might include financial payment and transaction details, as well as other types of information – from commerce to internet of things (IoT) records.
 
