@@ -18,7 +18,7 @@
    :titlesonly:
    :hidden:
 
-   Blockchain defined <explainers/cardano-explainers/what-is-a-blockchain.md>
+   Blockchain explained <explainers/cardano-explainers/what-is-a-blockchain.md>
    What is a cryptocurrency? <explainers/cardano-explainers/what-is-a-cryptocurrency.md>
    Why use Cardano? <explainers/cardano-explainers/why-use-cardano.md>
    Types of wallets <explainers/cardano-explainers/types-of-wallets.md>
