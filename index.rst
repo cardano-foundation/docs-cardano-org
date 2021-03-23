@@ -11,6 +11,19 @@
    Guidelines for operating large stake pools <getting-started/guidelines-for-operating-large-stake-pools/index>
    Integrating with third parties <getting-started/3rd-party-integration/index>
    Running stake pools and delegating as an Exchange <getting-started/exchanges/index>
+ 
+.. toctree::
+   :maxdepth: 3
+   :caption: New to Cardano?
+   :titlesonly:
+   :hidden:
+
+   Blockchain explained <what-is-a-blockchain.md>
+   Why use Cardano? <why-use-cardano.md>
+   What is a cryptocurrency? <what-is-a-cryptocurrency.md>
+   Types of wallets <types-of-wallets.md>
+   What is a smart contract? <smart-contract-exp.md>
+    
 
 .. toctree::
    :maxdepth: 3
