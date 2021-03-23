@@ -5,13 +5,13 @@ A *cryptocurrency* is a digital asset, which is stored on the ledger and is desi
 Blockchain ledgers serve as the underlying technology for cryptocurrency creation in a decentralized environment. Blockchain protocols use rigorous cryptography techniques to enable the minting (creation) of cryptocurrency and to secure and verify crypto ownership and fund movement records. The price of cryptocurrency is not controlled by a government or centralized financial institution. It is defined by its value, correlation to real-world figures, and is driven by market supply and demand.
 
 
-### Ada - the native currency of Cardano
+### Ada — the native currency of Cardano
 
 Each blockchain ledger has its underlying cryptocurrency or native currency. Ada is the native, or principal currency on Cardano. This means that ada is the main payment unit on Cardano; it is accepted as fee-payment, to make deposits, and is also the only currency in which rewards are distributed.
 
 Lovelace is the smallest denomination of ada. One ada = 1,000,000 lovelaces. Ada has six decimal places, which makes it easily divisible into smaller fractions.
 
-### Native tokens ###
+### Native tokens 
 
 Cardano also supports the creation of native tokens ‒ digital assets that are created for specific purposes. This means that users, developers, and businesses can use the Cardano blockchain to create tokens that represent a footprint of value (whether defined by the community, market state, or self-governed entity). A token can be fungible or non-fungible, and act as a payment unit, reward, trading asset, or information holder.
 
