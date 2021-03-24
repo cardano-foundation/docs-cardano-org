@@ -5,7 +5,7 @@ The networking layer is the driving force for delivering information exchange re
 
 Follow these links to find detailed specifications of:
 
-+ [The Shelley networking protocol](https://hydra.iohk.io/build/4110312/download/2/network-spec.pdf) 
++ [The Shelley networking protocol](https://hydra.iohk.io/build/5866649/download/2/network-spec.pdf) 
 + [An introduction to the design of data diffusion and networking for Cardano Shelley.](https://hydra.iohk.io/build/4110312/download/1/network-design.pdf)  
 
 ### Data flow between and within nodes 
