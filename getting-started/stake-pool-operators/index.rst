@@ -6,7 +6,7 @@ This section includes an overview of stake pool operations and explains the ways
 About stake pools, operators, and owners
 ========================================
 
-A `stake pool <https://docs.cardano.org/en/latest/explore-cardano/what-is-a-stakepool.html>`_ is a reliable server node that holds and maintains the combined stake of various stakeholders in a single entity. Stake pools use the Cardano node to validate how the pool interacts with the network and are responsible for transaction processing and `block production <https://docs.cardano.org/en/latest/explore-cardano/how-are-new-blocks-produced.html>`_.
+A `stake pool <https://docs.cardano.org/en/latest/explore-cardano/what-is-a-stakepool.html>`_ is a reliable server node that holds and maintains the combined stake of various stakeholders in a single entity. Stake pools use the Cardano node to validate how the pool interacts with the network and are responsible for transaction processing and block production.
 
 Successfully operating a stake pool includes the roles of a stake pool operator and one or more stake pool owner(s). It is important to note that there is a conceptual difference between these two roles:
 
