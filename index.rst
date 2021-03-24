@@ -27,7 +27,7 @@
    Cardano tracking tools <explainers/getting-started-with-cardano/tools.md>
    How to purchase ada? <explainers/getting-started-with-cardano/how-to-purchase-ada.md>
    How to delegate <explainers/getting-started-with-cardano/how-to-delegate.md>
-    
+
 .. toctree::
    :maxdepth: 3
    :caption: Learn
@@ -59,6 +59,7 @@
    explore-cardano/cardano-fee-structure
    explore-cardano/further-reading
    explore-cardano/relevant-research-papers-and-specifications
+   Cardano Explorer <https://explorer.cardano.org/>
 
 .. toctree::
    :caption: Cardano components
@@ -66,17 +67,13 @@
    :hidden:
 
    cardano-node <https://docs.cardano.org/projects/cardano-node/>
-   cardano-shell <https://docs.cardano.org/projects/cardano-shell/>
-   cardano-transactions <https://docs.cardano.org/projects/cardano-transactions/>
-   cardano-graphql <https://docs.cardano.org/projects/cardano-graphql/>
-   cardano-ledger-specs <https://docs.cardano.org/projects/cardano-ledger-specs/>
-   cardano-db-sync <https://docs.cardano.org/projects/cardano-db-sync/>
-   cardano-rest <https://docs.cardano.org/projects/cardano-rest/>
-   cardano-serialization-lib <https://docs.cardano.org/projects/cardano-serialization-lib/>
-   cardano-wallet <https://docs.cardano.org/projects/cardano-wallet/>
+   cardano-graphql <https://github.com/input-output-hk/cardano-graphql#overview>
+   cardano-rosetta <https://github.com/input-output-hk/cardano-rosetta#cardano-rosetta>
+   cardano-ledger-specs <https://github.com/input-output-hk/cardano-ledger-specs#cardano-ledger>
+   cardano-db-sync <https://github.com/input-output-hk/cardano-db-sync#cardano-db-sync>
+   cardano-wallet <https://github.com/input-output-hk/cardano-wallet#overview>
    smash <https://docs.cardano.org/projects/smash/>
-   ouroboros-network <https://docs.cardano.org/projects/ouroboros-network/>
-   adrestia <https://docs.cardano.org/projects/adrestia>
+   ouroboros-network <https://github.com/input-output-hk/ouroboros-network/#ouroboros-network>
    rt-view/rt-view
 
 .. toctree::
@@ -92,7 +89,7 @@
    Exercises <native-tokens/exercises.md>
    FAQs <native-tokens/faqs.md>
    Resources <native-tokens/resources.md>
-   
+
 
 .. toctree::
    :maxdepth: 3
@@ -108,7 +105,7 @@
    Using the Haskell editor <marlowe/get-started-haskell.md>
    Using the JavaScript editor <marlowe/get-started-js.md>
 
-  
+
 .. toctree::
    :maxdepth: 3
    :caption: Rosetta
@@ -118,7 +115,7 @@
    Learn about Rosetta <rosetta/learn-Rosetta.md>
    Getting started with Rosetta <rosetta/get-started-rosetta.md>
    Contribute to Rosetta <rosetta/contribute-rosetta.md>
-  
+
 
 .. toctree::
    :maxdepth: 3
@@ -148,7 +145,10 @@
    :titlesonly:
    :hidden:
 
-   Cardano Explorer <https://explorer.cardano.org/>
+   bech32 <https://github.com/input-output-hk/bech32#bech32-command-line/>
+   cardano-addresses <https://github.com/input-output-hk/cardano-addresses#overview/>
+   cardano-cli <https://docs.cardano.org/projects/cardano-node/en/latest/reference/cardano-node-cli-reference.html>
+   cardano-serialization-lib <https://docs.cardano.org/projects/cardano-serialization-lib/>
 
 .. toctree::
    :caption: Glossary
