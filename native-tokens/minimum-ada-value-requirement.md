@@ -1,7 +1,5 @@
 ## Minimum ada value requirement
 
-#### Min-ada-value Explanation
-
 UTXOs on the ledger may contain a heterogeneous collection of tokens, including ada, which is a limited resource in the Cardano system. Requiring some amount of ada to be included in every UTXO (where that amount is based on the size of the UTXO, in bytes), limits the maximum total size taken up by UTXO entries on the ledger at any given time.
 
 The maximum possible UTXO size (the sum of the sizes of all UTXO entries) is implicitly adjusted by raising and lowering the `min-ada-value` parameter. In this way, the constraint protects the Cardano ledger from growing beyond a certain size. A ledger without a size bound is vulnerable to being populated by so much data that users will unable to process it (or run a node) with machines meeting the recommended specifications for running a node.
