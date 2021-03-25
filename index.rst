@@ -37,7 +37,7 @@
 
    What is Cardano?/learn-cardano
    explore-cardano/what-is-a-cardano-node
-   explore-cardano/what-is-a-stakepool
+   Stake pools <explore-cardano/what-is-a-stakepool.md>
    explore-cardano/understanding-the-delegation-mechanism
    explore-cardano/understanding-pledging-and-rewards
    Pledging and delegation options <learn/pledging-and-delegating-options.md>
