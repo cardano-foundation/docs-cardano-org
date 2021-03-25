@@ -11,7 +11,7 @@
    Operating a stake pool <getting-started/stake-pool-operators/index>
    Guidelines for operating large stake pools <getting-started/guidelines-for-operating-large-stake-pools/index>
    Integrating with third parties <getting-started/3rd-party-integration/index>
-   Running stake pools and delegating as an Exchange <getting-started/exchanges/index>
+   Running stake pools and delegation for exchanges <getting-started/exchanges/index>
 
 .. toctree::
    :maxdepth: 3
