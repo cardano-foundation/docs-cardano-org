@@ -1,4 +1,4 @@
-# Running Stake Pools and Delegating as an Exchange
+# Running stake pools and delegation for exchanges
 
 Many exchanges are eager to participate in either running a stake pool or delegating their stake to existing pools.
 
