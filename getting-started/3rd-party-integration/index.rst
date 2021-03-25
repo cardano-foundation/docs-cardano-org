@@ -1,4 +1,4 @@
-Integrating with Third Parties
+Integrating with third parties
 ==========================================
 
 **Note:** Exchanges that are currently listing, or interesting in listing ada, must support a Shelley-supported version of Cardano.
