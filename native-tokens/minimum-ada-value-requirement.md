@@ -4,7 +4,7 @@ UTXOs on the ledger may contain a heterogeneous collection of tokens, including 
 
 The maximum possible UTXO size (the sum of the sizes of all UTXO entries) is implicitly adjusted by raising and lowering the `min-ada-value` parameter. In this way, the constraint protects the Cardano ledger from growing beyond a certain size. A ledger without a size bound is vulnerable to being populated by so much data that users will unable to process it (or run a node) with machines meeting the recommended specifications for running a node.
 
-#### The ada-only Case
+#### The ada-only case
 
 Because of the `min-ada-value constraint`, a guaranteed bound on the number of entries in an ada-only UTXO is:
 
@@ -18,7 +18,7 @@ In the multi-asset Cardano ledger, UTXO entries will have different sizes. In pa
 
 Below, we present a calculation and a more detailed justification for this adjustment.
 
-#### Min-ada-value Calculation
+#### Min-ada-value calculation
 
 The minimum ada amount required to be contained in every ada-only UTXO with no additional data (i.e., a UTXO containing only the address and ada amount) is a protocol parameter of the Cardano system, called : `minUTxOValue`
 
