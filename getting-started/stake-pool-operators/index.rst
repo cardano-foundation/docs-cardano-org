@@ -10,8 +10,8 @@ A `stake pool <https://docs.cardano.org/en/latest/explore-cardano/what-is-a-stak
 
 Successfully operating a stake pool includes the roles of a stake pool operator and one or more stake pool owner(s). It is important to note that there is a conceptual difference between these two roles:
 
-+ **A stake pool operator** is a person who is assigned responsibility for setting up and keeping the stake pool running, which means that they own or rent a server, hold the key of the stake pool, and hold responsibility for running and monitoring the node. With their key, a stake pool operator can sign blocks, register, re-register, or retire a stake pool, and post updated certificates. A stake pool operator is also empowered to exclude some stake pool owners during re-registration. 
-+ **A stake pool owner** is a person who pledges their stake to the pool to increase the pool’s reward earning capacity and desirability. The ability of the owner to `pledge stake`_ provides protection against Sybil attacks.
++ **Stake pool operator** — a person who is assigned responsibility for setting up and keeping the stake pool running, which means that they own or rent a server, hold the key of the stake pool, and hold responsibility for running and monitoring the node. With their key, a stake pool operator can sign blocks, register, re-register, or retire a stake pool, and post updated certificates. A stake pool operator is also empowered to exclude some stake pool owners during re-registration. 
++ **Stake pool owner** — a person who pledges their stake to the pool to increase the pool’s reward earning capacity and desirability. The ability of the owner to `pledge stake`_ provides protection against Sybil attacks.
 
 .. _pledge stake: https://docs.cardano.org/en/latest/explore-cardano/understanding-pledging-and-rewards.html 
 
