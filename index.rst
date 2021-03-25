@@ -6,7 +6,8 @@
    :titlesonly:
    :hidden:
 
-   Installing and running a node <https://docs.cardano.org/projects/cardano-node/en/latest/getting-started/install.html>
+   Installing the node <install/install-node.md>
+   Using the command line reference <install/use-cli.md>
    Operating a stake pool <getting-started/stake-pool-operators/index>
    Guidelines for operating large stake pools <getting-started/guidelines-for-operating-large-stake-pools/index>
    Integrating with third parties <getting-started/3rd-party-integration/index>
