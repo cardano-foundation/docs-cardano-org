@@ -6,7 +6,7 @@
    :titlesonly:
    :hidden:
 
-   Installing the node <install/install-node.md>
+   Installing the Cardano node <install/install-node.md>
    Using the command line reference <install/use-cli.md>
    Operating a stake pool <getting-started/stake-pool-operators/index>
    Guidelines for operating large stake pools <getting-started/guidelines-for-operating-large-stake-pools/index>
