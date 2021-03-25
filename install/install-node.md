@@ -9,4 +9,4 @@ Alternatively, if you want to build the from source, there are two options avail
 Once you have installed the node, you need to [specify the configuration parameters](https://github.com/input-output-hk/cardano-node/blob/master/doc/getting-started/understanding-config-files.md/).
 
 #### *Related Topics*
-- [Using the CLI](<install/use-cli.md>)
+- [Using the CLI](<use-cli.md>)
