@@ -58,7 +58,6 @@ The overall protocol -and each mini-protocol- is designed for a trustless settin
 
 The protocol design is modular and evolvable: version negotiation is used to agree the set of mini-protocols to use, which allows additional or updated mini-protocols to be added over time without causing compatibility issues.
 
-`Read more about the node-to-node IPC protocol. <https://docs.cardano.org/en/latest/explore-cardano/cardano-architecture-overview/node-to-node-ipc-overview.html>`_
 
 Node-to-Client IPC
 ------------------
@@ -75,7 +74,7 @@ The node-to-client protocol consists of three mini-protocols:
 
 The node-to-client version of chain sync uses *full* blocks, rather than just block headers. This is why no separate block-fetch protocol is needed. The local-tx-submission protocol is like the node-to-node tx-submission protocol but simpler, and it returns the details of transaction validation failures. The local state query protocol provides query access to the current ledger state, which contains a lot of interesting data that is *not* directly reflected on the chain itself.
 
-`Read more about the node-to-client IPC protocol. <https://docs.cardano.org/en/latest/explore-cardano/cardano-architecture-overview/node-to-client-ipc-overview.html>`_
+`Read more about connection management and Cardano node communication protocols. <>`_
 
 Command line interface (CLI)
 ----------------------------
@@ -139,8 +138,7 @@ This Cardano architecture overview reflects the *current* Cardano implementation
    :titlesonly:
    :hidden:
 
-   node-to-node-ipc-overview
-   node-to-client-ipc-overview
+   connection-management
    about-db-sync-and-its-components
    cardano-db-sync-best-practices
    working-with-db-sync
