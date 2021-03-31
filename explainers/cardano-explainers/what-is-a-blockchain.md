@@ -8,7 +8,11 @@ As a blockchain stores data in a decentralized manner, it is independent of cent
 
 Blockchain can be compared to a book of permanent records, where every page acts as an information holder. 
 
+![chain-of-blocks](chain-of-blocks.png)
+
 Let’s take a closer look at existing data storage solutions to understand the difference between these systems:
+
+![data-storage](data-storage.png)
 
 + **Centralized systems** — all data entries and activities are usually managed using one central server. This increases the risk of a single point of failure, and also means that the controlling entity (such as banks or government institutions, for example) act as decision-makers.
 + **Decentralized systems** — generally rely on multiple server nodes, each of which serves a subset of the total end clients.
