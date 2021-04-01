@@ -22,6 +22,7 @@
    What is a blockchain? <explainers/cardano-explainers/what-is-a-blockchain.md>
    What is a cryptocurrency? <explainers/cardano-explainers/what-is-a-cryptocurrency.md>
    Why use Cardano? <explainers/cardano-explainers/why-use-cardano.md>
+   Proof of stake <explainers/cardano-explainers/proof-of-stake.md>
    Cardano nodes <explainers/getting-started-with-cardano/cardano-nodes.md>
    Cardano tracking tools <explainers/getting-started-with-cardano/tools.md>
    How to purchase ada? <explainers/getting-started-with-cardano/how-to-purchase-ada.md>
