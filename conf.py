@@ -51,6 +51,9 @@ extensions = [
 templates_path = ['.sphinx/_templates']
 html_static_path = ['.sphinx/_static']
 
+# hide 'Built with Sphinx using a theme provided by Read the Docs'
+html_show_sphinx = False
+
 source_suffix = {
     '.rst': 'restructuredtext',
     '.md': 'markdown',
