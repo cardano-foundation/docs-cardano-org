@@ -1,4 +1,4 @@
-# Community Content
+# Community content
 
 Community collaboration is central to the success of Cardano. This page provides some community-generated content that we have gathered and deemed complementary to the content we are producing. As these materials were not produced by IOHK, we cannot verify that their content is fully accurate or completely up-to-date.
 
