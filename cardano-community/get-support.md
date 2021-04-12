@@ -1,4 +1,4 @@
-# Getting Support
+# Getting support
 
 Your feedback is important because it helps us improve Cardano. We have an active Telegram channel and a dedicated [support page](https://iohk.zendesk.com/) to help you with your issues and questions. 
 
