@@ -12,7 +12,7 @@ As a stake pool operator for Cardano, you will typically have the following abil
 
 **Hardware requirements**
 
-In terms of hardware, you should have the following available:
+In terms of hardware, you should ensure you have the following:
 
 * 8 GB of RAM
 * 24 GB of hard disk space
@@ -23,9 +23,9 @@ Note that processor speed is not a significant factor for running a stake pool.
 
 ### Stake pool installation instructions
 
-To learn how to set up your own stake pool, follow [installing the node from source instructions](https://docs.cardano.org/projects/cardano-node/en/latest/getting-started/install.html).
+To learn how to set up your own stake pool, follow the [installing the node from source instructions](https://docs.cardano.org/projects/cardano-node/en/latest/getting-started/install.html).
 
-You can then proceed with stake pool operations:
+You can then proceed with the following operational tasks for managing your stake pool:
 
 -   [Getting configuration files](https://docs.cardano.org/projects/cardano-node/en/latest/stake-pool-operations/getConfigFiles_AND_Connect.html)
 -   [Creating keys and addresses](https://docs.cardano.org/projects/cardano-node/en/latest/stake-pool-operations/keys_and_addresses.html)
