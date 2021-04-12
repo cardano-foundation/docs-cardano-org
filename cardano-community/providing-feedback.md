@@ -1,4 +1,4 @@
-# Providing Feedback
+# Providing feedback
 
 User feedback is an invaluable and critical aspect of Cardano. Regardless of your experience level, we want to hear about any bugs or usability issues you encounter, or any suggestions for improvement you may have.
 
