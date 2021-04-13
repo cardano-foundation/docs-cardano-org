@@ -15,7 +15,7 @@ Sample code for the typical Rosetta use cases:
 - [Sending transactions with single multi assets](https://github.com/input-output-hk/cardano-rosetta/tree/master/examples#sending-transactions-with-single-multi-assets)
 
 ## Postman examples ##
-This [Postman Collection](https://github.com/input-output-hk/cardano-rosetta/tree/master/examples/postman) demonstrates how to query account balance, construct a multi-asset transaction, sign, and submit it. This scenario is tested nightly to ensure correctness. You simply import into Postman to get started.
+This [Postman Collection](https://github.com/input-output-hk/cardano-rosetta/tree/master/examples/postman) demonstrates how to query account balance, construct a multi-asset transaction, sign the transaction, and submit it. This scenario is tested nightly to ensure correctness. You simply import into Postman to get started.
 
 ## Exchange examples ##
 This section provides some endpoint examples of how exchanges can use Rosetta for their integration needs:
