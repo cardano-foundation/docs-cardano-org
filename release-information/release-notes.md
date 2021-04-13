@@ -10,7 +10,7 @@ Name | Version | Release Date
 -|-|-
 [Cardano Node](https://github.com/input-output-hk/cardano-node) | [1.26.1](https://github.com/input-output-hk/cardano-node/releases/tag/1.26.1) | 7 April 2021
 [Cardano RTView](https://github.com/input-output-hk/cardano-rt-view) | [0.3.0](https://github.com/input-output-hk/cardano-rt-view/releases/tag/0.3.0) | 15 Janurary 2021
-[Cardano DB Sync](https://github.com/input-output-hk/cardano-db-sync/releases) | [7.1.0](https://github.com/input-output-hk/cardano-db-sync/releases/tag/7.1.0) | 10 December 2020
+[Cardano DB Sync](https://github.com/input-output-hk/cardano-db-sync/releases) | [9.0.0](https://github.com/input-output-hk/cardano-db-sync/releases/tag/9.0.0) | 24 March 2021
 [Smash](https://github.com/input-output-hk/smash) | [1.2.0](https://github.com/input-output-hk/smash/releases/tag/1.2.0) | 27 October 2020
 [Cardano Rest](https://github.com/input-output-hk/cardano-rest) | [3.1.1](https://github.com/input-output-hk/cardano-rest/releases/tag/3.1.1) | 15 December 2020
 [Cardano GraphQL](https://github.com/input-output-hk/cardano-graphql) | [4.0.0](https://github.com/input-output-hk/cardano-graphql/releases/tag/4.0.0) | 30 March 2021
