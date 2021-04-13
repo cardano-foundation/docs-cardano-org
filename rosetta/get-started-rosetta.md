@@ -3,9 +3,9 @@ The Rosetta API is made up of two core components; the [Data API](https://www.ro
 
 For full details, read the [Rosetta API specification](https://www.rosetta-api.org/docs/1.4.4/welcome.html). For an overview of the interactions, view the [Flow of Operations](https://www.rosetta-api.org/docs/1.4.4/construction_api_introduction.html#flow-of-operations).
 
-Here you will find developer examples, exchange examples, and the Rosetta [API calls](https://github.com/cardano-foundation/docs-cardano-org/blob/main/rosetta/get-started-rosetta.md#api-calls). 
+Here you will find developer examples, postman examples, exchange examples, and the Rosetta [API calls](https://github.com/cardano-foundation/docs-cardano-org/blob/main/rosetta/get-started-rosetta.md#api-calls). 
 
-## Developer Examples ##
+## Developer examples ##
 This section outlines some examples that you can test out as a developer who wants to use Rosetta. However, we advise that you should exercise caution if testing these on mainnet.
 
 Sample code for the typical Rosetta use cases:
@@ -14,7 +14,10 @@ Sample code for the typical Rosetta use cases:
 - [Withdrawals](https://github.com/input-output-hk/cardano-rosetta/tree/master/examples#withdrawals)
 - [Sending transactions with single multi assets](https://github.com/input-output-hk/cardano-rosetta/tree/master/examples#sending-transactions-with-single-multi-assets)
 
-## Exchange Examples ##
+## Postman examples ##
+This [Postman Collection](https://github.com/input-output-hk/cardano-rosetta/tree/master/examples/postman) demonstrates how to query account balance, construct a multi-asset transaction, sign, and submit it. This scenario is tested nightly to ensure correctness. You simply import into Postman to get started.
+
+## Exchange examples ##
 This section provides some endpoint examples of how exchanges can use Rosetta for their integration needs:
 - [Get address from public key](https://docs.cardano.org/en/latest/rosetta/get-started-rosetta.html#get-address-from-public-key)
 - [Determine transaction size](https://docs.cardano.org/en/latest/rosetta/get-started-rosetta.html#determine-transaction-size)
