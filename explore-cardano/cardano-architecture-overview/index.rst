@@ -137,7 +137,7 @@ This Cardano architecture overview reflects the *current* Cardano implementation
    :titlesonly:
    :hidden:
 
-   connection-management
+   networking-protocol-design
    about-db-sync-and-its-components
    cardano-db-sync-best-practices
    working-with-db-sync
