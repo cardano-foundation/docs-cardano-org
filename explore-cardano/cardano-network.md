@@ -84,3 +84,6 @@ The node-to-node transaction submission protocol is used to transfer transaction
 ##### Handshake mini protocol
 The handshake mini protocol is used to negotiate the protocol version and the protocol parameters that are used by the client and the server. It is used first when a new connection is initialized and consists of a single request from the client and a single reply from the server. The handshake mini protocol is a generic protocol that can negotiate any kind of protocol parameters. It assumes that protocol parameters can be encoded to, and decoded from Concise Binary Object Representation (CBOR) terms. A node that runs the handshake protocol must instantiate it with the set of supported protocol versions and callback functions for handling the protocol parameters. These callback functions are specific for the supported protocol versions.
 
+#### Further reading:
+
++ [Overview of the networking protocol design](https://docs.cardano.org/en/latest/explore-cardano/cardano-architecture-overview/networking-protocol-design.html)
