@@ -1,4 +1,4 @@
-## Connection management
+## Overview of the networking protocol design
 
 Transmission Control Protocols (TCP) and Internet Protocols (IP) form a protocol suite universally deployed on the network. TCP/IP enables a reliable bidirectional communication channel between systems on the internet.
 
