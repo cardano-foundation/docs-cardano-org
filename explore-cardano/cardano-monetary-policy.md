@@ -50,7 +50,7 @@ While searching for the right ρ value, the team faced a quandary: A higher valu
 
 Adopting an exponential decay approach to prevent Cardano’s reserve from running out makes sense in this situation.
 
-Calculating the 'reserve half life' (that is, the time that it takes for half of the reserve to be used up) visualizes the impact of choosing a specific value of ρ over another. This was the subject of much discussion, and eventually, the value assigned was 0.22%. The reason why is that mathematical projections showed that a ρ (the fixed percentage of ada going into the virtual pot every epoch) value of 0.22% would mean a reserve half-life of four to five years. In simple terms, just half of the remaining reserve would be used every four to five years.
+Calculating the 'reserve half life' (that is, the time that it takes for half of the reserve to be used up) visualizes the impact of choosing a specific value of ρ over another. This was the subject of much discussion, and eventually, the value assigned was 0.3%. The reason why is that mathematical projections showed that a ρ (the fixed percentage of ada going into the virtual pot every epoch) value of 0.3% would mean a reserve half-life of four to five years. In simple terms, just half of the remaining reserve would be used every four to five years.
 
 **Choosing τ**
 
