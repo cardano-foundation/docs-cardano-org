@@ -99,7 +99,6 @@
    :hidden:
 
    Learn about Marlowe <marlowe/marlowe-explainer.md>
-   What is the Marlowe Playground? <marlowe/marlowe-playground.md>
    Getting started with the Marlowe Playground <marlowe/marlowe-get-started.md>
    Marlowe language guide <marlowe/marlowe-lang-guide.md>
    Writing Marlowe with Blockly <marlowe/get-started-blockly.md>
