@@ -32,4 +32,4 @@ As a part of the Goguen rollout, we will be completing the implementation of Mar
 Smart contracts running on Cardano will be able to access external data values, such as the exchange rate between ada and bitcoin, through oracles. In some ways, an oracle is just like a participant that makes a choice, and we plan to support oracle values as part of the implementation, allowing contracts to access values directly from a stock market ‘ticker’ or a popular data feed such as Coinbase.
 
 #### *Related Topics*
-- [What is the Marlowe Playground?](<marlowe-playground.md>)
+- [Getting started with the Marlowe Playground?](<marlowe-get-started.md>)
