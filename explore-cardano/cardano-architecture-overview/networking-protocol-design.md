@@ -68,6 +68,10 @@ A brief explanation of the NtN mini-protocols:
 -   **block-fetch**: a protocol that allows a node to download block bodies from various peers
 -   **tx-submission**: a protocol that allows submission of transactions. The implementation of this protocol is based on a generic mini protocol framework, with one peculiarity: the roles of the initiator and the responder are reversed. The Server is the initiator that asks for new transactions, and the Client is the responder that replies with the transactions. This role reversal was designed thus for technical reasons.
 
+To ensure optimal networking service, the team has also implemented an additional protocol:
+
+-  **keep-alive**: a protocol that ensures continuous connection between nodes and minimizes performance faults.
+
 #### Node-to-Client IPC overview
 
 Node-to-Client (NtC) is a connection between a full node and a client that consumes data but does not take part in the Ouroboros protocol (a wallet, for example.)
