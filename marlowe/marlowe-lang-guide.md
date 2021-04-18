@@ -16,8 +16,8 @@ In modelling basic parts of Marlowe a combination of Haskell `data` types are us
 
 In addition to writing contracts in the textual version of Marlowe, you can also use one of the following visual programming environments:
 1. [Using Blockly](https://docs.cardano.org/en/latest/marlowe/get-started-blockly.html)
-2. [Using JavaScript](https://docs.cardano.org/en/latest/marlowe/get-started-haskell.html)
-3. [Using Haskell](https://docs.cardano.org/en/latest/marlowe/get-started-js.html)
+2. [Using JavaScript](https://docs.cardano.org/en/latest/marlowe/get-started-js.html)
+3. [Using Haskell](https://docs.cardano.org/en/latest/marlowe/get-started-haskell.html)
 
 ### What does a Marlowe contract look like?
 A contract is built in Marlowe by combining a small number of *building* blocks to describe many different kinds of financial contracts, like making a payment, making an observation, waiting until a certain condition becomes true, and so on. The contract is then run on a blockchain, like Cardano, and interacts with the outside world. 
