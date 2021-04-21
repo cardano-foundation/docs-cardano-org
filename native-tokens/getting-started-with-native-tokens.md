@@ -182,21 +182,24 @@ used throughout pertains to the *Mary* Testnet. For the mainnet, replace `--netw
     --verification-key-file pay.vkey \
     --signing-key-file pay.skey
     ```
+
 The code should output something similar to this:
-```bash
-$ cat pay.skey 
-{
-"type": "PaymentSigningKeyShelley_ed25519",
-"description": "Payment Signing Key",
-"cborHex": "5820aed07e0b1ddd946da278ffb1f671cc5b24c8453e6b47c24b0a6b15d818444fe8"
-}
-$ cat pay.vkey 
-{
-"type": "PaymentVerificationKeyShelley_ed25519",
-"description": "Payment Verification Key",
-"cborHex": "582031752dd50ffe7ed90ba136ea775dacd5113ff67d13001a25aac953f719aa1f92"
-}
-```
+
+
+    ```bash
+    $ cat pay.skey 
+    {
+    "type": "PaymentSigningKeyShelley_ed25519",
+    "description": "Payment Signing Key",
+    "cborHex": "5820aed07e0b1ddd946da278ffb1f671cc5b24c8453e6b47c24b0a6b15d818444fe8"
+    }
+    $ cat pay.vkey 
+    {
+    "type": "PaymentVerificationKeyShelley_ed25519",
+    "description": "Payment Verification Key",
+    "cborHex": "582031752dd50ffe7ed90ba136ea775dacd5113ff67d13001a25aac953f719aa1f92"
+    }
+    ```
 4. Generate the payment address:
 
 
@@ -214,6 +217,8 @@ This code produces the following payment address:
     $ cat pay.addr 
     addr_test1vqvlku0ytscqg32rpv660uu4sgxlje25s5xrpz7zjqsva3c8pfckz
     ```
+
+
 5. Check the balance of the payment address:
 
 
@@ -228,7 +233,7 @@ The response should show no funds:
     TxHash                                 TxIx        Amount
     --------------------------------------------------------------------------------------
     ```
-    
+ 
 6. Fund the address and check again:
     ```bash
     ./cardano-cli query utxo --address addr_test1vqvlku0ytscqg32rpv660uu4sgxlje25s5xrpz7zjqsva3c8pfckz --testnet-magic 3 --mary-era
@@ -236,6 +241,7 @@ The response should show no funds:
     --------------------------------------------------------------------------------------
     b1ddb0347fed2aecc7f00caabaaf2634f8e2d17541f6237bbed78e2092e1c414     0        1000000000 lovelace
     ```
+
 7. Export the protocol parameters to a file for later use:
     ```bash
     cardano-cli  query protocol-parameters \
