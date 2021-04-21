@@ -198,26 +198,37 @@ $ cat pay.vkey
 }
 ```
 4. Generate the payment address:
-```bash
-./cardano-cli address build \
---payment-verification-key-file pay.vkey \
---out-file pay.addr \
---testnet-magic 3
-```
+
+
+    ```bash
+    ./cardano-cli address build \
+    --payment-verification-key-file pay.vkey \
+    --out-file pay.addr \
+    --testnet-magic 3
+    ```
+    
 This code produces the following payment address:
+
+
     ```bash
     $ cat pay.addr 
     addr_test1vqvlku0ytscqg32rpv660uu4sgxlje25s5xrpz7zjqsva3c8pfckz
     ```
 5. Check the balance of the payment address:
+
+
     ```bash
     ./cardano-cli query utxo --address addr_test1vqvlku0ytscqg32rpv660uu4sgxlje25s5xrpz7zjqsva3c8pfckz --testnet-magic 3 --mary-era
     ```
+    
 The response should show no funds:
+
+
     ```bash
     TxHash                                 TxIx        Amount
     --------------------------------------------------------------------------------------
     ```
+    
 6. Fund the address and check again:
     ```bash
     ./cardano-cli query utxo --address addr_test1vqvlku0ytscqg32rpv660uu4sgxlje25s5xrpz7zjqsva3c8pfckz --testnet-magic 3 --mary-era
