@@ -183,60 +183,56 @@ used throughout pertains to the *Mary* Testnet. For the mainnet, replace `--netw
     --signing-key-file pay.skey
     ```
 The code should output something similar to this:
-
-    ```bash
-    $ cat pay.skey 
-    {
-        "type": "PaymentSigningKeyShelley_ed25519",
-        "description": "Payment Signing Key",
-        "cborHex": "5820aed07e0b1ddd946da278ffb1f671cc5b24c8453e6b47c24b0a6b15d818444fe8"
-    }
-    $ cat pay.vkey 
-    {
-        "type": "PaymentVerificationKeyShelley_ed25519",
-        "description": "Payment Verification Key",
-        "cborHex": "582031752dd50ffe7ed90ba136ea775dacd5113ff67d13001a25aac953f719aa1f92"
-    }
-    ```
+	```bash
+    	$ cat pay.skey 
+    	{
+       	 "type": "PaymentSigningKeyShelley_ed25519",
+         "description": "Payment Signing Key",
+       	 "cborHex": "5820aed07e0b1ddd946da278ffb1f671cc5b24c8453e6b47c24b0a6b15d818444fe8"
+    	}
+   	 $ cat pay.vkey 
+   	 {
+        	"type": "PaymentVerificationKeyShelley_ed25519",
+       		"description": "Payment Verification Key",
+        	"cborHex": "582031752dd50ffe7ed90ba136ea775dacd5113ff67d13001a25aac953f719aa1f92"
+   	 }
+	```
 4. Generate the payment address:
-    ```bash
-    ./cardano-cli address build \
-    --payment-verification-key-file pay.vkey \
-    --out-file pay.addr \
-    --testnet-magic 3
-    ```
+    	```bash
+  	  ./cardano-cli address build \
+   	 --payment-verification-key-file pay.vkey \
+   	 --out-file pay.addr \
+  	  --testnet-magic 3
+  	  ```
 This code produces the following payment address:
-
-    ```bash
-    $ cat pay.addr 
-    addr_test1vqvlku0ytscqg32rpv660uu4sgxlje25s5xrpz7zjqsva3c8pfckz
-    ```
-
+  	  ```bash
+  	  $ cat pay.addr 
+  	  addr_test1vqvlku0ytscqg32rpv660uu4sgxlje25s5xrpz7zjqsva3c8pfckz
+  	  ```
 5. Check the balance of the payment address:
-    ```bash
-    ./cardano-cli query utxo --address addr_test1vqvlku0ytscqg32rpv660uu4sgxlje25s5xrpz7zjqsva3c8pfckz --testnet-magic 3 --mary-era
-    ```
+  	  ```bash
+  	  ./cardano-cli query utxo --address addr_test1vqvlku0ytscqg32rpv660uu4sgxlje25s5xrpz7zjqsva3c8pfckz --testnet-magic 3 --mary-era
+  	  ```
 The response should show no funds:
 
-    ```bash
-                           TxHash                                 TxIx        Amount
-    --------------------------------------------------------------------------------------
-    ```
-
+   	 ```bash
+   	                        TxHash                                 TxIx        Amount
+   	 --------------------------------------------------------------------------------------
+  	  ```
 6. Fund the address and check again:
-    ```bash
-    ./cardano-cli query utxo --address addr_test1vqvlku0ytscqg32rpv660uu4sgxlje25s5xrpz7zjqsva3c8pfckz --testnet-magic 3 --mary-era
-
-                               TxHash                                 TxIx        Amount
-    --------------------------------------------------------------------------------------
-    b1ddb0347fed2aecc7f00caabaaf2634f8e2d17541f6237bbed78e2092e1c414     0        1000000000 lovelace
-    ```
+  	  ```bash
+  	  ./cardano-cli query utxo --address addr_test1vqvlku0ytscqg32rpv660uu4sgxlje25s5xrpz7zjqsva3c8pfckz --testnet-magic 3 --mary-era
+	
+                	               TxHash                                 TxIx        Amount
+    	--------------------------------------------------------------------------------------
+   	 b1ddb0347fed2aecc7f00caabaaf2634f8e2d17541f6237bbed78e2092e1c414     0        1000000000 lovelace
+   	 ```
 7. Export the protocol parameters to a file for later use:
-    ```bash
-    cardano-cli  query protocol-parameters \
-    --mainnet \
-    --out-file protocol.json
-    ```
+   	 ```bash
+   	 cardano-cli  query protocol-parameters \
+   	 --mainnet \
+   	 --out-file protocol.json
+   	 ```
     
 #### Start the minting process
 
@@ -278,7 +274,7 @@ The response should show no funds:
 
 #### Build the raw transaction
 
-1. Use this code to build the raw transaction:
+Use this code to build the raw transaction:
 
     ```
 
@@ -378,14 +374,11 @@ fd0790f3984348f65ee22f35480b873b4eb9862065514f3e3a9c0f04d0a6ad63     0        99
 #### Send the new native asset to another address
 
 1. Generate a recipient address:
-
 First, we need to generate an address to send the newly minted asset to.
-
     ```bash
     mkdir recipient
     ```
 2. Generate the key pair:
-
     ```
     cardano-cli address key-gen \
         --verification-key-file recipient/recipientpay.vkey \
