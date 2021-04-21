@@ -158,7 +158,7 @@ used throughout pertains to the *Mary* Testnet. For the mainnet, replace `--netw
  
 #### Pre-requisites 
 
-1. Download the node and config files for the Mary testnet (Launchpad) using this code:
+(1) Download the node and config files for the Mary testnet (Launchpad) using this code:
     ```bash
     wget https://hydra.iohk.io/build/5266641/download/1/cardano-node-1.24.2-linux.tar.gz
     tar xzvf cardano-node-1.24.2-linux.tar.gz
@@ -169,14 +169,13 @@ used throughout pertains to the *Mary* Testnet. For the mainnet, replace `--netw
     wget https://hydra.iohk.io/build/5102327/download/1/launchpad-topology.json
     cd ..
     ```
-2. Run the cardano-node:
+(2) Run the cardano-node:
     ```bash
     ./cardano-node run --topology ./lpconfig/launchpad-topology.json --database-path ./state-lp --port 3001
     --config ./lpconfig/launchpad-config.json --socket-path ~/cardano-lp.socket
-
     export CARDANO_NODE_SOCKET_PATH=~/cardano-lp.socket
     ```
-3. Generate a verification key and a signing key:
+(3) Generate a verification key and a signing key:
     ```bash
     cardano-cli address key-gen \
     --verification-key-file pay.vkey \
@@ -184,7 +183,6 @@ used throughout pertains to the *Mary* Testnet. For the mainnet, replace `--netw
     ```
 
 The code should output something similar to this:
-
 
     ```bash
     $ cat pay.skey 
@@ -200,8 +198,7 @@ The code should output something similar to this:
     "cborHex": "582031752dd50ffe7ed90ba136ea775dacd5113ff67d13001a25aac953f719aa1f92"
     }
     ```
-4. Generate the payment address:
-
+(4) Generate the payment address:
 
     ```bash
     ./cardano-cli address build \
@@ -212,14 +209,12 @@ The code should output something similar to this:
     
 This code produces the following payment address:
 
-
     ```bash
     $ cat pay.addr 
     addr_test1vqvlku0ytscqg32rpv660uu4sgxlje25s5xrpz7zjqsva3c8pfckz
     ```
 
-
-5. Check the balance of the payment address:
+(5) Check the balance of the payment address:
 
 
     ```bash
@@ -234,7 +229,7 @@ The response should show no funds:
     --------------------------------------------------------------------------------------
     ```
  
-6. Fund the address and check again:
+(6) Fund the address and check again:
     ```bash
     ./cardano-cli query utxo --address addr_test1vqvlku0ytscqg32rpv660uu4sgxlje25s5xrpz7zjqsva3c8pfckz --testnet-magic 3 --mary-era
      TxHash                                 TxIx        Amount
@@ -242,7 +237,7 @@ The response should show no funds:
     b1ddb0347fed2aecc7f00caabaaf2634f8e2d17541f6237bbed78e2092e1c414     0        1000000000 lovelace
     ```
 
-7. Export the protocol parameters to a file for later use:
+(7) Export the protocol parameters to a file for later use:
     ```bash
     cardano-cli  query protocol-parameters \
     --mainnet \
