@@ -159,7 +159,6 @@ used throughout pertains to the *Mary* Testnet. For the mainnet, replace `--netw
 #### Pre-requisites 
 
 1. Download the node and config files for the Mary testnet (Launchpad) using this code:
-
 ```bash
 wget https://hydra.iohk.io/build/5266641/download/1/cardano-node-1.24.2-linux.tar.gz
 tar xzvf cardano-node-1.24.2-linux.tar.gz
@@ -170,7 +169,6 @@ wget https://hydra.iohk.io/build/5102327/download/1/launchpad-shelley-genesis.js
 wget https://hydra.iohk.io/build/5102327/download/1/launchpad-topology.json
 cd ..
 ```
-
 2. Run the cardano-node:
 
 ```bash
