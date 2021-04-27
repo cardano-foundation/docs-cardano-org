@@ -96,7 +96,7 @@ Users may choose to register metadata mappings with a server so that application
 
 This article outlines the steps required to create a metadata mapping for a native token, and submit it to the Cardano Token Registry. The Cardano Token Registry currently supports mappings for Native Tokens only.
 
-> This article assumes you have already created a native token with associated policy script, **PolicyID**, private key that you used to sign, etc. If you need to create a native token, please follow the steps of [Minting A New Native Asset](https://developers.cardano.org/en/development-environments/native-tokens/working-with-multi-asset-tokens/) example.
+> This article assumes you have already created a native token with associated policy script, **PolicyID**, private key that you used to sign, etc. If you need to create a native token, please follow the steps of [Minting A New Native Asset](https://docs.cardano.org/en/latest/native-tokens/getting-started-with-native-tokens.html#example-minting-a-new-native-token) example.
 
 ### Mapping Definition
 
@@ -120,7 +120,7 @@ Adding to the Registry
 
 #### Creating your Native Token
 
-Native tokens is an accounting system defined as part of the cryptocurrency ledger that enables tokens to be tracked, sent, and received within the Cardano blockchain. After the steps in [Minting A New Native Asset](https://developers.cardano.org/en/development-environments/native-tokens/working-with-multi-asset-tokens/), you will have the policy script, associated private key/s, **PolicyID** and **AssetName**, which are requirements for preparing your JSON mapping file.
+Native tokens is an accounting system defined as part of the cryptocurrency ledger that enables tokens to be tracked, sent, and received within the Cardano blockchain. After the steps in [Minting A New Native Asset](https://docs.cardano.org/en/latest/native-tokens/getting-started-with-native-tokens.html#example-minting-a-new-native-token), you will have the policy script, associated private key/s, **PolicyID** and **AssetName**, which are requirements for preparing your JSON mapping file.
 
 
 #### Prepare JSON Mapping File for Submission

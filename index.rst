@@ -86,7 +86,7 @@
    Learn about native tokens <native-tokens/learn-about-native-tokens.md>
    Minimum ada value requirement <native-tokens/minimum-ada-value-requirement.md>
    Getting started with native tokens <native-tokens/getting-started-with-native-tokens.md>
-   Cardano token registry <native-tokens/using-the-token-registry/token-registry.md>
+   Cardano token registry <native-tokens/using-the-token-registry/token-registry>
    Exercises <native-tokens/exercises.md>
    FAQs <native-tokens/faqs.md>
    Resources <native-tokens/resources.md>
