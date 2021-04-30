@@ -6,6 +6,8 @@ Release notes for Cardano can be found in the [Cardano platform > Updates](https
 
 ## Latest Cardano component releases
 
+Note that Cardano Rest has been deprecated and replaced with Rosetta.
+
 Name | Version | Release Date
 -|-|-
 [Cardano Node](https://github.com/input-output-hk/cardano-node) | [1.26.2](https://github.com/input-output-hk/cardano-node/releases/tag/1.26.2) | 18 April 2021
