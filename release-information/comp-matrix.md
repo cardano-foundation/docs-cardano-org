@@ -1,7 +1,7 @@
 ## Component Compatibility with Cardano Node
 This Cardano components compatibility matrix shows the runtime Cardano component dependencies on a particular version of [cardano-node](https://github.com/input-output-hk/cardano-node/releases). (It does not reflect any stacks.) The compatibility matrix should be read in conjunction with the [Cardano component dependencies definition](https://docs.cardano.org/en/latest/release-information/comp-matrix.html#cardano-component-dependencies).
 
-Please note that [node version 1.24.2](https://github.com/input-output-hk/cardano-node/releases/tag/1.24.2) is the only node version that will work following the token locking Cardano update.
+Please note that Cardano Rest has been deprecated and replaced with Rosetta and [node version 1.24.2](https://github.com/input-output-hk/cardano-node/releases/tag/1.24.2) is the only node version that will work following the token locking Cardano update.
 
 | [Cardano Node](https://github.com/input-output-hk/cardano-node/releases) | [Cardano DB Sync](https://github.com/input-output-hk/cardano-db-sync/releases) | [Smash](https://github.com/input-output-hk/smash/releases) | [Cardano Rest](https://github.com/input-output-hk/cardano-rest/releases) | [Cardano GraphQL](https://github.com/input-output-hk/cardano-graphql/releases) | [Cardano Explorer](https://github.com/input-output-hk/cardano-explorer-app/releases) | [Cardano Wallet](https://github.com/input-output-hk/cardano-wallet/releases) | 
 |---|---|---|---|---|---|---|
