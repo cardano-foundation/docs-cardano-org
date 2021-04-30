@@ -18,7 +18,7 @@ Name | Version | Release Date
 [Cardano GraphQL](https://github.com/input-output-hk/cardano-graphql) | [4.0.0](https://github.com/input-output-hk/cardano-graphql/releases/tag/4.0.0) | 30 March 2021
 [Cardano Explorer](https://github.com/input-output-hk/cardano-explorer-app) | [1.5.0](https://github.com/input-output-hk/cardano-explorer-app/releases/tag/1.5.0) | 6 April 2021
 [Cardano Transactions](https://github.com/input-output-hk/cardano-transactions) | [1.0.0](https://github.com/input-output-hk/cardano-transactions/releases/tag/1.0.0) | 21 April 2020
-[Cardano Addresses](https://github.com/input-output-hk/cardano-addresses) | [3.3.0](https://github.com/input-output-hk/cardano-addresses/releases/tag/3.3.0) | 9 April 2021
+[Cardano Addresses](https://github.com/input-output-hk/cardano-addresses) | [3.4.0](https://github.com/input-output-hk/cardano-addresses/releases/tag/3.4.0) | 30 April 2021
 [Cardano Coin Selection](https://github.com/input-output-hk/cardano-coin-selection) | [1.0.1](https://github.com/input-output-hk/cardano-coin-selection/releases/tag/v1.0.1) | 13 May 2020
 [Bech32](https://github.com/input-output-hk/bech32) | [1.1.0](https://github.com/input-output-hk/bech32/releases/tag/v1.1.0) | 8 July 2020
 [Cardano Wallet](https://github.com/input-output-hk/cardano-wallet) | [2021.04.08](https://github.com/input-output-hk/cardano-wallet/releases/tag/v2021-04-08) | 9 April 2021
