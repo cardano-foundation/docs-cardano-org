@@ -55,6 +55,7 @@
    Cardano design rationale <explore-cardano/design-rationale.md>
    Cardano architecture overview <explore-cardano/cardano-architecture-overview/index>
    explore-cardano/cardano-network
+   explore-cardano/p2p-networking
    explore-cardano/how-are-new-blocks-produced
    explore-cardano/cardano-monetary-policy
    explore-cardano/cardano-fee-structure
