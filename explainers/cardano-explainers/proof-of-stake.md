@@ -13,7 +13,7 @@ One of the key features of PoS is that as a user's value increases, the opportun
 ## Primary advantages of proof of stake ##
 Some of the primary advantages of PoS over PoW include:
 - rigorous security protocols are incorporated into a proof of stake protocol.
-- reduceded centralization - the risk of centralization is reduced by issuing penalties for selfish practices within the network
+- reduced centralization - the risk of centralization is reduced by issuing penalties for selfish practices within the network
 - energy efficiency - energy consumption is extremely efficient as a smaller amount of electricity, as well as hardware resources, are  needed to produce and run the blockchain. 
 - cost efficiencies - proof of stake currencies are far more cost effective than those operating on proof of work protocols. 
 
