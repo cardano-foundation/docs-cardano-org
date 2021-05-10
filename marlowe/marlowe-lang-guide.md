@@ -32,7 +32,7 @@ data Contract = Close
               | Let ValueId Value Contract
               | Assert Observation Contract
 ```
-Marlowe has *six* ways of building contracts. Five of these methods – `Pay`, `Let`, `If`, `When`, and `Assert` – build a complex contract from simpler contracts, and the fifth method, `Close`, is a simple contract. At each step of execution, as well as returning a new state and continuation contract, it is possible that effects – payments – and warnings can also be generated.
+Marlowe has *six* ways of building contracts. Five of these methods – `Pay`, `Let`, `If`, `When`, and `Assert` – build a complex contract from simpler contracts, and the sixth method, `Close`, is a simple contract. At each step of execution, as well as returning a new state and continuation contract, it is possible that effects – payments – and warnings can also be generated.
 
 #### Pay
 A payment contract `Pay a p t v cont` will make a payment of value `v` of token `t` from the account `a` to a payee `p`, which will be one of the contract participants or another account in the contract. Warnings will be generated if the value v is not positive, or if there is not enough in the account to make the payment in full (even if there are positive balances of other tokens in the account). In the latter case, a partial payment (of all the money available) is made. The continuation contract is the one given in the contract: `cont`.
