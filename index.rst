@@ -75,7 +75,7 @@
    cardano-db-sync <https://github.com/input-output-hk/cardano-db-sync#cardano-db-sync>
    cardano-wallet <https://github.com/input-output-hk/cardano-wallet#overview>
    smash <https://docs.cardano.org/projects/smash/>
-   ouroboros-network <https://github.com/input-output-hk/ouroboros-network/#ouroboros-network>
+   ouroboros-network <components/ouroboros.md>
    rt-view/rt-view
 
 .. toctree::
