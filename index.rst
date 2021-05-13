@@ -45,6 +45,7 @@
    How keys are used in Cardano <learn/Cardano-keys.md>
    Types of addresses <learn/types-addresses.md>
    About hard forks <explore-cardano/what-is-a-hard-fork-combinator.md>
+   Chain confirmation v transaction confirmation <learn/chain-confirmation-v-transaction-confirmation.md>
 
 .. toctree::
    :maxdepth: 3
