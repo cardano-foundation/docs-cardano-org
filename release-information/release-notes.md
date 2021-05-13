@@ -10,7 +10,7 @@ Note that Cardano Rest has been deprecated and replaced with Rosetta.
 
 Name | Version | Release Date
 -|-|-
-[Cardano Node](https://github.com/input-output-hk/cardano-node) | [1.26.2](https://github.com/input-output-hk/cardano-node/releases/tag/1.26.2) | 18 April 2021
+[Cardano Node](https://github.com/input-output-hk/cardano-node) | [1.27.0](https://github.com/input-output-hk/cardano-node/releases/tag/1.27.0) | 13 May 2021
 [Cardano RTView](https://github.com/input-output-hk/cardano-rt-view) | [0.3.0](https://github.com/input-output-hk/cardano-rt-view/releases/tag/0.3.0) | 15 Janurary 2021
 [Cardano DB Sync](https://github.com/input-output-hk/cardano-db-sync/releases) | [9.0.0](https://github.com/input-output-hk/cardano-db-sync/releases/tag/9.0.0) | 24 March 2021
 [Smash](https://github.com/input-output-hk/smash) | [1.4.0](https://github.com/input-output-hk/smash/releases/tag/v1.4.0) | 29 January 2021
