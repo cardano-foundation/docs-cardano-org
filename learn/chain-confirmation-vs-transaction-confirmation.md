@@ -1,4 +1,4 @@
-## Chain confirmation v transaction confirmation
+## Chain confirmation vs transaction confirmation
 
 When discussing Cardano, often-repeated questions are *what is Cardano’s transaction time?*, and *how many network confirmations does Cardano require before a transaction goes through?* The answers to these questions require a deeper look at the concepts of chain confirmation and transaction confirmation, and how these relate to the protocol.
 
