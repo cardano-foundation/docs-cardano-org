@@ -7,6 +7,7 @@ import recommonmark
 
 from recommonmark.transform import AutoStructify
 from os.path import abspath, join, dirname
+from datetime import datetime
 
 sys.path.insert(0, abspath(join(dirname(__file__))))
 
@@ -22,7 +23,8 @@ if rtd_version not in ["stable", "latest"]:
 # -- Project information -----------------------------------------------------
 
 project = 'Cardano Documentation'
-copyright = '2020, IOHK'
+current_year = datetime.now().year
+copyright = f'{current_year}, IOHK'
 author = 'IOHK'
 
 # The full version, including alpha/beta/rc tags
