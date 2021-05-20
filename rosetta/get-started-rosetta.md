@@ -12,6 +12,9 @@ This section outlines some examples that you can test out as a developer who wan
 
 Sample code for the typical Rosetta use cases:
 - [Sending transactions](https://github.com/input-output-hk/cardano-rosetta/tree/master/examples#transaction-sending)
+- [Sending transactions with pool registration and pledge](https://github.com/input-output-hk/cardano-rosetta/tree/master/examples#sending-transactions-with-pool-registration-and-pledge)
+- [Sending transactions with pool registration with cert and pledge](https://github.com/input-output-hk/cardano-rosetta/tree/master/examples#sending-transactions-with-pool-registration-with-cert-and-pledge)
+- [Sending transactions with pool retirement](https://github.com/input-output-hk/cardano-rosetta/tree/master/examples#sending-transactions-with-pool-retirement)
 - [Staking key registration and delegation](https://github.com/input-output-hk/cardano-rosetta/tree/master/examples#staking-key-registration-and-delegation)
 - [Withdrawals](https://github.com/input-output-hk/cardano-rosetta/tree/master/examples#withdrawals)
 - [Sending transactions with single multi assets](https://github.com/input-output-hk/cardano-rosetta/tree/master/examples#sending-transactions-with-single-multi-assets)
