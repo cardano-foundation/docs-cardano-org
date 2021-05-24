@@ -18,4 +18,4 @@ To use the Haskell editor follow these steps:
 6. Click **Compile** to convert this value from Haskell into Marlowe.
 7. Then, click **Send to Simulator**. 
 
-   The Simulator allows you to simulate Marlowe contracts transaction by transaction. You can find more instructions on how to simulate Marlowe contracts in [section 10.3 of the Marlowe tutorial](https://alpha.marlowe.iohkdev.io/tutorial/index.html#playground-overview).  
+   The Simulator allows you to simulate Marlowe contracts transaction by transaction. You can find more instructions on how to use the Haskell editor in the [Marlowe tutorial](https://cardano--3120.org.readthedocs.build/projects/plutus/en/3120/marlowe/tutorials/embedded-marlowe.html#).  
