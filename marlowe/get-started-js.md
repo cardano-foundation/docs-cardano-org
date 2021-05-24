@@ -14,4 +14,4 @@ To use the editor follow these steps:
 5. Click **Compile** to convert this contract from Javascript into Marlowe. 
 6. Then click **Send to Simulator** in the top right-hand corner. 
 
-    You can also find more details about simulation in the [Marlowe tutorial](https://alpha.marlowe.iohkdev.io/doc/marlowe/tutorials/index.html). 
+    You can also find more details about using the JavaScript editor in the [Marlowe tutorial](https://alpha.marlowe.iohkdev.io/doc/marlowe/tutorials/javascript-embedding.html). 
