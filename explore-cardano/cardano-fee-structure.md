@@ -32,7 +32,3 @@ Parameter a reflects the dependence of the transaction cost on the size of the t
 **Protocol parameter b**
 
 The value of b is a payable fee, regardless of the size of the transaction. This parameter was primarily introduced to prevent Distributed-Denial-of-Service (DDoS) attacks. b makes such attacks prohibitively expensive, and eliminates the possibility of an attacker generating millions of small transactions to flood and crash the system. 
-
-**Protocol parameter x**
-
-x represents the size of the transaction in bytes.
