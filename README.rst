@@ -2,6 +2,8 @@
 Cardano Documentation
 =====================
 
+:warning: This repository has been deprecated. please see [here](https://github.com/input-output-hk/cardano-documentation) for the source code to [docs.cardano.org](https://docs.cardano.org/)
+
 .. raw:: html
 
    <p align="center">
